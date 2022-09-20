@@ -76,7 +76,7 @@ const RegisterForm = ({
 };
 
 const LoginFormContainer = tw.div`
-    md:w-8/12 lg:w-5/12 rounded-lg p-8 bg-mThirdColor shadow-lg mt-8
+  rounded-lg p-8 bg-mWhite shadow-lg mt-8
 `;
 
 const RegisterInputBox = tw.div`
@@ -84,18 +84,18 @@ const RegisterInputBox = tw.div`
 `;
 
 const DoubleCheckButton = tw.button`
-  bg-mPrimaryColor text-white font-medium text-sm  uppercase rounded shadow-md hover:bg-mSecondaryColor hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out px-2 py-2
+  bg-mCream text-mBlack font-medium text-sm  uppercase rounded shadow-md hover:bg-mYellow hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out px-2 py-2
 `;
 
 const LoginBox = tw.div`
-  my-6  justify-center flex
+  my-6 justify-center flex
 `;
 
 const LoginLink = tw.p`
-  ml-4 text-mSecondaryColor underline
+  ml-4 text-mBlack underline
 `;
 const RegisterButton = tw.button`
-  bg-mPrimaryColor  inline-block px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-mSecondaryColor hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full
+  bg-mCream  inline-block px-7 py-3 text-mBlack font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-mYellow hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full
 `;
 
 export default RegisterForm;
