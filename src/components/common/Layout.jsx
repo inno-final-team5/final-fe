@@ -5,9 +5,8 @@ const Layout = ({ children }) => {
 };
 
 const TwLayout = tw.div`
-  w-full
-  h-screen
-  bg-mBackground
-  
+w-4/5
+mx-auto
+px-5
 `;
 export default Layout;
