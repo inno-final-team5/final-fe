@@ -1,5 +1,6 @@
 import React from "react";
 import LogoBox from "./LogoBox";
+import tw from "tailwind-styled-components/";
 
 const Header = () => {
   return (
@@ -7,30 +8,21 @@ const Header = () => {
       <LogoBox />
       <div className="w-full ml-5 py-2.5 flex items-center justify-between border border-solid border-mYellow">
         <ul className="flex ml-10">
-          <li className="mr-10 last:mr-0 text-sm font-bold text-mCream hover:text-mYellow cursor-pointer">
-            영화 검색
-          </li>
-          <li className="mr-10 last:mr-0 text-sm font-bold text-mCream hover:text-mYellow cursor-pointer">
-            커뮤니티
-          </li>
-          <li className="mr-10 last:mr-0 text-sm font-bold text-mCream hover:text-mYellow cursor-pointer">
-            챌린지
-          </li>
-          <li className="mr-10 last:mr-0 text-sm font-bold text-mCream hover:text-mYellow cursor-pointer">
-            마이 페이지
-          </li>
+          <MenuTitle>영화 검색</MenuTitle>
+          <MenuTitle>커뮤니티</MenuTitle>
+          <MenuTitle>챌린지</MenuTitle>
+          <MenuTitle>마이 페이지</MenuTitle>
         </ul>
         <ul className="flex mr-10">
-          <li className="mr-10 last:mr-0 text-xs font-bold text-mCream hover:text-mYellow cursor-pointer">
-            로그인
-          </li>
-          <li className="mr-10 last:mr-0 text-xs font-bold text-mCream hover:text-mYellow cursor-pointer">
-            회원가입
-          </li>
+          <MenuTitle>로그인</MenuTitle>
+          <MenuTitle>회원가입</MenuTitle>
         </ul>
       </div>
     </div>
   );
 };
 
+const MenuTitle = tw.li`
+  mr-10 last:mr-0 text-xs font-bold text-mCream hover:text-mYellow cursor-pointer
+`;
 export default Header;
