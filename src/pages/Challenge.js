@@ -19,7 +19,6 @@ const Challenge = () => {
   return (
     <Layout>
       <ChallengeContainer>
-        <div>header</div>
         <ChallengeTitleBox>Challenge List</ChallengeTitleBox>
 
         <ChallengeListBox>
@@ -44,11 +43,11 @@ text-black  lg:px-10    flex flex-col items-center
 `;
 
 const ChallengeTitleBox = tw.h2`
-h-8  w-full flex items-center text-3xl py-8 font-bold pl-4 text-mYellow
+h-8  w-full flex items-center text-3xl py-8 font-bold pl-4 text-mYellow underline
 `;
 
 const ChallengeListBox = tw.div`
-grid grid-cols-1  h-auto bg-mGray p-4 lg:p-8 rounded-md  my-8 min-w-max lg:grid-cols-4 mx-4 md:grid-cols-2 lg:w-full
+ w-4/5 grid grid-cols-1  h-auto bg-mGray p-4 lg:p-8 rounded-md  my-8 min-w-max mx-4 md:grid-cols-2 lg:w-full border border-solid border-mYellow shadow-lg
 `;
 
 export default Challenge;
