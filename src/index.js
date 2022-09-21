@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import configStore from "../src/redux/config/configStore"
+import { Provider } from "react-redux";
 
 import "./styles/global.css";
 import GlobalStyle from "./styles/GlobalStyle";
@@ -10,8 +12,10 @@ import GlobalStyle from "./styles/GlobalStyle";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <App />
+    <Provider store={configStore}>
+      <GlobalStyle />
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

@@ -11,16 +11,6 @@ export const checkUserName = (nickname) => {
 };
 
 export const checkPassword = (password) => {
-  const passwordRegEx = /^(?=.*[a-zA-Z])(?=.[0-9]){4,16}$/;
-
-  let message = "";
-
-  if (password.match(passwordRegEx) === null) {
-    //형식에 맞지 않을 경우 아래 콘솔 출력
-    message = "비밀번호 형식을 확인해주세요";
-  } else {
-    // 맞을 경우 출력
-    message = "";
-  }
-  return message;
+  const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{4,16}$/;
+  return passwordRegEx.test(password);
 };

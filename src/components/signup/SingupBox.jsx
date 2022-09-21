@@ -3,93 +3,125 @@ import { useState } from "react";
 import tw from "tailwind-styled-components";
 // import InputBox from "../common/InputBox";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
+import { __signup, __checkEmail } from "../../redux/modules/SignupSlice";
+
+import {
+  checkEmail,
+  checkUserName,
+  checkPassword,
+} from "../../utils/validation";
+import { api } from "../../shared/api";
 // import SignupForm from "components/signup/SignupForm";
-import instance from "shared/api";
 
 const SingupBox = () => {
-  // const [email, setEmail] = useState("");
-  // const [nickname, setNickname] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [registerError, setRegisterError] = useState("");
-
-  const emailCheck = () => {
-    if (signupData.email.length === 0) return;
-  };
-
-  const nicknameCheck = () => {
-    if (signupData.nickname.length === 0) return;
-  };
-
-  // const onChangeEmail = (e) => {
-  //   e.preventDefault();
-  //   setEmail(e.target.value);
-  // };
-
-  // const onChangeNickname = (e) => {
-  //   e.preventDefault();
-  //   setNickname(e.target.value);
-  // };
-
-  // const onChangePassword = (e) => {
-  //   e.preventDefault();
-  //   setPassword(e.target.value);
-  // };
-
-  // const onChangePasswordConfirm = (e) => {
-  //   e.preventDefault();
-  //   setPasswordConfirm(e.target.value);
-  // };
-
-  /** 설명: 회원가입 로직  */
-  const register = async (email, nickname, password) => {
-    console.log(email, nickname, password);
-
-    try {
-      const user = { email, nickname, password };
-
-      const res = await instance.post(`api/member/login`, user);
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-      setRegisterError(error.message);
-    }
-  };
+  // const [registerError, setRegisterError] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  // const isCheckName = useSelector((state) => state.signup.isCheckName);
   const [signupData, setSignupData] = useState({
     email: "",
     nickname: "",
     password: "",
     passwordConfirm: "",
   });
+  // const [isValidEmail, setIsValidEmail] = useState(false);
 
   const changeInput = (e) => {
     const { id, value } = e.target;
     setSignupData({ ...signupData, [id]: value });
   };
-  console.log(signupData);
+
+  const emailCheck = () => {
+    // try {
+    //   const checkEmail = dispatch(__checkEmail(signupData.email));
+    //   if (checkEmail.payload.isCheckEmail) alert("사용 가능한 이메일입니다.");
+    // } catch (error) {
+    //   console.log(error);
+    //   alert("이미 사용 중인 이메일입니다.");
+    // }
+    // try {
+    //   await api.post(`/check`, email);
+    //   console.log(email);
+    //   alert("사용가능합니다");
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    // if (signupData.email.length === 0) {
+    //   alert("이메일을 입력해주세요");
+    // }
+  };
+  // const emailCheck = async (e) => {
+  //   e.preventDefault();
+  //   const checkEmail = dispatch(__checkEmail(signupData.email));
+  //   if (checkEmail.payload) {
+  //     alert("사용 가능한 이메일입니다.");
+  //   } else if (checkEmail.payload.error) {
+  //     alert("사용 중인 이메일입니다.");
+  //   }
+  // };
+
+  const nicknameCheck = () => {
+    if (signupData.nickname.length === 0) return;
+  };
+
+  const passwordConfirmCheck =
+    signupData.passwordConfirm == signupData.password;
+
+  // /** 설명: 회원가입 로직  */
+  // const register = async (email, nickname, password) => {
+  //   console.log(email, nickname, password);
+
+  //   try {
+  //     const user = { email, nickname, password };
+
+  //     const res = await instance.post(`api/member/login`, user);
+  //     console.log(res);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setRegisterError(error.message);
+  //   }
+  // };
+
+  const onSumitSignup = async (e) => {
+    e.preventDefault();
+    if (!passwordConfirmCheck) {
+      alert("입력하신 비밀번호가 다릅니다.");
+      return;
+    } else if (!checkEmail(signupData.email)) {
+      alert("이메일 형식에 맞게 써주세요");
+      return;
+    } else if (!checkUserName(signupData.nickname)) {
+      alert("닉네임 형식에 맞게 써주세요");
+      return;
+    } else if (!checkPassword(signupData.password)) {
+      alert("비밀번호 형식에 맞게 써주세요");
+      return;
+    }
+
+    const checkState = await dispatch(__signup(signupData));
+    if (checkState.payload) {
+      navigate("/login");
+    } else {
+      console.log(checkState.payload.error);
+    }
+  };
+
+  //   try {
+  //     await api.post(`/members/signup`, signupData);
+  //     alert("회원가입이 완료되었습니다.");
+  //   } catch (error) {
+  //     console.log(error);
+  //     setRegisterError(error.message);
+  //   }
+  // };
+
   return (
-    // <div className="mx-auto w-fit flex">
-    //   <SignupForm
-    //     signupData={signupData}
-    //     changeInput={changeInput}
-    //     email={email}
-    //     setEmail={onChangeEmail}
-    //     emailCheck={emailCheck}
-    //     nickname={nickname}
-    //     setNickname={onChangeNickname}
-    //     nicknameCheck={nicknameCheck}
-    //     password={password}
-    //     setPassword={onChangePassword}
-    //     passwordConfirm={passwordConfirm}
-    //     setPasswordConfirm={onChangePasswordConfirm}
-    //     register={register}
-    //     registerError={registerError}
-    //   />
-    // </div>
     <LoginFormContainer>
       {/* 회원가입 폼 */}
-      <form onSubmit={register}>
+      <form onSubmit={onSumitSignup}>
         <RegisterInputBox>
           <InputBox
             type="email"
@@ -99,7 +131,9 @@ const SingupBox = () => {
             required
           />
 
-          <DoubleCheckButton onClick={emailCheck}>중복확인</DoubleCheckButton>
+          <DoubleCheckButton type="button" onClick={emailCheck}>
+            중복확인
+          </DoubleCheckButton>
         </RegisterInputBox>
 
         <RegisterInputBox>
@@ -111,7 +145,7 @@ const SingupBox = () => {
             required
           />
 
-          <DoubleCheckButton onClick={nicknameCheck}>
+          <DoubleCheckButton type="button" onClick={nicknameCheck}>
             중복확인
           </DoubleCheckButton>
         </RegisterInputBox>
@@ -133,8 +167,8 @@ const SingupBox = () => {
 
         <RegisterButton
           type="submit"
-          data-mdb-ripple="true"
-          data-mdb-ripple-color="light"
+          // data-mdb-ripple="true"
+          // data-mdb-ripple-color="light"
         >
           회원가입
         </RegisterButton>
