@@ -1,7 +1,13 @@
 import tw from "tailwind-styled-components";
+import Header from "./Header";
 
 const Layout = ({ children }) => {
-  return <TwLayout>{children}</TwLayout>;
+  return (
+    <TwLayout>
+      <Header />
+      {children}
+    </TwLayout>
+  );
 };
 
 const TwLayout = tw.div`
