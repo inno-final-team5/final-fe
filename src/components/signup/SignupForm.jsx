@@ -5,7 +5,6 @@ import InputBox from "../common/InputBox";
 const RegisterForm = ({
   changeInput,
   signupData,
-
   email,
   nickname,
   password,
@@ -56,7 +55,7 @@ const RegisterForm = ({
           type="password"
           helperText="비밀번호를 한 번 더 입력하세요"
           value={passwordConfirm}
-          onChange={setPasswordConfirm}
+          onChange={changeInput}
         />
 
         <RegisterButton

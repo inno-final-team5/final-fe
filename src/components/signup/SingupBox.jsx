@@ -95,7 +95,8 @@ const SingupBox = () => {
             type="email"
             id="email"
             onChange={changeInput}
-            helperText="이메일을 입력하세요"
+            placeholder="이메일을 입력하세요"
+            required
           />
 
           <DoubleCheckButton onClick={emailCheck}>중복확인</DoubleCheckButton>
@@ -106,7 +107,8 @@ const SingupBox = () => {
             type="text"
             id="nickname"
             onChange={changeInput}
-            helperText="닉네임을 입력하세요"
+            placeholder="닉네임을 입력하세요"
+            required
           />
 
           <DoubleCheckButton onClick={nicknameCheck}>
@@ -117,14 +119,16 @@ const SingupBox = () => {
           type="password"
           id="password"
           onChange={changeInput}
-          helperText="비밀번호를 입력하세요"
+          placeholder="비밀번호를 입력하세요"
+          required
         />
 
         <InputBox
           type="password"
           id="passwordConfirm"
           onChange={changeInput}
-          helperText="비밀번호를 한 번 더 입력하세요"
+          placeholder="비밀번호를 한 번 더 입력하세요"
+          required
         />
 
         <RegisterButton
@@ -151,7 +155,7 @@ const LoginFormContainer = tw.div`
 `;
 
 const RegisterInputBox = tw.div`
-    flex justify-between items-start     mb - 6
+    flex justify-between items-start mb - 6
 `;
 
 const DoubleCheckButton = tw.button`
