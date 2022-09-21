@@ -1,3 +1,4 @@
+import FavoriteCard from "components/myFavorite/FavoriteCard";
 import React, { Fragment } from "react";
 
 const MyFavorites = () => {
@@ -5,7 +6,10 @@ const MyFavorites = () => {
     <Fragment>
       <section>
         <div className="flex justify-center items-center text-4xl h-screen">
-          MyFavorites
+          <FavoriteCard
+            imageUrl="http://joyposter.cafe24.com//NEW-posters/F600X848Poster/FMX-448.jpg"
+            title="test"
+          />
         </div>
       </section>
     </Fragment>
