@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
 const TwLayout = tw.div`
   w-full
   h-screen
-  bg-mBackground
+  bg-mBlack
   
 `;
 export default Layout;
