@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import InputBox from "../common/InputBox";
 
 const RegisterForm = ({
+  changeInput,
+  signupData,
+
   email,
   nickname,
   password,
@@ -24,7 +27,7 @@ const RegisterForm = ({
             type="email"
             helperText="이메일을 입력하세요"
             value={email}
-            onChange={setEmail}
+            onChange={changeInput}
           />
 
           <DoubleCheckButton onClick={checkEmail}>중복확인</DoubleCheckButton>
@@ -35,7 +38,7 @@ const RegisterForm = ({
             type="text"
             helperText="닉네임을 입력하세요"
             value={nickname}
-            onChange={setNickname}
+            onChange={changeInput}
           />
 
           <DoubleCheckButton onClick={checkNickname}>
@@ -46,7 +49,7 @@ const RegisterForm = ({
           type="password"
           helperText="비밀번호를 입력하세요"
           value={password}
-          onChange={setPassword}
+          onChange={changeInput}
         />
 
         <InputBox

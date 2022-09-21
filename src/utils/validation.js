@@ -6,12 +6,12 @@ export const checkEmail = (email) => {
 };
 
 export const checkUserName = (nickname) => {
-  const nicknameRegEx = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{4,12}$/;
+  const nicknameRegEx = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,10}$/;
   return nicknameRegEx.test(nickname);
 };
 
 export const checkPassword = (password) => {
-  const passwordRegEx = /^[A-Za-z0-9]{4,20}$/;
+  const passwordRegEx = /^(?=.*[a-zA-Z])(?=.[0-9]){4,16}$/;
 
   let message = "";
 
