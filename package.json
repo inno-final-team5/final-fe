@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/generator": "^7.19.0",
     "autoprefixer": "^10.4.11",
     "postcss": "^8.4.16",
     "tailwind-styled-components": "^2.2.0",
