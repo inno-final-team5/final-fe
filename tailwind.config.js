@@ -8,7 +8,7 @@ module.exports = {
         mGray: '#393E46',
         mYellow: '#FFD369',
         mWhite: '#EEEEEE',
-        mCream: '#EAE2CE',
+        mCream: '#F3EAC8',
       },
     },
   },
