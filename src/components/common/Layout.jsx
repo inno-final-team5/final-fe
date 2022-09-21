@@ -1,4 +1,4 @@
-import tw from "tailwind-styled-components";
+import tw from 'tailwind-styled-components';
 
 const Layout = ({ children }) => {
   return <TwLayout>{children}</TwLayout>;
@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
 const TwLayout = tw.div`
   w-full
   h-screen
-  bg-mBackground
+  bg-mBlack
   
 `;
 export default Layout;
