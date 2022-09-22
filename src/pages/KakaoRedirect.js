@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { kakaoLoginDB } from '../redux/modules/userSlice';
 import styled, { keyframes } from 'styled-components';
-import logo from '../images/logo.png';
+import logo from '../images/Logo.png';
 
 const KakaoRedirect = () => {
   const dispatch = useDispatch();

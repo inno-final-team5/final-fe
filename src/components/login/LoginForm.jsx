@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import logo from 'images/logo.png';
+import logo from 'images/Logo.png';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUserDB } from '../../redux/modules/userSlice';
@@ -33,7 +33,7 @@ const LoginForm = () => {
         <div className="container px-5 py-20 mx-auto sm:w-8/12 ">
           <Link to={'/'}>
             <div className="flex flex-col text-center w-full mb-2">
-              <img className="mx-auto w-30 h-26" src={logo}></img>
+              <img className="mx-auto w-38 h-40" src={logo}></img>
             </div>
           </Link>
 
