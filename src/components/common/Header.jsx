@@ -4,6 +4,7 @@ import tw from "tailwind-styled-components/";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
+  console.log("test중입니다!");
   return (
     <div className="flex items-center">
       <LogoBox />
