@@ -1,15 +1,31 @@
 import FavoriteCard from "components/myFavorite/FavoriteCard";
-import React, { Fragment } from "react";
+import React, { useEffect, Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { __getFavorites } from "redux/modules/myFavorite";
 
 const MyFavorites = () => {
+  const dispatch = useDispatch();
+
+  const { favorites } = useSelector((state) => state.favoriteSlice);
+
+  useEffect(() => {
+    dispatch(__getFavorites());
+  }, [dispatch]);
+
   return (
     <Fragment>
       <section>
-        <div className="flex justify-center items-center text-4xl h-screen">
-          <FavoriteCard
-            imageUrl="http://joyposter.cafe24.com//NEW-posters/F600X848Poster/FMX-448.jpg"
-            title="test"
-          />
+        <div className="grid h-screen grid-cols-4">
+          {favorites.map((movie) => {
+            return (
+              <FavoriteCard
+                key={movie.id}
+                id={movie.id}
+                title={movie.title}
+                imageUrl={movie.imageUrl}
+              />
+            );
+          })}
         </div>
       </section>
     </Fragment>

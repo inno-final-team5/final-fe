@@ -11,7 +11,7 @@ const MyPage = () => {
             <div className="col-span-2 bg-mBlack max-h-min pl-2 mx-2 mt-4">
               <SideBar />
             </div>
-            <div className="col-span-10 bg-mGray  pl-2 mt-4 border border-solid border-mYellow">
+            <div className="col-span-10 bg-mGray  pl-2 mt-4 border border-none border-mYellow">
               <MyContainer />
             </div>
           </div>
