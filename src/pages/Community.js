@@ -6,13 +6,11 @@ import Layout from "components/common/Layout";
 const Community = () => {
   return (
     <Layout>
-      <div className="justify-end flex">
-        <WriteButton>글쓰기</WriteButton>
-      </div>
       <MainSection>
         <Sidebar></Sidebar>
         <ReviewList>
-          <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
+          <Button>글쓰기</Button>
+          {/* <div class="overflow-x-auto relative shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-mBlack ">
               <thead class=" text-mYellow text-base bg-mBlack">
                 <tr>
@@ -84,7 +82,7 @@ const Community = () => {
                 </tr>
               </tbody>
             </table>
-          </div>
+          </div> */}
         </ReviewList>
       </MainSection>
     </Layout>
@@ -96,7 +94,7 @@ flex
 relative
 `;
 
-const WriteButton = tw.button`
+const Button = tw.button`
 text-mBlack
 bg-mYellow
 hover:bg-mCream  
@@ -106,16 +104,14 @@ text-sm
 px-5 
 py-2.5
 mb-2
+flex
 ml-auto
-mr-20
-mt-10
 `;
 
 const ReviewList = tw.div`
 bg-mGray
 w-4/6
 v-auto
-ml-14
 p-10
 m-8
 rounded
