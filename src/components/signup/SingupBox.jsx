@@ -20,6 +20,7 @@ const SingupBox = () => {
   const [password, setPassword] = useState();
   const [passwordConfirm, setPasswordConfirm] = useState();
 
+  /** input */
   const emailInput = (e) => {
     setEmail(e.target.value);
   };
