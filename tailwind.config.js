@@ -4,11 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        mBlack: '#222831',
-        mGray: '#393E46',
-        mYellow: '#FFD369',
-        mWhite: '#EEEEEE',
-        mCream: '#F3EAC8',
+        mBlack: "#222831",
+        mGray: "#393E46",
+        mYellow: "#FFD369",
+        mWhite: "#eeeeee",
+        mCream: "#f3eac8",
       },
     },
   },
