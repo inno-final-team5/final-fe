@@ -1,0 +1,76 @@
+{
+  "signup": [
+    {
+      "id": 1,
+      "email": "test1234@naver.com",
+      "nickname": "닉네임",
+      "password": "test1234"
+    },
+    {
+      "email": "1234@naver.com",
+      "nickname": "1",
+      "password": "1",
+      "passwordConfirm": "1",
+      "id": 2
+    },
+    {
+      "email": "12345@naver.com",
+      "nickname": "1",
+      "password": "12",
+      "passwordConfirm": "34",
+      "id": 3
+    },
+    {
+      "email": "",
+      "nickname": "1",
+      "password": "12",
+      "passwordConfirm": "34",
+      "id": 4
+    },
+    {
+      "email": "1234@naver.com",
+      "nickname": "1",
+      "password": "1",
+      "passwordConfirm": "1",
+      "id": 5
+    },
+    {
+      "email": "1234@naver.com",
+      "nickname": "1",
+      "password": "1",
+      "passwordConfirm": "12",
+      "id": 6
+    },
+    {
+      "email": "1234@naver.com",
+      "nickname": "1",
+      "password": "1",
+      "passwordConfirm": "1",
+      "id": 7
+    },
+    {
+      "email": "1234@naver.com",
+      "nickname": "1",
+      "password": "1",
+      "passwordConfirm": "1",
+      "id": 8
+    },
+    {
+      "email": "1234@naver.com",
+      "nickname": "11",
+      "password": "11",
+      "passwordConfirm": "11",
+      "id": 9
+    }
+  ],
+  "check": [
+    {
+      "id": 1,
+      "email": "1234@naver.com",
+      "nickname": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
