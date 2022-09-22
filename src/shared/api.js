@@ -1,29 +1,18 @@
-import axios from "axios";
+import axios from 'axios';
 
-const instance = axios.create({
-  // 서버용
-  //   baseURL: process.env.REACT_APP_API_URL,
-  // 로컬용
-  baseURL: "http://localhost:3001",
+// axios 기본 주소 & header 타입 세팅
+export const api = axios.create({
+  baseURL: 'http://13.124.170.188/api/',
   headers: {
-    "Content-Type": "application/json",
-    withCredentials: true,
+    'Content-Type': 'application/json',
   },
 });
 
-instance.interceptors.request.use(
-  function (config) {
-    const accessToken = sessionStorage.getItem("Access_token");
-    const refreshToken = sessionStorage.getItem("Refresh_token");
-    if (accessToken !== null && refreshToken !== null) {
-      config.headers.common["authorization"] = `${accessToken}`;
-      config.headers.common["Refresh-token"] = `${refreshToken}`;
-    }
-    return config;
-  },
-  function (error) {
-    return Promise.reject(error);
-  }
-);
+export default api;
 
-export default instance;
+api.interceptors.request.use(function (config) {
+  const accessToken = localStorage.getItem('accessToken');
+  config.headers.common['accessToken'] = `${accessToken}`;
+  return config;
+});
+
