@@ -6,6 +6,7 @@ import Signin from 'pages/Signin';
 import Detail from 'pages/Detail';
 import KakaoRedirect from 'pages/KakaoRedirect';
 import SignUp from "pages/SignUp";
+import MyPage from "pages/MyPage";
 
 
 const Router = () => {
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/detail" element={<Detail />} />
         <Route path="/kakaoLogin" element={<KakaoRedirect />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/mypage/*" element={<MyPage />} />
       </Routes>
     </BrowserRouter>
   );
