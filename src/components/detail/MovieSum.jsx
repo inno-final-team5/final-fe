@@ -5,8 +5,8 @@ import { RiHeartAddLine } from 'react-icons/ri';
 const MovieSum = () => {
   return (
     <div>
-      <section>
-        <div className="container mx-auto flex px-12 py-24 md:flex-row flex-col items-center">
+      <section className="">
+        <div className="border border-solid border-mYellow container mx-auto flex px-12 py-24 md:flex-row flex-col items-center">
           <div className="lg:w-40 md:w-1/3 w-30 mb-10 md:mb-0">
             <img src={poster} />
           </div>
