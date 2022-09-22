@@ -6,7 +6,7 @@ import Layout from "components/common/Layout";
 // import { postList } from '../../Data';
 
 const CommunityDetail = (props) => {
-  const [reviewList, setReviewList] = useState([]);
+  // const [reviewList, setReviewList] = useState([]);
 
   // useEffect(() => {
   //   setDataList(postList);
