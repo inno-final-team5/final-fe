@@ -1,13 +1,19 @@
-import tw from 'tailwind-styled-components';
+import tw from "tailwind-styled-components";
+import Header from "./Header";
+
 
 const Layout = ({ children }) => {
-  return <TwLayout>{children}</TwLayout>;
+  return (
+    <TwLayout>
+      <Header />
+      {children}
+    </TwLayout>
+  );
 };
 
 const TwLayout = tw.div`
-  w-full
-  h-screen
-  bg-mBlack
-  
+w-4/5
+mx-auto
+px-5
 `;
 export default Layout;
