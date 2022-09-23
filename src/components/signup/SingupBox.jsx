@@ -1,16 +1,12 @@
-import React from "react";
-import { useState } from "react";
-import tw from "tailwind-styled-components";
-import { api } from "../../shared/api";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useState } from 'react';
+import tw from 'tailwind-styled-components';
+import { api } from '../../shared/api';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 /**유효성을 위한 정규식 */
-import {
-  checkEmail,
-  checkUserName,
-  checkPassword,
-} from "../../utils/validation";
+import { checkEmail, checkUserName, checkPassword } from '../../utils/validation';
 
 const SingupBox = () => {
   const navigate = useNavigate();
@@ -38,16 +34,16 @@ const SingupBox = () => {
   const emailCheck = async () => {
     //빈칸확인
     if (email.length === 0) {
-      alert("이메일을 입력해주세요");
+      alert('이메일을 입력해주세요');
       return;
     }
 
     //중복확인
-    const response = await api.post("/members/signup/email", { email });
+    const response = await api.post('/members/signup/email', { email });
     if (response.data.success) {
-      alert("사용 가능한 이메일입니다.");
+      alert('사용 가능한 이메일입니다.');
     } else {
-      alert("이미 사용 중인 이메일입니다.");
+      alert('이미 사용 중인 이메일입니다.');
     }
   };
 
@@ -55,16 +51,16 @@ const SingupBox = () => {
   const nicknameCheck = async () => {
     //빈칸확인
     if (nickname.length === 0) {
-      alert("닉네임을 입력해주세요.");
+      alert('닉네임을 입력해주세요.');
       return;
     }
 
     //중복확인
-    const response = await api.post("/members/signup/nickname", { nickname });
+    const response = await api.post('/members/signup/nickname', { nickname });
     if (response.data.success) {
-      alert("사용 가능한 닉네임입니다.");
+      alert('사용 가능한 닉네임입니다.');
     } else {
-      alert("이미 사용 중인 닉네임입니다.");
+      alert('이미 사용 중인 닉네임입니다.');
     }
   };
 
@@ -77,16 +73,16 @@ const SingupBox = () => {
 
     /** 회원가입 유효성 확인*/
     if (!passwordConfirmCheck) {
-      alert("입력하신 비밀번호가 다릅니다.");
+      alert('입력하신 비밀번호가 다릅니다.');
       return;
     } else if (!checkEmail(email)) {
-      alert("이메일 형식에 맞게 써주세요");
+      alert('이메일 형식에 맞게 써주세요');
       return;
     } else if (!checkUserName(nickname)) {
-      alert("닉네임 형식에 맞게 써주세요");
+      alert('닉네임 형식에 맞게 써주세요');
       return;
     } else if (!checkPassword(password)) {
-      alert("비밀번호 형식에 맞게 써주세요");
+      alert('비밀번호 형식에 맞게 써주세요');
       return;
     }
 
@@ -98,13 +94,13 @@ const SingupBox = () => {
         password,
       });
 
-      if (res.data.error === "DUPLICATE_EMAIL") {
-        alert("이메일 중복확인을 해주세요");
-      } else if (res.data.error === "DUPLICATE_NICKNAME") {
-        alert("닉네임 중복확인을 해주세요");
+      if (res.data.error === 'DUPLICATE_EMAIL') {
+        alert('이메일 중복확인을 해주세요');
+      } else if (res.data.error === 'DUPLICATE_NICKNAME') {
+        alert('닉네임 중복확인을 해주세요');
       } else {
-        alert("회원가입이 완료되었습니다.");
-        navigate("/login");
+        alert('회원가입이 완료되었습니다.');
+        navigate('/login');
       }
     } catch (error) {
       console.log(error);
@@ -116,13 +112,7 @@ const SingupBox = () => {
       {/* 회원가입 폼 */}
       <form onSubmit={onSumitSignup}>
         <RegisterInputBox>
-          <InputBox
-            type="email"
-            id="email"
-            onChange={emailInput}
-            placeholder="이메일을 입력하세요"
-            required
-          />
+          <InputBox type="email" id="email" onChange={emailInput} placeholder="이메일을 입력하세요" required />
 
           <DoubleCheckButton type="button" onClick={emailCheck}>
             중복확인
@@ -130,33 +120,15 @@ const SingupBox = () => {
         </RegisterInputBox>
 
         <RegisterInputBox>
-          <InputBox
-            type="text"
-            id="nickname"
-            onChange={nicknameInput}
-            placeholder="닉네임 10자이내"
-            required
-          />
+          <InputBox type="text" id="nickname" onChange={nicknameInput} placeholder="닉네임 10자이내" required />
 
           <DoubleCheckButton type="button" onClick={nicknameCheck}>
             중복확인
           </DoubleCheckButton>
         </RegisterInputBox>
-        <InputBox
-          type="password"
-          id="password"
-          onChange={passwordInput}
-          placeholder="비밀번호 영어+숫자 4-16자리"
-          required
-        />
+        <InputBox type="password" id="password" onChange={passwordInput} placeholder="비밀번호 영어+숫자 4-16자리" required />
 
-        <InputBox
-          type="password"
-          id="passwordConfirm"
-          onChange={passwordConfirmInput}
-          placeholder="비밀번호를 한 번 더 입력하세요"
-          required
-        />
+        <InputBox type="password" id="passwordConfirm" onChange={passwordConfirmInput} placeholder="비밀번호를 한 번 더 입력하세요" required />
 
         <RegisterButton
           type="submit"
