@@ -1,13 +1,15 @@
 // import tw from "tailwind-styled-components/";
-import LogoBox from "components/common/LogoBox";
-import SingupBox from "components/signup/SingupBox";
+// import LogoBox from "components/common/LogoBox";
+import SignupBox from "components/signup/SignupBox";
+import Logo from "../images/Logo.png";
+
 
 const SignUp = () => {
  
   return (
         <div className="h-screen bg-mBlack mx-auto flex flex-col justify-center items-center">
-          <LogoBox className="w-52"/>
-          <SingupBox/>
+          <img src={Logo} className="w-52"/>
+          <SignupBox/>
         </div>
   );
 };
