@@ -1,13 +1,7 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
+import challengeSlice from 'redux/modules/challenge';
+import favoriteSlice from 'redux/modules/myFavorite';
 
-const middlewares = [thunk];
-
-const rootReducer = combineReducers({});
-
-const store = configureStore({
-  reducer: rootReducer,
-  middleware: [...middlewares],
-});
+const store = configureStore({ reducer: { favoriteSlice, challengeSlice } });
 
 export default store;
