@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { kakaoLoginDB } from '../redux/modules/userSlice';
-import styled, { keyframes } from 'styled-components';
-import logo from '../images/Logo.png';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { kakaoLoginDB } from "../redux/modules/userSlice";
+import styled, { keyframes } from "styled-components";
+import logo from "../images/Logo.png";
 
 const KakaoRedirect = () => {
   const dispatch = useDispatch();
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem("accessToken");
 
   // 인가코드
-  let code = new URL(window.location.href).searchParams.get('code');
+  let code = new URL(window.location.href).searchParams.get("code");
 
   useEffect(() => {
     dispatch(kakaoLoginDB(code));
