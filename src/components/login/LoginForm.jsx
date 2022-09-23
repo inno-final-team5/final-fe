@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import logo from "images/logo.png";
+import logo from "images/Logo.png";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUserDB } from "../../redux/modules/userSlice";
@@ -36,7 +36,7 @@ const LoginForm = () => {
         <div className="container px-5 py-20 mx-auto sm:w-8/12 ">
           <Link to={"/"}>
             <div className="flex flex-col text-center w-full mb-2">
-              <img className="mx-auto w-38 h-40" src={logo}></img>
+              <img className="mx-auto w-38 h-40" src={logo} alt="logo"></img>
             </div>
           </Link>
 
@@ -90,7 +90,7 @@ const LoginForm = () => {
                 <span className="text-mCream">
                   계정이 없으신가요? &emsp;
                   <Link to={"/signup"}>
-                    <button className="text-gray-600 mx-auto rounded-lg bg-mCream border-0 py-1 px-10 focus:outline-none hover:bg-mGray rounded text-lg">
+                    <button className="text-gray-600 mx-auto rounded-lg bg-mCream border-0 py-1 px-10 focus:outline-none hover:bg-mGray text-lg">
                       회원가입
                     </button>
                   </Link>
