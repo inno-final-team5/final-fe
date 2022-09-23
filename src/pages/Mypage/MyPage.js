@@ -7,11 +7,11 @@ const MyPage = () => {
     <Layout>
       <>
         <section>
-          <div className="grid grid-cols-12">
-            <div className="col-span-2 bg-mBlack max-h-min pl-2 mx-2 mt-4">
+          <div className="mt-4">
+            <div className="bg-mBlack fixed w-56">
               <SideBar />
             </div>
-            <div className="col-span-10 bg-mGray  pl-2 mt-4 border border-none border-mYellow">
+            <div className="bg-mBlack rounded-sm pl-64 ">
               <MyContainer />
             </div>
           </div>
