@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <div className="flex items-center">
       <LogoBox />
-      <div className="w-full ml-4 py-2.5 flex items-center justify-between border border-solid border-mYellow border-none bg-mGray rounded-lg">
+      <div className="w-full ml-4 py-2.5 flex items-center justify-between border border-mYellow border-none bg-mGray rounded-lg">
         <ul className="flex ml-10">
           <MenuTitle>영화 검색</MenuTitle>
           <MenuTitle>커뮤니티</MenuTitle>
