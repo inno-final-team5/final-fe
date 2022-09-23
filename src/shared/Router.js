@@ -1,13 +1,13 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Main from 'pages/Main';
-import Signin from 'pages/Signin';
-import Detail from 'pages/Detail';
-import KakaoRedirect from 'pages/KakaoRedirect';
-import SignUp from 'pages/SignUp';
-import Challenge from 'pages/Challenge';
-import NotFound from 'pages/NotFound';
-import MyPage from 'pages/MyPage';
+import Main from "pages/Main";
+import Signin from "pages/Signin";
+import Detail from "pages/Detail";
+import KakaoRedirect from "pages/KakaoRedirect";
+import SignUp from "pages/SignUp";
+import Challenge from "pages/Challenge";
+import NotFound from "pages/NotFound";
+import MyPage from "pages/Mypage/MyPage";
 
 const Router = () => {
   return (

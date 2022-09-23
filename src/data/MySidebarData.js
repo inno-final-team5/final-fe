@@ -1,6 +1,6 @@
 import * as FaIcons from "react-icons/fa";
 
-export const SidebarData = [
+export const MySidebarData = [
   {
     title: "즐겨찾는 영화 ⭐",
     path: "./favorites",

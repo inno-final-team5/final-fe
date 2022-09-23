@@ -1,4 +1,4 @@
-import FavoriteCard from "components/myFavorite/FavoriteCard";
+import FavoriteCard from "components/favorite/FavoriteCard";
 import React, { useEffect, Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __getFavorites } from "redux/modules/myFavorite";
