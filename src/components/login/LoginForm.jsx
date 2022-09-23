@@ -36,7 +36,7 @@ const LoginForm = () => {
         <div className="container px-5 py-20 mx-auto sm:w-8/12 ">
           <Link to={"/"}>
             <div className="flex flex-col text-center w-full mb-2">
-              <img className="mx-auto w-30 h-26" src={logo} alt="logo"></img>
+              <img className="mx-auto w-38 h-40" src={logo}></img>
             </div>
           </Link>
 
@@ -89,9 +89,11 @@ const LoginForm = () => {
               <div className="p-2 w-full pt-4 mt-2 text-center ">
                 <span className="text-mCream">
                   계정이 없으신가요? &emsp;
-                  <button className="text-gray-600 mx-auto rounded-lg bg-mCream border-0 py-1 px-10 focus:outline-none hover:bg-mGray  text-lg">
-                    회원가입
-                  </button>
+                  <Link to={"/signup"}>
+                    <button className="text-gray-600 mx-auto rounded-lg bg-mCream border-0 py-1 px-10 focus:outline-none hover:bg-mGray rounded text-lg">
+                      회원가입
+                    </button>
+                  </Link>
                 </span>
               </div>
             </div>

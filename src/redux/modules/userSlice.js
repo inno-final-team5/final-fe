@@ -20,7 +20,8 @@ export const loginUserDB = (payload) => {
           return (
             localStorage.setItem('refreshToken', response.headers['refresh-token']),
             localStorage.setItem('accessToken', accessToken),
-            alert(`로그인 성공!`)
+            alert(`로그인 성공!`),
+            (document.location.href = '/')
           );
         }
       })

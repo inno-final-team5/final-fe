@@ -61,7 +61,6 @@ const SingupBox = () => {
 
     //중복확인
     const response = await api.post("/members/signup/nickname", { nickname });
-    console.log(response);
     if (response.data.success) {
       alert("사용 가능한 닉네임입니다.");
     } else {

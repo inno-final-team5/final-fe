@@ -1,10 +1,10 @@
-import React from "react";
-import LogoBox from "./LogoBox";
-import tw from "tailwind-styled-components/";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import LogoBox from './LogoBox';
+import tw from 'tailwind-styled-components/';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
-  console.log("test중입니다!");
+  console.log('test중입니다!');
   return (
     <div className="flex items-center">
       <LogoBox />
@@ -18,8 +18,12 @@ const Header = () => {
           </MenuTitle>
         </ul>
         <ul className="flex mr-10">
-          <MenuTitle>로그인</MenuTitle>
-          <MenuTitle>회원가입</MenuTitle>
+          <Link to={'/signin'}>
+            <MenuTitle>로그인</MenuTitle>
+          </Link>
+          <Link to={'/signup'}>
+            <MenuTitle>회원가입</MenuTitle>
+          </Link>
         </ul>
       </div>
     </div>
