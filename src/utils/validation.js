@@ -5,7 +5,7 @@ export const checkEmail = (email) => {
 };
 
 export const checkUserName = (nickname) => {
-  const nicknameRegEx = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{,10}$/;
+  const nicknameRegEx = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{1,10}$/;
   return nicknameRegEx.test(nickname);
 };
 

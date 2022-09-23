@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import logo from 'images/Logo.png';
+import logo from 'images/logo.png';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUserDB } from '../../redux/modules/userSlice';
@@ -82,9 +82,11 @@ const LoginForm = () => {
               <div className="p-2 w-full pt-4 mt-2 text-center ">
                 <span className="text-mCream">
                   계정이 없으신가요? &emsp;
-                  <button className="text-gray-600 mx-auto rounded-lg bg-mCream border-0 py-1 px-10 focus:outline-none hover:bg-mGray rounded text-lg">
-                    회원가입
-                  </button>
+                  <Link to={'/signup'}>
+                    <button className="text-gray-600 mx-auto rounded-lg bg-mCream border-0 py-1 px-10 focus:outline-none hover:bg-mGray rounded text-lg">
+                      회원가입
+                    </button>
+                  </Link>
                 </span>
               </div>
             </div>
