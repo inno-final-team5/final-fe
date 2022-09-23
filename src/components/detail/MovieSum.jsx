@@ -1,6 +1,6 @@
-import React from 'react';
-import poster from 'images/poster.png';
-import { RiHeartAddLine } from 'react-icons/ri';
+import React from "react";
+import poster from "images/poster.png";
+import { RiHeartAddLine } from "react-icons/ri";
 
 const MovieSum = () => {
   return (

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { FaStar } from 'react-icons/fa';
-import styled from 'styled-components';
+import React, { useState, useEffect } from "react";
+import { FaStar } from "react-icons/fa";
+import styled from "styled-components";
 
 const OnelineForm = () => {
   const [clicked, setClicked] = useState([false, false, false, false, false]);
@@ -41,7 +41,7 @@ const OnelineForm = () => {
           </div>
           <Stars>
             {array.map((el, idx) => {
-              return <FaStar key={idx} size="30" onClick={() => handleStarClick(el)} className={clicked[el] && 'yellowStar'} />;
+              return <FaStar key={idx} size="30" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
             })}
           </Stars>
           <div className="p-6 flex">
@@ -64,20 +64,16 @@ export default OnelineForm;
 
 const Stars = styled.div`
   display: flex;
-
   & svg {
     color: gray;
     cursor: pointer;
   }
-
   :hover svg {
     color: #fcc419;
   }
-
   & svg:hover ~ svg {
     color: gray;
   }
-
   .yellowStar {
     color: #fcc419;
   }
