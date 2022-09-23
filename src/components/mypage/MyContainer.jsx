@@ -1,7 +1,7 @@
-import MyBadges from "pages/MyBadges";
-import MyComments from "pages/MyComments";
-import MyFavorites from "pages/MyFavorites";
-import MyPosts from "pages/MyPosts";
+import MyBadges from "pages/Mypage/MyBadges";
+import MyComments from "pages/Mypage/MyComments";
+import MyFavorites from "pages/Mypage/MyFavorites";
+import MyPosts from "pages/Mypage/MyPosts";
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 const MyContainer = () => {

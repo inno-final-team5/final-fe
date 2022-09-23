@@ -61,6 +61,7 @@ const SingupBox = () => {
 
     //중복확인
     const response = await api.post("/members/signup/nickname", { nickname });
+    console.log(response);
     if (response.data.success) {
       alert("사용 가능한 닉네임입니다.");
     } else {
@@ -97,6 +98,7 @@ const SingupBox = () => {
         nickname,
         password,
       });
+      console.log(res);
 
       if (res.data.error === "DUPLICATE_EMAIL") {
         alert("이메일 중복확인을 해주세요");
