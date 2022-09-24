@@ -15,10 +15,7 @@ const LoginForm = () => {
   const password_ref = useRef(null);
 
   const loginHandler = async () => {
-    if (
-      memberId_ref.current.value === "" ||
-      password_ref.current.value === ""
-    ) {
+    if (memberId_ref.current.value == "" || password_ref.current.value == "") {
       window.alert("아이디와 비밀번호를 모두 입력하세요");
     } else {
       await dispatch(
