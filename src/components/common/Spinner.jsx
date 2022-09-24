@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import logo from "../../images/Logo";
+import logo from "../../images/Logo.png";
 
 const Spinner = () => {
   return (

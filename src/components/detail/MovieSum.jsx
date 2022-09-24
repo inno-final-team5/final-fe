@@ -11,9 +11,9 @@ const MovieSum = () => {
             <img src={poster} />
           </div>
           <div className="lg:flex-grow md:w-1/2 lg:pl-18 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-            <div className="flex justify-between">
+            <div className="flex">
               <h1 className="title-font sm:text-4xl text-white text-3xl mb-4 font-medium">영화제목입니다</h1>
-              <RiHeartAddLine className="flex-initial text-red-500 ml-2" size={30} />
+              <RiHeartAddLine className="flex ml-2 text-red-500" size={30} />
             </div>
 
             <p className="mb-8 text-white leading-relaxed">
@@ -22,7 +22,7 @@ const MovieSum = () => {
             </p>
 
             <div className="flex lg:flex-row md:flex-col mt-16">
-              <button className="bg-mWhite inline-flex py-2 px-3 rounded-full items-center hover:bg-gray-200 focus:outline-none">
+              <button className="bg-mWhite inline-flex py-2 px-3 rounded-full items-center hover:bg-gray-400 focus:outline-none">
                 <span>드라마태그</span>
               </button>
             </div>
