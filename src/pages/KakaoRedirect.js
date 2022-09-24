@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { kakaoLoginDB } from "../redux/modules/userSlice";
-import styled, { keyframes } from "styled-components";
-import logo from "../images/Logo.png";
+import Spinner from "../components/common/Spinner";
 
 const KakaoRedirect = () => {
   const dispatch = useDispatch();
@@ -17,29 +16,9 @@ const KakaoRedirect = () => {
 
   return (
     <>
-      <Background>
-        <img className="logo" alt="카카오로그인중" src={logo} />
-      </Background>
+      <Spinner />
     </>
   );
 };
 
 export default KakaoRedirect;
-const spin = keyframes`
-100% {
-      transform: rotate(360deg);
-}
-`;
-const Background = styled.div`
-  background-color: #222831;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-
-  .logo {
-    width: 200px;
-    height: 200px;
-    animation: ${spin} 3s infinite;
-  }
-`;
