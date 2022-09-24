@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import tw from "tailwind-styled-components";
 
-import { __getChallenges } from "redux/modules/challenge";
-import { useDispatch, useSelector } from "react-redux";
-
 import Layout from "components/common/Layout";
 import ChallengeHeader from "components/challenge/ChallengeHeader";
 import ChallengeItem from "components/challenge/ChallengeItem";
@@ -42,24 +39,10 @@ const Challenge = () => {
     setChallengeList(tempList);
   }, []);
 
-  // const dispatch = useDispatch();
-
-  // const { badges: challengeList } = useSelector(
-  //   (state) => state.challengeSlice
-  // );
-
-  // useEffect(() => {
-  //   dispatch(__getChallenges());
-  // }, [dispatch]);
-
   return (
     <Layout>
       <ChallengeContainer>
         <ChallengeHeader />
-        {/* <ChallengeTitleBox>
-          챌린지를 달성하고 뱃지를 모아보세요!
-        </ChallengeTitleBox> */}
-
         <ChallengeListBox>
           {challengeList.map((challenge) => {
             return (

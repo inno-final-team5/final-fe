@@ -1,7 +1,4 @@
 import FavoriteCard from "components/favorite/FavoriteCard";
-import React, { useEffect, Fragment, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { __getFavorites } from "redux/modules/myFavorite";
 import { deleteFavorite, getFavorites } from "api/favoriteApi";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
