@@ -1,7 +1,9 @@
 import React from "react";
 import LogoBox from "./LogoBox";
 import tw from "tailwind-styled-components/";
+
 import { Link, useNavigate, NavLink } from "react-router-dom";
+
 import { BsFillBellFill } from "react-icons/bs";
 
 const Header = () => {
@@ -33,14 +35,6 @@ const Header = () => {
               className={({ isActive }) => (isActive ? activeLink : normalLink)}
             >
               챌린지
-            </NavLink>
-          </MenuTitle>
-          <MenuTitle>
-            <NavLink
-              to="/mypage/favorites"
-              className={({ isActive }) => (isActive ? activeLink : normalLink)}
-            >
-              마이 페이지
             </NavLink>
           </MenuTitle>
         </ul>
