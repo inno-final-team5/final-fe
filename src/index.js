@@ -1,20 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
-import store from './redux/config/configStore';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import store from "./redux/config/configStore";
 
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-import './styles/global.css';
-import GlobalStyle from './styles/GlobalStyle';
+import "./styles/global.css";
+import GlobalStyle from "./styles/GlobalStyle";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const queryClient = new QueryClient();
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <GlobalStyle />
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+        <ReactQueryDevtools initialIsOpen />
+      </QueryClientProvider>
     </Provider>
   </React.StrictMode>
 );
