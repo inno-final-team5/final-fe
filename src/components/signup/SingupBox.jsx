@@ -169,7 +169,7 @@ const SingupBox = () => {
 
         <LoginBox>
           이미 계정이 있으신가요?
-          <Link to="/login">
+          <Link to="/signin">
             <LoginLink>로그인</LoginLink>
           </Link>
         </LoginBox>
