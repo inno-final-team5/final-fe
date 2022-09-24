@@ -1,7 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import BestReview from "./BestReview";
-import NewPosts from "./NewPosts";
+import BestReview from "./MainTabIn/BestReview";
+import NewPosts from "./MainTabIn/NewPosts";
 import { useState } from "react";
 const MainTabList = () => {
   const [index, setIndex] = useState(0);
@@ -11,7 +10,7 @@ const MainTabList = () => {
       component: <BestReview />,
     },
     {
-      title: "최신 리뷰",
+      title: "최신 게시글",
       component: <NewPosts />,
     },
   ];
@@ -21,7 +20,7 @@ const MainTabList = () => {
       <div className="flex">
         {MainListTabMenu.map((item, index) => {
           return (
-            <div key={index} className="flex w-fit mx-2.5">
+            <div key={index} className="flex w-fit mx-1">
               <div
                 onClick={() => {
                   setIndex(index);
@@ -35,7 +34,9 @@ const MainTabList = () => {
           );
         })}
       </div>
-      <div>{MainListTabMenu[index].component}</div>
+      <div className="bg-mGray p-5 mb-10 rounded-lg">
+        {MainListTabMenu[index].component}
+      </div>
     </div>
   );
 };
