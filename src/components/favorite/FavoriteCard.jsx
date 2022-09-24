@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { __deleteFavorites } from "redux/modules/myFavorite";
 import { FaStar } from "react-icons/fa";
-import axios from "axios";
+
 const FavoriteCard = ({ imageUrl, title, id }) => {
   const dispatch = useDispatch();
 
@@ -14,7 +14,7 @@ const FavoriteCard = ({ imageUrl, title, id }) => {
   };
 
   return (
-    <div className="m-4 border-solid border-none rounded-lg border-mYellow h-96 p-4 bg-mWhite shadow-lg">
+    <div className="m-4 border-none rounded-lg border-mYellow h-96 p-4 bg-mWhite shadow-lg">
       <img
         src={imageUrl}
         alt="포스터"

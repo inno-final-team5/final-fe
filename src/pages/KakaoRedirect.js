@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { kakaoLoginDB } from "../redux/modules/userSlice";
 import Spinner from "../components/common/Spinner";
 
+
 const KakaoRedirect = () => {
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem("accessToken");

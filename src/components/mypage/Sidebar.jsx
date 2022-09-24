@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { SidebarData } from "data/SidebarData";
+import { MySidebarData } from "data/MySidebarData";
 import { Fragment } from "react";
 
 const SideBar = () => {
@@ -15,7 +15,7 @@ const SideBar = () => {
     <Fragment>
       <section>
         <div className="text-white bg-mGray py-4  ">
-          {SidebarData.map((item, index) => {
+          {MySidebarData.map((item, index) => {
             return (
               <div key={index}>
                 <NavLink

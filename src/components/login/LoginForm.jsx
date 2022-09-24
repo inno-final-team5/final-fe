@@ -33,7 +33,7 @@ const LoginForm = () => {
         <div className="container px-5 py-20 mx-auto sm:w-8/12 ">
           <Link to={"/"}>
             <div className="flex flex-col text-center w-full mb-2">
-              <img className="mx-auto w-38 h-40" src={logo}></img>
+              <img className="mx-auto w-38 h-40" src={logo} alt="logo"></img>
             </div>
           </Link>
 
@@ -41,7 +41,9 @@ const LoginForm = () => {
             <div className="flex flex-wrap -m-2 mx-auto place-content-center ">
               <div className="p-4 w-2/3 md:w-2/3">
                 <div className="relative  ">
-                  <label className="leading-7 text-sm text-mCream">아이디</label>
+                  <label className="leading-7 text-sm text-mCream">
+                    아이디
+                  </label>
                   <input
                     type="text"
                     id="name"
@@ -53,7 +55,9 @@ const LoginForm = () => {
               </div>
               <div className="p-4 w-2/3 md:w-2/3">
                 <div className="relative">
-                  <label className="leading-7 text-sm text-mCream">비밀번호</label>
+                  <label className="leading-7 text-sm text-mCream">
+                    비밀번호
+                  </label>
                   <input
                     type="password"
                     ref={password_ref}
@@ -66,14 +70,14 @@ const LoginForm = () => {
               <div className="p-2 w-full">
                 <button
                   onClick={loginHandler}
-                  className="flex mx-auto rounded-lg bg-mYellow border-0 py-2 px-10 focus:outline-none hover:bg-mCream rounded text-lg"
+                  className="flex mx-auto rounded-lg bg-mYellow border-0 py-2 px-10 focus:outline-none hover:bg-mCream  text-lg"
                 >
                   로그인
                 </button>
               </div>
               <div className="p-10 w-full">
                 <a href={KAKAO_AUTH_URL}>
-                  <button className="flex mx-auto rounded-lg bg-[#F1BF45] border-0 py-2 px-24 focus:outline-none hover:bg-mCream rounded text-lg">
+                  <button className="flex mx-auto rounded-lg bg-[#F1BF45] border-0 py-2 px-24 focus:outline-none hover:bg-mCream  text-lg">
                     카카오로그인
                   </button>
                 </a>
@@ -83,7 +87,7 @@ const LoginForm = () => {
                 <span className="text-mCream">
                   계정이 없으신가요? &emsp;
                   <Link to={"/signup"}>
-                    <button className="text-gray-600 mx-auto rounded-lg bg-mCream border-0 py-1 px-10 focus:outline-none hover:bg-mGray rounded text-lg">
+                    <button className="text-gray-600 mx-auto rounded-lg bg-mCream border-0 py-1 px-10 focus:outline-none hover:bg-mGray text-lg">
                       회원가입
                     </button>
                   </Link>
