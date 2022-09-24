@@ -1,7 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit';
-import challengeSlice from 'redux/modules/challenge';
-import favoriteSlice from 'redux/modules/myFavorite';
+import { configureStore } from "@reduxjs/toolkit";
 
-const store = configureStore({ reducer: { favoriteSlice, challengeSlice } });
+const store = configureStore({ reducer: {} });
 
 export default store;
