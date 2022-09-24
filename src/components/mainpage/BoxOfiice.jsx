@@ -9,7 +9,7 @@ import poster from "../../images/movie_poster_sample.jpg";
 
 const BoxOfiice = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
@@ -18,55 +18,78 @@ const BoxOfiice = () => {
     autoplaySpeed: 2000,
   };
   return (
-    <div className="w-4/6 m-auto">
-      <h2 className="text-mYellow text-2xl my-5"> BOX OFFICE </h2>
-      <Slider {...settings}>
+    <div className="w-5/6 m-auto">
+      <h2 className="text-mCream text-2xl my-5"> BOX OFFICE </h2>
+      <Slider {...settings} className="flex ">
         <div>
-          <img src={poster} alt="movie_poster" className="w-28" />
-          <h3>1</h3>
+          <div className="mb-1 text-base text-mYellow underline underline-offset-4">
+            1
+          </div>
+          <img src={poster} alt="movie_poster" className="w-40" />
+          <h3 className="text-mYellow my-2.5">라라랜드</h3>
         </div>
         <div>
-          <img src={poster} alt="movie_poster" className="w-28" />
-
-          <h3>2</h3>
+          <div className="mb-1 text-base text-mYellow underline underline-offset-4">
+            2
+          </div>
+          <img src={poster} alt="movie_poster" className="w-40" />
+          <h3 className="text-mYellow my-2.5">라라랜드</h3>
         </div>
         <div>
-          <img src={poster} alt="movie_poster" className="w-28" />
-
-          <h3>3</h3>
+          <div className="mb-1 text-base text-mYellow underline underline-offset-4">
+            3
+          </div>
+          <img src={poster} alt="movie_poster" className="w-40" />
+          <h3 className="text-mYellow my-2.5">라라랜드</h3>
         </div>
         <div>
-          <img src={poster} alt="movie_poster" className="w-28" />
-          <h3>4</h3>
+          <div className="mb-1 text-base text-mYellow underline underline-offset-4">
+            4
+          </div>
+          <img src={poster} alt="movie_poster" className="w-40" />
+          <h3 className="text-mYellow my-2.5">라라랜드</h3>
         </div>
         <div>
-          <img src={poster} alt="movie_poster" className="w-28" />
-          <h3>5</h3>
+          <div className="mb-1 text-base text-mYellow underline underline-offset-4">
+            5
+          </div>
+          <img src={poster} alt="movie_poster" className="w-40" />
+          <h3 className="text-mYellow my-2.5">라라랜드</h3>
         </div>
         <div>
-          <img src={poster} alt="movie_poster" className="w-28" />
-
-          <h3>6</h3>
+          <div className="mb-1 text-base text-mYellow underline underline-offset-4">
+            6
+          </div>
+          <img src={poster} alt="movie_poster" className="w-40" />
+          <h3 className="text-mYellow my-2.5">라라랜드</h3>
         </div>
         <div>
-          <img src={poster} alt="movie_poster" className="w-28" />
-
-          <h3>7</h3>
+          <div className="mb-1 text-base text-mYellow underline underline-offset-4">
+            7
+          </div>
+          <img src={poster} alt="movie_poster" className="w-40" />
+          <h3 className="text-mYellow my-2.5">라라랜드</h3>
         </div>
         <div>
-          <img src={poster} alt="movie_poster" className="w-28" />
-
-          <h3>8</h3>
+          <div className="mb-1 text-base text-mYellow underline underline-offset-4">
+            8
+          </div>
+          <img src={poster} alt="movie_poster" className="w-40" />
+          <h3 className="text-mYellow my-2.5">라라랜드</h3>
         </div>
         <div>
-          <img src={poster} alt="movie_poster" className="w-28" />
-
-          <h3>9</h3>
+          <div className="mb-1 text-base text-mYellow underline underline-offset-4">
+            9
+          </div>
+          <img src={poster} alt="movie_poster" className="w-40" />
+          <h3 className="text-mYellow my-2.5">라라랜드</h3>
         </div>
         <div>
-          <img src={poster} alt="movie_poster" className="w-28" />
-
-          <h3>10</h3>
+          <div className="mb-1 text-base text-mYellow underline underline-offset-4">
+            10
+          </div>
+          <img src={poster} alt="movie_poster" className="w-40" />
+          <h3 className="text-mYellow my-2.5">라라랜드</h3>
         </div>
       </Slider>
     </div>
