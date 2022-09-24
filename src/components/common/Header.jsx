@@ -30,10 +30,7 @@ const Header = () => {
           <MenuTitle>영화 검색</MenuTitle>
           <MenuTitle>커뮤니티</MenuTitle>
           <MenuTitle>
-            <NavLink
-              to="/challenge"
-              className={({ isActive }) => (isActive ? activeLink : normalLink)}
-            >
+            <NavLink to="/challenge" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
               챌린지
             </NavLink>
           </MenuTitle>
@@ -48,10 +45,7 @@ const Header = () => {
                 <MenuTitle>로그아웃</MenuTitle>
               </button>
               <button>
-                <BsFillBellFill
-                  className="ml-4 text-yellow-500 hover:text-mCream"
-                  size={20}
-                />
+                <BsFillBellFill className="ml-4 text-yellow-500 hover:text-mCream" size={20} />
               </button>
             </>
           ) : (
