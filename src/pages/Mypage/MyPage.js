@@ -3,8 +3,10 @@ import Layout from "components/common/Layout";
 import MyContainer from "components/mypage/MyContainer";
 import SideBar from "components/mypage/Sidebar";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {
+  const navigate = useNavigate();
   // TODO 서버와 통신 기능 구현하기!
   /**계정 삭제  */
   const deleteAccount = () => {
@@ -17,29 +19,36 @@ const MyPage = () => {
       cancelButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          "삭제가 완료되었습니다",
-          "이용해주셔서 감사합니다",
-          "success"
-        );
+        deleteConfirm();
+      }
+    });
+  };
+
+  const deleteConfirm = () => {
+    Swal.fire({
+      title: "삭제 완료",
+      text: "이용해주셔서 감사합니다",
+      icon: "success",
+      confirmButtonText: "완료",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/");
       }
     });
   };
 
   return (
     <Layout>
-      <>
-        <section>
-          <MyPageContainer>
-            <MyPageSidebarContainer>
-              <SideBar deleteAccount={deleteAccount} />
-            </MyPageSidebarContainer>
-            <MyPageContentContainer>
-              <MyContainer />
-            </MyPageContentContainer>
-          </MyPageContainer>
-        </section>
-      </>
+      <section>
+        <MyPageContainer>
+          <MyPageSidebarContainer>
+            <SideBar deleteAccount={deleteAccount} />
+          </MyPageSidebarContainer>
+          <MyPageContentContainer>
+            <MyContainer />
+          </MyPageContentContainer>
+        </MyPageContainer>
+      </section>
     </Layout>
   );
 };
