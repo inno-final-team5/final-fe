@@ -1,5 +1,5 @@
-import Logo from "../../images/Logo2.png";
-import { Link } from "react-router-dom";
+import Logo from '../../images/Logo2.png';
+import { Link } from 'react-router-dom';
 
 const LogoBox = () => {
   return (

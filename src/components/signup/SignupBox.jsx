@@ -97,6 +97,7 @@ const SingupBox = () => {
         nickname,
         password,
       });
+      console.log(res);
 
       if (res.data.error === "DUPLICATE_EMAIL") {
         alert("이메일 중복확인을 해주세요");
@@ -168,7 +169,7 @@ const SingupBox = () => {
 
         <LoginBox>
           이미 계정이 있으신가요?
-          <Link to="/login">
+          <Link to="/signin">
             <LoginLink>로그인</LoginLink>
           </Link>
         </LoginBox>

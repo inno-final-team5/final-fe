@@ -18,19 +18,19 @@ const ChallengeItemContainer = tw.div`
 `;
 
 const ChallengeBadgeBox = tw.div`
-  m-2 p-3 border border-mYellow bg-mGray border-solid h-18 flex items-center rounded-lg text-mYellow text-3xl
+  m-2 p-3 border border-mWhite bg-mWhite border-solid h-18 flex items-center rounded-lg text-mYellow text-3xl
 `;
 
 const ChallengeDescriptionBox = tw.div`
-  flex-col  m-2 border border-solid border-mYellow bg-mGray w-4/5 p-2 flex rounded-lg justify-start items-center
+  flex-col  m-2 border border-solid border-mWhite bg-mWhite p-2 flex rounded-lg justify-start items-center w-full 
 `;
 
 const ChallengeBadgeTitle = tw.span`
-  text-mYellow text-2xl
+  text-mBlack text-2xl  w-full text-start
 `;
 
 const ChallengeBadgeInfo = tw.p`
-  text-lg text-mWhite
+  text-md text-mGray text-start w-full mt-2
 `;
 
 export default ChallengeItem;

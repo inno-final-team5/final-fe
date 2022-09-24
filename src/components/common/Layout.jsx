@@ -1,12 +1,11 @@
 import tw from "tailwind-styled-components";
 import Header from "./Header";
 
-
 const Layout = ({ children }) => {
   return (
     <TwLayout>
       <Header />
-      {children}
+      <div className="pt-2">{children}</div>
     </TwLayout>
   );
 };
