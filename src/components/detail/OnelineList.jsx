@@ -1,9 +1,8 @@
 import React from "react";
-
+import Spinner from "components/common/Spinner";
 import axios from "axios";
 import { useQuery } from "react-query";
 import Oneline from "./Oneline";
-import { data } from "autoprefixer";
 
 function OnelineList() {
   const getOnelineList = () => {
@@ -11,15 +10,17 @@ function OnelineList() {
   };
 
   const onelineQuery = useQuery("onelineList", getOnelineList, {
-    onSuccess: (data) => {
-      const list = data.data.map((line) => console.log(line.oneLineReview.oneLineReviewId));
-    },
+    onSuccess: (data) => {},
   });
+  if (onelineQuery.isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <div className="mt-6 pb-6 ">
-      <div className=" pr-10 pt-0 pb-4 rounded-3xl bg-mGray container mx-auto flex px-0 py-24 md:flex-row flex-col items-center">
-        <section class="text-gray-600 body-font overflow-hidden">
-          {data.data?.map((line) => (
+      <div className=" pr-8 pt-0 pb-4 rounded-3xl bg-mGray ">
+        <section class="text-gray-600 body-font ml-10 overflow-hidden">
+          {onelineQuery.data.data.map((line) => (
             <Oneline {...line} key={line.oneLineReview.oneLineReviewId} />
           ))}
         </section>
