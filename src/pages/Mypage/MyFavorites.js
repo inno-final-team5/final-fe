@@ -41,7 +41,9 @@ const MyFavorites = () => {
 
   return (
     <section>
-      <div className="grid grid-cols-4 bg-mGray p-4 rounded-sm">{content}</div>
+      <div className="grid grid-cols-1 lg:grid-cols-4 bg-mGray p-4 rounded-sm">
+        {content}
+      </div>
     </section>
   );
 };

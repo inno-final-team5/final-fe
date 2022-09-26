@@ -1,11 +1,13 @@
 import tw from "tailwind-styled-components";
 import Header from "./Header";
+import NavBar from "./navbar/NavBar";
 
 const Layout = ({ children }) => {
   return (
     <TwLayout>
-      <Header />
-      <div className="pt-2">{children}</div>
+      <NavBar />
+      {/* <Header /> */}
+      {children}
     </TwLayout>
   );
 };
@@ -13,6 +15,6 @@ const Layout = ({ children }) => {
 const TwLayout = tw.div`
 w-4/5
 mx-auto
-px-5
+
 `;
 export default Layout;
