@@ -3,6 +3,8 @@ import { FaStar } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
 import { TiPencil } from "react-icons/ti";
 import styled from "styled-components";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 const OnelineForm = () => {
   const [clicked, setClicked] = useState([false, false, false, false, false]);
@@ -18,7 +20,7 @@ const OnelineForm = () => {
 
   useEffect(() => {
     sendReview();
-  }, [clicked]); //컨디마 컨디업
+  }, [clicked]);
 
   const sendReview = () => {
     let score = clicked.filter(Boolean).length;
