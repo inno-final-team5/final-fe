@@ -1853,12 +1853,10 @@
     "@testing-library/dom" "^8.5.0"
     "@types/react-dom" "^18.0.0"
 
-"@testing-library/user-event@^13.2.1":
-  version "13.5.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-13.5.0.tgz#69d77007f1e124d55314a2b73fd204b333b13295"
-  integrity sha512-5Kwtbo3Y/NowpkbRuSepbyMFkZmHgD+vPzYB/RJ4oxt5Gj/avFFBYjhw27cqSVPVw/3a67NK1PbiIr9k4Gwmdg==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
+"@testing-library/user-event@^14.4.3":
+  version "14.4.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.4.3.tgz#af975e367743fa91989cd666666aec31a8f50591"
+  integrity sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==
 
 "@tootallnate/once@1":
   version "1.1.2"
@@ -2208,7 +2206,6 @@
     "@typescript-eslint/scope-manager" "5.38.1"
     "@typescript-eslint/type-utils" "5.38.1"
     "@typescript-eslint/utils" "5.38.1"
-
     debug "^4.3.4"
     ignore "^5.2.0"
     regexpp "^3.2.0"
@@ -2267,7 +2264,6 @@
     is-glob "^4.0.3"
     semver "^7.3.7"
     tsutils "^3.21.0"
-
 
 "@typescript-eslint/utils@5.38.1", "@typescript-eslint/utils@^5.13.0":
   version "5.38.1"
@@ -3063,18 +3059,17 @@ bytes@3.1.2:
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.2.tgz#8b0beeb98605adf1b128fa4386403c009e0221a5"
   integrity sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==
 
-cacheable-lookup@^6.0.4:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/cacheable-lookup/-/cacheable-lookup-6.1.0.tgz#0330a543471c61faa4e9035db583aad753b36385"
-  integrity sha512-KJ/Dmo1lDDhmW2XDPMo+9oiy/CeqosPguPCrgcVzKyZrL6pM1gU2GmPY/xo6OQPTUaA/c0kwHuywB4E6nmT9ww==
+cacheable-lookup@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/cacheable-lookup/-/cacheable-lookup-7.0.0.tgz#3476a8215d046e5a3202a9209dd13fec1f933a27"
+  integrity sha512-+qJyx4xiKra8mZrcwhjMRMUhD5NR1R8esPkzIYxX96JiecFoxAXFuz/GpR3+ev4PE1WamHip78wV0vcmPQtp8w==
 
-cacheable-request@^10.1.2:
+cacheable-request@^10.2.1:
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/cacheable-request/-/cacheable-request-10.2.1.tgz#cbc7480bf057fb7bd5bc7520f7e5a43d9c865626"
   integrity sha512-3tLJyBjGuXw1s5gpKFSG3iS4kaKT4id04dZi98wzHQp/8cqZNweBnrF9J+rrlvrf4M53OdtDGNctNHFias8BEA==
   dependencies:
     "@types/http-cache-semantics" "^4.0.1"
-
     get-stream "^6.0.1"
     http-cache-semantics "^4.1.0"
     keyv "^4.5.0"
@@ -3439,7 +3434,6 @@ core-js-compat@^3.25.1:
   version "3.25.3"
   resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.25.3.tgz#d6a442a03f4eade4555d4e640e6a06151dd95d38"
   integrity sha512-xVtYpJQ5grszDHEUU9O7XbjjcZ0ccX3LgQsyqSvTnjX97ZqEgn9F5srmrwwwMtbKzDllyFPL+O+2OFMl1lU4TQ==
-
   dependencies:
     browserslist "^4.21.4"
 
@@ -3452,7 +3446,6 @@ core-js@^3.19.2:
   version "3.25.3"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.25.3.tgz#cbc2be50b5ddfa7981837bd8c41639f27b166593"
   integrity sha512-y1hvKXmPHvm5B7w4ln1S4uc9eV/O5+iFExSRUimnvIph11uaizFR8LFMdONN8hG3P2pipUfX4Y/fR8rAEtcHcQ==
-
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -4046,9 +4039,9 @@ ejs@^3.1.6:
     jake "^10.8.5"
 
 electron-to-chromium@^1.4.251:
-  version "1.4.263"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.263.tgz#4cbb8263165cd6d7d1ffb39ce27e2ce6a7f6cb5b"
-  integrity sha512-RcvChwbVkZBe7e+B23+wjXJgRHTy9Byu6JEL8HuNKILALs98deLnyGqv73nvwRKj6VGghrwnwKWC3ukVhQDvpQ==
+  version "1.4.264"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.264.tgz#2f68a062c38b7a04bf57f3e6954b868672fbdcd3"
+  integrity sha512-AZ6ZRkucHOQT8wke50MktxtmcWZr67kE17X/nAXFf62NIdMdgY6xfsaJD5Szoy84lnkuPWH+4tTNE3s2+bPCiw==
 
 emittery@^0.10.2:
   version "0.10.2"
@@ -4972,15 +4965,15 @@ globby@^11.0.4, globby@^11.1.0:
     merge2 "^1.4.1"
     slash "^3.0.0"
 
-got@^12.5.0:
-  version "12.5.0"
-  resolved "https://registry.yarnpkg.com/got/-/got-12.5.0.tgz#b31c556aa25a14ea06f173da888860984f323d3b"
-  integrity sha512-/Bneo/L6bLN1wDyJCeRZ3CLoixvwb9v3rE3IHulFSfTHwP85xSr4QatA8K0c6GlL5+mc4IZ57BzluNZJiXvHIg==
+got@^12.5.1:
+  version "12.5.1"
+  resolved "https://registry.yarnpkg.com/got/-/got-12.5.1.tgz#0796191c61478273f4cdbeb19d358a75a54a008d"
+  integrity sha512-sD16AK8cCyUoPtKr/NMvLTFFa+T3i3S+zoiuvhq0HP2YiqBZA9AtlBjAdsQBsLBK7slPuvmfE0OxhGi7N5dD4w==
   dependencies:
     "@sindresorhus/is" "^5.2.0"
     "@szmarczak/http-timer" "^5.0.1"
-    cacheable-lookup "^6.0.4"
-    cacheable-request "^10.1.2"
+    cacheable-lookup "^7.0.0"
+    cacheable-request "^10.2.1"
     decompress-response "^6.0.0"
     form-data-encoder "^2.1.2"
     get-stream "^6.0.1"
@@ -6856,9 +6849,9 @@ normalize-url@^6.0.1:
   integrity sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==
 
 normalize-url@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-7.1.0.tgz#967f4c7345314d05cf9b2a05fb4948e140d491b2"
-  integrity sha512-JgkdydFdLe1E5Q7DpLvKVyBZOOwXYGhIbMbOMm3lJ06XKzaiit+qo1HciO3z3IFklStfarzJHVQf9ZcNPTvZlw==
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-7.2.0.tgz#5317f78cff95f5fa1e76cc0b5e33245c43781e11"
+  integrity sha512-uhXOdZry0L6M2UIo9BTt7FdpBDiAGN/7oItedQwPKh8jh31ZlvC8U9Xl/EJ3aijDHaywXTW3QbZ6LuCocur1YA==
 
 npm-run-path@^4.0.1:
   version "4.0.1"
@@ -9567,10 +9560,10 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-web-vitals@^2.1.0:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-2.1.4.tgz#76563175a475a5e835264d373704f9dde718290c"
-  integrity sha512-sVWcwhU5mX6crfI5Vd2dC4qchyTqxV8URinzt25XqVh+bHEPGH4C3NPrNionCP7Obx59wrYEbNlw4Z8sjALzZg==
+web-vitals@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-3.0.2.tgz#a484109dc5d64bc4924f174267ce20e7cd4c7934"
+  integrity sha512-YygzeCdGpNrCHIjW14AI4SxMX2IcONhDvwhHc9KswCIixfSeVl08WdKDfzZaypq2ynRIG3lzGO3CO5dXYzc9+w==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"
