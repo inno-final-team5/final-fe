@@ -9,6 +9,7 @@ import { BsFillBellFill } from "react-icons/bs";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { myLinks, navigationLinks } from "./MyLinks";
+import LogoutButton from "./LogoutButton";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -28,7 +29,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-mBlack lg:sticky top-0">
+    <nav className="bg-mBlack sticky top-0 z-50">
       <div className="flex items-center justify-around ">
         <div className="z-50 md:w-auto w-full flex justify-between p-5 md:px-2 md:py-0 items-center">
           <Link to="/">
@@ -79,13 +80,7 @@ const NavBar = () => {
                             </Link>
                           </li>
                           <li className="text-sm text-mCream my-2.5 ">
-                            <button
-                              type="button"
-                              onClick={logoutHandler}
-                              className="hover:text-mYellow"
-                            >
-                              로그아웃
-                            </button>
+                            <LogoutButton logoutHandler={logoutHandler} />
                           </li>
                         </ul>
                       </div>
@@ -106,8 +101,8 @@ const NavBar = () => {
         </div>
         <ul
           className={`
-          md:hidden bg-mBlack absolute w-full h-full bottom-0 py-24 pl-4 
-          duration-500 ${open ? "left-0" : "left-[-100%]"} `}
+          md:hidden bg-mBlack absolute w-full h-screen bottom-0 py-24 pl-4 top-0 
+          duration-500 ${open ? "left-0" : "left-[-120%]"} `}
         >
           <div>
             {accessToken != null ? (
@@ -121,13 +116,7 @@ const NavBar = () => {
                     />
                     <span className="text-mYellow "> {nickname} 평론가님</span>
                   </div>
-                  <button
-                    type="button"
-                    onClick={logoutHandler}
-                    className="text-mCream hover:text-mYellow"
-                  >
-                    로그아웃
-                  </button>
+                  <LogoutButton logoutHandler={logoutHandler} />
                 </div>
                 <div className="text-mCream"></div>
               </div>
@@ -138,8 +127,17 @@ const NavBar = () => {
           <div className="px-8">
             <NavLinks links={navigationLinks} />
             <div className="text-mCream">
-              <h1 className="pl-3">마이페이지</h1>
-              <div className="pl-8">
+              <h1
+                className="pl-3 flex justify-between hover:cursor-pointer"
+                onClick={() => {}}
+              >
+                마이페이지
+                <span>
+                  {/* <FaChevronDown /> */}
+                  <FaChevronUp />
+                </span>
+              </h1>
+              <div className="pl-8 md:hidden">
                 <NavLinks links={myLinks} />
               </div>
             </div>
