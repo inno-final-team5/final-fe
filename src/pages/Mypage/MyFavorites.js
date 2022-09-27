@@ -1,5 +1,5 @@
 import FavoriteCard from "components/favorite/FavoriteCard";
-import { deleteFavorite, getFavorites } from "api/favoriteApi";
+import { deleteFavorite, getFavorites } from "apis/favoriteApi";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const MyFavorites = () => {

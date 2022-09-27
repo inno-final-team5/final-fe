@@ -14,23 +14,23 @@ const ChallengeItem = ({ icon, name, description }) => {
 };
 
 const ChallengeItemContainer = tw.div`
-  flex justify-around  p-2 items-center mx-2 sm:mx-4  min-w-max
+  flex justify-around  p-2 items-center md:mx-4  min-w-max
 `;
 
 const ChallengeBadgeBox = tw.div`
-  m-2 p-3 border border-mWhite bg-mWhite border-solid h-18 flex items-center rounded-lg text-mYellow text-3xl
+  p-4 border border-mWhite bg-mWhite border-solid  flex items-center rounded-lg lg:p-3.5
 `;
 
 const ChallengeDescriptionBox = tw.div`
-  flex-col  m-2 border border-solid border-mWhite bg-mWhite p-2 flex rounded-lg justify-start items-center w-full 
+  flex-col  mx-2 border border-solid border-mWhite bg-mWhite p-2 flex rounded-lg justify-start items-center w-full 
 `;
 
 const ChallengeBadgeTitle = tw.span`
-  text-mBlack text-2xl  w-full text-start
+  text-mBlack text-lg lg:text-2xl  w-full text-start font-bold
 `;
 
 const ChallengeBadgeInfo = tw.p`
-  text-md text-mGray text-start w-full mt-2
+  text-sm text-mGray text-start w-full mt-2
 `;
 
 export default ChallengeItem;
