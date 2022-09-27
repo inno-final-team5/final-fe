@@ -29,10 +29,7 @@ const Header = () => {
           <MenuTitle>영화 검색</MenuTitle>
           <MenuTitle>커뮤니티</MenuTitle>
           <MenuTitle>
-            <NavLink
-              to="/challenge"
-              className={({ isActive }) => (isActive ? activeLink : normalLink)}
-            >
+            <NavLink to="/challenge" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
               챌린지
             </NavLink>
           </MenuTitle>
