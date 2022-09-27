@@ -5,11 +5,12 @@ import NavLinks from "./NavLinks";
 import { MdClose, MdMenu } from "react-icons/md";
 import LoginBox from "./LoginBox";
 
-import { BsFillBellFill } from "react-icons/bs";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import { myLinks, navigationLinks } from "./MyLinks";
 import LogoutButton from "./LogoutButton";
+import ModalButton from "components/Modal/ModalButton";
+import Alarm from "../Alarm";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -40,14 +41,12 @@ const NavBar = () => {
             />
           </Link>
 
-          <div className="text-3xl md:hidden text-mYellow flex">
-            <button onClick={() => setOpen(!open)}>
+          <div className="text-3xl md:hidden  flex items-center">
+            <button onClick={() => setOpen(!open)} className="text-mYellow">
               {open ? <MdClose /> : <MdMenu />}
             </button>
 
-            <button className="text-mCream hover:text-mYellow active:text-mYellow mx-2">
-              <BsFillBellFill size={20} />
-            </button>
+            <ModalButton content={<Alarm />} />
           </div>
         </div>
         <div className="md:flex w-full items-center justify-between bg-mGray px-4 ml-4 h-12 rounded-lg hidden">
@@ -56,7 +55,7 @@ const NavBar = () => {
           </ul>
           <div className="md:block hidden">
             {accessToken != null ? (
-              <div className="flex">
+              <div className="flex items-center">
                 <div className="flex items-center">
                   <div className="group">
                     <img
@@ -90,9 +89,7 @@ const NavBar = () => {
                   <span className="text-mYellow "> {nickname} 평론가님</span>
                 </div>
 
-                <button className="text-mCream hover:text-mYellow active:text-mYellow mx-2">
-                  <BsFillBellFill size={20} />
-                </button>
+                <ModalButton content={<Alarm />} />
               </div>
             ) : (
               <LoginBox />

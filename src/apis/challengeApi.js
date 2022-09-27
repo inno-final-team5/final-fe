@@ -15,8 +15,4 @@ export const updateChallenge = async (challenge) => {
   return await challengeApi.patch(`/challenges/${challenge.id}`, challenge);
 };
 
-export const deleteChallenge = async ({ id }) => {
-  return await challengeApi.delete(`/challenges/${id}`, id);
-};
-
 export default challengeApi;
