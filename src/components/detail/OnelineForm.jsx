@@ -30,7 +30,8 @@ const OnelineForm = () => {
   const { mutate } = useMutation(addOneline, {
     onSuccess: () => {
       //내 댓글을 리스트에 추가해주면 ok
-      queryClient.invalidateQueries("onelineList");
+      console.log(queryClient.setQueryData("onelineList"), "이건뭐임?");
+      console.log(queryClient.invalidateQueries("onelineList"), "추가해!");
     },
   });
 

@@ -19,7 +19,7 @@ function OnelineList() {
   return (
     <div className="mt-6 pb-6 ">
       <div className=" pr-8 pt-0 pb-4 rounded-3xl bg-mGray ">
-        <section class="text-gray-600 body-font ml-10 overflow-hidden">
+        <section className="text-gray-600 body-font ml-10 overflow-hidden">
           {onelineQuery.data.data.map((line) => (
             <Oneline {...line} key={line.oneLineReview.oneLineReviewId} />
           ))}

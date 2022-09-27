@@ -15,7 +15,7 @@ const MovieSum = () => {
   if (movieQuery.isLoading) {
     return <Spinner />;
   }
-  const detail = movieQuery.data.data[1];
+  const detail = movieQuery.data.data[5];
   return (
     <div>
       <section className="mt-2">
