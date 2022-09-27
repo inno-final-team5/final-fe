@@ -11,11 +11,11 @@ const MyPage = () => {
   /**계정 삭제  */
   const deleteAccount = () => {
     Swal.fire({
-      title: "계정 삭제",
-      text: "계정을 삭제하시겠습니까?",
+      title: "회원 탈퇴",
+      text: "정말 탈퇴하시겠습니까?",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "삭제",
+      confirmButtonText: "확인",
       cancelButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -26,7 +26,7 @@ const MyPage = () => {
 
   const deleteConfirm = () => {
     Swal.fire({
-      title: "삭제 완료",
+      title: "탈퇴 완료",
       text: "이용해주셔서 감사합니다",
       icon: "success",
       confirmButtonText: "완료",
@@ -42,7 +42,7 @@ const MyPage = () => {
       <section>
         <MyPageContainer>
           <MyPageSidebarContainer>
-            <SideBar deleteAccount={deleteAccount} />
+            <SideBar />
           </MyPageSidebarContainer>
           <MyPageContentContainer>
             <MyContainer />
@@ -57,11 +57,11 @@ const MyPageContainer = tw.div`
 mt-4
 `;
 const MyPageSidebarContainer = tw.div`
-bg-mBlack fixed w-56
+bg-mBlack md:block hidden md:fixed
 `;
 
 const MyPageContentContainer = tw.div`
-bg-mBlack rounded-sm pl-64
+bg-mBlack rounded-sm md:pl-56
 `;
 
 export default MyPage;

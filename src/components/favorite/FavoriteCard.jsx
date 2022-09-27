@@ -26,7 +26,7 @@ const FavoriteCard = ({ imageUrl, title, id, deleteFavoriteMutation }) => {
 };
 
 const FavoriteCardContainer = tw.div`
-m-4 border-none rounded-lg border-mYellow h-92 p-4 bg-mWhite shadow-lg  
+m-4 border-none rounded-lg border-mYellow p-4 bg-mWhite shadow-lg  
 `;
 
 const FavoriteCardImage = tw.img`
@@ -34,11 +34,11 @@ const FavoriteCardImage = tw.img`
 `;
 
 const FavoriteCardTitleBox = tw.div`
-  flex text-xl items-center mt-2 
+  flex items-center mt-2 
 `;
 
 const FavoriteCardTitle = tw.span`
-  text-mBlack ml-2 text-md w-full
+  text-mBlack ml-2  w-full text-xs
 `;
 
 const FavoriteDeleteButton = tw.button`

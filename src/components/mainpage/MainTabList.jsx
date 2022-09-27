@@ -2,7 +2,11 @@ import React from "react";
 import BestReview from "./MainTabIn/BestReview";
 import NewPosts from "./MainTabIn/NewPosts";
 import { useState } from "react";
+
 const MainTabList = () => {
+  const activeLink = `font-bold bg-mGray text-mYellow px-5 py-2.5 rounded-t-lg cursor-pointer text-base`;
+  const normalLink = `bg-gradient-to-b from-mGray to-Gray px-5 py-2.5 rounded-t-lg cursor-pointer text-base text-mCream`;
+
   const [index, setIndex] = useState(0);
   const MainListTabMenu = [
     {
@@ -18,17 +22,16 @@ const MainTabList = () => {
   return (
     <div className="mt-20 pb-20">
       <div className="flex">
-        {MainListTabMenu.map((item, index) => {
+        {MainListTabMenu.map((item, idx) => {
           return (
-            <div key={index} className="flex w-fit mx-1">
+            <div key={idx} className="flex w-fit mx-1">
               <div
                 onClick={() => {
-                  setIndex(index);
+                  setIndex(idx);
                 }}
+                className={index === idx ? activeLink : normalLink}
               >
-                <div className="bg-mCream px-5 py-2.5 rounded-t-lg">
-                  {item.title}
-                </div>
+                <div>{item.title}</div>
               </div>
             </div>
           );
