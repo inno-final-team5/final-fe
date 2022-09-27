@@ -3,8 +3,6 @@ import LogoBox from "./LogoBox";
 import tw from "tailwind-styled-components/";
 import ModalButton from "components/Modal/ModalButton";
 import { Link, useNavigate, NavLink } from "react-router-dom";
-
-import { BsFillBellFill } from "react-icons/bs";
 import Alarm from "./Alarm";
 
 const Header = () => {
@@ -48,12 +46,7 @@ const Header = () => {
               <button onClick={logoutHandler}>
                 <MenuTitle>로그아웃</MenuTitle>
               </button>
-              <ModalButton content={<Alarm />}>
-                {/* <BsFillBellFill
-                  className="ml-4 text-yellow-500 hover:text-mCream"
-                  size={20}
-                /> */}
-              </ModalButton>
+              <ModalButton content={<Alarm />} />
             </>
           ) : (
             <>

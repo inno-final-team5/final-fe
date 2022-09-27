@@ -7,9 +7,7 @@
   left: 0;
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.2);
-  /**/
-  animation: modal-close 1s;
-
+  /* animation: modal-close 1s; */
   cursor: default;
 }
 

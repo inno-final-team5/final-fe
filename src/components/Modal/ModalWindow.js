@@ -2,7 +2,7 @@ import React from 'react';
 import './ModalWindow.css';
 import PropTypes from 'prop-types';
 
-function ModalWindow({ open, close, header, content }) {
+function ModalWindow({ open, close, content }) {
   return (
     <div className={open ? 'openModal modal' : 'modal'}>
       {open && (

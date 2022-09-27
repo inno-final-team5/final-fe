@@ -1,9 +1,15 @@
 import React from "react";
+import { BsFillBellFill } from "react-icons/bs";
 
 const Alarm = () => {
   return (
     <div>
-      <h2 className="text-xl font-bold ml-5 mb-5">Alarm list</h2>
+      <h2 className="text-xl font-bold ml-5 mb-5 flex">
+        <span className="mt-1 mr-2.5">
+          <BsFillBellFill />
+        </span>
+        Alarm list
+      </h2>
       <div className="bg-mCream h-20 px-3 py-5 text-sm mb-5">
         <div>
           <div className="font-bold">

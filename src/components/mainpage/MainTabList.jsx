@@ -4,8 +4,8 @@ import NewPosts from "./MainTabIn/NewPosts";
 import { useState } from "react";
 
 const MainTabList = () => {
-  const activeLink = `font-bold bg-mYellow px-5 py-2.5 rounded-t-lg cursor-pointer`;
-  const normalLink = `bg-mCream px-5 py-2.5 rounded-t-lg cursor-pointer`;
+  const activeLink = `font-bold bg-mGray text-mYellow px-5 py-2.5 rounded-t-lg cursor-pointer text-base`;
+  const normalLink = `bg-gradient-to-b from-mGray to-Gray px-5 py-2.5 rounded-t-lg cursor-pointer text-base text-mCream`;
 
   const [index, setIndex] = useState(0);
   const MainListTabMenu = [

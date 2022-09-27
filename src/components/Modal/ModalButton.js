@@ -4,7 +4,7 @@ import ModalWindow from './ModalWindow';
 import styled from 'styled-components';
 import { BsFillBellFill } from "react-icons/bs";
 
-function ModalButton({ buttonName, content }) {
+function ModalButton({ content }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
