@@ -1,38 +1,40 @@
-import tw from "tailwind-styled-components";
-import { NavLink } from "react-router-dom";
-import { CommunitySidebarData } from "data/CommunitySidebarData";
-import { Fragment } from "react";
+import React from "react";
 
-const SideBar = () => {
-  const activeLink = `hover:bg-mYellow mt-4 w-full h-14 font-bold flex justify-center items-center text-mBlack text-md space-x-1 bg-mYellow rounded-full border-solid border px-3`;
-  const normalLink = `hover:bg-mYellow hover:text-mBlack hover:font-bold hover:rounded-full mt-4 w-full h-14  flex justify-center items-center text-mYellow text-md space-x-1 px-3 `;
-
+const Sidebar = () => {
   return (
-    <Fragment>
-      <section>
-        <SideBox>
-          {CommunitySidebarData.map((item, index) => {
-            return (
-              <div key={index}>
-                <NavLink
-                  to={item.path}
-                  className={({ isActive }) =>
-                    isActive ? activeLink : normalLink
-                  }
-                >
-                  <span>{item.title}</span>
-                </NavLink>
-              </div>
-            );
-          })}
-        </SideBox>
-      </section>
-    </Fragment>
+    <div>
+      <aside class="w-64 m-8" aria-label="Sidebar">
+        <div class="overflow-y-auto py-4 px-3 bg-mGray rounded">
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="#"
+                class="flex items-center p-2 text-base font-normal text-mYellow rounded-lg hover:bg-mYellow hover:text-mBlack"
+              >
+                <span class="ml-3">전체 조회</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center p-2 text-base font-normal text-mYellow rounded-lg hover:bg-mYellow hover:text-mBlack"
+              >
+                <span class="ml-3">영화 후기</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                class="flex items-center p-2 text-base font-normal text-mYellow rounded-lg hover:bg-mYellow hover:text-mBlack"
+              >
+                <span class="ml-3">영화관 후기</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
   );
 };
 
-const SideBox = tw.div`
-  bg-mGray py-2 rounded-sm px-4 flex flex-col justify-center mx-4
-`;
-
-export default SideBar;
+export default Sidebar;
