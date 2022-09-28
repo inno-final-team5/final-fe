@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { AiFillAliwangwang } from "react-icons/ai";
 import { useQuery } from "react-query";
@@ -5,7 +6,8 @@ import api from "shared/api";
 
 const NewPosts = () => {
   const getRecentPosteWithApi = async () => {
-    const { data } = await api.get("/post");
+    // const { data } = await api.get("/post");
+    const { data } = await axios.get("http://localhost:3001/post");
     return data;
   };
 

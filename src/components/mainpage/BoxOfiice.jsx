@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useQuery } from "react-query";
 import api from "shared/api";
+import axios from "axios";
 
 const BoxOfiice = () => {
   //carousel
@@ -19,7 +20,7 @@ const BoxOfiice = () => {
     autoplaySpeed: 2000,
   };
   const getBoxofficeWithApi = async () => {
-    const { data } = await api.get("/boxoffice");
+    const { data } = await axios.get("http://localhost:3001/boxoffice");
     return data;
   };
 

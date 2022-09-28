@@ -1,6 +1,6 @@
 export const navigationLinks = [
   { name: "영화 검색", link: "/search" },
-  { name: "커뮤니티", link: "/community" },
+  { name: "커뮤니티", link: "/community/all" },
   { name: "챌린지", link: "/challenge" },
 ];
 
