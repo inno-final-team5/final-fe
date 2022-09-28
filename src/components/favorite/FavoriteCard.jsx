@@ -1,36 +1,48 @@
-import { useDispatch } from "react-redux";
-import { __deleteFavorites } from "redux/modules/myFavorite";
+import tw from "tailwind-styled-components/";
 import { FaStar } from "react-icons/fa";
 
-const FavoriteCard = ({ imageUrl, title, id }) => {
-  const dispatch = useDispatch();
-
-  const deletePoster = (e) => {
-    // 즐겨찾기 삭제
-    e.preventDefault();
-    console.log("포스터 삭제");
-
-    dispatch(__deleteFavorites(id));
+const FavoriteCard = ({ imageUrl, title, id, deleteFavoriteMutation }) => {
+  /** 즐겨찾기 삭제 함수 */
+  const deleteMovie = (id) => {
+    deleteFavoriteMutation.mutate({ id: id });
   };
 
   return (
-    <div className="m-4 border-none rounded-lg border-mYellow h-96 p-4 bg-mWhite shadow-lg">
-      <img
-        src={imageUrl}
-        alt="포스터"
-        className="rounded  justify-center flex"
-      />
-      <div className="flex  text-xl items-center mt-2 px-4">
-        <FaStar className="text-mBlack  " />
-        <span className=" text-mBlack ml-2">{title}</span>
-        <button
-          onClick={(e) => {
-            deletePoster(e);
+    <FavoriteCardContainer>
+      <FavoriteCardImage src={imageUrl} alt="포스터" />
+      <FavoriteCardTitleBox>
+        <FavoriteDeleteButton
+          onClick={() => {
+            deleteMovie(id);
           }}
-        ></button>
-      </div>
-    </div>
+        >
+          <FaStar />
+        </FavoriteDeleteButton>
+
+        <FavoriteCardTitle>{title}</FavoriteCardTitle>
+      </FavoriteCardTitleBox>
+    </FavoriteCardContainer>
   );
 };
+
+const FavoriteCardContainer = tw.div`
+m-4 border-none rounded-lg border-mYellow p-4 bg-mWhite shadow-lg  
+`;
+
+const FavoriteCardImage = tw.img`
+  rounded justify-center flex
+`;
+
+const FavoriteCardTitleBox = tw.div`
+  flex items-center mt-2 
+`;
+
+const FavoriteCardTitle = tw.span`
+  text-mBlack ml-2  w-full text-xs
+`;
+
+const FavoriteDeleteButton = tw.button`
+  text-mYellow
+`;
 
 export default FavoriteCard;

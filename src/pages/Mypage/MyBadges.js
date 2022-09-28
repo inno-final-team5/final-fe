@@ -1,11 +1,18 @@
+import BadgeList from "components/myBadges/BadgeList";
+import MainBadge from "components/myBadges/MainBadge";
 import React, { Fragment } from "react";
 
 const MyBadges = () => {
+  const mainBadge = "https://cdn-icons-png.flaticon.com/512/8060/8060794.png";
+
   return (
     <Fragment>
       <section>
-        <div className="flex justify-center items-center text-4xl h-screen">
-          My Badges
+        <div className="bg-mGray">
+          {/* 메인 뱃지 공간 */}
+          <MainBadge badgeImage={mainBadge} />
+          {/* 뱃지 리스트 */}
+          <BadgeList />
         </div>
       </section>
     </Fragment>

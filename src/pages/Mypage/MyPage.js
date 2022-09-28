@@ -1,24 +1,67 @@
+import tw from "tailwind-styled-components";
 import Layout from "components/common/Layout";
 import MyContainer from "components/mypage/MyContainer";
 import SideBar from "components/mypage/Sidebar";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {
+  const navigate = useNavigate();
+  // TODO 서버와 통신 기능 구현하기!
+  /**계정 삭제  */
+  const deleteAccount = () => {
+    Swal.fire({
+      title: "회원 탈퇴",
+      text: "정말 탈퇴하시겠습니까?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteConfirm();
+      }
+    });
+  };
+
+  const deleteConfirm = () => {
+    Swal.fire({
+      title: "탈퇴 완료",
+      text: "이용해주셔서 감사합니다",
+      icon: "success",
+      confirmButtonText: "완료",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/");
+      }
+    });
+  };
+
   return (
     <Layout>
-      <>
-        <section>
-          <div className="grid grid-cols-12">
-            <div className="col-span-2 bg-mBlack max-h-min pl-2 mx-2 mt-4">
-              <SideBar />
-            </div>
-            <div className="col-span-10 bg-mGray  pl-2 mt-4 border border-none border-mYellow">
-              <MyContainer />
-            </div>
-          </div>
-        </section>
-      </>
+      <section>
+        <MyPageContainer>
+          <MyPageSidebarContainer>
+            <SideBar />
+          </MyPageSidebarContainer>
+          <MyPageContentContainer>
+            <MyContainer />
+          </MyPageContentContainer>
+        </MyPageContainer>
+      </section>
     </Layout>
   );
 };
+
+const MyPageContainer = tw.div`
+mt-4
+`;
+const MyPageSidebarContainer = tw.div`
+bg-mBlack md:block hidden md:fixed
+`;
+
+const MyPageContentContainer = tw.div`
+bg-mBlack rounded-sm md:pl-56
+`;
 
 export default MyPage;
