@@ -1,10 +1,13 @@
-import LogoBox from "components/common/LogoBox";
+import Logo from "../images/Logo.png"
 import SignupBox from "components/signup/SignupBox";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   return (
         <div className="h-screen bg-mBlack mx-auto flex flex-col justify-center items-center">
-          <LogoBox className="w-52"/>
+          <Link to={"/"}>
+            <img src={Logo} alt="Logo" className="w-40" />
+          </Link>
           <SignupBox/>
         </div>
   );
