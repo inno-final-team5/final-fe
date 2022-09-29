@@ -40,6 +40,9 @@ const SingupBox = () => {
     if (email.length === 0) {
       alert("이메일을 입력해주세요");
       return;
+    } else if (!checkEmail(email)) {
+      alert("이메일 형식에 맞게 써주세요");
+      return;
     }
 
     //중복확인
@@ -56,6 +59,9 @@ const SingupBox = () => {
     //빈칸확인
     if (nickname.length === 0) {
       alert("닉네임을 입력해주세요.");
+      return;
+    } else if (!checkUserName(nickname)) {
+      alert("닉네임 형식에 맞게 써주세요");
       return;
     }
 
@@ -79,12 +85,6 @@ const SingupBox = () => {
     if (!passwordConfirmCheck) {
       alert("입력하신 비밀번호가 다릅니다.");
       return;
-    } else if (!checkEmail(email)) {
-      alert("이메일 형식에 맞게 써주세요");
-      return;
-    } else if (!checkUserName(nickname)) {
-      alert("닉네임 형식에 맞게 써주세요");
-      return;
     } else if (!checkPassword(password)) {
       alert("비밀번호 형식에 맞게 써주세요");
       return;
@@ -97,7 +97,6 @@ const SingupBox = () => {
         nickname,
         password,
       });
-      console.log(res);
 
       if (res.data.error === "DUPLICATE_EMAIL") {
         alert("이메일 중복확인을 해주세요");
@@ -105,7 +104,7 @@ const SingupBox = () => {
         alert("닉네임 중복확인을 해주세요");
       } else {
         alert("회원가입이 완료되었습니다.");
-        navigate("/login");
+        navigate("/signin");
       }
     } catch (error) {
       console.log(error);
@@ -143,29 +142,26 @@ const SingupBox = () => {
             중복확인
           </DoubleCheckButton>
         </RegisterInputBox>
-        <InputBox
-          type="password"
-          id="password"
-          onChange={passwordInput}
-          placeholder="비밀번호 영어+숫자 4-16자리"
-          required
-        />
+        <RegisterInputBox>
+          <InputBox
+            type="password"
+            id="password"
+            onChange={passwordInput}
+            placeholder="비밀번호 영어+숫자 4-16자리"
+            required
+          />
+        </RegisterInputBox>
+        <RegisterInputBox>
+          <InputBox
+            type="password"
+            id="passwordConfirm"
+            onChange={passwordConfirmInput}
+            placeholder="비밀번호를 한 번 더 입력하세요"
+            required
+          />
+        </RegisterInputBox>
 
-        <InputBox
-          type="password"
-          id="passwordConfirm"
-          onChange={passwordConfirmInput}
-          placeholder="비밀번호를 한 번 더 입력하세요"
-          required
-        />
-
-        <RegisterButton
-          type="submit"
-          // data-mdb-ripple="true"
-          // data-mdb-ripple-color="light"
-        >
-          회원가입
-        </RegisterButton>
+        <RegisterButton type="submit">회원가입</RegisterButton>
 
         <LoginBox>
           이미 계정이 있으신가요?
@@ -179,26 +175,26 @@ const SingupBox = () => {
 };
 
 const LoginFormContainer = tw.div`
-  rounded-lg p-8 bg-mWhite shadow-lg mt-8
+  rounded-lg p-8
 `;
 
 const RegisterInputBox = tw.div`
-    flex justify-between items-start mb - 6
+    flex justify-between items-center mb-2 
 `;
 
 const DoubleCheckButton = tw.button`
-  bg-mCream w-24 text-mBlack font-medium text-sm  uppercase rounded shadow-md hover:bg-mYellow hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out px-2 py-2
+  bg-mCream w-24 text-mBlack font-medium text-sm  uppercase rounded shadow-md hover:bg-mYellow hover:shadow-lg focus:bg-mYellow focus:shadow-lg focus:outline-none focus:ring-0 active:bg-mYellow active:shadow-lg transition duration-150 ease-in-out px-2 py-2
 `;
 
 const LoginBox = tw.div`
-  my-6 justify-center flex
+  mt-14 justify-center flex text-mWhite 
 `;
 
 const LoginLink = tw.p`
-  ml-4 text-mBlack underline
+  ml-4 text-mCream underline
 `;
 const RegisterButton = tw.button`
-  bg-mCream  inline-block px-7 py-3 text-mBlack font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-mYellow hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full
+  bg-mCream  inline-block mt-7 px-7 py-3 text-mBlack font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-mYellow hover:shadow-lg focus:bg-mYellow focus:shadow-lg focus:outline-none focus:ring-0 active:bg-mYellow active:shadow-lg transition duration-150 ease-in-out w-full
 `;
 
 const InputBox = tw.input`
@@ -222,7 +218,7 @@ const InputBox = tw.input`
     m-2.5
     focus:text-gray-700
     focus:bg-white
-    focus:border-mSecondaryColor
+    focus:border-mYellow  
     focus:outline-none
 `;
 export default SingupBox;
