@@ -1,10 +1,9 @@
 import React from "react";
-import poster from "../../images/poster.png";
 import Spinner from "components/common/Spinner";
-import axios from "axios";
 import { useQuery } from "react-query";
 import SearchMovie from "./SearchMovie";
 import { api } from "shared/api";
+import { useParams } from "react-router-dom";
 
 const SearchList = () => {
   const getSearchList = () => {
@@ -16,6 +15,7 @@ const SearchList = () => {
       console.log(data.data.data);
     },
   });
+
   if (searchListQuery.isLoading) {
     return <Spinner />;
   }
@@ -24,7 +24,7 @@ const SearchList = () => {
     <div className="mt-10">
       <div className="flex items-center justify-center pt-0 pb-4 rounded-3xl bg-mGray container mx-auto flex px-2 py-22 md:flex-row flex-col">
         <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-14 p-14">
-          {searchListQuery.data.data.data.results.map((movie) => (
+          {searchListQuery?.data.data.data.results.map((movie) => (
             <SearchMovie {...movie} key={movie.movieId} />
           ))}
         </section>

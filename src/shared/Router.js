@@ -19,7 +19,7 @@ const Router = () => {
         <Route path="/challenge" element={<Challenge />} />
         <Route path="/*" element={<NotFound />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/kakaoLogin" element={<KakaoRedirect />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/mypage/*" element={<MyPage />} />
