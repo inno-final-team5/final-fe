@@ -43,7 +43,7 @@ const CommunityAll = () => {
 
   return (
     <>
-      <div className=" bg-mGray p-4 rounded-sm ">
+      <div className=" bg-mGray p-4 rounded-sm h-full">
         <div className="shadow-md sm:rounded-lg m-4 mt-6 flex justify-center">
           <table className="w-full bg-mBlack text-mWhite text-left ">
             <thead className="font-bold text-sm">
