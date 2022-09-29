@@ -1,15 +1,16 @@
 import React from "react";
 import Spinner from "components/common/Spinner";
 import { useQuery } from "react-query";
-import api from "shared/api";
+// import api from "shared/api";
 import { FaStar } from "react-icons/fa";
 import { FiThumbsUp } from "react-icons/fi";
 import gun from "../../../images/free-icon-western-8136323.png";
+import axios from "axios";
 
 const BestReview = () => {
   /**Best Review 데이터 불러오기*/
   const getBestReviewWithApi = async () => {
-    const { data } = await api.get("/best");
+    const { data } = await axios.get("http://localhost:3001/best");
     return data;
   };
 

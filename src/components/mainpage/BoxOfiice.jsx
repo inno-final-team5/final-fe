@@ -1,12 +1,13 @@
 import React from "react";
 import { useQuery } from "react-query";
-import api from "shared/api";
+// import api from "shared/api";
 //로딩중
 import Spinner from "components/common/Spinner";
 //슬라이더
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axios from "axios";
 
 const BoxOfiice = () => {
   /**carousel 설정*/
@@ -22,7 +23,7 @@ const BoxOfiice = () => {
 
   /**BoxOffice 데이터 불러오기*/
   const getBoxOfficeWithApi = async () => {
-    const { data } = await api.get("/boxoffice");
+    const { data } = await axios.get("http://localhost:3001/boxoffice");
     return data;
   };
 
@@ -40,7 +41,7 @@ const BoxOfiice = () => {
 
       <Slider {...settings} className="flex pl-10">
         {BoxOfficequery.data.map((i) => (
-          <div key={i.movieId} className="relative  h-72">
+          <div key={i.movieId} className="relative h-72 cursor-pointer">
             {/* 영화 순위 */}
             <div className="absolute top-0 left-4 mb-1 text-7xl font-bold text-mCream z-10">
               {i.movieId}
