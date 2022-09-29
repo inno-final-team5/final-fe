@@ -4,7 +4,6 @@ import { useQuery } from "react-query";
 import Spinner from "components/common/Spinner";
 import magic from "../../../images/free-icon-magician-2267705.png";
 // import api from "shared/api";
-import axios from "axios";
 
 const NewPosts = () => {
   /**Recent Post 데이터 불러오기*/
@@ -26,10 +25,7 @@ const NewPosts = () => {
     <div>
       <ul>
         {Recentquery.data.map((i) => (
-          <li
-            key={i.postId}
-            className="bg-mWhite grid grid-cols-12 grid-flow-row-dense px-5 py-3 items-center rounded-lg mb-5 cursor-pointer"
-          >
+          <li key={i.postId} className="bg-mWhite grid grid-cols-12 grid-flow-row-dense px-5 py-3 items-center rounded-lg mb-5 cursor-pointer">
             {/* 게시글 카테고리 이름 */}
             <div className="col-start-1">{i.postCategory}</div>
 
@@ -39,9 +35,7 @@ const NewPosts = () => {
                 <div className="mr-3 text-xl ">
                   <img src={magic} alt="" className="w-8" />
                 </div>
-                <div className="pr-5 flex text-sm text-gray-500 mt-2">
-                  {i.nickname}
-                </div>
+                <div className="pr-5 flex text-sm text-gray-500 mt-2">{i.nickname}</div>
               </div>
             </div>
 

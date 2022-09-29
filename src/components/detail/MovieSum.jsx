@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RiHeartAddLine } from "react-icons/ri";
 import Spinner from "components/common/Spinner";
 import { useQuery } from "react-query";
@@ -22,7 +22,7 @@ const MovieSum = () => {
     return <Spinner />;
   }
 
-  const movieImg = `https://image.tmdb.org/t/p/w342` + movieQuery.data.data.data.poster_path;
+  const movieImg = `https://image.tmdb.org/t/p/w342` + movieQuery?.data.data.data.poster_path;
 
   return (
     <div>
@@ -39,10 +39,10 @@ const MovieSum = () => {
 
             <p className="mb-8 text-white leading-relaxed">{movieQuery?.data.data.data.overview}</p>
 
-            <div className="flex lg:flex-row md:flex-col mt-16">
+            <div className="flex lg:flex-row md:flex-row mt-16">
               {movieQuery?.data.data.data.genres.map((movie) => (
-                <button className="bg-mWhite inline-flex py-2 px-3 ml-2 rounded-full items-center hover:bg-gray-400 focus:outline-none">
-                  <span key={movie.id}>{movie.name} </span>
+                <button className="bg-mWhite lg:flex inline-flex py-2 px-3 ml-2 rounded-full items-center hover:bg-gray-400 focus:outline-none">
+                  <span key={movie.id}>{movie?.name} </span>
                 </button>
               ))}
             </div>
