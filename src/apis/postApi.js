@@ -1,22 +1,16 @@
-import axios from "axios";
+import api from "shared/api";
 
-const postApi = axios.create({ baseURL: "http://localhost:3001" });
-
-export const getPosts = async () => {
-  const response = await postApi.get("/post");
+export const getAllPosts = async () => {
+  const response = await api.get("/post");
   return response.data;
 };
 
-export const addPost = async (review) => {
-  return await postApi.post("/post", review);
+export const getCinemaPosts = async () => {
+  const response = await api.get("/post/cinemas");
+  return response.data;
 };
 
-export const updateFavorite = async (review) => {
-  return await postApi.patch(`/post/${review.id}`, review);
+export const getMoviePosts = async () => {
+  const response = await api.get("/post/movies");
+  return response.data;
 };
-
-export const deleteFavorite = async ({ id }) => {
-  return await postApi.delete(`/post/${id}`, id);
-};
-
-export default postApi;
