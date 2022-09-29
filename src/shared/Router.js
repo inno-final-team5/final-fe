@@ -9,6 +9,7 @@ import Challenge from "pages/Challenge";
 import NotFound from "pages/NotFound";
 import MyPage from "pages/Mypage/MyPage";
 import SearchList from "pages/SearchList";
+import SearchResult from "pages/SearchResult";
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/mypage/*" element={<MyPage />} />
         <Route path="/search" element={<SearchList />} />
+        <Route path="/search/:keyword" element={<SearchResult />} />
       </Routes>
     </BrowserRouter>
   );

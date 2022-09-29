@@ -34,17 +34,9 @@ const BoxOfiice = () => {
         {!query.isLoading &&
           query.data.map((i) => (
             <div key={i.movieId} className="relative  h-72">
-              <div className="absolute top-0 left-4 mb-1 text-7xl font-bold text-mCream z-10">
-                {i.movieId}
-              </div>
-              <img
-                src={i.imageUrl}
-                alt="movie_poster"
-                className="relative top-7 left-16 w-40 z-40"
-              />
-              <div className=" absolute left-16 bottom-0 text-mYellow  z-10">
-                {i.title}
-              </div>
+              <div className="absolute top-0 left-4 mb-1 text-7xl font-bold text-mCream z-10">{i.movieId}</div>
+              <img src={i.imageUrl} alt="movie_poster" className="relative top-7 left-16 w-40 z-40" />
+              <div className=" absolute left-16 bottom-0 text-mYellow  z-10">{i.title}</div>
             </div>
           ))}
         {/*         
