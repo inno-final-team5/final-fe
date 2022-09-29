@@ -41,7 +41,7 @@ const NavBar = () => {
             />
           </Link>
 
-          <div className="text-3xl md:hidden  flex items-center">
+          <div className="text-3xl md:hidden flex items-center">
             <button onClick={() => setOpen(!open)} className="text-mYellow">
               {open ? <MdClose /> : <MdMenu />}
             </button>
@@ -104,7 +104,7 @@ const NavBar = () => {
           <div>
             {accessToken != null ? (
               <div>
-                <div className="w-full flex items-center justify-between px-8 ">
+                <div className="w-full flex items-center justify-between pr-8 ">
                   <div className="flex items-center">
                     <img
                       src={profileImage}
@@ -121,23 +121,25 @@ const NavBar = () => {
               <LoginBox />
             )}
           </div>
-          <div className="px-8">
+          <div>
             <NavLinks links={navigationLinks} />
-            <div className="text-mCream">
-              <h1
-                className="pl-3 flex justify-between hover:cursor-pointer"
-                onClick={() => {}}
-              >
-                마이페이지
-                <span>
-                  {/* <FaChevronDown /> */}
-                  <FaChevronUp />
-                </span>
-              </h1>
-              <div className="pl-8 md:hidden">
-                <NavLinks links={myLinks} />
+            {accessToken != null ? (
+              <div className="text-mCream">
+                <h1
+                  className="pl-3 flex justify-between hover:cursor-pointer"
+                  onClick={() => {}}
+                >
+                  마이페이지
+                  <span>
+                    {/* <FaChevronDown /> */}
+                    <FaChevronUp />
+                  </span>
+                </h1>
+                <div className="pl-8 md:hidden">
+                  <NavLinks links={myLinks} />
+                </div>
               </div>
-            </div>
+            ) : null}
           </div>
         </ul>
       </div>

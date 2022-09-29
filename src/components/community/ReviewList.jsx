@@ -22,7 +22,7 @@ const ReviewList = ({ category }) => {
       .filter((post) => post.postCategory === category)
       .map((post) => {
         return (
-          <tr key={post.postId} className="">
+          <tr key={post.postId}>
             <th className="py-4 px-6 font-medium text-mWhite whitespace-nowrap">
               {post.postCategory}
             </th>

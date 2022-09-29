@@ -4,6 +4,12 @@ export const navigationLinks = [
   { name: "챌린지", link: "/challenge" },
 ];
 
+export const communityLinks = [
+  { name: "전체 후기", link: "/community/all" },
+  { name: "영화 후기", link: "/community/movies" },
+  { name: "영화관 후기", link: "/community/cinemas" },
+];
+
 export const myLinks = [
   { name: "나의 즐겨찾기", link: "/mypage/favorites" },
   { name: "나의 게시글", link: "/mypage/posts" },
