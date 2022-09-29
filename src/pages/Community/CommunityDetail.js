@@ -15,7 +15,7 @@ const CommunityDetail = (props) => {
                     htmlFor="title"
                     className="block mb-2 text-sm font-medium text-mBlack "
                   >
-                    제목
+                    제목2
                   </label>
                   <input
                     type="title"
