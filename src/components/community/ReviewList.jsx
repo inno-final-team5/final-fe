@@ -1,9 +1,8 @@
 import { useQuery } from "react-query";
-import { getPosts } from "apis/postApi";
 import { Link } from "react-router-dom";
 import TableHead from "./TableHead";
 
-const ReviewList = ({ category, queryFn }) => {
+const ReviewList = ({ queryFn }) => {
   const { isLoading, isError, error, data: posts } = useQuery("posts", queryFn);
 
   let content;
