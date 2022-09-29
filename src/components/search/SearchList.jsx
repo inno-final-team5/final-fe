@@ -3,7 +3,6 @@ import Spinner from "components/common/Spinner";
 import { useQuery } from "react-query";
 import SearchMovie from "./SearchMovie";
 import { api } from "shared/api";
-import { useParams } from "react-router-dom";
 
 const SearchList = () => {
   const getSearchList = () => {
