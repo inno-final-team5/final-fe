@@ -1,131 +1,81 @@
 import React from "react";
-import { AiFillStar } from "react-icons/ai";
+import Spinner from "components/common/Spinner";
+import { useQuery } from "react-query";
+import api from "shared/api";
+import { FaStar } from "react-icons/fa";
 import { FiThumbsUp } from "react-icons/fi";
-import magic from "../../../images/free-icon-magician-2267705.png";
 import gun from "../../../images/free-icon-western-8136323.png";
+
 const BestReview = () => {
+  /**Best Review 데이터 불러오기*/
+  const getBestReviewWithApi = async () => {
+    const { data } = await api.get("/best");
+    return data;
+  };
+
+  /**데이터가 onSuccess일때 가져오기*/
+  const BestReviewquery = useQuery("bestReview", getBestReviewWithApi, {
+    onSuccess: () => {},
+  });
+  if (BestReviewquery.isLoading) {
+    return <Spinner />;
+  }
+
+  /**별점에 따른 별 갯수*/
+  const starIcon = (n) => {
+    const star = [];
+    for (let i = 0; i < n; i++) {
+      star.push(<FaStar />);
+    }
+    return star;
+  };
+
   return (
     <div>
       <ul>
-        <li className="bg-mWhite  px-5 py-3 items-center rounded-lg mb-5 cursor-pointer">
-          <div className=" flex-col ">
-            <div className=" pr-5 mb-2.5 text-xl font-bold ">
-              어디선가 누군가에 무슨 일이 생기면 틀림없이 나타난다 홍반장
-            </div>
+        {BestReviewquery.data.map((i) => (
+          <li
+            key={i.movieId}
+            className="bg-mWhite  px-5 py-3 items-center rounded-lg mb-5 cursor-pointer"
+          >
+            <div className=" flex-col ">
+              {/* 영화제목 */}
+              <div className=" pr-5 mb-2.5 text-xl font-bold ">{i.title}</div>
 
-            <div className="flex justify-between mb-2">
-              <div className="flex">
-                <div className="flex align-center">
-                  <span className="mr-3 text-xl ">
-                    <img src={gun} alt="" className="w-8" />
-                  </span>
-                  <div className="pr-5 flex text-xs text-gray-500 mt-2">
-                    팝콘조아팝콘조아팝콘
+              <div className="flex justify-between mb-2">
+                <div className="flex">
+                  {/* 뱃지와 닉네임 */}
+                  <div className="flex align-center">
+                    <div className="mr-3 text-xl ">
+                      <img src={gun} alt="" className="w-8" />
+                    </div>
+                    <div className="pr-5 flex text-xs text-gray-500 mt-2">
+                      {i.oneLineReview.nickname}
+                    </div>
+                  </div>
+
+                  {/* 별점 */}
+                  <div className=" flex text-mYellow mt-2">
+                    {starIcon(i.oneLineReview.star)}
                   </div>
                 </div>
 
-                <div className=" flex text-mYellow mt-2">
-                  <AiFillStar />
-                  <AiFillStar />
-                  <AiFillStar />
-                  <AiFillStar />
+                {/* 좋아요 수 */}
+                <div className="flex-col mx-5">
+                  <FiThumbsUp className=" mb-1" />
+                  <div>{i.oneLineReview.oneLineReviewLikeCount}</div>
                 </div>
               </div>
-              <div className="flex-col mx-5">
-                <FiThumbsUp className=" mb-1" />
-                <div>100</div>
-              </div>
-            </div>
-            <div className="flex ">
-              <div className="pl-2 pr-16 text-sm ">
-                한줄평 내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다. 한줄평 내용입니다.
-              </div>
-            </div>
-          </div>
-        </li>
 
-        <li className="bg-mWhite  px-5 py-3 items-center rounded-lg mb-5 cursor-pointer">
-          <div className=" flex-col ">
-            <div className=" pr-5 mb-2.5 text-xl font-bold ">기생충</div>
-
-            <div className="flex justify-between mb-2">
-              <div className="flex">
-                <div className="flex align-center">
-                  <span className="mr-3 text-xl ">
-                    <img src={magic} alt="" className="w-8" />
-                  </span>
-                  <div className="pr-5 flex text-xs text-gray-500 mt-2">
-                    팝콘조아
-                  </div>
-                </div>
-
-                <div className=" flex text-mYellow mt-2">
-                  <AiFillStar />
-                  <AiFillStar />
-                  <AiFillStar />
-                  <AiFillStar />
+              {/* 한줄평 내용 */}
+              <div className="flex ">
+                <div className="pl-2 pr-16 text-sm ">
+                  {i.oneLineReview.content}
                 </div>
               </div>
-              <div className="flex-col mx-5">
-                <FiThumbsUp className=" mb-1" />
-                <div>80</div>
-              </div>
             </div>
-            <div className="flex ">
-              <div className="pl-2 pr-16 text-sm">
-                한줄평 내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다.
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li className="bg-mWhite  px-5 py-3 items-center rounded-lg mb-5 cursor-pointer">
-          <div className=" flex-col ">
-            <div className=" pr-5 mb-2.5 text-xl font-bold ">
-              블랙회사에 다니고 있는데, 지금 나는 한계에 도달했는지도 모른다
-            </div>
-
-            <div className="flex justify-between mb-2">
-              <div className="flex">
-                <div className="flex align-center">
-                  <span className="mr-3 text-xl ">
-                    {/* <img src={magic} alt="" className="w-8" /> */}
-                    👻💕🌈💜💙
-                  </span>
-                  <div className="pr-5 flex text-xs text-gray-500 mt-2">
-                    팝콘조아
-                  </div>
-                </div>
-
-                <div className=" flex text-mYellow mt-2">
-                  <AiFillStar />
-                  <AiFillStar />
-                  <AiFillStar />
-                </div>
-              </div>
-              <div className="flex-col mx-5">
-                <FiThumbsUp className=" mb-1" />
-                <div>80</div>
-              </div>
-            </div>
-            <div className="flex ">
-              <div className="pl-2 pr-16 text-sm">
-                한줄평 내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다. 한줄평 내용입니다. 한줄평
-                내용입니다. 한줄평 내용입니다.
-              </div>
-            </div>
-          </div>
-        </li>
+          </li>
+        ))}
       </ul>
     </div>
   );
