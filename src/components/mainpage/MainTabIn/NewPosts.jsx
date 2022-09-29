@@ -4,7 +4,6 @@ import { useQuery } from "react-query";
 import Spinner from "components/common/Spinner";
 import magic from "../../../images/free-icon-magician-2267705.png";
 // import api from "shared/api";
-import axios from "axios";
 
 const NewPosts = () => {
   /**Recent Post 데이터 불러오기*/
