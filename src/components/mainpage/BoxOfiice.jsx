@@ -7,6 +7,7 @@ import Spinner from "components/common/Spinner";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 import axios from "axios";
 
 const BoxOfiice = () => {
@@ -23,6 +24,7 @@ const BoxOfiice = () => {
 
   /**BoxOffice 데이터 불러오기*/
   const getBoxOfficeWithApi = async () => {
+
     const { data } = await axios.get("http://localhost:3001/boxoffice");
     return data;
   };
