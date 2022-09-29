@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const SignUp = () => {
   return (
         <div className="h-screen bg-mBlack mx-auto flex flex-col justify-center items-center">
-          <Link to={"/Signin"}>
+          <Link to={"/"}>
             <img src={Logo} alt="Logo" className="w-40" />
           </Link>
           <SignupBox/>
