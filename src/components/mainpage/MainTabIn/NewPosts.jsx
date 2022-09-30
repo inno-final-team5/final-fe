@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import Spinner from "components/common/Spinner";
 import magic from "../../../images/free-icon-magician-2267705.png";

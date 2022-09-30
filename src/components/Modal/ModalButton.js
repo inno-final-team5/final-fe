@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import ModalWindow from './ModalWindow';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import ModalWindow from "./ModalWindow";
+import styled from "styled-components";
 import { BsFillBellFill } from "react-icons/bs";
 
 function ModalButton({ content }) {
@@ -17,17 +17,13 @@ function ModalButton({ content }) {
   return (
     <div>
       <Button type="button" onClick={openModal}>
-        <BsFillBellFill
-          className="ml-4 text-yellow-500 hover:text-mCream"
-          size={20}
-        />
+        <BsFillBellFill className="ml-4 text-2xl text-yellow-500 hover:text-mCream" />
       </Button>
       <ModalWindow
         open={modalOpen}
         close={closeModal}
         content={content}
-      >
-      </ModalWindow>
+      ></ModalWindow>
     </div>
   );
 }

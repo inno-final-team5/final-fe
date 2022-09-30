@@ -1,14 +1,16 @@
 import tw from "tailwind-styled-components";
-import Header from "./Header";
+import Footer from "./Footer";
 import NavBar from "./navbar/NavBar";
 
 const Layout = ({ children }) => {
   return (
-    <TwLayout>
-      <NavBar />
-      {/* <Header /> */}
-      {children}
-    </TwLayout>
+    <>
+      <TwLayout>
+        <NavBar />
+        {children}
+        <Footer />
+      </TwLayout>
+    </>
   );
 };
 
