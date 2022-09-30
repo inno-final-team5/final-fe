@@ -3,6 +3,7 @@ import Spinner from "components/common/Spinner";
 import axios from "axios";
 import { useQuery } from "react-query";
 import Oneline from "./Oneline";
+import { api } from "shared/api";
 
 function OnelineList() {
   const getOnelineList = () => {
@@ -10,7 +11,9 @@ function OnelineList() {
   };
 
   const onelineQuery = useQuery("onelineList", getOnelineList, {
-    onSuccess: (data) => {},
+    onSuccess: (data) => {
+      console.log(data);
+    },
   });
   if (onelineQuery.isLoading) {
     return <Spinner />;

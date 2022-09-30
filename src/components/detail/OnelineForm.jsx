@@ -16,6 +16,8 @@ const OnelineForm = () => {
     }
     setClicked(clickStates);
   };
+  const [isEdit, setIsEdit] = useState(false);
+  const [editComment, setEditComment] = useState("");
 
   let movieId = 2;
   const title = "해리포터";
@@ -37,7 +39,7 @@ const OnelineForm = () => {
       //내 댓글을 리스트에 추가해주면 ok
       queryClient.invalidateQueries("onelineList");
     },
-    onError: (error, variable, context) => {
+    onError: (error) => {
       console.log(error);
     },
   });
