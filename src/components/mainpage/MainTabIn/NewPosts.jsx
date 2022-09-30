@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Spinner from "components/common/Spinner";
 import magic from "../../../images/free-icon-magician-2267705.png";
-// import api from "shared/api";
-import axios from "axios";
+import api from "shared/api";
 
 const NewPosts = () => {
   /**Recent Post 데이터 불러오기*/
   const getRecentPosteWithApi = async () => {
     // const { data } = await api.get("/post");
-    const { data } = await axios.get("http://localhost:3001/post");
+    const { data } = await api.get("/main/post");
     return data;
   };
 
@@ -24,9 +23,10 @@ const NewPosts = () => {
   return (
     <div>
       <ul>
-        {Recentquery.data.map((i) => (
+        {Recentquery.data.data.map((i) => (
           <li
             key={i.postId}
+            setPostDate={i.createdAt}
             className="bg-mWhite grid grid-cols-12 grid-flow-row-dense px-5 py-3 items-center rounded-lg mb-5 cursor-pointer"
           >
             {/* 게시글 카테고리 이름 */}
@@ -51,7 +51,8 @@ const NewPosts = () => {
 
             {/* 게시글 작성일 */}
             <div className="grid justify-items-end mr-5">
-              <div>{i.createdAt}</div>
+              {/* 작성일+시간중에 작성일만 표시하기 */}
+              <div>{i.createdAt.split("T")[0]}</div>
             </div>
           </li>
         ))}
