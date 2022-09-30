@@ -41,7 +41,7 @@ const BoxOfiice = () => {
 
       <Slider {...settings} className="flex pl-10">
         {BoxOfficequery.data.map((i) => (
-          <div key={i.movieId} className="relative h-72 cursor-pointer">
+          <div key={i.movieId} className="relative h-80 cursor-pointer">
             {/* 영화 순위 */}
             <div className="absolute top-0 left-4 mb-1 text-7xl font-bold text-mCream z-10">
               {i.movieId}
@@ -50,10 +50,10 @@ const BoxOfiice = () => {
             <img
               src={i.imageUrl}
               alt="movie_poster"
-              className="relative top-7 left-16 w-40 z-40"
+              className="relative top-7 left-16 w-40 h-60 z-40 bg-cover"
             />
             {/* 영화 제목 */}
-            <div className=" absolute left-16 bottom-0 text-mYellow  z-10">
+            <div className=" relative top-8 left-16 text-mYellow z-10 my-2.5 mr-10 w-4/5">
               {i.title}
             </div>
           </div>
