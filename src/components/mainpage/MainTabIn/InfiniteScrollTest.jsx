@@ -1,25 +1,11 @@
-import React, { useEffect } from "react";
 import Spinner from "components/common/Spinner";
-import SearchMovie from "./SearchMovie";
+import SearchMovie from "../../search/SearchMovie";
 import { api } from "shared/api";
-// 무한스크롤
+import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useInfiniteQuery } from "react-query";
 
-const SearchList = () => {
-  // const getSearchList = () => {
-  //   return api.get(`/movie/1`);
-  // };
-
-  // const searchListQuery = useQuery("searchList", getSearchList, {
-  //   onSuccess: (data) => {
-  //     console.log(data.data.data);
-  //   },
-  // });
-
-  // if (searchListQuery.isLoading) {
-  //   return <Spinner />;
-  // }
+const InfiniteScrollTest = () => {
   const getSearchList = async (pageParam) => {
     const res = await api.get(`/movie/${pageParam}`);
     const { results, page } = res.data.data;
@@ -43,6 +29,7 @@ const SearchList = () => {
       },
     }
   );
+
   useEffect(() => {
     if (inView) fetchNextPage();
   }, [inView]);
@@ -53,9 +40,6 @@ const SearchList = () => {
     <div className="mt-10">
       <div className="items-center justify-center pt-0 pb-4 rounded-3xl bg-mGray container mx-auto flex px-2 py-22 md:flex-row flex-col">
         <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-14 p-14">
-          {/* {searchListQuery?.data.data.data.results.map((movie) => (
-            <SearchMovie {...movie} key={movie.movieId} />
-          ))} */}
           {data?.pages.map((page, index) => (
             <React.Fragment key={index}>
               {page.results.map((movie) => (
@@ -70,4 +54,4 @@ const SearchList = () => {
   );
 };
 
-export default SearchList;
+export default InfiniteScrollTest;
