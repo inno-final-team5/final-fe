@@ -10,7 +10,6 @@ const MovieSum = () => {
     return api.get(`/movie/detail/${id}`);
   };
   const [img, setImg] = useState(null);
-  const [movieInfo, setMovieInfo] = useState(null);
   const params = useParams();
   const id = params.id;
   const title = params.title;
@@ -21,10 +20,9 @@ const MovieSum = () => {
   const movieQuery = useQuery("movieList", getMovieSum, {
     onSuccess: (data) => {
       setImg(`https://image.tmdb.org/t/p/w342` + data.data.data.poster_path);
-      setMovieInfo(data.data.data);
     },
   });
-  // console.log(movieInfo, "무비섬인포!!!!!");
+
   if (movieQuery.isLoading) {
     return <Spinner />;
   }

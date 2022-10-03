@@ -6,22 +6,20 @@ const DetailTags = () => {
   return (
     <div>
       <div className="flex mt-6 justify-center">
-        <Link to={`/genre/drama`}>
-          <button
-            // onClick={() => navigate(`/genre/drama`)}
-            className="bg-mWhite px-4 py-2 rounded-full items-center hover:bg-gray-400 focus:outline-none"
-          >
-            <span>드라마</span>
-          </button>
-        </Link>
-        <Link to={`/genre/romance`}>
-          <button
-            // onClick={() => navigate(`/genre/romance`)}
-            className="bg-mWhite ml-3 py-2 px-4 rounded-full items-center hover:bg-gray-400 focus:outline-none"
-          >
-            <span>로맨스</span>
-          </button>
-        </Link>
+        <button
+          onClick={() => navigate(`/genre/drama`)}
+          className="bg-mWhite px-4 py-2 rounded-full items-center hover:bg-gray-400 focus:outline-none"
+        >
+          <span>드라마</span>
+        </button>
+
+        <button
+          onClick={() => navigate(`/genre/romance`)}
+          className="bg-mWhite ml-3 py-2 px-4 rounded-full items-center hover:bg-gray-400 focus:outline-none"
+        >
+          <span>로맨스</span>
+        </button>
+
         <button
           onClick={() => navigate(`/genre/horror`)}
           className="bg-mWhite ml-3 px-4 rounded-full items-center hover:bg-gray-400 focus:outline-none"
