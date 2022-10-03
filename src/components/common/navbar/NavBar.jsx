@@ -66,19 +66,19 @@ const NavBar = () => {
 
                     <div className="absolute top-16 hidden group-hover:block hover:block ">
                       <div className="py-3">
-                        <div className="w-4 h-4 left-3 absolute mt-1 bg-mGray rotate-45"></div>
+                        <div className="w-4 h-4 left-3 absolute mt-1 bg-mCream rotate-45"></div>
                       </div>
-                      <div className="bg-mGray p-3 list-none ">
+                      <div className="bg-mCream p-3 list-none rounded-lg ">
                         <ul className="text-center">
-                          <li className="text-sm text-mCream my-2.5 ">
+                          <li className="text-sm text-mGray my-2.5 ">
                             <Link
-                              className="hover:text-mYellow"
+                              className="hover:font-bold text-mBlack"
                               to="/mypage/favorites"
                             >
                               마이페이지
                             </Link>
                           </li>
-                          <li className="text-sm text-mCream my-2.5 ">
+                          <li className="text-sm text-mGray my-2.5 ">
                             <LogoutButton logoutHandler={logoutHandler} />
                           </li>
                         </ul>

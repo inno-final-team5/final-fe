@@ -1,32 +1,46 @@
 import tw from "tailwind-styled-components/";
-import { FaStar } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const FavoriteCard = ({ imageUrl, title, id, deleteFavoriteMutation }) => {
+const FavoriteCard = ({
+  imageUrl,
+  title,
+  id,
+  movieId,
+  deleteFavoriteMutation,
+}) => {
   /** 즐겨찾기 삭제 함수 */
   const deleteMovie = (id) => {
     deleteFavoriteMutation.mutate({ id: id });
   };
+  const navigate = useNavigate();
 
+  const goDetail = () => {
+    navigate(`/detail/${movieId}`);
+  };
   return (
     <FavoriteCardContainer>
-      <FavoriteCardImage src={imageUrl} alt="포스터" />
+      <FavoriteCardImage
+        src={imageUrl}
+        alt="포스터"
+        onClick={() => goDetail(id)}
+      />
       <FavoriteCardTitleBox>
+        <FavoriteCardTitle>{title}</FavoriteCardTitle>
         <FavoriteDeleteButton
           onClick={() => {
             deleteMovie(id);
           }}
         >
-          <FaStar />
+          <FaTrash />
         </FavoriteDeleteButton>
-
-        <FavoriteCardTitle>{title}</FavoriteCardTitle>
       </FavoriteCardTitleBox>
     </FavoriteCardContainer>
   );
 };
 
 const FavoriteCardContainer = tw.div`
-m-4 border-none rounded-lg border-mYellow p-4 bg-mWhite shadow-lg  
+m-4 border-none rounded-lg border-mYellow p-4 bg-mWhite shadow-lg  cursor-pointer
 `;
 
 const FavoriteCardImage = tw.img`
@@ -38,11 +52,11 @@ const FavoriteCardTitleBox = tw.div`
 `;
 
 const FavoriteCardTitle = tw.span`
-  text-mBlack ml-2  w-full text-xs
+  text-mBlack ml-2  w-full text-xs font-bold md:text-sm 
 `;
 
 const FavoriteDeleteButton = tw.button`
-  text-mYellow
+  text-mBlack
 `;
 
 export default FavoriteCard;

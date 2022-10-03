@@ -11,6 +11,16 @@ function Oneline({ movieId, oneLineReview, title }) {
   const handleStar = (value) => {
     setClicked(value);
   };
+  // for (var i = 0; i < 5; i++) {
+  //   if (i < value) {
+  //     return "오";
+  //   } else {
+  //     return "아니";
+  //   }
+  // }
+
+  // const [cardContent, setCardContent] = useState({});
+  // const [isEditMode, setIsEditMode] = useState(false);
 
   //onelinereview에 좋아요 데이터 get해와서 있으면 꽉찬떰즈 없으면 빈떰즈 한 후에 꽉찬 떰즈는 -1 빈떰즈는 +1하고 포스트로 보내기
   return (

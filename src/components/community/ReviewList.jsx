@@ -1,37 +1,88 @@
+import { useState } from "react";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
+
+import PageButton from "./PageButton";
 import TableHead from "./TableHead";
+import TableItem from "./TableItem";
+
+import {
+  BsChevronDoubleLeft,
+  BsChevronLeft,
+  BsChevronRight,
+  BsChevronDoubleRight,
+} from "react-icons/bs";
+import ArrowButton from "./ArrowButton";
 
 const ReviewList = ({ queryFn }) => {
+  const postsPerPage = 5;
+  const [page, setPage] = useState(1);
+
   const { isLoading, isError, error, data: posts } = useQuery("posts", queryFn);
 
-  let content;
   if (isLoading) {
-    content = <p>Loading...</p>;
-    return <div>{content}</div>;
-  } else if (isError) {
-    content = <p>{error.message}</p>;
-    return <div>{content}</div>;
-  } else {
-    content = posts.data.map((post) => {
-      return (
-        <tr key={post.postId}>
-          <th className="py-4 px-6 font-medium text-mWhite whitespace-nowrap">
-            {post.postCategory}
-          </th>
-          <td className="py-4 px-6">
-            <Link to={`/community/detail`} className="hover:text-mYellow">
-              {post.postTitle}
-            </Link>
-          </td>
-          <td className="py-4 px-6">{post.nickname}</td>
-          <td className="py-4 px-6">
-            {new Date(post.createdAt).toLocaleDateString("ko-KR")}
-          </td>
-        </tr>
-      );
-    });
+    return (
+      <div>
+        <p>Loading...</p>
+      </div>
+    );
   }
+
+  if (isError) {
+    return <div>{error.message}</div>;
+  }
+
+  const indexOfLast = page * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+
+  const currentPosts = (posts) => {
+    let currentPosts = 0;
+    currentPosts = posts.data.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
+
+  const content = currentPosts(posts).map((post) => (
+    <TableItem key={post.postId} post={post} />
+  ));
+
+  const totalPages = Math.ceil(posts.data.length / postsPerPage);
+
+  const pagesArray = Array(totalPages)
+    .fill()
+    .map((_, index) => index + 1);
+
+  const firstPage = () => setPage(1);
+  const PrevPage = () => setPage(page - 1);
+  const NextPage = () => setPage(page + 1);
+
+  const lastPage = () => setPage(totalPages);
+
+  const Pagination = (
+    <nav className="flex items-center bg-mBlack border-t-2 border-mGray border-solid">
+      <ArrowButton
+        onClick={firstPage}
+        disabled={page === 1}
+        icon={<BsChevronDoubleLeft />}
+      />
+      <ArrowButton
+        onClick={PrevPage}
+        disabled={page === 1}
+        icon={<BsChevronLeft />}
+      ></ArrowButton>
+      {pagesArray.map((pg) => (
+        <PageButton key={pg} page={pg} setPage={setPage} />
+      ))}
+      <ArrowButton
+        onClick={NextPage}
+        disabled={page === totalPages}
+        icon={<BsChevronRight />}
+      />
+      <ArrowButton
+        onClick={lastPage}
+        disabled={page === totalPages}
+        icon={<BsChevronDoubleRight />}
+      />
+    </nav>
+  );
 
   return (
     <div className=" bg-mGray p-4 rounded-sm">
@@ -40,6 +91,7 @@ const ReviewList = ({ queryFn }) => {
           <TableHead />
           <tbody>{content}</tbody>
         </table>
+        {Pagination}
       </div>
     </div>
   );

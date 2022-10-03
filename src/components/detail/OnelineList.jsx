@@ -10,7 +10,9 @@ function OnelineList() {
   };
 
   const onelineQuery = useQuery("onelineList", getOnelineList, {
-    onSuccess: (data) => {},
+    onSuccess: (data) => {
+      console.log(data);
+    },
   });
   if (onelineQuery.isLoading) {
     return <Spinner />;
