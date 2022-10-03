@@ -31,6 +31,7 @@ const MyFavorites = () => {
         <FavoriteCard
           key={movie.id}
           id={movie.id}
+          movieId={movie.movieId}
           title={movie.title}
           imageUrl={movie.imageUrl}
           deleteFavoriteMutation={deleteFavoriteMutation}
