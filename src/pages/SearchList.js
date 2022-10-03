@@ -3,7 +3,7 @@ import SearchBar from "../components/search/SearchBar";
 import DetailTags from "../components/search/DetailTags";
 import SearchResult from "../components/search/SearchResult";
 
-const Signin = () => {
+const SearchList = () => {
   return (
     <Layout>
       <SearchBar />
@@ -13,4 +13,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SearchList;
