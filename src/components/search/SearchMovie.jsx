@@ -14,7 +14,7 @@ function SearchMovie({ title, poster_path, id }) {
             <h1 className="text-2xl  text-mCream font-semibold">{title}</h1>
           </a>
           <div className="relative flex flex-wrap content-center">
-            <img className="" alt="영화포스터" className="" src={img} />
+            <img className="" alt="영화포스터" src={img} />
           </div>
         </div>
       </Link>

@@ -31,7 +31,7 @@ const SearchList = () => {
 
   const { ref, inView } = useInView();
   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    "results",
+    "searchList",
     ({ pageParam = 1 }) => getSearchList(pageParam),
     {
       getNextPageParam: (lastPage) => {
@@ -51,7 +51,7 @@ const SearchList = () => {
 
   return (
     <div className="mt-10">
-      <div className="items-center justify-center pt-0 pb-4 rounded-3xl bg-mGray container mx-auto flex px-2 py-22 md:flex-row flex-col">
+      <div className="items-center justify-center pt-0 pb-4 rounded-3xl bg-mGray container mx-auto px-2 py-22 md:flex-row flex-col">
         <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-14 p-14">
           {/* {searchListQuery?.data.data.data.results.map((movie) => (
             <SearchMovie {...movie} key={movie.movieId} />

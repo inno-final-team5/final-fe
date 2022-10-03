@@ -36,7 +36,7 @@ const SearchResult = () => {
 
   const { ref, inView } = useInView();
   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    "results",
+    "searchList",
     ({ pageParam = 1 }) => getSearchList(pageParam),
     {
       getNextPageParam: (lastPage) => {
