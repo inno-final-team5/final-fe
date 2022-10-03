@@ -8,7 +8,7 @@ const Main = () => {
     <Layout>
       <MainSearch />
       <BoxOfiice />
-      <MainTabList/>
+      <MainTabList />
     </Layout>
   );
 };

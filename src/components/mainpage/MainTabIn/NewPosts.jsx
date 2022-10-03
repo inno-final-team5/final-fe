@@ -38,9 +38,7 @@ const NewPosts = () => {
                 <div className="mr-3 text-xl ">
                   <img src={magic} alt="" className="w-8" />
                 </div>
-                <div className="pr-5 flex text-sm text-gray-500 mt-2">
-                  {i.nickname}
-                </div>
+                <div className="pr-5 flex text-sm text-gray-500 mt-2">{i.nickname}</div>
               </div>
             </div>
 
