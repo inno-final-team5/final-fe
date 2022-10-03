@@ -5,8 +5,18 @@ import { TiPencil } from "react-icons/ti";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import styled from "styled-components";
 import axios from "axios";
+import { api } from "shared/api";
+import { useParams } from "react-router-dom";
 
 const OnelineForm = () => {
+  const getMovieSum = () => {
+    return api.get(`/movie/detail/${id}`);
+  };
+  const [img, setImg] = useState(null);
+  const [movieInfo, setMovieInfo] = useState(null);
+  const params = useParams();
+  const id = params.id;
+
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const array = [0, 1, 2, 3, 4];
   const handleStarClick = (index) => {
@@ -19,8 +29,19 @@ const OnelineForm = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [editComment, setEditComment] = useState("");
 
+  const movieQuery = useQuery("movieList", getMovieSum, {
+    onSuccess: (data) => {
+      setImg(`https://image.tmdb.org/t/p/w342` + data.data.data.poster_path);
+      setMovieInfo(data.data.data);
+    },
+  });
+  // console.log(movieInfo, "무비인포!!!");
+  const title = params.title;
+  const poster = params.poster_path;
+  console.log(title, "타이틀");
+  console.log(poster, "포스터");
+
   let movieId = 2;
-  const title = "해리포터";
   const nickname = localStorage.getItem("nickname");
   let score = clicked.filter(Boolean).length;
 
@@ -31,8 +52,6 @@ const OnelineForm = () => {
   };
 
   const queryClient = useQueryClient();
-
-  console.log(useMutation(addOneline), "뮤테이션");
 
   const { mutate, isLoading } = useMutation(addOneline, {
     onSuccess: () => {
@@ -53,24 +72,6 @@ const OnelineForm = () => {
   });
 
   //임의로 설정해둔 무비아이디 나중에 params로 교체할예정
-
-  // useEffect(() => {
-  //   sendReview();
-  // }, [clicked]);
-
-  // const sendReview = () => {
-  //   let score = clicked.filter(Boolean).length;
-  //   // fetch('http://52.78.63.175:8000/movie', {
-  //   //   method: 'POST',
-  //   //   Headers: {
-  //   //     Authroization: 'e7f59ef4b4900fe5aa839fcbe7c5ceb7',
-  //   //   },
-  //   //   body: JSON.stringify({
-  //   //     movie_id:id
-  //   //     star: score,
-  //   //   }),
-  //   // });
-  // };
 
   return (
     <div>

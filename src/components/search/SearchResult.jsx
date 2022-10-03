@@ -12,11 +12,20 @@ const SearchResult = () => {
   const getSearchList = () => {
     return api.get(`/main/search/title/${keyword}/1`);
   };
+  const getGenreList = () => {
+    return api.get(`/main/search/${keyword}/1`);
+  };
   const navigate = useNavigate();
 
   const searchListQuery = useQuery("searchList", getSearchList, {
     onSuccess: (data) => {
       console.log(data.data.data);
+    },
+  });
+
+  const genreListQuery = useQuery("genreList", getGenreList, {
+    onSuccess: (data) => {
+      console.log(data, "keyword");
     },
   });
   if (searchListQuery.isLoading) {
