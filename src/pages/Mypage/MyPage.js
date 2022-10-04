@@ -61,7 +61,7 @@ bg-mBlack md:block hidden md:fixed
 `;
 
 const MyPageContentContainer = tw.div`
-bg-mBlack rounded-sm md:pl-56
+bg-mBlack rounded-sm md:pl-56 h-screen
 `;
 
 export default MyPage;

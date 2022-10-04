@@ -18,8 +18,12 @@ export const loginUserDB = (payload) => {
         } else {
           const accessToken = response.headers.authorization.split("Bearer")[1];
           return (
-            localStorage.setItem("refreshToken", response.headers["refresh-token"]),
+            localStorage.setItem(
+              "refreshToken",
+              response.headers["refresh-token"]
+            ),
             localStorage.setItem("accessToken", accessToken),
+            localStorage.setItem("nickname", response.data.data.nickname),
             alert(`로그인 성공!`),
             (document.location.href = "/")
           );
@@ -42,7 +46,10 @@ export const kakaoLoginDB = (payload) => {
           const accessToken = response.headers["access-token"].split(" ")[1];
           return (
             localStorage.setItem("accessToken", accessToken),
-            localStorage.setItem("refreshToken", response.headers["refresh-token"]),
+            localStorage.setItem(
+              "refreshToken",
+              response.headers["refresh-token"]
+            ),
             localStorage.setItem("nickname", response.data.data.username),
             alert(`카카오 로그인 성공!`),
             (document.location.href = "/")
