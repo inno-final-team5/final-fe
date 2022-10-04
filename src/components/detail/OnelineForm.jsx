@@ -5,8 +5,18 @@ import { TiPencil } from "react-icons/ti";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import styled from "styled-components";
 import axios from "axios";
+import { api } from "shared/api";
+import { useParams } from "react-router-dom";
 
 const OnelineForm = () => {
+  const getMovieSum = () => {
+    return api.get(`/movie/detail/${id}`);
+  };
+  const [img, setImg] = useState(null);
+  const [movieInfo, setMovieInfo] = useState(null);
+  const params = useParams();
+  const id = params.id;
+
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const array = [0, 1, 2, 3, 4];
   const handleStarClick = (index) => {
@@ -16,9 +26,22 @@ const OnelineForm = () => {
     }
     setClicked(clickStates);
   };
+  const [isEdit, setIsEdit] = useState(false);
+  const [editComment, setEditComment] = useState("");
+
+  const movieQuery = useQuery("movieList", getMovieSum, {
+    onSuccess: (data) => {
+      setImg(`https://image.tmdb.org/t/p/w342` + data.data.data.poster_path);
+      setMovieInfo(data.data.data);
+    },
+  });
+  // console.log(movieInfo, "무비인포!!!");
+  const title = params.title;
+  const poster = params.poster_path;
+  // console.log(title, "타이틀");
+  // console.log(poster, "포스터");
 
   let movieId = 2;
-  const title = "해리포터";
   const nickname = localStorage.getItem("nickname");
   let score = clicked.filter(Boolean).length;
 
@@ -30,14 +53,12 @@ const OnelineForm = () => {
 
   const queryClient = useQueryClient();
 
-  console.log(useMutation(addOneline), "뮤테이션");
-
   const { mutate, isLoading } = useMutation(addOneline, {
     onSuccess: () => {
       //내 댓글을 리스트에 추가해주면 ok
       queryClient.invalidateQueries("onelineList");
     },
-    onError: (error, variable, context) => {
+    onError: (error) => {
       console.log(error);
     },
   });
@@ -52,24 +73,6 @@ const OnelineForm = () => {
 
   //임의로 설정해둔 무비아이디 나중에 params로 교체할예정
 
-  // useEffect(() => {
-  //   sendReview();
-  // }, [clicked]);
-
-  // const sendReview = () => {
-  //   let score = clicked.filter(Boolean).length;
-  //   // fetch('http://52.78.63.175:8000/movie', {
-  //   //   method: 'POST',
-  //   //   Headers: {
-  //   //     Authroization: 'e7f59ef4b4900fe5aa839fcbe7c5ceb7',
-  //   //   },
-  //   //   body: JSON.stringify({
-  //   //     movie_id:id
-  //   //     star: score,
-  //   //   }),
-  //   // });
-  // };
-
   return (
     <div>
       <section className="mt-6">
@@ -82,9 +85,9 @@ const OnelineForm = () => {
               return <FaStar key={idx} size="30" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
             })}
           </Stars>
-          <div className="flex md:w-3/4 w-3/4 2xl:w-3/4 xl:w-full lg:w-full md:w-full sm:w-full space-x-4">
-            <div className="2xl:w-full md:w-full xl:w-full lg:w-full sm:w-full md:mr-auto md:ml-2 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
-              <input ref={myOneline} className="leading-10 w-full rounded-xl sm:mt-4" />
+          <div className="flex w-3/4 2xl:w-3/4 xl:w-full lg:w-full md:w-full sm:items-center sm:flex-col md:flex-row sm:w-full  space-x-4">
+            <div className="2xl:w-full md:w-full xl:w-full lg:w-full sm:mt-2 sm:w-5/6 md:mr-auto md:ml-2 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
+              <input ref={myOneline} className="leading-10 w-full rounded-xl sm:mt-2" />
             </div>
             <div className="flex-shrink-0 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
               <button
@@ -103,7 +106,7 @@ const OnelineForm = () => {
                   };
                   mutate(data);
                 }}
-                className="2xl:px-6 xl:px-10 sm:mt-4 lg:px-6 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
+                className="2xl:px-6 xl:px-10 md:mt-2 sm:mt-4 lg:px-6 sm:px-10 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
               >
                 작성하기
               </button>

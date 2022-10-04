@@ -1,16 +1,16 @@
 import Layout from "components/common/Layout";
 import SearchBar from "../components/search/SearchBar";
 import DetailTags from "../components/search/DetailTags";
-import SearchResult from "../components/search/SearchResult";
+import GenreResult from "../components/search/GenreResult";
 
-const Signin = () => {
+const GenreList = () => {
   return (
     <Layout>
       <SearchBar />
       <DetailTags />
-      <SearchResult />
+      <GenreResult />
     </Layout>
   );
 };
 
-export default Signin;
+export default GenreList;

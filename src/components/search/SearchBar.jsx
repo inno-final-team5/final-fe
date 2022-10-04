@@ -3,7 +3,7 @@ import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const [keyword, setKeyword] = useState();
+  const [keyword, setKeyword] = useState("");
   const onChangeHandler = (e) => {
     const {
       target: { value },
@@ -13,7 +13,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <div className="mt-1 justify-center flex">
+      <div className="mt-3 justify-center flex">
         <form className="w-4/5 ">
           <div className="relative">
             <input
