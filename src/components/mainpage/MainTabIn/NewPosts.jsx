@@ -27,31 +27,34 @@ const NewPosts = () => {
           <li
             key={i.postId}
             setPostDate={i.createdAt}
-            className="bg-mWhite grid grid-cols-12 grid-flow-row-dense px-5 py-3 items-center rounded-lg mb-5 cursor-pointer"
+            className="bg-mWhite grid-rows-2 grid-cols-12 grid-flow-row-dense px-5 py-3 md:py-7 items-center rounded-lg mb-5 cursor-pointer md:grid md:h-14 "
           >
-            {/* 게시글 카테고리 이름 */}
-            <div className="col-start-1">{i.postCategory}</div>
+            <>
+              {/* 게시글 카테고리 이름 */}
+              <div className="col-start-1 w-28">{i.postCategory}</div>
 
-            {/* 뱃지와 닉네임 */}
-            <div className="w-48 col-span-2">
-              <div className="flex align-center">
-                <div className="mr-3 text-xl ">
-                  <img src={magic} alt="" className="w-8" />
+              {/* 뱃지와 닉네임 */}
+              <div className="col-span-2 mt-3 md:mt-0 w-28">
+                <div className="flex align-center">
+                  <img src={magic} alt="" className="w-6 mr-3" />
+                  <div className="pr-5 flex text-sm text-gray-500 ">
+                    {i.nickname}
+                  </div>
                 </div>
-                <div className="pr-5 flex text-sm text-gray-500 mt-2">{i.nickname}</div>
               </div>
-            </div>
+            </>
+            <>
+              {/* 게시글 제목 */}
+              <div className=" col-span-8 truncate">
+                <div className="pr-5">{i.postTitle}</div>
+              </div>
 
-            {/* 게시글 제목 */}
-            <div className="flex-col col-span-8">
-              <div className="pr-5">{i.postTitle}</div>
-            </div>
-
-            {/* 게시글 작성일 */}
-            <div className="grid justify-items-end mr-5">
-              {/* 작성일+시간중에 작성일만 표시하기 */}
-              <div>{i.createdAt.split("T")[0]}</div>
-            </div>
+              {/* 게시글 작성일 */}
+              <div className="grid justify-items-end mr-5 text-sm">
+                {/* 작성일+시간중에 작성일만 표시하기 */}
+                <div>{i.createdAt.split("T")[0]}</div>
+              </div>
+            </>
           </li>
         ))}
       </ul>
