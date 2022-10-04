@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
+import { addPost } from "apis/postApi";
 
 import tw from "tailwind-styled-components";
 
@@ -7,25 +8,29 @@ const CommunityEdit = () => {
   const nickname = localStorage.getItem("nickname");
   // console.log(nickname);
   const today = new Date().toLocaleDateString("ko-KR");
-  // console.log(today);
 
   const [title, setTitle] = useState("");
-  const [review, setReview] = useState("");
+  const [contents, setContents] = useState("");
+  const [category, setCategory] = useState("movies");
 
-  const { mutate } = useMutation("http://13.124.170.188/auth/post", {
+  const queryClient = useQueryClient();
+  const addPostMutation = useMutation(addPost, {
     onSuccess: () => {
-      alert("게시글이 등록 되었습니다!");
+      queryClient.invalidateQueries("post");
+      alert("게시물 등록 완료🙃");
     },
     onError: () => {
-      alert("게시글 등록에 실패하였습니다.");
+      alert("게시물 등록 실패🥲");
     },
   });
 
   const onSubmitHandler = (e) => {
-    // mutate()
     e.preventDefault();
-    const reviewBox = { title, review };
-    console.log(reviewBox);
+    addPostMutation.mutate({
+      postTitle: title,
+      postCategory: category,
+      postContent: contents,
+    });
   };
 
   return (
@@ -97,9 +102,13 @@ const CommunityEdit = () => {
                     <select
                       id="category"
                       className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5"
+                      value={category}
+                      onChange={(e) => {
+                        setCategory(e.target.value);
+                      }}
                     >
-                      <option>영화</option>
-                      <option>영화관</option>
+                      <option value="movies">영화</option>
+                      <option value="cinemas">영화관</option>
                     </select>
                   </div>
                   <div className="col-span-6">
@@ -112,9 +121,9 @@ const CommunityEdit = () => {
                     <textarea
                       id="review"
                       rows="10"
-                      value={review}
+                      value={contents}
                       onChange={(e) => {
-                        setReview(e.target.value);
+                        setContents(e.target.value);
                       }}
                       className="block p-2.5 w-full text-sm text-mBlack bg-mWhite rounded-lg border border-gray-300"
                       placeholder="리뷰를 남겨주세요"
