@@ -36,7 +36,6 @@ const GenreResult = () => {
     }
   }
   const { category } = categoryEng.filter(findGenre)[0];
-  console.log(category, "카테고리");
   const getGenreList = async () => {
     return await api.get(`/main/search/${category}/1`);
   };
