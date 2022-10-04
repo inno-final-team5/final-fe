@@ -24,7 +24,7 @@ const MainTabList = () => {
   ];
 
   return (
-    <div className="mt-20 pb-20">
+    <div className="mt-14 pb-20">
       <div className="flex">
         {MainListTabMenu.map((item, idx) => {
           return (

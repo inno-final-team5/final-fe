@@ -24,7 +24,6 @@ const BoxOfiice = () => {
 
   /**BoxOffice 데이터 불러오기*/
   const getBoxOfficeWithApi = async () => {
-
     const { data } = await axios.get("http://localhost:3001/boxoffice");
     return data;
   };
@@ -38,12 +37,12 @@ const BoxOfiice = () => {
   }
 
   return (
-    <div className="w-11/12 m-auto ">
-      <h2 className="text-mYellow text-2xl my-5 font-bold"> BOX OFFICE </h2>
+    <div className="w-11/12 m-auto mt-14">
+      <h2 className="text-mYellow text-2xl my-10 font-bold"> BOX OFFICE </h2>
 
       <Slider {...settings} className="flex pl-10">
         {BoxOfficequery.data.map((i) => (
-          <div key={i.movieId} className="relative h-80 cursor-pointer">
+          <div key={i.movieId} className="relative h-96 cursor-pointer ">
             {/* 영화 순위 */}
             <div className="absolute top-0 left-4 mb-1 text-7xl font-bold text-mCream z-10">
               {i.movieId}
@@ -55,7 +54,7 @@ const BoxOfiice = () => {
               className="relative top-7 left-16 w-40 h-60 z-40 bg-cover"
             />
             {/* 영화 제목 */}
-            <div className=" relative top-8 left-16 text-mYellow z-10 my-2.5 mr-10 w-4/5">
+            <div className=" relative top-10 left-16 text-mYellow z-10 my-2.5 mr-10 w-4/6 leading-5 tracking-wider">
               {i.title}
             </div>
           </div>
