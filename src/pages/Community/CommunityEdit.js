@@ -1,17 +1,28 @@
 import React, { useState } from "react";
+import { useMutation } from "react-query";
 
 import tw from "tailwind-styled-components";
 
 const CommunityEdit = () => {
   const nickname = localStorage.getItem("nickname");
-  console.log(nickname);
+  // console.log(nickname);
   const today = new Date().toLocaleDateString("ko-KR");
-  console.log(today);
+  // console.log(today);
 
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
 
+  const { mutate } = useMutation("http://13.124.170.188/auth/post", {
+    onSuccess: () => {
+      alert("게시글이 등록 되었습니다!");
+    },
+    onError: () => {
+      alert("게시글 등록에 실패하였습니다.");
+    },
+  });
+
   const onSubmitHandler = (e) => {
+    // mutate()
     e.preventDefault();
     const reviewBox = { title, review };
     console.log(reviewBox);
