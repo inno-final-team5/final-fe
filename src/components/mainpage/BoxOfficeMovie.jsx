@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const BoxOfficeMovie = ({ rank, id, title, poster_path }) => {
   const ImgSrc = `https://image.tmdb.org/t/p/w342/${poster_path}`;
-  //image.tmdb.org/t/p/w185
+
   return (
     <div className="relative h-96 cursor-pointer">
       {/* 영화 순위 */}
