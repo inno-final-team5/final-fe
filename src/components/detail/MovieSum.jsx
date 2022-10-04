@@ -43,7 +43,7 @@ const MovieSum = () => {
             <div className="flex lg:flex-row md:flex-row mt-16">
               {movieQuery?.data.data.data.genres.map((movie) => (
                 <Link to={`/genre/${movie.name}`}>
-                  <button className="bg-mWhite inline-flex py-2 px-3 ml-2 rounded-full items-center hover:bg-gray-400 focus:outline-none">
+                  <button className="bg-mWhite md:px-2 sm:px-3 inline-flex py-2 xl:px-3 ml-2 rounded-full items-center hover:bg-gray-400 focus:outline-none">
                     <span key={movie.id}>{movie.name} </span>
                   </button>
                 </Link>
