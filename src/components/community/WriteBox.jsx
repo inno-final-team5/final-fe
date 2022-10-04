@@ -5,7 +5,7 @@ const WriteBox = () => {
   return (
     <div className="flex justify-end mt-1 mb-4 mr-4">
       <button
-        className="rounded-lg shadow-lg bg-mYellow p-4"
+        className="rounded-lg shadow-lg bg-mCream hover:bg-mYellow p-4 hover:font-bold"
         onClick={() => navigate("/community/edit")}
       >
         글쓰기

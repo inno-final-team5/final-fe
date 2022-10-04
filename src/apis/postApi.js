@@ -2,6 +2,7 @@ import api from "shared/api";
 
 export const getAllPosts = async () => {
   const response = await api.get("/post");
+
   return response.data;
 };
 
