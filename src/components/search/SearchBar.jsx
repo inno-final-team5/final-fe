@@ -18,13 +18,20 @@ const SearchBar = () => {
           <div className="relative">
             <input
               type="input"
-              className="block p-4 w-full text-sm text-gray-900 bg-gray-50 rounded-full border border-gray-300 focus:border-mYellow "
+              className="block p-4 pl-6 w-full text-sm text-gray-900 bg-gray-50 rounded-full border border-gray-300 focus:border-mYellow "
               placeholder="검색어를 입력하세요"
               onChange={onChangeHandler}
               required
             />
-            <button type="submit" onClick={() => navigate(`/search/${keyword}`)} className="absolute right-2 bottom-2.5 focus:outline-none px-3 py-2">
-              <BsSearch className="text-mBlack hover:text-gray-500 hover:text-2xl" size={30} />
+            <button
+              type="submit"
+              onClick={() => navigate(`/search/${keyword}`)}
+              className="absolute right-4 bottom-1.5 focus:outline-none px-3 py-2"
+            >
+              <BsSearch
+                className="text-mBlack hover:text-gray-500 hover:text-2xl"
+                size={30}
+              />
             </button>
           </div>
         </form>
