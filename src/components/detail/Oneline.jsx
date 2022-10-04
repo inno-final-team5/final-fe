@@ -13,9 +13,9 @@ function Oneline({ movieId, oneLineReview, title }) {
   };
   // for (var i = 0; i < 5; i++) {
   //   if (i < value) {
-  //     return "오";
+  //     return "별";
   //   } else {
-  //     return "아니";
+  //     return "검정별";
   //   }
   // }
 

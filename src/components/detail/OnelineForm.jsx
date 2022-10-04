@@ -38,8 +38,8 @@ const OnelineForm = () => {
   // console.log(movieInfo, "무비인포!!!");
   const title = params.title;
   const poster = params.poster_path;
-  console.log(title, "타이틀");
-  console.log(poster, "포스터");
+  // console.log(title, "타이틀");
+  // console.log(poster, "포스터");
 
   let movieId = 2;
   const nickname = localStorage.getItem("nickname");
@@ -85,9 +85,9 @@ const OnelineForm = () => {
               return <FaStar key={idx} size="30" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
             })}
           </Stars>
-          <div className="flex md:w-3/4 w-3/4 2xl:w-3/4 xl:w-full lg:w-full md:w-full sm:w-full space-x-4">
-            <div className="2xl:w-full md:w-full xl:w-full lg:w-full sm:w-full md:mr-auto md:ml-2 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
-              <input ref={myOneline} className="leading-10 w-full rounded-xl sm:mt-4" />
+          <div className="flex w-3/4 2xl:w-3/4 xl:w-full lg:w-full md:w-full sm:items-center sm:flex-col md:flex-row sm:w-full  space-x-4">
+            <div className="2xl:w-full md:w-full xl:w-full lg:w-full sm:mt-2 sm:w-5/6 md:mr-auto md:ml-2 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
+              <input ref={myOneline} className="leading-10 w-full rounded-xl sm:mt-2" />
             </div>
             <div className="flex-shrink-0 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
               <button
@@ -106,7 +106,7 @@ const OnelineForm = () => {
                   };
                   mutate(data);
                 }}
-                className="2xl:px-6 xl:px-10 sm:mt-4 lg:px-6 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
+                className="2xl:px-6 xl:px-10 md:mt-2 sm:mt-4 lg:px-6 sm:px-10 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
               >
                 작성하기
               </button>

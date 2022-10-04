@@ -3,7 +3,7 @@ import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const [keyword, setKeyword] = useState();
+  const [keyword, setKeyword] = useState("");
   const onChangeHandler = (e) => {
     const {
       target: { value },
