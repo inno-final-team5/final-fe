@@ -25,46 +25,74 @@ const CommunityDetail = () => {
   if (isError) {
     return <div>{error.message}</div>;
   }
-  console.log(post.data);
 
   let postData = post.data;
 
   return (
-    <div className="bg-mGray p-4 text-mBlack rounded-lg">
-      <div className=" px-4 pt-2 flex gap-4 flex-col h-full ">
-        <div className="flex items-center justify-end p-2 text-xs text-mWhite">
+    <DetailContainer>
+      <DetailContentContainer>
+        <DetailProfileContainer>
           <Profile />
           <p> {postData.nickname}</p>
-        </div>
-        <h2 className="text-2xl truncate w-full border-b-2 border-solid text-mBlack border-mGray  bg-mWhite rounded-xl p-4">
-          {postData.postTitle}
-        </h2>
-        <div className="p-7 min-h-[300px] bg-mWhite rounded-xl">
+        </DetailProfileContainer>
+        <DetailTitle>{postData.postTitle}</DetailTitle>
+        <DetailContent>
           <p>{postData.postContent}</p>
-        </div>
+        </DetailContent>
 
-        <div className=" flex gap-3 justify-center items-center text-mCream  text-2xl mt-4">
+        <DetailLikeContainer>
           <button>
             <FaThumbsUp />
           </button>
-          <p className="text-mYellow"> {postData.likeNum}</p>
-        </div>
+          <DetailLikeCount> {postData.likeNum}</DetailLikeCount>
+        </DetailLikeContainer>
         {postData.nickname === nickname ? (
-          <div className=" flex justify-end gap-4 text-mWhite">
+          <DetailControlContainer>
             <button>
               <FaTrash />
             </button>
             <button>
               <FaEdit />
             </button>
-          </div>
+          </DetailControlContainer>
         ) : (
           <></>
         )}
-      </div>
-    </div>
+      </DetailContentContainer>
+    </DetailContainer>
   );
 };
 
+const DetailContainer = tw.div`
+bg-mGray p-4 text-mBlack rounded-lg
+`;
+
+const DetailContentContainer = tw.div`
+px-4 py-2 flex gap-4 flex-col h-full 
+`;
+
+const DetailProfileContainer = tw.div`
+flex items-center justify-end p-2 text-xs text-mWhite
+`;
+
+const DetailTitle = tw.h2`
+text-2xl truncate w-full border-b-2 border-solid text-mBlack border-mGray  bg-mWhite rounded-xl p-4
+`;
+
+const DetailContent = tw.div`
+p-7 min-h-[300px] bg-mWhite rounded-xl
+`;
+
+const DetailLikeContainer = tw.div`
+ flex gap-3 justify-center items-center text-mCream  text-2xl mt-4
+`;
+
+const DetailLikeCount = tw.p`
+text-mYellow
+`;
+
+const DetailControlContainer = tw.div`
+flex justify-end gap-4 text-mWhite
+`;
 
 export default CommunityDetail;
