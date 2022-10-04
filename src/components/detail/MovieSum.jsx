@@ -1,19 +1,36 @@
 import React, { useState } from "react";
 import { RiHeartAddLine } from "react-icons/ri";
 import Spinner from "components/common/Spinner";
-import { useQuery } from "react-query";
+import { useQuery, useMutation, useQueryClient } from "react-query";
 import { api } from "shared/api";
 import { useParams, Link } from "react-router-dom";
+import Like from "./Like";
+import Unlike from "./Unlike";
 
 const MovieSum = () => {
+  const nickname = localStorage.getItem("nickname");
+  const refreshToken = localStorage.getItem("refreshToken");
+  const accessToken = localStorage.getItem("accessToken");
   const getMovieSum = async () => {
     return await api.get(`/movie/detail/${id}`);
   };
+
+  const getMyMovie = async () => {
+    return await api.get(`/auth/movie/favorites`, {
+      headers: headers,
+    });
+  };
+  const headers = {
+    Authorization: accessToken,
+    "refresh-token": refreshToken,
+  };
   const [img, setImg] = useState(null);
+  const [myFav, setMyFav] = useState([]);
   const params = useParams();
   const id = params.id;
   const title = params.title;
-  const poster = params.poster_path;
+  const poster = params.poster;
+  const poster_path = "/" + poster + ".jpg";
 
   const movieQuery = useQuery("movieList", getMovieSum, {
     onSuccess: (data) => {
@@ -21,7 +38,15 @@ const MovieSum = () => {
     },
   });
 
-  if (movieQuery.isLoading) {
+  const myMovieQuery = useQuery("myMovieList", getMyMovie, {
+    onSuccess: (data) => {
+      setMyFav(data.data.data);
+    },
+  });
+
+  let res = myFav.filter((ele) => ele.movieId == id);
+
+  if (movieQuery.isLoading || myMovieQuery.isLoading) {
     return <Spinner />;
   }
 
@@ -35,7 +60,15 @@ const MovieSum = () => {
           <div className="lg:flex-grow md:w-2/3 lg:pl-18 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
             <div className="flex">
               <h1 className="title-font sm:text-4xl text-white text-3xl mb-4 font-medium">{movieQuery?.data.data.data.title}</h1>
-              <RiHeartAddLine className="flex ml-2 text-red-500" size={30} />
+              {res?.length ? (
+                <>
+                  <Unlike />
+                </>
+              ) : (
+                <>
+                  <Like />
+                </>
+              )}
             </div>
 
             <p className="mb-8 text-white leading-relaxed">{movieQuery?.data.data.data.overview}</p>

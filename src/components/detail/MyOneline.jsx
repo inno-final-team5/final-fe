@@ -1,12 +1,6 @@
 import React from "react";
 
 const MyOneline = () => {
-  const [star, setClicked] = useState([false, false, false, false, false]);
-  let value = oneLineReview.star;
-  const array = [0, 1, 2, 3, 4];
-  const handleStar = (value) => {
-    setClicked(value);
-  };
   return (
     <div>
       <section className="mt-6">
