@@ -11,7 +11,7 @@ const BoxOfficeMovie = ({ rank, id, title, poster_path }) => {
         {rank}
       </div>
 
-      <Link to={`/detail/${id}/${title}${poster_path}`}>
+      <Link to={`/detail/${id}/${title}${poster_path.split(".")[0]}`}>
         {/* 영화 포스터 */}
         <img
           src={ImgSrc}
