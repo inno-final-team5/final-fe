@@ -62,7 +62,7 @@ const MovieSum = () => {
               <h1 className="title-font sm:text-4xl text-white text-3xl mb-4 font-medium">{movieQuery?.data.data.data.title}</h1>
               {res?.length ? (
                 <>
-                  <Unlike />
+                  <Unlike res={res} />
                 </>
               ) : (
                 <>

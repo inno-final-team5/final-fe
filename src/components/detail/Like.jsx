@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { api } from "shared/api";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { RiHeartAddLine } from "react-icons/ri";
 import { ImHeart } from "react-icons/im";
+import Unlike from "./Unlike";
+import Spinner from "components/common/Spinner";
 
-const Like = () => {
+const Like = (props) => {
   const params = useParams();
   const id = params.id;
   const title = params.title;
@@ -13,7 +15,6 @@ const Like = () => {
   const poster_path = "/" + poster + ".jpg";
   const [success, setSuccess] = useState("");
 
-  const nickname = localStorage.getItem("nickname");
   const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
 
@@ -30,6 +31,7 @@ const Like = () => {
   const { mutate, isLoading } = useMutation(addMylike, {
     onSuccess: (data) => {
       setSuccess(data.data.data);
+      console.log(data);
     },
     onError: (error) => {
       console.log(error);
@@ -40,7 +42,7 @@ const Like = () => {
     <div>
       {success == "favorite success" ? (
         <>
-          <ImHeart size={34} className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor" />
+          <Unlike />
         </>
       ) : (
         <RiHeartAddLine
