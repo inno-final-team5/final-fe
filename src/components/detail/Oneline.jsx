@@ -5,20 +5,15 @@ import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
 
 function Oneline({ movieId, oneLineReview, title }) {
-  const [star, setClicked] = useState([false, false, false, false, false]);
-  let value = oneLineReview.star;
-  const array = [0, 1, 2, 3, 4];
-  const handleStar = (value) => {
-    setClicked(value);
+  const starRating = (n) => {
+    for (var i = 0; i < 5; i++) {
+      if (i < n) {
+        return <FaStar />;
+      } else {
+        return <FaThumbsUp />;
+      }
+    }
   };
-  // for (var i = 0; i < 5; i++) {
-  //   if (i < value) {
-  //     return "별";
-  //   } else {
-  //     return "검정별";
-  //   }
-  // }
-
   // const [cardContent, setCardContent] = useState({});
   // const [isEditMode, setIsEditMode] = useState(false);
 
@@ -33,11 +28,7 @@ function Oneline({ movieId, oneLineReview, title }) {
         </a>
         <div>
           <span className="flex ml-8">
-            <Stars>
-              {array.map((el, idx) => {
-                return <FaStar key={idx} size="20" onChange={() => handleStar(el)} className={star[el] && "yellowStar"} />;
-              })}
-            </Stars>
+            <Stars>{starRating(oneLineReview.star)}</Stars>
           </span>
         </div>
         <span className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
