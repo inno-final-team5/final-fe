@@ -2,19 +2,19 @@ import api from "shared/api";
 
 export const getAllPosts = async () => {
   const response = await api.get("/post");
-  console.log(response);
+
   return response.data;
 };
 
 export const getCinemaPosts = async () => {
   const response = await api.get("/post/cinemas");
-  console.log(response);
+
   return response.data;
 };
 
 export const getMoviePosts = async () => {
   const response = await api.get("/post/movies");
-  console.log(response);
+
   return response.data;
 };
 

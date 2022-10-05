@@ -4,16 +4,17 @@ import { useNavigate } from "react-router-dom";
 
 const FavoriteCard = ({
   imageUrl,
-  title,
   id,
+  title,
   movieId,
   deleteFavoriteMutation,
 }) => {
+  const navigate = useNavigate();
+
   /** 즐겨찾기 삭제 함수 */
   const deleteMovie = (id) => {
-    deleteFavoriteMutation.mutate({ id: id });
+    deleteFavoriteMutation.mutate(id);
   };
-  const navigate = useNavigate();
 
   const goDetail = () => {
     navigate(`/detail/${movieId}`);
@@ -21,9 +22,9 @@ const FavoriteCard = ({
   return (
     <FavoriteCardContainer>
       <FavoriteCardImage
-        src={imageUrl}
+        src={`https://image.tmdb.org/t/p/w342${imageUrl}`}
         alt="포스터"
-        onClick={() => goDetail(id)}
+        onClick={() => goDetail(movieId)}
       />
       <FavoriteCardTitleBox>
         <FavoriteCardTitle>{title}</FavoriteCardTitle>
@@ -40,15 +41,15 @@ const FavoriteCard = ({
 };
 
 const FavoriteCardContainer = tw.div`
-m-4 border-none rounded-lg border-mYellow p-4 bg-mWhite shadow-lg  cursor-pointer
+m-4 border-none rounded-lg border-mYellow p-4 bg-mWhite shadow-lg  
 `;
 
 const FavoriteCardImage = tw.img`
-  rounded justify-center flex
+  rounded justify-center flex 
 `;
 
 const FavoriteCardTitleBox = tw.div`
-  flex items-center mt-2 
+  flex items-center pt-2 
 `;
 
 const FavoriteCardTitle = tw.span`
