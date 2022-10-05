@@ -18,6 +18,7 @@ export const loginUserDB = (payload) => {
         } else {
           const accessToken = response.headers.authorization.split("Bearer")[1];
           return (
+            localStorage.setItem("nickname", response.data.data.nickname),
             localStorage.setItem(
               "refreshToken",
               response.headers["refresh-token"]
