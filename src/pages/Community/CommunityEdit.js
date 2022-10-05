@@ -1,36 +1,43 @@
+import { addPost } from "apis/postApi";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { addPost } from "apis/postApi";
+import { useNavigate } from "react-router-dom";
 
 import tw from "tailwind-styled-components";
 
 const CommunityEdit = () => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   const nickname = localStorage.getItem("nickname");
-  // console.log(nickname);
+
   const today = new Date().toLocaleDateString("ko-KR");
 
   const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
-  const [category, setCategory] = useState("movies");
+  const [review, setReview] = useState("");
+  const [category, setCategory] = useState("영화");
 
-  const queryClient = useQueryClient();
   const addPostMutation = useMutation(addPost, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("post");
-      alert("게시물 등록 완료🙃");
+    onError: (error) => {
+      console.log(error);
     },
-    onError: () => {
-      alert("게시물 등록 실패🥲");
+    onSuccess: () => {
+      queryClient.invalidateQueries("posts");
+      navigate("/community/all");
     },
   });
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
     addPostMutation.mutate({
-      postTitle: title,
       postCategory: category,
-      postContent: contents,
+      postContent: review,
+      postTitle: title,
     });
+
+    setTitle("");
+    setReview("");
   };
 
   return (
@@ -41,6 +48,23 @@ const CommunityEdit = () => {
             <div className="shadow overflow-hidden sm:rounded-md">
               <div className="px-4 py-5 bg-white sm:p-6">
                 <div className="grid grid-cols-6 gap-6">
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="category"
+                      className="block mb-2 text-sm font-medium text-mBlack"
+                    >
+                      분류
+                    </label>
+                    <select
+                      onChange={(e) => setCategory(e.target.value)}
+                      value={category}
+                      id="category"
+                      className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5"
+                    >
+                      <option value="영화">영화</option>
+                      <option value="영화관">영화관</option>
+                    </select>
+                  </div>
                   <div className="col-span-6">
                     <label
                       htmlFor="title"
@@ -52,6 +76,8 @@ const CommunityEdit = () => {
                       type="title"
                       id="title"
                       value={title}
+                      maxLength="60"
+                      placeholder="60자 이내로 작성해주세요!"
                       onChange={(e) => {
                         setTitle(e.target.value);
                       }}
@@ -59,7 +85,7 @@ const CommunityEdit = () => {
                       required
                     ></input>
                   </div>
-                  <div className="col-span-6 sm:col-span-3">
+                  {/* <div className="col-span-6 sm:col-span-3">
                     <label
                       htmlFor="nickname"
                       className="block text-sm font-medium text-mBlack"
@@ -74,9 +100,9 @@ const CommunityEdit = () => {
                       disabled
                       readOnly
                     ></input>
-                  </div>
+                  </div> */}
 
-                  <div className="col-span-6 sm:col-span-3">
+                  {/* <div className="col-span-6 sm:col-span-3">
                     <label
                       htmlFor="date"
                       className="block text-sm font-medium text-mBlack"
@@ -90,27 +116,8 @@ const CommunityEdit = () => {
                       value={today}
                       readOnly
                     ></input>
-                  </div>
+                  </div> */}
 
-                  <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="category"
-                      className="block mb-2 text-sm font-medium text-mBlack"
-                    >
-                      분류
-                    </label>
-                    <select
-                      id="category"
-                      className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5"
-                      value={category}
-                      onChange={(e) => {
-                        setCategory(e.target.value);
-                      }}
-                    >
-                      <option value="movies">영화</option>
-                      <option value="cinemas">영화관</option>
-                    </select>
-                  </div>
                   <div className="col-span-6">
                     <label
                       htmlFor="review"

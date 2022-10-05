@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 const TableItem = ({ post }) => {
   return (
     <tr key={post.postId}>
-      <th className="py-4 px-6 font-medium text-mWhite whitespace-nowrap">
+      <td className="py-4 px-6 font-medium text-mWhite whitespace-nowrap w-12">
         {post.postCategory}
-      </th>
-      <td className="py-4 px-6">
+      </td>
+      <td className="py-4 px-6 truncate ">
         <Link
           to={`/community/detail/${post.postId}`}
           className="hover:text-mYellow"
@@ -15,8 +15,8 @@ const TableItem = ({ post }) => {
           {post.postTitle}
         </Link>
       </td>
-      <td className="py-4 px-6">{post.nickname}</td>
-      <td className="py-4 px-6">
+      <td className="py-4 px-6 w-5">{post.nickname}</td>
+      <td className="py-4 px-6 w-5">
         {new Date(post.createdAt).toLocaleDateString("ko-KR")}
       </td>
     </tr>

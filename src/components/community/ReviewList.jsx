@@ -14,7 +14,7 @@ import {
 import ArrowButton from "./ArrowButton";
 
 const ReviewList = ({ queryFn }) => {
-  const postsPerPage = 5;
+  const postsPerPage = 10;
   const [page, setPage] = useState(1);
 
   const { isLoading, isError, error, data: posts } = useQuery("posts", queryFn);
@@ -87,7 +87,7 @@ const ReviewList = ({ queryFn }) => {
   return (
     <div className=" bg-mGray p-4 rounded-sm">
       <div className="shadow-md sm:rounded-lg m-4 mt-6">
-        <table className="w-full bg-mBlack text-mWhite text-left">
+        <table className="w-full bg-mBlack text-mWhite text-left border-collapse table-fixed">
           <TableHead />
           <tbody>{content}</tbody>
         </table>
