@@ -24,6 +24,7 @@ export const loginUserDB = (payload) => {
               response.headers["refresh-token"]
             ),
             localStorage.setItem("accessToken", accessToken),
+            localStorage.setItem("nickname", response.data.data.nickname),
             alert(`로그인 성공!`),
             (document.location.href = "/")
           );

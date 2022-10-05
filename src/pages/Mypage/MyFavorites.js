@@ -9,13 +9,14 @@ const MyFavorites = () => {
     isError,
     error,
     data: favorites,
-  } = useQuery("favorites", getFavorites, {
-    select: (data) => data.sort((a, b) => b.id - a.id),
-  });
+  } = useQuery("favorites", getFavorites);
 
   const deleteFavoriteMutation = useMutation(deleteFavorite, {
     onSuccess: () => {
       queryClient.invalidateQueries("favorites");
+    },
+    onError: (error) => {
+      console.log(error.message);
     },
   });
 
@@ -26,14 +27,14 @@ const MyFavorites = () => {
   } else if (isError) {
     content = <p>{error.message}</p>;
   } else {
-    content = favorites.map((movie) => {
+    content = favorites.data.map((movie) => {
       return (
         <FavoriteCard
-          key={movie.id}
+          key={movie.movieId}
           id={movie.id}
           movieId={movie.movieId}
           title={movie.title}
-          imageUrl={movie.imageUrl}
+          imageUrl={movie.posterPath}
           deleteFavoriteMutation={deleteFavoriteMutation}
         />
       );

@@ -11,6 +11,7 @@ import { myLinks, navigationLinks } from "./MyLinks";
 import LogoutButton from "./LogoutButton";
 import ModalButton from "components/Modal/ModalButton";
 import Alarm from "../Alarm";
+import Profile from "../Profile";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -58,11 +59,7 @@ const NavBar = () => {
               <div className="flex items-center">
                 <div className="flex items-center">
                   <div className="group">
-                    <img
-                      src={profileImage}
-                      alt="프로필"
-                      className="w-8 h-8 mx-2 md:cursor-pointer"
-                    />
+                    <Profile />
 
                     <div className="absolute top-16 hidden group-hover:block hover:block ">
                       <div className="py-3">
@@ -106,11 +103,7 @@ const NavBar = () => {
               <div>
                 <div className="w-full flex items-center justify-between pr-8 ">
                   <div className="flex items-center">
-                    <img
-                      src={profileImage}
-                      alt="프로필"
-                      className="w-8 h-8 mx-2 md:cursor-pointer"
-                    />
+                    <Profile />
                     <span className="text-mYellow "> {nickname} 평론가님</span>
                   </div>
                   <LogoutButton logoutHandler={logoutHandler} />
