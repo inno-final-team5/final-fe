@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 function SearchMovie({ title, poster_path, id }) {
   const img = `https://image.tmdb.org/t/p/w342/${poster_path}`;
-  const poster = poster_path.split(".")[0];
+
+  let poster = "";
+  if (poster_path != null) {
+    poster = poster_path.split(".")[0];
+  }
 
   return (
     <div className="h-full">

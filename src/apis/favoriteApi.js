@@ -6,7 +6,7 @@ const favoriteApi = axios.create({ baseURL: "http://localhost:3001" });
 export const getFavorites = async () => {
   const response = await api.get("/auth/movie/favorites", {
     headers: {
-      authorization: "Bearer " + localStorage.getItem("accessToken"),
+      authorization: localStorage.getItem("accessToken"),
       "refresh-token": localStorage.getItem("refreshToken"),
     },
   });
@@ -25,7 +25,7 @@ export const updateFavorite = async (movie) => {
 export const deleteFavorite = async (id) => {
   return await api.delete(`/auth/movie/favorite/${id}`, {
     headers: {
-      authorization: "Bearer " + localStorage.getItem("accessToken"),
+      authorization: localStorage.getItem("accessToken"),
       "refresh-token": localStorage.getItem("refreshToken"),
     },
   });

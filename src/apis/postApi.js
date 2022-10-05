@@ -3,6 +3,7 @@ import api from "shared/api";
 export const getAllPosts = async () => {
   const response = await api.get("/post");
 
+  console.log(response);
   return response.data;
 };
 
@@ -14,7 +15,7 @@ export const getCinemaPosts = async () => {
 
 export const getMoviePosts = async () => {
   const response = await api.get("/post/movies");
-
+  console.log(response);
   return response.data;
 };
 
@@ -26,7 +27,7 @@ export const getPostDetail = async (id) => {
 export const getMyPosts = async () => {
   const response = await api.get("/auth/post", {
     headers: {
-      authorization: "Bearer " + localStorage.getItem("accessToken"),
+      authorization: localStorage.getItem("accessToken"),
       "refresh-token": localStorage.getItem("refreshToken"),
     },
   });
@@ -37,7 +38,7 @@ export const getMyPosts = async () => {
 export const addPost = async (post) => {
   return await api.post("/auth/post", post, {
     headers: {
-      authorization: "Bearer " + localStorage.getItem("accessToken"),
+      authorization: localStorage.getItem("accessToken"),
       "refresh-token": localStorage.getItem("refreshToken"),
     },
   });

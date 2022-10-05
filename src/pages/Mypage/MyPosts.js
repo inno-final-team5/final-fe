@@ -1,4 +1,5 @@
 import { getMyPosts } from "apis/postApi";
+import Spinner from "components/common/Spinner";
 import React, { Fragment } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
@@ -12,11 +13,7 @@ const MyPosts = () => {
   } = useQuery("myPosts", getMyPosts);
 
   if (isLoading) {
-    return (
-      <div>
-        <p>Loading...</p>
-      </div>
-    );
+    return <Spinner />;
   }
 
   if (isError) {
@@ -33,15 +30,19 @@ const MyPosts = () => {
           >
             <div
               key={post.postId}
-              className="flex bg-mWhite gap-12 p-2 mx-2 my-4 py-3 rounded-xl justify-between text-mGray"
+              className="flex bg-mGray gap-12 px-2 my-6 py-3 rounded-xl justify-between text-mGray items-center"
             >
-              <div className="pl-4">
-                <p className="w-16">{post.postCategory}</p>
+              <div className="pl-4 flex justify-center items-center">
+                <p className="w-16 text-mWhite bg-mBlack rounded-lg p-2 text-center">
+                  {post.postCategory}
+                </p>
               </div>
-              <div className="w-full">{post.postTitle}</div>
+              <div className="w-full truncate text-mWhite">
+                {post.postTitle}
+              </div>
 
               <div>
-                <p className="w-28">
+                <p className="w-28 text-mWhite">
                   {new Date(post.createdAt).toLocaleDateString("ko-KR")}
                 </p>
               </div>
