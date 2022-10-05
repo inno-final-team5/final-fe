@@ -1,131 +1,98 @@
 import React from "react";
 import tw from "tailwind-styled-components";
-import { FaThumbsUp } from "react-icons/fa";
+import { FaThumbsUp, FaEdit, FaTrash } from "react-icons/fa";
+import { useQuery } from "react-query";
+import { getPostDetail } from "apis/postApi";
+import { useParams } from "react-router-dom";
+import Profile from "components/common/Profile";
 
-const CommunityDetail = (props) => {
+const CommunityDetail = () => {
+  const { id } = useParams();
+
+  const nickname = localStorage.getItem("nickname");
+
+  const {
+    isLoading,
+    isError,
+    error,
+    data: post,
+  } = useQuery(["post", id], () => getPostDetail(id));
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>{error.message}</div>;
+  }
+
+  let postData = post.data;
+
   return (
-    <MainSection>
-      <Box>
-        <div className="mt-5 md:mt-0 md:col-span-2">
-          <div className="shadow overflow-hidden sm:rounded-md">
-            <div className="px-4 py-5 bg-white sm:p-6">
-              <div className="grid grid-cols-6 gap-6">
-                <div className="col-span-6">
-                  <label
-                    htmlFor="title"
-                    className="block mb-2 text-sm font-medium text-mBlack "
-                  >
-                    제목
-                  </label>
-                  <input
-                    type="title"
-                    id="title"
-                    value={props.title}
-                    className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5 0"
-                    required
-                  ></input>
-                </div>
-                <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="nickname"
-                    className="block text-sm font-medium text-mBlack"
-                  >
-                    작성자
-                  </label>
-                  <input
-                    type="text"
-                    id="nickname"
-                    className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5 cursor-not-allowed"
-                    value={props.nickname}
-                    disabled
-                    readOnly
-                  ></input>
-                </div>
+    <DetailContainer>
+      <DetailContentContainer>
+        <DetailProfileContainer>
+          <Profile />
+          <p> {postData.nickname}</p>
+        </DetailProfileContainer>
+        <DetailTitle>{postData.postTitle}</DetailTitle>
+        <DetailContent>
+          <p>{postData.postContent}</p>
+        </DetailContent>
 
-                <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="date"
-                    className="block text-sm font-medium text-mBlack"
-                  >
-                    작성일
-                  </label>
-                  <input
-                    type="text"
-                    id="date"
-                    className="bg-mWhite text-gray-900 text-sm rounded-lg block w-full p-2.5 cursor-not-allowed"
-                    value={props.date}
-                    readOnly
-                  ></input>
-                </div>
-
-                <div className="col-span-6 sm:col-span-3">
-                  <label
-                    htmlFor="category"
-                    className="block mb-2 text-sm font-medium text-mBlack"
-                  >
-                    분류
-                  </label>
-                  <select
-                    id="category"
-                    className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5"
-                  >
-                    <option>영화</option>
-                    <option>영화관</option>
-                  </select>
-                </div>
-                <div className="col-span-6">
-                  <label
-                    htmlFor="review"
-                    className="block mb-2 text-sm font-medium text-mBlack"
-                  >
-                    내용
-                  </label>
-                  <textarea
-                    id="review"
-                    rows="10"
-                    value={props.review}
-                    className="block p-2.5 w-full text-sm text-mBlack bg-mWhite rounded-lg border border-gray-300"
-                    placeholder="리뷰를 남겨주세요"
-                    required
-                  ></textarea>
-                </div>
-              </div>
-            </div>
-            <div className="bg-mWhite flex justify-center items-center text-3xl">
-              <FaThumbsUp className="p-4" />
-            </div>
-            <div className="px-4 py-3 bg-mWhite sm:px-6 flex flex-row justify-end gap-4">
-              <Button>삭제</Button>
-              <Button>수정</Button>
-            </div>
-          </div>
-        </div>
-      </Box>
-    </MainSection>
+        <DetailLikeContainer>
+          <button>
+            <FaThumbsUp />
+          </button>
+          <DetailLikeCount> {postData.likeNum}</DetailLikeCount>
+        </DetailLikeContainer>
+        {postData.nickname === nickname ? (
+          <DetailControlContainer>
+            <button>
+              <FaTrash />
+            </button>
+            <button>
+              <FaEdit />
+            </button>
+          </DetailControlContainer>
+        ) : (
+          <></>
+        )}
+      </DetailContentContainer>
+    </DetailContainer>
   );
 };
 
-const MainSection = tw.div`
-w-full
+const DetailContainer = tw.div`
+bg-mGray p-4 text-mBlack rounded-lg
 `;
 
-const Button = tw.button`
-text-mBlack
-bg-mYellow
-hover:bg-mCream  
-font-medium 
-rounded-lg 
-text-sm 
-px-5 
-py-2.5
-mb-2
-flex
-ml-auto
+const DetailContentContainer = tw.div`
+px-4 py-2 flex gap-4 flex-col h-full 
 `;
 
-const Box = tw.div`
-bg-mGray
-p-8
+const DetailProfileContainer = tw.div`
+flex items-center justify-end p-2 text-xs text-mWhite
+`;
+
+const DetailTitle = tw.h2`
+text-2xl truncate w-full border-b-2 border-solid text-mBlack border-mGray  bg-mWhite rounded-xl p-4
+`;
+
+const DetailContent = tw.div`
+p-7 min-h-[300px] bg-mWhite rounded-xl
+`;
+
+const DetailLikeContainer = tw.div`
+ flex gap-3 justify-center items-center text-mCream  text-2xl mt-4
+`;
+
+const DetailLikeCount = tw.p`
+text-mYellow
+`;
+
+const DetailControlContainer = tw.div`
+flex justify-end gap-4 text-mWhite
 `;
 
 export default CommunityDetail;
