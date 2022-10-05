@@ -8,18 +8,9 @@ import Like from "./Like";
 import Unlike from "./Unlike";
 
 const MovieSum = () => {
-  const nickname = localStorage.getItem("nickname");
   const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
-  const getMovieSum = async () => {
-    return await api.get(`/movie/detail/${id}`);
-  };
 
-  const getMyMovie = async () => {
-    return await api.get(`/auth/movie/favorites`, {
-      headers: headers,
-    });
-  };
   const headers = {
     Authorization: accessToken,
     "refresh-token": refreshToken,
@@ -28,22 +19,27 @@ const MovieSum = () => {
   const [myFav, setMyFav] = useState([]);
   const params = useParams();
   const id = params.id;
-  const title = params.title;
-  const poster = params.poster;
-  const poster_path = "/" + poster + ".jpg";
 
+  const getMovieSum = async () => {
+    return await api.get(`/movie/detail/${id}`);
+  };
   const movieQuery = useQuery("movieList", getMovieSum, {
     onSuccess: (data) => {
       setImg(`https://image.tmdb.org/t/p/w342` + data.data.data.poster_path);
     },
   });
 
+  const getMyMovie = async () => {
+    return await api.get(`/auth/movie/favorites`, {
+      headers: headers,
+    });
+  };
   const myMovieQuery = useQuery("myMovieList", getMyMovie, {
     onSuccess: (data) => {
       setMyFav(data.data.data);
     },
   });
-
+  //이 배열이 있으면 이 영화랑 맞는 즐겨찾기 결과만 보내줌
   let res = myFav.filter((ele) => ele.movieId == id);
 
   if (movieQuery.isLoading || myMovieQuery.isLoading) {
@@ -75,9 +71,9 @@ const MovieSum = () => {
 
             <div className="flex lg:flex-row md:flex-row mt-16">
               {movieQuery?.data.data.data.genres.map((movie) => (
-                <Link to={`/genre/${movie.name}`}>
+                <Link to={`/genre/${movie.name}`} key={movie.id}>
                   <button className="bg-mWhite md:px-2 sm:px-3 inline-flex py-2 xl:px-3 ml-2 rounded-full items-center hover:bg-gray-400 focus:outline-none">
-                    <span key={movie.id}>{movie.name} </span>
+                    <span>{movie.name} </span>
                   </button>
                 </Link>
               ))}
