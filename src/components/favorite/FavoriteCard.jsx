@@ -17,7 +17,7 @@ const FavoriteCard = ({
   };
 
   const goDetail = () => {
-    navigate(`/detail/${movieId}`);
+    navigate(`/detail/${movieId}/${title}${imageUrl}`);
   };
   return (
     <FavoriteCardContainer>
