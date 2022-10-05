@@ -86,8 +86,8 @@ const GenreResult = () => {
             </section>
           </div>
         </div>
+        {isFetchingNextPage ? <Spinner /> : <div ref={ref}></div>}
       </div>
-      {isFetchingNextPage ? <Spinner /> : <div ref={ref}></div>}
     </div>
   );
 };
