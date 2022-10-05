@@ -37,41 +37,38 @@ const BestReview = () => {
         {BestReviewquery.data.map((i) => (
           <li
             key={i.movieId}
-            className="bg-mWhite  px-5 py-3 items-center rounded-lg mb-5 cursor-pointer"
+            className="bg-mWhite px-5 py-3 items-center rounded-lg mb-5 cursor-pointer "
           >
             <div className=" flex-col ">
-              {/* 영화제목 */}
-              <div className=" pr-5 mb-2.5 text-xl font-bold ">{i.title}</div>
-
-              <div className="flex justify-between mb-2">
+              <div className="lg:flex lg:justify-between lg:items-center">
+                <div className=" pr-5 text-xl font-bold ">{i.title}</div>
+                {/* 뱃지와 닉네임 */}
                 <div className="flex">
-                  {/* 뱃지와 닉네임 */}
-                  <div className="flex align-center">
-                    <div className="mr-3 text-xl ">
-                      <img src={gun} alt="" className="w-8" />
-                    </div>
-                    <div className="pr-5 flex text-xs text-gray-500 mt-2">
-                      {i.oneLineReview.nickname}
-                    </div>
+                  <img src={gun} alt="badge" className="w-6 mr-3" />
+                  <div className="pr-5 flex text-xs text-gray-500 mt-2 ">
+                    {i.oneLineReview.nickname}
                   </div>
+                </div>
+              </div>
 
+              <div className="flex justify-between items-center mt-3">
+                <div className="flex grow w-4/5 ">
                   {/* 별점 */}
-                  <div className=" flex text-mYellow mt-2">
+                  <div className="flex text-mYellow w-24">
                     {starIcon(i.oneLineReview.star)}
+                  </div>
+                  {/* 한줄평 내용 */}
+                  <div className="truncate w-10/12">
+                    <span className="pl-2 pr-16 text-sm ">
+                      {i.oneLineReview.content}
+                    </span>
                   </div>
                 </div>
 
                 {/* 좋아요 수 */}
-                <div className="flex-col mx-5">
-                  <FiThumbsUp className=" mb-1" />
+                <div className="flex mx-5">
+                  <FiThumbsUp className=" mr-2" />
                   <div>{i.oneLineReview.oneLineReviewLikeCount}</div>
-                </div>
-              </div>
-
-              {/* 한줄평 내용 */}
-              <div className="flex ">
-                <div className="pl-2 pr-16 text-sm ">
-                  {i.oneLineReview.content}
                 </div>
               </div>
             </div>

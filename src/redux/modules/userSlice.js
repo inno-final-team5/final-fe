@@ -41,7 +41,10 @@ export const kakaoLoginDB = (payload) => {
         } else {
           return (
             localStorage.setItem("accessToken", response.headers["access-token"]),
-            localStorage.setItem("refreshToken", response.headers["refresh-token"]),
+            localStorage.setItem(
+              "refreshToken",
+              response.headers["refresh-token"]
+            ),
             localStorage.setItem("nickname", response.data.data.username),
             alert(`카카오 로그인 성공!`),
             (document.location.href = "/")
