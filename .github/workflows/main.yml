@@ -1,22 +1,22 @@
-name: main action
+name: develop action
 
 on:
   pull_request:
     branches:
-      - main # master 브랜치에서 push 이벤트가 일어났을 때 실행
+      - develop # develop 브랜치에서 push 이벤트가 일어났을 때 실행
 
 jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout source code
-        uses: actions/checkout@main
+        uses: actions/checkout@develop
 
       - name: Cache node modules # node modules 캐싱
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.OS }}-main-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.OS }}-develop-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
