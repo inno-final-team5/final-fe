@@ -47,7 +47,7 @@ const CommunityDetail = () => {
 
   let postData = post.data;
 
-  console.log(updatePost);
+  console.log(like);
 
   return (
     <DetailContainer>
@@ -64,9 +64,9 @@ const CommunityDetail = () => {
         <DetailLikeContainer>
           <button onClick={() => setLike(!like)}>
             {like ? (
-              <FaThumbsUp color="mYellow" />
+              <FaThumbsUp className="text-mYellow" />
             ) : (
-              <FaThumbsUp color="mGray" />
+              <FaThumbsUp className="text-mCream" />
             )}
           </button>
           <DetailLikeCount> {postData.likeNum}</DetailLikeCount>
