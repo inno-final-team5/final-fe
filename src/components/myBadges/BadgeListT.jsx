@@ -50,7 +50,7 @@ const BadgeListT = () => {
   content = badges.map((badge) => {
     return (
       <BadgeItemT
-        key={badge.id}
+        key={badge.badgeId}
         icon={badge.badgeIcon}
         name={badge.badgeName}
         description={badge.badgeInfo}

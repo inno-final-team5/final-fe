@@ -8,7 +8,6 @@ const Layout = ({ children }) => {
       <TwLayout>
         <NavBar />
         <Main>{children}</Main>
-
         <Footer />
       </TwLayout>
     </>
@@ -23,5 +22,6 @@ mx-auto
 const Main = tw.main`
   min-h-5/6
   py-24
+  
 `;
 export default Layout;

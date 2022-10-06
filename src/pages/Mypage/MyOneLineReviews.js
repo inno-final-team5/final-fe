@@ -5,6 +5,7 @@ import Spinner from "components/common/Spinner";
 import OneLineReviewItem from "components/mypage/OneLineReviewItem";
 import React, { Fragment, useState } from "react";
 import { useQuery } from "react-query";
+import tw from "tailwind-styled-components/";
 
 const MyOneLineReviews = () => {
   const postsPerPage = 10;
@@ -54,7 +55,7 @@ const MyOneLineReviews = () => {
 
   return (
     <Fragment>
-      <section>
+      <OneLineReviewList>
         {content}
         <Pagination
           page={page}
@@ -62,9 +63,13 @@ const MyOneLineReviews = () => {
           totalPages={totalPages}
           pagesArray={pagesArray}
         />
-      </section>
+      </OneLineReviewList>
     </Fragment>
   );
 };
+
+const OneLineReviewList = tw.div`
+h-screen
+`;
 
 export default MyOneLineReviews;

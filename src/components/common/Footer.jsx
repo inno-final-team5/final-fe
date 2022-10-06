@@ -15,7 +15,7 @@ const Footer = () => {
 };
 
 const TwFooter = tw.footer`
-text-mWhite  text-center lg:text-left bottom:0 h-8 pt-2 flex gap-12
+text-mWhite  text-center lg:text-left h-8 flex gap-12 bottom:0 p-2
 
 `;
 
