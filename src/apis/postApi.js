@@ -43,7 +43,7 @@ export const addPost = async (post) => {
 export const deletePost = async ({ id }) => {
   return await api.delete(`/auth/post/${id}`, {
     headers: {
-      authorization: "Bearer " + localStorage.getItem("accessToken"),
+      authorization: localStorage.getItem("accessToken"),
       "refresh-token": localStorage.getItem("refreshToken"),
     },
   });
@@ -56,7 +56,7 @@ export const updatePost = async (post) => {
 export const likePost = async (id) => {
   return await api.post(`/auth/post/like/${id}`, {
     headers: {
-      authorization: "Bearer " + localStorage.getItem("accessToken"),
+      authorization: localStorage.getItem("accessToken"),
       "refresh-token": localStorage.getItem("refreshToken"),
     },
   });

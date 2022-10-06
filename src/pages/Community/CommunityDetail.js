@@ -48,8 +48,6 @@ const CommunityDetail = () => {
 
   let postData = post.data;
 
-  console.log(like);
-
   return (
     <DetailContainer>
       <DetailContentContainer>
