@@ -52,10 +52,12 @@ const NewPosts = () => {
             </div>
 
             {/* 게시글 제목 */}
-            <div className=" truncate leading-normal grow">{i.postTitle}</div>
+            <div className=" truncate leading-normal grow mt-1">
+              {i.postTitle}
+            </div>
 
             {/* 게시글 작성일 */}
-            <div className="flex justify-end text-sm md:w-24 w-full">
+            <div className="flex justify-end text-sm md:w-24  mt-1 w-full">
               {/* 작성일+시간중에 작성일만 표시하기 */}
               {i.createdAt.split("T")[0]}
             </div>
