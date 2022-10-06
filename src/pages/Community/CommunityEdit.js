@@ -1,4 +1,4 @@
-import { addPost } from "apis/postApi";
+import { addPost, updatePost } from "apis/postApi";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -128,9 +128,9 @@ const CommunityEdit = () => {
                     <textarea
                       id="review"
                       rows="10"
-                      value={contents}
+                      value={review}
                       onChange={(e) => {
-                        setContents(e.target.value);
+                        setReview(e.target.value);
                       }}
                       className="block p-2.5 w-full text-sm text-mBlack bg-mWhite rounded-lg border border-gray-300"
                       placeholder="리뷰를 남겨주세요"

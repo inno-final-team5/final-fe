@@ -43,12 +43,24 @@ export const addPost = async (post) => {
   });
 };
 
-export const addPost = async (post) => {
-  return await api.post("/auth/post", post);
+export const deletePost = async ({ id }) => {
+  return await api.delete(`/auth/post/${id}`, {
+    headers: {
+      authorization: "Bearer " + localStorage.getItem("accessToken"),
+      "refresh-token": localStorage.getItem("refreshToken"),
+    },
+  });
 };
+
 export const updatePost = async (post) => {
   return await api.patch(`/auth/post/${post.postId}`, post);
 };
-export const deletePost = async ({ postId }) => {
-  return await api.delete(`/auth/post/${postId}`, postId);
+
+export const likePost = async (id) => {
+  return await api.post(`/auth/post/like/${id}`, {
+    headers: {
+      authorization: "Bearer " + localStorage.getItem("accessToken"),
+      "refresh-token": localStorage.getItem("refreshToken"),
+    },
+  });
 };

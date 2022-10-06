@@ -1,15 +1,23 @@
 import React from "react";
 import tw from "tailwind-styled-components";
 import { FaThumbsUp, FaEdit, FaTrash } from "react-icons/fa";
-import { useQuery } from "react-query";
-import { getPostDetail } from "apis/postApi";
-import { useParams } from "react-router-dom";
+import { useQueryClient, useMutation, useQuery } from "react-query";
+import { getPostDetail, deletePost } from "apis/postApi";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Profile from "components/common/Profile";
 
 const CommunityDetail = () => {
   const { id } = useParams();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const nickname = localStorage.getItem("nickname");
+
+  const [updatePost, setUpdatePost] = useState(false);
+  const [like, setLike] = useState(false);
+
+  // const likeMutate = useMutation()
 
   const {
     isLoading,
@@ -17,6 +25,17 @@ const CommunityDetail = () => {
     error,
     data: post,
   } = useQuery(["post", id], () => getPostDetail(id));
+
+  const deletePostMutation = useMutation(deletePost, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("post");
+      navigate("/community/all");
+      alert("삭제되었습니다.");
+    },
+    onError: () => {
+      console.log(error);
+    },
+  });
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -27,6 +46,8 @@ const CommunityDetail = () => {
   }
 
   let postData = post.data;
+
+  console.log(updatePost);
 
   return (
     <DetailContainer>
@@ -41,17 +62,21 @@ const CommunityDetail = () => {
         </DetailContent>
 
         <DetailLikeContainer>
-          <button>
-            <FaThumbsUp />
+          <button onClick={() => setLike(!like)}>
+            {like ? (
+              <FaThumbsUp color="mYellow" />
+            ) : (
+              <FaThumbsUp color="mGray" />
+            )}
           </button>
           <DetailLikeCount> {postData.likeNum}</DetailLikeCount>
         </DetailLikeContainer>
         {postData.nickname === nickname ? (
           <DetailControlContainer>
-            <button>
+            <button onClick={() => deletePostMutation.mutate({ id })}>
               <FaTrash />
             </button>
-            <button>
+            <button onClick={() => setUpdatePost(!updatePost)}>
               <FaEdit />
             </button>
           </DetailControlContainer>
