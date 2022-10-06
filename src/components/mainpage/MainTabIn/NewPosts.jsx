@@ -24,10 +24,6 @@ const NewPosts = () => {
   return (
     <div>
       <ul>
-<<<<<<< HEAD
-        {Recentquery.data.map((i) => (
-          <li key={i.postId} className="bg-mWhite grid grid-cols-12 grid-flow-row-dense px-5 py-3 items-center rounded-lg mb-5 cursor-pointer">
-=======
         {Recentquery.data.data.map((i) => (
           <li
             key={i.postId}
@@ -37,29 +33,13 @@ const NewPosts = () => {
             }}
             className="bg-mWhite flx-col md:flex  md:flex-nowrap px-5 py-3 rounded-lg mb-5 last:mb-0 cursor-pointer hover:bg-neutral-300"
           >
->>>>>>> develop
             {/* 게시글 카테고리 이름 */}
-            <div className="flex justify-center w-16 text-sm bg-mGray py-1 mr-10 rounded-lg text-mCream">
-              {i.postCategory}
-            </div>
+            <div className="flex justify-center w-16 text-sm bg-mGray py-1 mr-10 rounded-lg text-mCream">{i.postCategory}</div>
             {/* 뱃지와 닉네임 */}
             <div className="mr-10 my-2 md:my-0">
               <div className="flex align-center">
-<<<<<<< HEAD
-                <div className="mr-3 text-xl ">
-                  <img src={magic} alt="" className="w-8" />
-                </div>
-                <div className="pr-5 flex text-sm text-gray-500 mt-2">{i.nickname}</div>
-=======
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-                  alt="profile"
-                  className="w-6 mr-3"
-                />
-                <div className="pr-5 w-fit md:w-40 flex text-sm text-mGray mt-1">
-                  {i.nickname}
-                </div>
->>>>>>> develop
+                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="profile" className="w-6 mr-3" />
+                <div className="pr-5 w-fit md:w-40 flex text-sm text-mGray mt-1">{i.nickname}</div>
               </div>
             </div>
 
