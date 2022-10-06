@@ -17,6 +17,7 @@ const LoginForm = () => {
   const loginHandler = async () => {
     if (memberId_ref.current.value == "" || password_ref.current.value == "") {
       window.alert("아이디와 비밀번호를 모두 입력하세요");
+      return;
     } else {
       await dispatch(
         loginUserDB({
@@ -41,9 +42,7 @@ const LoginForm = () => {
             <div className="flex flex-wrap -m-2 mx-auto place-content-center ">
               <div className="p-4 w-2/3 md:w-2/3">
                 <div className="relative  ">
-                  <label className="leading-7 text-sm text-mCream">
-                    아이디
-                  </label>
+                  <label className="leading-7 text-sm text-mCream">아이디</label>
                   <input
                     type="text"
                     id="name"
@@ -55,9 +54,7 @@ const LoginForm = () => {
               </div>
               <div className="p-4 w-2/3 md:w-2/3">
                 <div className="relative">
-                  <label className="leading-7 text-sm text-mCream">
-                    비밀번호
-                  </label>
+                  <label className="leading-7 text-sm text-mCream">비밀번호</label>
                   <input
                     type="password"
                     ref={password_ref}
