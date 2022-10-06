@@ -21,7 +21,7 @@ const Router = () => {
         <Route path="/challenge" element={<Challenge />} />
         <Route path="/*" element={<NotFound />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/detail/:id/:title/:poster_path" element={<Detail />} />
+        <Route path="/detail/:id/:title/:poster" element={<Detail />} />
         <Route path="/kakaoLogin" element={<KakaoRedirect />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/mypage/*" element={<MyPage />} />

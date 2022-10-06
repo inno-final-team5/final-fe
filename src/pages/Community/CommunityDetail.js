@@ -6,6 +6,7 @@ import { getPostDetail, deletePost } from "apis/postApi";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Profile from "components/common/Profile";
+import Spinner from "components/common/Spinner";
 
 const CommunityDetail = () => {
   const { id } = useParams();
@@ -38,7 +39,7 @@ const CommunityDetail = () => {
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (isError) {

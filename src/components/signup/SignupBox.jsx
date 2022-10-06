@@ -6,11 +6,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 /**유효성을 위한 정규식 */
-import {
-  checkEmail,
-  checkUserName,
-  checkPassword,
-} from "../../utils/validation";
+import { checkEmail, checkUserName, checkPassword } from "../../utils/validation";
 
 const SingupBox = () => {
   const navigate = useNavigate();
@@ -116,13 +112,7 @@ const SingupBox = () => {
       {/* 회원가입 폼 */}
       <form onSubmit={onSumitSignup}>
         <RegisterInputBox>
-          <InputBox
-            type="email"
-            id="email"
-            onChange={emailInput}
-            placeholder="이메일을 입력하세요"
-            required
-          />
+          <InputBox type="email" id="email" onChange={emailInput} placeholder="이메일을 입력하세요" required />
 
           <DoubleCheckButton type="button" onClick={emailCheck}>
             중복확인
@@ -130,35 +120,17 @@ const SingupBox = () => {
         </RegisterInputBox>
 
         <RegisterInputBox>
-          <InputBox
-            type="text"
-            id="nickname"
-            onChange={nicknameInput}
-            placeholder="닉네임 10자이내"
-            required
-          />
+          <InputBox type="text" id="nickname" onChange={nicknameInput} placeholder="닉네임 10자이내" required />
 
           <DoubleCheckButton type="button" onClick={nicknameCheck}>
             중복확인
           </DoubleCheckButton>
         </RegisterInputBox>
         <RegisterInputBox>
-          <InputBox
-            type="password"
-            id="password"
-            onChange={passwordInput}
-            placeholder="비밀번호 영어+숫자 4-16자리"
-            required
-          />
+          <InputBox type="password" id="password" onChange={passwordInput} placeholder="비밀번호 영어+숫자 4-16자리" required />
         </RegisterInputBox>
         <RegisterInputBox>
-          <InputBox
-            type="password"
-            id="passwordConfirm"
-            onChange={passwordConfirmInput}
-            placeholder="비밀번호를 한 번 더 입력하세요"
-            required
-          />
+          <InputBox type="password" id="passwordConfirm" onChange={passwordConfirmInput} placeholder="비밀번호를 한 번 더 입력하세요" required />
         </RegisterInputBox>
 
         <RegisterButton type="submit">회원가입</RegisterButton>

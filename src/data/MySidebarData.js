@@ -2,7 +2,7 @@ import * as FaIcons from "react-icons/fa";
 
 export const MySidebarData = [
   {
-    title: "⭐나의 즐겨찾기",
+    title: "🧡 나의 즐겨찾기",
     path: "./favorites",
     icon: <FaIcons.FaHome />,
   },

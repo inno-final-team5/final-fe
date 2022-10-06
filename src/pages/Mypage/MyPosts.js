@@ -1,9 +1,15 @@
-import { getMyPosts } from "apis/postApi";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
-
+import { getMyPosts } from "apis/postApi";
+import Spinner from "components/common/Spinner";
+import PostItem from "components/mypage/PostItem";
+import Pagination from "components/common/pagination/Pagination";
+import Empty from "components/common/Empty";
+import tw from "tailwind-styled-components";
 const MyPosts = () => {
+  const postsPerPage = 10;
+  const [page, setPage] = useState(1);
+
   const {
     isLoading,
     isError,
@@ -12,45 +18,54 @@ const MyPosts = () => {
   } = useQuery("myPosts", getMyPosts);
 
   if (isLoading) {
-    return (
-      <div>
-        <p>Loading...</p>
-      </div>
-    );
+    return <Spinner />;
   }
 
   if (isError) {
     return <div>{error.message}</div>;
   }
 
+  if (myPosts.data.length < 1) {
+    return (
+      <Empty title="작성한 게시글이 없어요." detail="게시글을 작성해주세요" />
+    );
+  }
+
+  const indexOfLast = page * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+
+  const currentPosts = (myPosts) => {
+    let currentPosts = 0;
+    currentPosts = myPosts.data.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
+  const content = currentPosts(myPosts).map((post) => (
+    <PostItem key={post.postId} post={post} />
+  ));
+
+  const totalPages = Math.ceil(myPosts.data.length / postsPerPage);
+
+  const pagesArray = Array(totalPages)
+    .fill()
+    .map((_, index) => index + 1);
+
   return (
     <Fragment>
-      <section>
-        {myPosts.data.map((post) => (
-          <Link
-            to={`/community/detail/${post.postId}`}
-            className="hover:text-mBlack hover:font-bold"
-          >
-            <div
-              key={post.postId}
-              className="flex bg-mWhite gap-12 p-2 mx-2 my-4 py-3 rounded-xl justify-between text-mGray"
-            >
-              <div className="pl-4">
-                <p className="w-16">{post.postCategory}</p>
-              </div>
-              <div className="w-full">{post.postTitle}</div>
-
-              <div>
-                <p className="w-28">
-                  {new Date(post.createdAt).toLocaleDateString("ko-KR")}
-                </p>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </section>
+      <MyPostsList>
+        {content}
+        <Pagination
+          page={page}
+          setPage={setPage}
+          totalPages={totalPages}
+          pagesArray={pagesArray}
+        />
+      </MyPostsList>
     </Fragment>
   );
 };
+
+const MyPostsList = tw.div`
+h-screen
+`;
 
 export default MyPosts;

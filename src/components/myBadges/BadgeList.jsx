@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getMyBadges, updateMainBadge } from "apis/badgeApi";
 import BadgeItem from "./BadgeItem";
+import Spinner from "components/common/Spinner";
 const BadgeList = () => {
   const queryClient = useQueryClient();
 
@@ -20,7 +21,7 @@ const BadgeList = () => {
   let content = "";
 
   if (isLoading) {
-    content = <p>Loading...</p>;
+    return <Spinner />;
   } else if (isError) {
     content = <p>{error.message}</p>;
   } else {

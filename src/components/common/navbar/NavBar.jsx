@@ -16,9 +16,8 @@ import Profile from "../Profile";
 const NavBar = () => {
   const [open, setOpen] = useState(false);
 
-  const accessToken = localStorage.getItem("accessToken"); //todo
+  const accessToken = localStorage.getItem("accessToken");
   const nickname = localStorage.getItem("nickname");
-  const profileImage = "https://cdn-icons-png.flaticon.com/512/847/847969.png"; //badgeImage로 대체
 
   const navigate = useNavigate();
 
@@ -31,7 +30,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-mBlack sticky top-0 z-50">
+    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full  mx-auto justify-center px-40">
       <div className="flex items-center justify-around ">
         <div className="z-50 md:w-auto w-full flex justify-between p-5 md:px-2 md:py-0 items-center">
           <Link to="/">
@@ -51,19 +50,19 @@ const NavBar = () => {
           </div>
         </div>
         <div className="md:flex w-full items-center justify-between bg-mGray px-4 ml-4 h-12 rounded-lg hidden">
-          <ul className="md:flex hidden uppercase items-center gap-8 font-[Poppins] ">
+          <ul className="md:flex hidden uppercase items-center gap-8">
             <NavLinks links={navigationLinks} />
           </ul>
           <div className="md:block hidden">
             {accessToken != null ? (
               <div className="flex items-center">
-                <div className="flex items-center">
-                  <div className="group">
+                <div className="flex items-center group">
+                  <div className="">
                     <Profile />
 
-                    <div className="absolute top-16 hidden group-hover:block hover:block ">
+                    <div className="absolute top-16 right-64 hidden group-hover:block hover:block ">
                       <div className="py-3">
-                        <div className="w-4 h-4 left-3 absolute mt-1 bg-mCream rotate-45"></div>
+                        <div className="w-4 h-4 left-10 absolute mt-1 bg-mCream rotate-45"></div>
                       </div>
                       <div className="bg-mCream p-3 list-none rounded-lg ">
                         <ul className="text-center">
