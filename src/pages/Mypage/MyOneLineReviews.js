@@ -1,11 +1,11 @@
+import { getMyOneLineReviews } from "apis/oneLineReviewApi";
+import Pagination from "components/common/pagination/Pagination";
+import Spinner from "components/common/Spinner";
+import OneLineReviewItem from "components/mypage/OneLineReviewItem";
 import React, { Fragment, useState } from "react";
 import { useQuery } from "react-query";
-import { getMyPosts } from "apis/postApi";
-import Spinner from "components/common/Spinner";
-import PostItem from "components/mypage/PostItem";
-import Pagination from "components/common/pagination/Pagination";
 
-const MyPosts = () => {
+const MyOneLineReviews = () => {
   const postsPerPage = 10;
   const [page, setPage] = useState(1);
 
@@ -13,8 +13,8 @@ const MyPosts = () => {
     isLoading,
     isError,
     error,
-    data: myPosts,
-  } = useQuery("myPosts", getMyPosts);
+    data: myOneLineReviews,
+  } = useQuery("myOneLineReviews", getMyOneLineReviews);
 
   if (isLoading) {
     return <Spinner />;
@@ -32,11 +32,14 @@ const MyPosts = () => {
     currentPosts = myPosts.data.slice(indexOfFirst, indexOfLast);
     return currentPosts;
   };
-  const content = currentPosts(myPosts).map((post) => (
-    <PostItem key={post.postId} post={post} />
+  const content = currentPosts(myOneLineReviews).map((oneLineReview) => (
+    <OneLineReviewItem
+      key={oneLineReview.postId}
+      oneLineReview={oneLineReview}
+    />
   ));
 
-  const totalPages = Math.ceil(myPosts.data.length / postsPerPage);
+  const totalPages = Math.ceil(myOneLineReviews.data.length / postsPerPage);
 
   const pagesArray = Array(totalPages)
     .fill()
@@ -57,4 +60,4 @@ const MyPosts = () => {
   );
 };
 
-export default MyPosts;
+export default MyOneLineReviews;

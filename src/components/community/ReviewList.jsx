@@ -1,19 +1,12 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 
-import PageButton from "./PageButton";
 import TableHead from "./TableHead";
 import TableItem from "./TableItem";
 
-import {
-  BsChevronDoubleLeft,
-  BsChevronLeft,
-  BsChevronRight,
-  BsChevronDoubleRight,
-} from "react-icons/bs";
-import ArrowButton from "./ArrowButton";
 import Spinner from "components/common/Spinner";
 import WriteBox from "./WriteBox";
+import Pagination from "components/common/pagination/Pagination";
 
 const ReviewList = ({ queryFn }) => {
   const postsPerPage = 10;
@@ -48,43 +41,6 @@ const ReviewList = ({ queryFn }) => {
     .fill()
     .map((_, index) => index + 1);
 
-  const firstPage = () => setPage(1);
-  const PrevPage = () => setPage(page - 1);
-  const NextPage = () => setPage(page + 1);
-
-  const lastPage = () => setPage(totalPages);
-
-  const Pagination = (
-    <div className="flex justify-between bg-mBlack border-t-2 border-mGray border-solid rounded-b-xl">
-      <nav className="flex items-center  ">
-        <ArrowButton
-          onClick={firstPage}
-          disabled={page === 1}
-          icon={<BsChevronDoubleLeft />}
-        />
-        <ArrowButton
-          onClick={PrevPage}
-          disabled={page === 1}
-          icon={<BsChevronLeft />}
-        ></ArrowButton>
-        {pagesArray.map((pg) => (
-          <PageButton key={pg} page={pg} setPage={setPage} />
-        ))}
-        <ArrowButton
-          onClick={NextPage}
-          disabled={page === totalPages}
-          icon={<BsChevronRight />}
-        />
-        <ArrowButton
-          onClick={lastPage}
-          disabled={page === totalPages}
-          icon={<BsChevronDoubleRight />}
-        />
-      </nav>
-      <WriteBox />
-    </div>
-  );
-
   return (
     <div className=" bg-mGray p-4 rounded-xl">
       <div className="shadow-md m-4 mt-6">
@@ -92,7 +48,15 @@ const ReviewList = ({ queryFn }) => {
           <TableHead />
           <tbody>{content}</tbody>
         </table>
-        {Pagination}
+        <div className="flex justify-between bg-mBlack border-t-2 border-mGray border-solid rounded-b-xl">
+          <Pagination
+            page={page}
+            setPage={setPage}
+            totalPages={totalPages}
+            pagesArray={pagesArray}
+          />
+          <WriteBox />
+        </div>
       </div>
     </div>
   );
