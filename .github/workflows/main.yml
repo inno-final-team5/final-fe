@@ -1,9 +1,9 @@
-name: develop action
+name: final-movie-review
 
 on:
   pull_request:
     branches:
-      - develop # develop 브랜치에서 push 이벤트가 일어났을 때 실행
+      - develop # develop 브랜치에서 이벤트가 일어났을 때 실행
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: ${{ runner.OS }}-develop-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
