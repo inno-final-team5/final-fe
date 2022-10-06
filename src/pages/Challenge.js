@@ -2,14 +2,14 @@ import tw from "tailwind-styled-components";
 
 import Layout from "components/common/Layout";
 import ChallengeHeader from "components/challenge/ChallengeHeader";
-import ChallengeList from "components/challenge/ChallengeList";
+import ChallengeListT from "components/challenge/ChallengeListT";
 
 const Challenge = () => {
   return (
     <Layout>
       <ChallengeContainer>
         <ChallengeHeader />
-        <ChallengeList />
+        <ChallengeListT />
       </ChallengeContainer>
     </Layout>
   );
