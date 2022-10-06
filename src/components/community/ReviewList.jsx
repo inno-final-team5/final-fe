@@ -42,21 +42,19 @@ const ReviewList = ({ queryFn }) => {
     .map((_, index) => index + 1);
 
   return (
-    <div className=" bg-mGray p-4 rounded-xl">
-      <div className="shadow-md m-4 mt-6">
-        <table className="w-full bg-mBlack text-mWhite text-left border-collapse table-fixed rounded-t-xl">
-          <TableHead />
-          <tbody>{content}</tbody>
-        </table>
-        <div className="flex justify-between bg-mBlack border-t-2 border-mGray border-solid rounded-b-xl">
-          <Pagination
-            page={page}
-            setPage={setPage}
-            totalPages={totalPages}
-            pagesArray={pagesArray}
-          />
-          <WriteBox />
-        </div>
+    <div className="shadow-md m-4 mt-6">
+      <table className="w-full bg-mBlack text-mWhite text-left border-collapse table-fixed rounded-t-xl">
+        <TableHead />
+        <tbody>{content}</tbody>
+      </table>
+      <div className="flex justify-between bg-mBlack border-t-2 border-mGray border-solid rounded-b-xl">
+        <Pagination
+          page={page}
+          setPage={setPage}
+          totalPages={totalPages}
+          pagesArray={pagesArray}
+        />
+        <WriteBox />
       </div>
     </div>
   );

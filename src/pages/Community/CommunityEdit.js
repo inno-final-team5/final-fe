@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import tw from "tailwind-styled-components";
 import { addPost } from "apis/postApi";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-
-import tw from "tailwind-styled-components";
 
 const CommunityEdit = () => {
   const navigate = useNavigate();
@@ -127,7 +126,6 @@ w-full
 const Box = tw.div`
 bg-mGray
 p-8
-
 rounded
 `;
 

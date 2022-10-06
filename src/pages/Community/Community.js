@@ -1,29 +1,29 @@
 import React from "react";
-import Sidebar from "components/community/Sidebar";
 import tw from "tailwind-styled-components";
 import Layout from "components/common/Layout";
+import Sidebar from "components/community/Sidebar";
 import BoardContainer from "components/community/BoardContainer";
 
 const Community = () => {
   return (
     <Layout>
-      <CommunityContainer>
-        <CommunitySidebarContainer>
+      <CommunityWrapper>
+        <CommunitySidebarWrapper>
           <Sidebar />
-        </CommunitySidebarContainer>
-        <CommunityContentContainer>
+        </CommunitySidebarWrapper>
+        <CommunityContentWrapper>
           <BoardContainer />
-        </CommunityContentContainer>
-      </CommunityContainer>
+        </CommunityContentWrapper>
+      </CommunityWrapper>
     </Layout>
   );
 };
 
-const CommunityContainer = tw.div`
+const CommunityWrapper = tw.div`
 `;
-const CommunitySidebarContainer = tw.div`bg-mBlack md:block hidden md:fixed`;
+const CommunitySidebarWrapper = tw.div`bg-mBlack md:block hidden md:fixed`;
 
-const CommunityContentContainer = tw.div`
+const CommunityContentWrapper = tw.div`
 bg-mBlack rounded-sm md:pl-52 
 `;
 export default Community;

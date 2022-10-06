@@ -1,13 +1,12 @@
-import ReviewList from "components/community/ReviewList";
 import { getMoviePosts } from "apis/postApi";
+import ReviewList from "components/community/ReviewList";
+import CommunityContainer from "components/community/CommunityContainer";
 
 const CommunityMovies = () => {
   return (
-    <>
-      <div className=" bg-mGray p-4 rounded-xl ">
-        <ReviewList queryFn={getMoviePosts} />
-      </div>
-    </>
+    <CommunityContainer>
+      <ReviewList queryFn={getMoviePosts} />
+    </CommunityContainer>
   );
 };
 export default CommunityMovies;
