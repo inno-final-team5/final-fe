@@ -1,16 +1,12 @@
-import WriteBox from "components/community/WriteBox";
-
 import { getAllPosts } from "apis/postApi";
+import CommunityContainer from "components/community/CommunityContainer";
 import ReviewList from "components/community/ReviewList";
 
 const CommunityAll = () => {
   return (
-    <>
-      <div className=" bg-mGray p-4 rounded-sm ">
-        <WriteBox />
-        <ReviewList queryFn={getAllPosts} />
-      </div>
-    </>
+    <CommunityContainer>
+      <ReviewList queryFn={getAllPosts} />
+    </CommunityContainer>
   );
 };
 export default CommunityAll;

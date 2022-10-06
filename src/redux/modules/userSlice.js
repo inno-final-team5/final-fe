@@ -16,16 +16,17 @@ export const loginUserDB = (payload) => {
         if (response.data.success === false) {
           return window.alert(response.data.error.message);
         } else {
-          const accessToken = response.headers.authorization.split("Bearer")[1];
           return (
+            localStorage.setItem("nickname", response.data.data.nickname),
             localStorage.setItem("refreshToken", response.headers["refresh-token"]),
-            localStorage.setItem("accessToken", accessToken),
+            localStorage.setItem("accessToken", response.headers.authorization),
             alert(`로그인 성공!`),
             (document.location.href = "/")
           );
         }
       })
       .catch((response) => {
+        alert("사용자를 찾을 수 없습니다");
         console.log(response);
       });
   };
@@ -39,9 +40,8 @@ export const kakaoLoginDB = (payload) => {
         if (response.data.success === false) {
           return window.alert(response.data.error.message);
         } else {
-          const accessToken = response.headers["access-token"].split(" ")[1];
           return (
-            localStorage.setItem("accessToken", accessToken),
+            localStorage.setItem("accessToken", response.headers["access-token"]),
             localStorage.setItem("refreshToken", response.headers["refresh-token"]),
             localStorage.setItem("nickname", response.data.data.username),
             alert(`카카오 로그인 성공!`),

@@ -6,8 +6,9 @@ import { Link, useNavigate, NavLink } from "react-router-dom";
 import Alarm from "./Alarm";
 
 const Header = () => {
-  const accessToken = localStorage.getItem("accessToken");
   const nickname = localStorage.getItem("nickname");
+  const refreshToken = localStorage.getItem("refreshToken");
+  const accessToken = localStorage.getItem("accessToken");
 
   const navigate = useNavigate();
   const activeLink = `font-bold text-mYellow`;
@@ -29,7 +30,10 @@ const Header = () => {
           <MenuTitle>영화 검색</MenuTitle>
           <MenuTitle>커뮤니티</MenuTitle>
           <MenuTitle>
-            <NavLink to="/challenge" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
+            <NavLink
+              to="/challenge"
+              className={({ isActive }) => (isActive ? activeLink : normalLink)}
+            >
               챌린지
             </NavLink>
           </MenuTitle>

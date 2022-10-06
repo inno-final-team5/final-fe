@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
     width:100vw;
     height:100vh;
     background-color:#222831;
+    font-family:"S-CoreDream-3Light";
   }
   ;
 

@@ -32,7 +32,7 @@ const SideBar = () => {
 };
 
 const SideBox = tw.div`
-  bg-mGray py-2 rounded-sm px-4 flex flex-col justify-center mx-4
+  bg-mGray py-2 rounded-lg px-4 flex flex-col justify-center mx-4 
 `;
 
 export default SideBar;

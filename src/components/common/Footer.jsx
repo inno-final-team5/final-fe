@@ -1,21 +1,22 @@
-import { Link } from "react-router-dom";
-import Logo from "images/Logo.png";
+import tw from "tailwind-styled-components";
 
 const Footer = () => {
+  const thisYear = new Date().getFullYear();
   return (
-    <footer class="text-gray-600 body-font ">
-      <div class="px-5 py-8 mx-auto flex items-center sm:flex-row flex-col ">
-        <Link to="/">
-          <img src={Logo} alt="logo" width={80} height={80} />
-        </Link>
-
-        <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-          © 2022 방구석평론가
-        </p>
-        <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start"></span>
-      </div>
-    </footer>
+    <TwFooter>
+      <p>
+        &copy; <span>{thisYear}</span> Copyright: 방구석평론가
+      </p>
+      <a href="https://www.flaticon.com/free-icons/genre" title="genre icons">
+        Genre icons created by Freepik - Flaticon
+      </a>
+    </TwFooter>
   );
 };
+
+const TwFooter = tw.footer`
+text-mWhite  text-center lg:text-left h-8 flex gap-12 bottom:0 p-2
+
+`;
 
 export default Footer;

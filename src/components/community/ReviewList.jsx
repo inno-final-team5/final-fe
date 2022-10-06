@@ -1,45 +1,60 @@
+import { useState } from "react";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
+
 import TableHead from "./TableHead";
+import TableItem from "./TableItem";
+
+import Spinner from "components/common/Spinner";
+import WriteBox from "./WriteBox";
+import Pagination from "components/common/pagination/Pagination";
 
 const ReviewList = ({ queryFn }) => {
+  const postsPerPage = 10;
+  const [page, setPage] = useState(1);
+
   const { isLoading, isError, error, data: posts } = useQuery("posts", queryFn);
 
-  let content;
   if (isLoading) {
-    content = <p>Loading...</p>;
-    return <div>{content}</div>;
-  } else if (isError) {
-    content = <p>{error.message}</p>;
-    return <div>{content}</div>;
-  } else {
-    content = posts.data.map((post) => {
-      return (
-        <tr key={post.postId}>
-          <th className="py-4 px-6 font-medium text-mWhite whitespace-nowrap">
-            {post.postCategory}
-          </th>
-          <td className="py-4 px-6">
-            <Link to={`/community/detail`} className="hover:text-mYellow">
-              {post.postTitle}
-            </Link>
-          </td>
-          <td className="py-4 px-6">{post.nickname}</td>
-          <td className="py-4 px-6">
-            {new Date(post.createdAt).toLocaleDateString("ko-KR")}
-          </td>
-        </tr>
-      );
-    });
+    return <Spinner />;
   }
 
+  if (isError) {
+    return <div>{error.message}</div>;
+  }
+
+  const indexOfLast = page * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+
+  const currentPosts = (posts) => {
+    let currentPosts = 0;
+    currentPosts = posts.data.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  };
+
+  const content = currentPosts(posts).map((post) => (
+    <TableItem key={post.postId} post={post} />
+  ));
+
+  const totalPages = Math.ceil(posts.data.length / postsPerPage);
+
+  const pagesArray = Array(totalPages)
+    .fill()
+    .map((_, index) => index + 1);
+
   return (
-    <div className=" bg-mGray p-4 rounded-sm">
-      <div className="shadow-md sm:rounded-lg m-4 mt-6">
-        <table className="w-full bg-mBlack text-mWhite text-left">
-          <TableHead />
-          <tbody>{content}</tbody>
-        </table>
+    <div className="shadow-md m-4 mt-6">
+      <table className="w-full bg-mBlack text-mWhite text-left border-collapse table-fixed rounded-t-xl">
+        <TableHead />
+        <tbody>{content}</tbody>
+      </table>
+      <div className="flex justify-between bg-mBlack border-t-2 border-mGray border-solid rounded-b-xl">
+        <Pagination
+          page={page}
+          setPage={setPage}
+          totalPages={totalPages}
+          pagesArray={pagesArray}
+        />
+        <WriteBox />
       </div>
     </div>
   );

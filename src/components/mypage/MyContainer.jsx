@@ -1,5 +1,5 @@
 import MyBadges from "pages/Mypage/MyBadges";
-import MyComments from "pages/Mypage/MyComments";
+import MyOneLineReviews from "pages/Mypage/MyOneLineReviews";
 import MyFavorites from "pages/Mypage/MyFavorites";
 import MyPosts from "pages/Mypage/MyPosts";
 import { Fragment } from "react";
@@ -11,7 +11,7 @@ const MyContainer = () => {
         <Routes>
           <Route path="favorites" element={<MyFavorites />} />
           <Route path="posts" element={<MyPosts />} />
-          <Route path="comments" element={<MyComments />} />
+          <Route path="comments" element={<MyOneLineReviews />} />
           <Route path="badges" element={<MyBadges />} />
         </Routes>
       </section>

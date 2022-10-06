@@ -1,16 +1,16 @@
 import Layout from "components/common/Layout";
 import SearchBar from "../components/search/SearchBar";
 import DetailTags from "../components/search/DetailTags";
-import SearchList from "../components/search/SearchList";
+import SearchResult from "../components/search/SearchResult";
 
-const Signin = () => {
+const SearchList = () => {
   return (
     <Layout>
       <SearchBar />
       <DetailTags />
-      <SearchList />
+      <SearchResult />
     </Layout>
   );
 };
 
-export default Signin;
+export default SearchList;

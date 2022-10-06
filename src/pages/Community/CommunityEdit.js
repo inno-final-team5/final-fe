@@ -1,20 +1,38 @@
 import React, { useState } from "react";
-
 import tw from "tailwind-styled-components";
+import { addPost } from "apis/postApi";
+import { useMutation, useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 const CommunityEdit = () => {
-  const nickname = localStorage.getItem("nickname");
-  console.log(nickname);
-  const today = new Date().toLocaleDateString("ko-KR");
-  console.log(today);
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
+  const [category, setCategory] = useState("영화");
+
+  const addPostMutation = useMutation(addPost, {
+    onError: (error) => {
+      console.log(error);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("posts");
+      navigate("/community/all");
+    },
+  });
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    const reviewBox = { title, review };
-    console.log(reviewBox);
+
+    addPostMutation.mutate({
+      postCategory: category,
+      postContent: review,
+      postTitle: title,
+    });
+
+    setTitle("");
+    setReview("");
   };
 
   return (
@@ -25,6 +43,23 @@ const CommunityEdit = () => {
             <div className="shadow overflow-hidden sm:rounded-md">
               <div className="px-4 py-5 bg-white sm:p-6">
                 <div className="grid grid-cols-6 gap-6">
+                  <div className="col-span-6 sm:col-span-3">
+                    <label
+                      htmlFor="category"
+                      className="block mb-2 text-sm font-medium text-mBlack"
+                    >
+                      분류
+                    </label>
+                    <select
+                      onChange={(e) => setCategory(e.target.value)}
+                      value={category}
+                      id="category"
+                      className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5"
+                    >
+                      <option value="영화">영화</option>
+                      <option value="영화관">영화관</option>
+                    </select>
+                  </div>
                   <div className="col-span-6">
                     <label
                       htmlFor="title"
@@ -36,6 +71,8 @@ const CommunityEdit = () => {
                       type="title"
                       id="title"
                       value={title}
+                      maxLength="60"
+                      placeholder="60자 이내로 작성해주세요!"
                       onChange={(e) => {
                         setTitle(e.target.value);
                       }}
@@ -43,54 +80,7 @@ const CommunityEdit = () => {
                       required
                     ></input>
                   </div>
-                  <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="nickname"
-                      className="block text-sm font-medium text-mBlack"
-                    >
-                      작성자
-                    </label>
-                    <input
-                      type="text"
-                      id="nickname"
-                      className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5 cursor-not-allowed"
-                      value={nickname}
-                      disabled
-                      readOnly
-                    ></input>
-                  </div>
 
-                  <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="date"
-                      className="block text-sm font-medium text-mBlack"
-                    >
-                      작성일
-                    </label>
-                    <input
-                      type="text"
-                      id="date"
-                      className="bg-mWhite text-gray-900 text-sm rounded-lg block w-full p-2.5 cursor-not-allowed"
-                      value={today}
-                      readOnly
-                    ></input>
-                  </div>
-
-                  <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="category"
-                      className="block mb-2 text-sm font-medium text-mBlack"
-                    >
-                      분류
-                    </label>
-                    <select
-                      id="category"
-                      className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5"
-                    >
-                      <option>영화</option>
-                      <option>영화관</option>
-                    </select>
-                  </div>
                   <div className="col-span-6">
                     <label
                       htmlFor="review"
@@ -136,7 +126,6 @@ w-full
 const Box = tw.div`
 bg-mGray
 p-8
-
 rounded
 `;
 
