@@ -16,7 +16,7 @@ import Profile from "../Profile";
 const NavBar = () => {
   const [open, setOpen] = useState(false);
 
-  const accessToken = localStorage.getItem("accessToken"); //todo
+  const accessToken = localStorage.getItem("accessToken");
   const nickname = localStorage.getItem("nickname");
 
   const navigate = useNavigate();
@@ -55,8 +55,8 @@ const NavBar = () => {
           </ul>
           <div className="md:block hidden">
             {accessToken != null ? (
-              <div className="flex items-center group">
-                <div className="flex items-center">
+              <div className="flex items-center">
+                <div className="flex items-center group">
                   <div className="">
                     <Profile />
 

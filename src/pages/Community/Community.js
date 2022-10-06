@@ -24,6 +24,6 @@ const CommunityContainer = tw.div`
 const CommunitySidebarContainer = tw.div`bg-mBlack md:block hidden md:fixed`;
 
 const CommunityContentContainer = tw.div`
-bg-mBlack rounded-sm md:pl-52 h-screen
+bg-mBlack rounded-sm md:pl-52 
 `;
 export default Community;

@@ -1,5 +1,5 @@
-import { addPost } from "apis/postApi";
 import React, { useState } from "react";
+import { addPost } from "apis/postApi";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 
@@ -8,10 +8,6 @@ import tw from "tailwind-styled-components";
 const CommunityEdit = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-
-  const nickname = localStorage.getItem("nickname");
-
-  const today = new Date().toLocaleDateString("ko-KR");
 
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
@@ -85,38 +81,6 @@ const CommunityEdit = () => {
                       required
                     ></input>
                   </div>
-                  {/* <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="nickname"
-                      className="block text-sm font-medium text-mBlack"
-                    >
-                      작성자
-                    </label>
-                    <input
-                      type="text"
-                      id="nickname"
-                      className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5 cursor-not-allowed"
-                      value={nickname}
-                      disabled
-                      readOnly
-                    ></input>
-                  </div> */}
-
-                  {/* <div className="col-span-6 sm:col-span-3">
-                    <label
-                      htmlFor="date"
-                      className="block text-sm font-medium text-mBlack"
-                    >
-                      작성일
-                    </label>
-                    <input
-                      type="text"
-                      id="date"
-                      className="bg-mWhite text-gray-900 text-sm rounded-lg block w-full p-2.5 cursor-not-allowed"
-                      value={today}
-                      readOnly
-                    ></input>
-                  </div> */}
 
                   <div className="col-span-6">
                     <label

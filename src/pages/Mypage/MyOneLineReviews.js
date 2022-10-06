@@ -1,4 +1,5 @@
 import { getMyOneLineReviews } from "apis/oneLineReviewApi";
+import Empty from "components/common/Empty";
 import Pagination from "components/common/pagination/Pagination";
 import Spinner from "components/common/Spinner";
 import OneLineReviewItem from "components/mypage/OneLineReviewItem";
@@ -22,6 +23,12 @@ const MyOneLineReviews = () => {
 
   if (isError) {
     return <div>{error.message}</div>;
+  }
+
+  if (myOneLineReviews.data.length < 1) {
+    return (
+      <Empty title="작성한 한줄평이 없어요." detail="한줄평을 작성해주세요" />
+    );
   }
 
   const indexOfLast = page * postsPerPage;

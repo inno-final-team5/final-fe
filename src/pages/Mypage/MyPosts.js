@@ -4,6 +4,7 @@ import { getMyPosts } from "apis/postApi";
 import Spinner from "components/common/Spinner";
 import PostItem from "components/mypage/PostItem";
 import Pagination from "components/common/pagination/Pagination";
+import Empty from "components/common/Empty";
 
 const MyPosts = () => {
   const postsPerPage = 10;
@@ -22,6 +23,12 @@ const MyPosts = () => {
 
   if (isError) {
     return <div>{error.message}</div>;
+  }
+
+  if (myPosts.data.length < 1) {
+    return (
+      <Empty title="작성한 게시글이 없어요." detail="게시글을 작성해주세요" />
+    );
   }
 
   const indexOfLast = page * postsPerPage;
