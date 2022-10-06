@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
         <NavBar />
         <Main>{children}</Main>
 
-        {/* <Footer /> */}
+        <Footer />
       </TwLayout>
     </>
   );
