@@ -5,7 +5,7 @@ import Spinner from "components/common/Spinner";
 import PostItem from "components/mypage/PostItem";
 import Pagination from "components/common/pagination/Pagination";
 import Empty from "components/common/Empty";
-
+import tw from "tailwind-styled-components";
 const MyPosts = () => {
   const postsPerPage = 10;
   const [page, setPage] = useState(1);
@@ -51,7 +51,7 @@ const MyPosts = () => {
 
   return (
     <Fragment>
-      <section>
+      <MyPostsList>
         {content}
         <Pagination
           page={page}
@@ -59,9 +59,13 @@ const MyPosts = () => {
           totalPages={totalPages}
           pagesArray={pagesArray}
         />
-      </section>
+      </MyPostsList>
     </Fragment>
   );
 };
+
+const MyPostsList = tw.div`
+h-screen
+`;
 
 export default MyPosts;
