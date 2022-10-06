@@ -58,7 +58,7 @@ const BestReview = () => {
                     alt="profile"
                     className="w-6 mr-3"
                   />
-                  <div className="pr-5 flex text-xs text-mGray mt-1 ">
+                  <div className="pr-5 flex text-sm text-mGray mt-1 ">
                     {i.nickname}
                   </div>
                 </div>
@@ -72,7 +72,7 @@ const BestReview = () => {
                   </div>
                   {/* 한줄평 내용 */}
                   <div className="truncate w-10/12">
-                    <span className="pl-2 pr-16 text-sm ">
+                    <span className="pl-2 pr-16 ">
                       {i.oneLineReviewContent}
                     </span>
                   </div>

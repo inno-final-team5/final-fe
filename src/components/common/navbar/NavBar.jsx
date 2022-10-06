@@ -51,7 +51,7 @@ const NavBar = () => {
           </div>
         </div>
         <div className="md:flex w-full items-center justify-between bg-mGray px-4 ml-4 h-12 rounded-lg hidden">
-          <ul className="md:flex hidden uppercase items-center gap-8 font-[Poppins] ">
+          <ul className="md:flex hidden uppercase items-center gap-8">
             <NavLinks links={navigationLinks} />
           </ul>
           <div className="md:block hidden">
