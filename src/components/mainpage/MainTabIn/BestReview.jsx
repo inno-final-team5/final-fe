@@ -1,16 +1,17 @@
 import React from "react";
 import Spinner from "components/common/Spinner";
 import { useQuery } from "react-query";
-// import api from "shared/api";
+import { useNavigate } from "react-router-dom";
+import api from "shared/api";
+// 아이콘
 import { FaStar } from "react-icons/fa";
-import { FiThumbsUp } from "react-icons/fi";
-import gun from "../../../images/free-icon-western-8136323.png";
-import axios from "axios";
+import { FaThumbsUp } from "react-icons/fa";
 
 const BestReview = () => {
+  const navigate = useNavigate();
   /**Best Review 데이터 불러오기*/
   const getBestReviewWithApi = async () => {
-    const { data } = await axios.get("http://localhost:3001/best");
+    const { data } = await api.get("/main/best");
     return data;
   };
 
@@ -34,19 +35,31 @@ const BestReview = () => {
   return (
     <div>
       <ul>
-        {BestReviewquery.data.map((i) => (
+        {BestReviewquery.data.data.map((i) => (
           <li
-            key={i.movieId}
-            className="bg-mWhite px-5 py-3 items-center rounded-lg mb-5 cursor-pointer "
+            key={i.reviewId}
+            onClick={() => {
+              navigate(
+                `/detail/${i.movieId}/${i.title}${i.posterPath.split(".")[0]}`
+              );
+            }}
+            className="bg-mWhite hover:bg-neutral-300 px-5 py-2 items-center rounded-lg mb-5 last:mb-0 cursor-pointer "
           >
             <div className=" flex-col ">
               <div className="lg:flex lg:justify-between lg:items-center">
-                <div className=" pr-5 text-xl font-bold ">{i.title}</div>
+                {/* 영화제목 */}
+                <div className=" pr-5 text-lg font-bold text-mBlack">
+                  {i.title}
+                </div>
                 {/* 뱃지와 닉네임 */}
                 <div className="flex">
-                  <img src={gun} alt="badge" className="w-6 mr-3" />
-                  <div className="pr-5 flex text-xs text-gray-500 mt-2 ">
-                    {i.oneLineReview.nickname}
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                    alt="profile"
+                    className="w-6 mr-3"
+                  />
+                  <div className="pr-5 flex text-sm text-mGray mt-1 ">
+                    {i.nickname}
                   </div>
                 </div>
               </div>
@@ -54,21 +67,21 @@ const BestReview = () => {
               <div className="flex justify-between items-center mt-3">
                 <div className="flex grow w-4/5 ">
                   {/* 별점 */}
-                  <div className="flex text-mYellow w-24">
-                    {starIcon(i.oneLineReview.star)}
+                  <div className="flex text-mYellow w-28">
+                    {starIcon(i.oneLineReviewStar)}
                   </div>
                   {/* 한줄평 내용 */}
                   <div className="truncate w-10/12">
-                    <span className="pl-2 pr-16 text-sm ">
-                      {i.oneLineReview.content}
+                    <span className="pl-2 pr-16 ">
+                      {i.oneLineReviewContent}
                     </span>
                   </div>
                 </div>
 
                 {/* 좋아요 수 */}
-                <div className="flex mx-5">
-                  <FiThumbsUp className=" mr-2" />
-                  <div>{i.oneLineReview.oneLineReviewLikeCount}</div>
+                <div className="flex mx-5 bg-mGray px-3 py-1 rounded-lg">
+                  <FaThumbsUp className="mr-2 text-mYellow " />
+                  <div className="text-mCream">{i.likeNum}</div>
                 </div>
               </div>
             </div>

@@ -18,7 +18,7 @@ const SearchBar = () => {
           <div className="relative">
             <input
               type="input"
-              className="block p-4 pl-6 w-full text-sm text-gray-900 bg-gray-50 rounded-full border border-gray-300 focus:border-mYellow "
+              className="block py-4 pl-8 w-full text-base text-gray-900 bg-gray-50 rounded-full border border-gray-300 focus:border-mYellow"
               placeholder="검색어를 입력하세요"
               onChange={onChangeHandler}
               required
