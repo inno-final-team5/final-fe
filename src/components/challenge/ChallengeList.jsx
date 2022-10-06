@@ -2,6 +2,7 @@ import tw from "tailwind-styled-components";
 import ChallengeItem from "components/challenge/ChallengeItem";
 import { useQuery } from "react-query";
 import { getChallenges } from "apis/challengeApi";
+import Spinner from "components/common/Spinner";
 
 const ChallengeList = () => {
   const {
@@ -14,7 +15,7 @@ const ChallengeList = () => {
   let content;
 
   if (isLoading) {
-    content = <p>Loading</p>;
+    return <Spinner />;
   } else if (isError) {
     content = <p>{error.message}</p>;
   } else {

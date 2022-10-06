@@ -15,7 +15,7 @@ const TableItem = ({ post }) => {
           {post.postTitle}
         </Link>
       </td>
-      <td className="py-4 px-6 w-5">{post.nickname}</td>
+      <td className="py-4 px-6 w-5 truncate">{post.nickname}</td>
       <td className="py-4 px-6 w-5">
         {new Date(post.createdAt).toLocaleDateString("ko-KR")}
       </td>

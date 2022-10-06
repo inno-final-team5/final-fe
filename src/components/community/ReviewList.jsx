@@ -1,17 +1,12 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 
-import PageButton from "./PageButton";
 import TableHead from "./TableHead";
 import TableItem from "./TableItem";
 
-import {
-  BsChevronDoubleLeft,
-  BsChevronLeft,
-  BsChevronRight,
-  BsChevronDoubleRight,
-} from "react-icons/bs";
-import ArrowButton from "./ArrowButton";
+import Spinner from "components/common/Spinner";
+import WriteBox from "./WriteBox";
+import Pagination from "components/common/pagination/Pagination";
 
 const ReviewList = ({ queryFn }) => {
   const postsPerPage = 10;
@@ -20,11 +15,7 @@ const ReviewList = ({ queryFn }) => {
   const { isLoading, isError, error, data: posts } = useQuery("posts", queryFn);
 
   if (isLoading) {
-    return (
-      <div>
-        <p>Loading...</p>
-      </div>
-    );
+    return <Spinner />;
   }
 
   if (isError) {
@@ -50,48 +41,20 @@ const ReviewList = ({ queryFn }) => {
     .fill()
     .map((_, index) => index + 1);
 
-  const firstPage = () => setPage(1);
-  const PrevPage = () => setPage(page - 1);
-  const NextPage = () => setPage(page + 1);
-
-  const lastPage = () => setPage(totalPages);
-
-  const Pagination = (
-    <nav className="flex items-center bg-mBlack border-t-2 border-mGray border-solid">
-      <ArrowButton
-        onClick={firstPage}
-        disabled={page === 1}
-        icon={<BsChevronDoubleLeft />}
-      />
-      <ArrowButton
-        onClick={PrevPage}
-        disabled={page === 1}
-        icon={<BsChevronLeft />}
-      ></ArrowButton>
-      {pagesArray.map((pg) => (
-        <PageButton key={pg} page={pg} setPage={setPage} />
-      ))}
-      <ArrowButton
-        onClick={NextPage}
-        disabled={page === totalPages}
-        icon={<BsChevronRight />}
-      />
-      <ArrowButton
-        onClick={lastPage}
-        disabled={page === totalPages}
-        icon={<BsChevronDoubleRight />}
-      />
-    </nav>
-  );
-
   return (
-    <div className=" bg-mGray p-4 rounded-sm">
-      <div className="shadow-md sm:rounded-lg m-4 mt-6">
-        <table className="w-full bg-mBlack text-mWhite text-left border-collapse table-fixed">
-          <TableHead />
-          <tbody>{content}</tbody>
-        </table>
-        {Pagination}
+    <div className="shadow-md m-4 mt-6">
+      <table className="w-full bg-mBlack text-mWhite text-left border-collapse table-fixed rounded-t-xl">
+        <TableHead />
+        <tbody>{content}</tbody>
+      </table>
+      <div className="flex justify-between bg-mBlack border-t-2 border-mGray border-solid rounded-b-xl">
+        <Pagination
+          page={page}
+          setPage={setPage}
+          totalPages={totalPages}
+          pagesArray={pagesArray}
+        />
+        <WriteBox />
       </div>
     </div>
   );

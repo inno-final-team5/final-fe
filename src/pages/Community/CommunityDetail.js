@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { getPostDetail } from "apis/postApi";
 import { useParams } from "react-router-dom";
 import Profile from "components/common/Profile";
+import Spinner from "components/common/Spinner";
 
 const CommunityDetail = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const CommunityDetail = () => {
   } = useQuery(["post", id], () => getPostDetail(id));
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (isError) {

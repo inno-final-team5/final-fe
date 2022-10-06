@@ -54,14 +54,14 @@ const MyPage = () => {
 };
 
 const MyPageContainer = tw.div`
-mt-4
+mt-4 
 `;
 const MyPageSidebarContainer = tw.div`
 bg-mBlack md:block hidden md:fixed
 `;
 
 const MyPageContentContainer = tw.div`
-bg-mBlack rounded-sm md:pl-56 h-screen
+bg-mBlack rounded-xl md:pl-56 h-full
 `;
 
 export default MyPage;
