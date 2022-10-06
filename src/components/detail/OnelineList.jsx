@@ -4,16 +4,15 @@ import { useQuery } from "react-query";
 import Oneline from "./Oneline";
 import { api } from "shared/api";
 import { useParams } from "react-router-dom";
-import OnelineForm from "./OnelineForm";
 
 function OnelineList() {
   const params = useParams();
   const id = params.id;
 
+  /**한줄평 리스트 불러오기 */
   const getOnelineList = () => {
     return api.get(`/movie/${id}/one-line-review`);
   };
-
   const onelineQuery = useQuery("onelineList", getOnelineList, {
     onSuccess: (data) => {},
   });

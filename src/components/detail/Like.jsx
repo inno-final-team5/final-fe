@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { api } from "shared/api";
 import { useParams } from "react-router-dom";
 import { RiHeartAddLine } from "react-icons/ri";
 import { ImHeart } from "react-icons/im";
-import Unlike from "./Unlike";
-import Spinner from "components/common/Spinner";
 
 const Like = () => {
   const params = useParams();
@@ -17,22 +15,22 @@ const Like = () => {
 
   const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
-
   const headers = {
     Authorization: accessToken,
     "refresh-token": refreshToken,
   };
-  const queryClient = useQueryClient();
+
+  /**영화 즐겨찾기 추가 */
   const addMylike = async (data) => {
     return await api.post(`/auth/movie/favorite`, data, {
       headers: headers,
     });
   };
-  const { mutate, isLoading } = useMutation(addMylike, {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation(addMylike, {
     onSuccess: (data) => {
       setSuccess(data.data.data);
       queryClient.invalidateQueries("myMovieList");
-      console.log(data, "즐찾추가됨");
     },
     onError: (error) => {
       console.log(error);

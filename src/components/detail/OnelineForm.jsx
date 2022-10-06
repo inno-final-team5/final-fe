@@ -1,19 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
-import { FaStar, FaThumbsUp } from "react-icons/fa";
+import React, { useState, useRef } from "react";
+import { FaStar } from "react-icons/fa";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import styled from "styled-components";
-import axios from "axios";
 import { api } from "shared/api";
 import { useParams } from "react-router-dom";
-import { BsTrash } from "react-icons/bs";
-import { TiPencil } from "react-icons/ti";
 import MyOneline from "./MyOneline";
 
 const OnelineForm = () => {
   const params = useParams();
   const id = params.id;
   const [allmyline, setAllmyline] = useState([]);
-  const nickname = localStorage.getItem("nickname");
   const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
   const headers = {
@@ -21,6 +17,7 @@ const OnelineForm = () => {
     "refresh-token": refreshToken,
   };
 
+  /* 별점 추가 */
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const array = [0, 1, 2, 3, 4];
   const handleStarClick = (index) => {
@@ -30,50 +27,54 @@ const OnelineForm = () => {
     }
     setClicked(clickStates);
   };
-  // const [isEdit, setIsEdit] = useState(false);
-  // const [editComment, setEditComment] = useState("");
+  let score = clicked.filter(Boolean).length;
 
   const title = params.title;
   const poster = params.poster;
   const poster_path = "/" + poster + ".jpg";
 
-  let score = clicked.filter(Boolean).length;
-
   const myOneline = useRef("");
 
+  /**한줄평 추가 */
   const addOneline = (data) => {
-    console.log(data);
-    return api.post(`/auth/movie/one-line-review`, data, {
-      headers: headers,
-    });
+    if (data.oneLineReviewContent == 0) {
+      alert("한줄평을 모두 입력해주세요");
+      return;
+    } else if (data.oneLineReviewStar == 0) {
+      alert("별점을 입력해주세요");
+      return;
+    } else {
+      return api.post(`/auth/movie/one-line-review`, data, {
+        headers: headers,
+      });
+    }
   };
-
   const queryClient = useQueryClient();
-
-  const { mutate, isLoading } = useMutation(addOneline, {
+  const { mutate } = useMutation(addOneline, {
     onSuccess: (data) => {
-      //내 댓글을 리스트에 추가해주면 ok
       queryClient.invalidateQueries("onelineList");
       queryClient.invalidateQueries("myOneline");
-      console.log(data);
     },
     onError: (error) => {
       console.log(error);
     },
   });
 
+  /**내가 작성한 한줄평 불러오기 */
   const getMyOneline = async () => {
     return await api.get(`/auth/movie/one-line-review`, {
       headers: headers,
     });
   };
-
   const myMovieQuery = useQuery("myOneline", getMyOneline, {
     onSuccess: (data) => {
       setAllmyline(data.data.data);
     },
+    onError: (error) => {
+      console.log(error);
+    },
   });
-
+  //작성한 한줄평과 영화가 맞는지 확인
   let res = allmyline.filter((ele) => ele.movieId == id);
 
   return (

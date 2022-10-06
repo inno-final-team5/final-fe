@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { RiHeartAddLine } from "react-icons/ri";
 import Spinner from "components/common/Spinner";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 import { api } from "shared/api";
 import { useParams, Link } from "react-router-dom";
 import Like from "./Like";
@@ -10,7 +9,6 @@ import Unlike from "./Unlike";
 const MovieSum = () => {
   const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
-
   const headers = {
     Authorization: accessToken,
     "refresh-token": refreshToken,
@@ -20,6 +18,7 @@ const MovieSum = () => {
   const params = useParams();
   const id = params.id;
 
+  /**영화정보 불러오기 */
   const getMovieSum = async () => {
     return await api.get(`/movie/detail/${id}`);
   };
@@ -29,6 +28,7 @@ const MovieSum = () => {
     },
   });
 
+  /**내가 즐겨찾기한 영화 불러오기 */
   const getMyMovie = async () => {
     return await api.get(`/auth/movie/favorites`, {
       headers: headers,
@@ -39,7 +39,7 @@ const MovieSum = () => {
       setMyFav(data.data.data);
     },
   });
-  //이 배열이 있으면 이 영화랑 맞는 즐겨찾기 결과만 보내줌
+  //즐겨찾기 상태유지 위해 내가 즐겨찾기한 영화와 현재 영화 일치하는 데이터 찾기
   let res = myFav.filter((ele) => ele.movieId == id);
 
   if (movieQuery.isLoading || myMovieQuery.isLoading) {
@@ -66,9 +66,7 @@ const MovieSum = () => {
                 </>
               )}
             </div>
-
             <p className="mb-8 text-white leading-relaxed">{movieQuery?.data.data.data.overview}</p>
-
             <div className="flex lg:flex-row md:flex-row mt-16">
               {movieQuery?.data.data.data.genres.map((movie) => (
                 <Link to={`/genre/${movie.name}`} key={movie.id}>

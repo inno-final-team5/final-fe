@@ -1,25 +1,43 @@
 import React, { useState, useRef } from "react";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { api } from "shared/api";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
-import { FaThumbsUp } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
 import { TiPencil } from "react-icons/ti";
 import { useParams } from "react-router-dom";
+import { IoMdArrowBack } from "react-icons/io";
+import Spinner from "components/common/Spinner";
 
 const MyOneline = ({ res }) => {
   //console.log(res[0],"내가 작성한 한줄평");
   const params = useParams();
   const myOneline = useRef("");
   const id = res[0].oneLineReviewId;
-
+  const refreshToken = localStorage.getItem("refreshToken");
+  const accessToken = localStorage.getItem("accessToken");
+  const headers = {
+    Authorization: accessToken,
+    "refresh-token": refreshToken,
+  };
   const title = params.title;
   const poster = params.poster;
   const poster_path = "/" + poster + ".jpg";
-
   const [isEditMode, setIsEditMode] = useState(false);
 
+  /* 별점 추가 */
+  const [clicked, setClicked] = useState([false, false, false, false, false]);
+  const array = [0, 1, 2, 3, 4];
+  const handleStarClick = (index) => {
+    let clickStates = [...clicked];
+    for (let i = 0; i < 5; i++) {
+      clickStates[i] = i <= index ? true : false;
+    }
+    setClicked(clickStates);
+  };
+  let score = clicked.filter(Boolean).length;
+
+  /**별점 설정 */
   const starRating = (rating) => {
     const star = [];
     for (let i = 0; i < 5; i++) {
@@ -32,27 +50,17 @@ const MyOneline = ({ res }) => {
     return star;
   };
 
-  const refreshToken = localStorage.getItem("refreshToken");
-  const accessToken = localStorage.getItem("accessToken");
-  const headers = {
-    Authorization: accessToken,
-    "refresh-token": refreshToken,
-  };
-
-  const queryClient = useQueryClient();
-
   /**한줄평 삭제 */
   const deleteMyline = async () => {
     return await api.delete(`/auth/movie/${id}`, {
       headers: headers,
     });
   };
-
-  const { mutate, isLoading } = useMutation(deleteMyline, {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation(deleteMyline, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("onelineList");
       queryClient.invalidateQueries("myOneline");
-      console.log(data, "삭제데이터");
     },
     onError: (error) => {
       console.log(error, "에러");
@@ -61,11 +69,18 @@ const MyOneline = ({ res }) => {
 
   /**한줄평 수정 */
   const editMyline = async (data) => {
-    return await api.put(`/auth/movie/${id}`, data, {
-      headers: headers,
-    });
+    if (data.oneLineReviewContent == 0) {
+      alert("한줄평을 입력해주세요");
+      return;
+    } else if (data.oneLineReviewStar == 0) {
+      alert("별점을 입력해주세요");
+      return;
+    } else {
+      return await api.put(`/auth/movie/${id}`, data, {
+        headers: headers,
+      });
+    }
   };
-
   const editBtnHandler = useMutation(editMyline, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("onelineList");
@@ -87,7 +102,7 @@ const MyOneline = ({ res }) => {
                 <h1 className="p-2 md:text-xl font-medium title-font md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
               </div>
               <div className="flex md:w-1/2 2xl:w-full xl:w-full md:w-full space-x-2">
-                <Stars className="mt-2 ml-5">{starRating(res[0].oneLineReviewStar)}</Stars>
+                <MyStars className="mt-2 ml-5">{starRating(res[0].oneLineReviewStar)}</MyStars>
                 <div className="2xl:w-full md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
                   <input className="pl-2 pt-2 text-xl w-full h-10 bg-gray-400 rounded-xl" value={res[0].oneLineReviewContent} disabled />
                 </div>
@@ -98,14 +113,14 @@ const MyOneline = ({ res }) => {
                       setIsEditMode(true);
                     }}
                   >
-                    <TiPencil size="20" />
+                    <TiPencil size="22" />
                   </button>
                   <button className="2xl:px-6 xl:px-6 lg:px-6 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream ">
                     <BsTrash
                       onClick={() => {
                         mutate();
                       }}
-                      size="20"
+                      size="22"
                     />
                   </button>
                 </div>
@@ -121,7 +136,11 @@ const MyOneline = ({ res }) => {
                 <h1 className="p-2 md:text-xl font-medium title-font md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
               </div>
               <div className="flex md:w-1/2 2xl:w-full xl:w-full md:w-full space-x-2">
-                <Stars className="mt-2 ml-5">{starRating(res[0].oneLineReviewStar)}</Stars>
+                <Stars className="mt-2 ml-5">
+                  {array.map((el, idx) => {
+                    return <FaStar key={idx} size="24" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
+                  })}
+                </Stars>
                 <div className="2xl:w-full md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
                   <input className="pl-2 pt-2 text-xl w-full h-10 rounded-xl" autoFocus defaultValue={res[0].oneLineReviewContent} ref={myOneline} />
                 </div>
@@ -132,16 +151,16 @@ const MyOneline = ({ res }) => {
                       setIsEditMode(false);
                     }}
                   >
-                    뒤로
+                    <IoMdArrowBack size="22" />
                   </button>
                   <button className="2xl:px-6 xl:px-6 lg:px-6 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream ">
                     <TiPencil
-                      size="20"
+                      size="22"
                       onClick={() => {
                         const data = {
                           movieId: res[0].movieId,
                           oneLineReviewContent: myOneline.current.value,
-                          oneLineReviewStar: res[0].oneLineReviewStar,
+                          oneLineReviewStar: score,
                           posterPath: poster_path,
                           title: title,
                         };
@@ -162,6 +181,23 @@ const MyOneline = ({ res }) => {
 export default MyOneline;
 
 const Stars = styled.div`
+  display: flex;
+  .yellowStar {
+    color: #fcc419;
+  }
+  & svg {
+    color: gray;
+    cursor: pointer;
+  }
+  :hover svg {
+    color: #fcc419;
+  }
+  & svg:hover ~ svg {
+    color: gray;
+  }
+`;
+
+const MyStars = styled.div`
   display: flex;
   .yellowStar {
     color: #fcc419;
