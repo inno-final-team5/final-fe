@@ -15,3 +15,8 @@
 
 - 배지 시스템
 - 알림 시스템
+
+
+## 미리보기
+
+![방구석평론가](https://user-images.githubusercontent.com/83802168/194562175-ebba120e-5cd7-4620-8e30-966bcf364a34.png)
