@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { api } from "shared/api";
 import { useParams, Link } from "react-router-dom";
 import Like from "./Like";
-import Unlike from "./Unlike";
+import Dislike from "./Dislike";
 
 const MovieSum = () => {
   const refreshToken = localStorage.getItem("refreshToken");
@@ -58,7 +58,7 @@ const MovieSum = () => {
               <h1 className="title-font sm:text-4xl text-white text-3xl mb-4 font-medium">{movieQuery?.data.data.data.title}</h1>
               {res?.length ? (
                 <>
-                  <Unlike res={res} />
+                  <Dislike res={res} />
                 </>
               ) : (
                 <>
