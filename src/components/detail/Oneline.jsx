@@ -26,23 +26,20 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
   };
 
   /**내가 좋아요한 댓글 불러오기 */
-  // const likeReviewId = reviewId;
-  // const [myLike, setMyLike] = useState([]);
-  // const getMyLikeComment = async () => {
-  //   return await api.get(`/auth/movie/like`, {
-  //     headers: headers,
-  //   });
-  // };
-  // const myLikeCommnetQuery = useQuery("myLikeCommentList", getMyLikeComment, {
-  //   onSuccess: (data) => {
-  //     setMyLike(data.data.data);
-  //   },
-  // });
+  const likeReviewId = reviewId;
+  const [myLike, setMyLike] = useState([]);
+  const getMyLikeComment = async () => {
+    return await api.get(`/auth/movie/like`, {
+      headers: headers,
+    });
+  };
+  const myLikeCommnetQuery = useQuery("myLikeCommentList", getMyLikeComment, {
+    onSuccess: (data) => {
+      setMyLike(data.data.data);
+    },
+  });
   // //좋아요 상태유지 위해 내가 좋아요한 댓글과 현재 댓글들과 일치하는 데이터 찾기
-  // console.log(likeReviewId);
-  // console.log(myLike, "마이라이크");
-  // let res = myLike.filter((ele) => ele.oneLineReviewId == likeReviewId);
-  // console.log(res, "내가 좋아요 누른 댓과 일치하는 데이터");
+  let res = myLike.filter((ele) => ele.oneLineReviewId == likeReviewId);
 
   /**한줄평 좋아요 추가 */
   const addCommentlike = async (data) => {
@@ -62,20 +59,20 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
   });
 
   /**한줄평 좋아요 삭제 */
-  // const deleteCommentlike = async (data) => {
-  //   return await api.delete(`/auth/movie/${reviewId}/like`, data, {
-  //     headers: headers,
-  //   });
-  // };
-  // const deleteLike = useMutation(deleteCommentlike, {
-  //   onSuccess: (data) => {
-  //     queryClient.invalidateQueries("onelineList");
-  //     queryClient.invalidateQueries("myLikeCommentList");
-  //   },
-  //   onError: (error) => {
-  //     console.log(error);
-  //   },
-  // }).mutate;
+  const deleteCommentlike = async (data) => {
+    return await api.delete(`/auth/movie/${reviewId}/like`, {
+      headers: headers,
+    });
+  };
+  const deleteLike = useMutation(deleteCommentlike, {
+    onSuccess: (data) => {
+      queryClient.invalidateQueries("onelineList");
+      queryClient.invalidateQueries("myLikeCommentList");
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  }).mutate;
 
   return (
     <div>
@@ -95,7 +92,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
         </span>
         <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
           <span className="text-mYellow hover:text-mCream items-center">
-            {/* {res?.length ? (
+            {res?.length ? (
               <button
                 onClick={() => {
                   deleteLike();
@@ -113,16 +110,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
                 <FaRegThumbsUp size={30} />
                 <p className="mt-2 text-xl hover:text-mCream">{likeNum}</p>
               </button>
-            )} */}
-
-            <button
-              onClick={() => {
-                mutate();
-              }}
-            >
-              <FaRegThumbsUp size={30} />
-              <p className="mt-2 text-xl hover:text-mCream">{likeNum}</p>
-            </button>
+            )}
           </span>
         </span>
       </div>

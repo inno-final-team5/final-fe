@@ -19,6 +19,9 @@ function OnelineList() {
   if (onelineQuery.isLoading) {
     return <Spinner />;
   }
+  if (onelineQuery.data.data.data == 0) {
+    return "";
+  }
 
   return (
     <div className="mt-6 pb-6 ">

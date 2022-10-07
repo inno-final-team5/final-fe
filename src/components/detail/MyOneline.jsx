@@ -61,6 +61,7 @@ const MyOneline = ({ res }) => {
     onSuccess: (data) => {
       queryClient.invalidateQueries("onelineList");
       queryClient.invalidateQueries("myOneline");
+      alert("삭제되었습니다.");
     },
     onError: (error) => {
       console.log(error, "에러");
@@ -85,6 +86,7 @@ const MyOneline = ({ res }) => {
     onSuccess: (data) => {
       queryClient.invalidateQueries("onelineList");
       queryClient.invalidateQueries("myOneline");
+      alert("한줄평이 수정되었습니다.");
       setIsEditMode(false);
     },
     onError: (error) => {
