@@ -26,6 +26,7 @@ const MyOneline = ({ res }) => {
   const [isEditMode, setIsEditMode] = useState(false);
 
   /* 별점 추가 */
+  const beforeRating = res[0].oneLineReviewStar;
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const array = [0, 1, 2, 3, 4];
   const handleStarClick = (index) => {
@@ -61,6 +62,7 @@ const MyOneline = ({ res }) => {
     onSuccess: (data) => {
       queryClient.invalidateQueries("onelineList");
       queryClient.invalidateQueries("myOneline");
+      alert("삭제되었습니다.");
     },
     onError: (error) => {
       console.log(error, "에러");
@@ -85,6 +87,7 @@ const MyOneline = ({ res }) => {
     onSuccess: (data) => {
       queryClient.invalidateQueries("onelineList");
       queryClient.invalidateQueries("myOneline");
+      alert("한줄평이 수정되었습니다.");
       setIsEditMode(false);
     },
     onError: (error) => {
