@@ -11,10 +11,7 @@ const Footer = () => {
         Genre icons created by Freepik - Flaticon
       </a>
 
-      <a
-        href="https://developers.themoviedb.org/3/getting-started/introduction"
-        title="TMDB API"
-      >
+      <a href="https://www.themoviedb.org/" title="TMDB API">
         Movie Data From TMDB API
       </a>
     </TwFooter>
