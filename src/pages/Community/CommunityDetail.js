@@ -3,18 +3,13 @@ import tw from "tailwind-styled-components";
 import { FaThumbsUp, FaRegThumbsUp, FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { useQueryClient, useMutation, useQuery } from "react-query";
-import {
-  getPostDetail,
-  deletePost,
-  updatePost,
-  addLike,
-  deleteLike,
-} from "apis/postApi";
+import { getPostDetail, deletePost, updatePost } from "apis/postApi";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import Profile from "components/common/Profile";
 import Spinner from "components/common/Spinner";
 import { api } from "shared/api";
+import Swal from "sweetalert2";
 
 const CommunityDetail = () => {
   const { id } = useParams();
@@ -100,6 +95,15 @@ const CommunityDetail = () => {
     },
   }).mutate;
 
+  const checkLogin = () => {
+    if (localStorage.getItem("accessToken") === null) {
+      Swal.fire("로그인이 필요합니다!");
+    } else {
+      mutate();
+      setLike(true);
+    }
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -141,8 +145,7 @@ const CommunityDetail = () => {
                 <DetailLikeContainer>
                   <button
                     onClick={() => {
-                      mutate();
-                      setLike(true);
+                      checkLogin();
                     }}
                   >
                     <FaRegThumbsUp className="text-mYellow hover:text-mCream" />
