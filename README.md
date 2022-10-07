@@ -2,6 +2,18 @@
 
 > 누구나 평론가가 되어 영화에 대한 정보를 마음껏 공유하는 **영화 커뮤니티** 입니다.
 
+## 프로젝트 주소
+* SA : https://www.notion.so/woongsnote/aacf5be13a1242b29f4e3d215f0f516f
+* 주소 : http://moviereviewroom.s3-website.ap-northeast-2.amazonaws.com/
+
+## 프로젝트 기간
+2022.09.16 - 2022.10.28
+
+## 팀원
+FE : 문지웅, 유민아, 전혜림, 장소정
+
+BE : 전선향, 유연정, 정수민
+
 ## 주요 기능
 
 - 회원가입 및 로그인
