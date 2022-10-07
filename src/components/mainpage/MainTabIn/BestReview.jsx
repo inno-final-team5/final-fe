@@ -64,14 +64,14 @@ const BestReview = () => {
                 </div>
               </div>
 
-              <div className="flex justify-between items-center mt-3">
+              <div className="flex justify-between items-center mt-2">
                 <div className="flex grow w-4/5 ">
                   {/* 별점 */}
-                  <div className="flex text-mYellow w-28">
+                  <div className="flex text-mYellow w-28 pt-1">
                     {starIcon(i.oneLineReviewStar)}
                   </div>
                   {/* 한줄평 내용 */}
-                  <div className="truncate w-10/12">
+                  <div className="truncate w-10/12 py-1">
                     <span className="pl-2 pr-16 ">
                       {i.oneLineReviewContent}
                     </span>
