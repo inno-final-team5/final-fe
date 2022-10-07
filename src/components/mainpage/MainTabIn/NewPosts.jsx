@@ -30,25 +30,31 @@ const NewPosts = () => {
               navigate(`/community/detail/${i.postId}`);
               window.scrollTo(0, 0);
             }}
-            className="bg-mWhite flx-col md:flex  md:flex-nowrap px-5 py-3 rounded-lg mb-5 last:mb-0 cursor-pointer hover:bg-neutral-300"
+            className="bg-mWhite flx-col md:flex  md:flex-nowrap px-5 py-3 rounded-lg mb-5 last:mb-0 cursor-pointer hover:bg-neutral-300 "
           >
             {/* 게시글 카테고리 이름 */}
-            <div className="flex justify-center w-16 text-sm bg-mGray py-1 mr-10 rounded-lg text-mCream">{i.postCategory}</div>
+            <div className="flex justify-center w-16 text-sm bg-mGray py-1 mr-10 rounded-lg text-mCream ">
+              {i.postCategory}
+            </div>
             {/* 뱃지와 닉네임 */}
-            <div className="mr-10 my-2 md:my-0">
+            <div className="mr-4 my-2 md:my-0">
               <div className="flex align-center">
-                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="profile" className="w-6 mr-3" />
-                <div className="pr-5 w-fit md:w-40 flex text-sm text-mGray mt-1">{i.nickname}</div>
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                  alt="profile"
+                  className="w-6 mr-3"
+                />
+                <div className="w-fit md:w-40 flex text-sm mt-1 text-mGray">
+                  {i.nickname}
+                </div>
               </div>
             </div>
 
             {/* 게시글 제목 */}
-            <div className=" truncate leading-normal grow mt-1">
-              {i.postTitle}
-            </div>
+            <div className=" truncate leading-normal grow">{i.postTitle}</div>
 
             {/* 게시글 작성일 */}
-            <div className="flex justify-end text-sm md:w-24  mt-1 w-full">
+            <div className="flex justify-end text-sm md:w-24 mt-1 w-full">
               {/* 작성일+시간중에 작성일만 표시하기 */}
               {i.createdAt.split("T")[0]}
             </div>

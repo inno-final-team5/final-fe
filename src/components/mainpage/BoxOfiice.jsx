@@ -44,7 +44,6 @@ const BoxOfiice = () => {
   /**BoxOffice 데이터 불러오기*/
   const getBoxOfficeWithApi = async () => {
     const { data } = await api.get("main/boxoffice");
-    console.log(data);
     return data;
   };
   /**테이터가 onSuccess일 때 가져오기 */
