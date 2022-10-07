@@ -50,13 +50,27 @@ export const deletePost = async ({ id }) => {
 };
 
 export const updatePost = async (post) => {
-  return await api.patch(`/auth/post/${post.postId}`, post);
-};
-
-export const likePost = async (id) => {
-  return await api.post(`/auth/post/like/${id}`, {
+  return await api.put(`/auth/post/${post.id}`, post, {
     headers: {
       authorization: localStorage.getItem("accessToken"),
+      "refresh-token": localStorage.getItem("refreshToken"),
+    },
+  });
+};
+
+export const addLike = async ({ id }) => {
+  return await api.post(`/auth/post/like/${id}`, {
+    headers: {
+      Authorization: localStorage.getItem("accessToken"),
+      "refresh-token": localStorage.getItem("refreshToken"),
+    },
+  });
+};
+
+export const deleteLike = async ({ id }) => {
+  return await api.delete(`/auth/post/like/${id}`, {
+    headers: {
+      Authorization: localStorage.getItem("accessToken"),
       "refresh-token": localStorage.getItem("refreshToken"),
     },
   });
