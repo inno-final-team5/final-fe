@@ -1,17 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const BoxOfficeMovie = ({ rank, id, title, poster_path }) => {
+const BoxOfficeMovie = ({ ranking, movieId, title, poster_path }) => {
   const ImgSrc = `https://image.tmdb.org/t/p/w342/${poster_path}`;
 
   return (
     <div className="relative h-96 cursor-pointer">
       {/* 영화 순위 */}
       <div className="absolute top-0 left-4 mb-1 text-7xl font-bold text-mCream z-10">
-        {rank}
+        {ranking}
       </div>
 
-      <Link to={`/detail/${id}/${title}${poster_path.split(".")[0]}`}>
+      <Link to={`/detail/${movieId}/${title}${poster_path.split(".")[0]}`}>
         {/* 영화 포스터 */}
         <img
           src={ImgSrc}

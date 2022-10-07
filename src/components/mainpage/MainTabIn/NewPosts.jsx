@@ -8,7 +8,6 @@ const NewPosts = () => {
   const navigate = useNavigate();
   /**Recent Post 데이터 불러오기*/
   const getRecentPosteWithApi = async () => {
-    // const { data } = await api.get("/post");
     const { data } = await api.get("/main/post");
     return data;
   };
