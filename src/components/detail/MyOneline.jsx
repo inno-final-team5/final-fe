@@ -26,6 +26,7 @@ const MyOneline = ({ res }) => {
   const [isEditMode, setIsEditMode] = useState(false);
 
   /* 별점 추가 */
+  const beforeRating = res[0].oneLineReviewStar;
   const [clicked, setClicked] = useState([false, false, false, false, false]);
   const array = [0, 1, 2, 3, 4];
   const handleStarClick = (index) => {
