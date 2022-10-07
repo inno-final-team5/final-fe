@@ -1,6 +1,6 @@
 import React from "react";
 import tw from "tailwind-styled-components";
-import { FaThumbsUp, FaEdit, FaTrash } from "react-icons/fa";
+import { FaThumbsUp, FaRegThumbsUp, FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { useQueryClient, useMutation, useQuery } from "react-query";
 import {
@@ -133,7 +133,7 @@ const CommunityDetail = () => {
                       setLike(false);
                     }}
                   >
-                    <FaThumbsUp className="text-mYellow" />
+                    <FaThumbsUp className="text-mYellow hover:text-mCream" />
                   </button>
                   <DetailLikeCount> {postData.likeNum}</DetailLikeCount>
                 </DetailLikeContainer>
@@ -145,7 +145,7 @@ const CommunityDetail = () => {
                       setLike(true);
                     }}
                   >
-                    <FaThumbsUp className="text-mCream" />
+                    <FaRegThumbsUp className="text-mYellow hover:text-mCream" />
                   </button>
                   <DetailLikeCount> {postData.likeNum}</DetailLikeCount>
                 </DetailLikeContainer>
