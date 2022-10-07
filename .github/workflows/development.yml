@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Check out source code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
 
       - name: Cache node modules # node modules 캐싱
         uses: actions/cache@v1
