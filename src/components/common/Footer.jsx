@@ -10,6 +10,13 @@ const Footer = () => {
       <a href="https://www.flaticon.com/free-icons/genre" title="genre icons">
         Genre icons created by Freepik - Flaticon
       </a>
+
+      <a
+        href="https://developers.themoviedb.org/3/getting-started/introduction"
+        title="TMDB API"
+      >
+        Movie Data From TMDB API
+      </a>
     </TwFooter>
   );
 };
