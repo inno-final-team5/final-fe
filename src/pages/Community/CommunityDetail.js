@@ -153,11 +153,19 @@ const CommunityDetail = () => {
 
               {postData.nickname === nickname ? (
                 <DetailControlContainer>
-                  <button onClick={() => deletePostMutation.mutate({ id })}>
-                    <FaTrash />
+                  <button
+                    className="rounded-lg shadow-lg bg-mCream hover:bg-mYellow p-2 hover:font-bold m-2 px-4 flex text-md text-mBlack"
+                    onClick={() => deletePostMutation.mutate({ id })}
+                  >
+                    <FaTrash className="mr-1" />
+                    삭제
                   </button>
-                  <button onClick={() => setUpdatePostMode(true)}>
-                    <FaEdit />
+                  <button
+                    className="rounded-lg shadow-lg bg-mCream hover:bg-mYellow p-2 hover:font-bold m-2 px-4 flex text-md text-mBlack"
+                    onClick={() => setUpdatePostMode(true)}
+                  >
+                    <FaEdit className="mr-1" />
+                    수정
                   </button>
                 </DetailControlContainer>
               ) : (
@@ -191,11 +199,19 @@ const CommunityDetail = () => {
               </DetailContent>
               {postData.nickname === nickname ? (
                 <DetailControlContainer>
-                  <button onClick={() => setUpdatePostMode(false)}>
-                    <AiOutlineClose />
+                  <button
+                    className="rounded-lg shadow-lg bg-mCream hover:bg-mYellow p-2 hover:font-bold m-2 px-4 flex text-md text-mBlack"
+                    onClick={() => setUpdatePostMode(false)}
+                  >
+                    <AiOutlineClose className="mr-1" />
+                    취소
                   </button>
-                  <button onClick={onSubmitHandler}>
-                    <AiOutlineCheck />
+                  <button
+                    className="rounded-lg shadow-lg bg-mCream hover:bg-mYellow p-2 hover:font-bold m-2 px-4 flex text-md text-mBlack"
+                    onClick={onSubmitHandler}
+                  >
+                    <AiOutlineCheck className="mr-1" />
+                    등록
                   </button>
                 </DetailControlContainer>
               ) : (
@@ -238,7 +254,7 @@ text-mYellow
 `;
 
 const DetailControlContainer = tw.div`
-flex justify-end gap-4 text-mWhite
+flex justify-end gap-2 text-mWhite
 `;
 
 export default CommunityDetail;
