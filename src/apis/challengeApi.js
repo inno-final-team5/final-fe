@@ -1,9 +1,13 @@
 import axios from "axios";
+import api from "shared/api";
 
 const challengeApi = axios.create({ baseURL: "http://localhost:3001" });
 
 export const getChallenges = async () => {
   const response = await challengeApi.get("/challenges");
+  // const response = await api.get(
+  //   `auth/badge`
+  // )
   return response.data;
 };
 

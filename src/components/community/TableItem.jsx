@@ -1,3 +1,4 @@
+import Profile from "components/common/Profile";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -15,7 +16,10 @@ const TableItem = ({ post }) => {
           {post.postTitle}
         </Link>
       </td>
-      <td className="py-4 px-3 whitespace-nowrap w-[400px]">{post.nickname}</td>
+      <td className="py-4 px-3 whitespace-nowrap w-[400px]">
+        <Profile />
+        {post.nickname}
+      </td>
       <td className="py-4 px-2 w-4">
         {new Date(post.createdAt).toLocaleDateString("ko-KR")}
       </td>

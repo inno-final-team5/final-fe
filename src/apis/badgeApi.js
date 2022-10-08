@@ -7,16 +7,12 @@ export const getMyBadges = async () => {
   return response.data;
 };
 
-// export const addChallenge = async (challenge) => {
-//   return await badgeApi.post("/challenges", challenge);
-// };
-
 export const updateMainBadge = async (badge) => {
   return await badgeApi.patch(`/badges/${badge.id}`, badge);
 };
 
-// export const deleteChallenge = async ({ id }) => {
-//   return await badgeApi.delete(`/challenges/${id}`, id);
-// };
+export const deleteMainBadge = async (badge) => {
+  return await badgeApi.delete(`/badges/${badge.id}`, badge);
+};
 
 export default badgeApi;
