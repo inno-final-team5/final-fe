@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import logo from "images/Logo.png";
+import kakao_login from "images/kakao_login.png";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUserDB } from "../../redux/modules/userSlice";
@@ -29,6 +30,11 @@ const LoginForm = () => {
     }
   };
 
+  const onKeyPress = (e) => {
+    if (e.key == "Enter") {
+      loginHandler();
+    }
+  };
   return (
     <div>
       <section className="text-gray-600 body-font relative ">
@@ -39,11 +45,11 @@ const LoginForm = () => {
             </div>
           </Link>
 
-          <div className="xl:w-1/2 lg:w-full md:w-full sm:w-full w-full mx-auto ">
+          <div className="xl:w-1/2 lg:w-2/3 md:w-full sm:w-full w-full mx-auto ">
             <div className="flex flex-wrap -m-2 mx-auto place-content-center ">
-              <div className="p-4 w-2/3 md:w-2/3">
+              <div className="p-4 w-2/3 xl:w-3/4 md:w-2/3">
                 <div className="relative  ">
-                  <label className="leading-7 text-sm text-mCream">아이디</label>
+                  <label className="leading-7 text-sm text-mCream">이메일</label>
                   <input
                     type="text"
                     id="name"
@@ -53,7 +59,7 @@ const LoginForm = () => {
                   />
                 </div>
               </div>
-              <div className="p-4 w-2/3 md:w-2/3">
+              <div className="p-4 w-2/3 xl:w-3/4 md:w-2/3">
                 <div className="relative">
                   <label className="leading-7 text-sm text-mCream">비밀번호</label>
                   <input
@@ -61,6 +67,7 @@ const LoginForm = () => {
                     ref={password_ref}
                     name="password"
                     autoComplete="on"
+                    onKeyPress={onKeyPress}
                     className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                 </div>
@@ -68,16 +75,14 @@ const LoginForm = () => {
               <div className="p-2 w-full">
                 <button
                   onClick={loginHandler}
-                  className="flex mx-auto rounded-lg bg-mYellow border-0 py-2 px-10 focus:outline-none hover:bg-mCream  text-lg"
+                  className="flex mx-auto md:mt-6 xl:w-1/3 md:w-1/3 sm:w-1/2 place-content-center rounded-lg bg-mYellow border-0 py-2 px-10 focus:outline-none hover:bg-mCream  text-lg"
                 >
                   로그인
                 </button>
               </div>
-              <div className="p-10 w-full">
-                <a href={KAKAO_AUTH_URL}>
-                  <button className="flex mx-auto rounded-lg bg-[#F1BF45] border-0 py-2 px-24 focus:outline-none hover:bg-mCream  text-lg">
-                    카카오로그인
-                  </button>
+              <div className="pt-10 pb-10 w-full">
+                <a href={KAKAO_AUTH_URL} className="">
+                  <img src={kakao_login} alt="카카오로그인" className="2xl:w-1/2 xl:w-2/3 md:w-1/2 sm:w-1/2 flex mx-auto"></img>
                 </a>
               </div>
 

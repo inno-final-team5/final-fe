@@ -27,8 +27,9 @@ const MyOneline = ({ res }) => {
 
   /* 별점 추가 */
   const beforeRating = res[0].oneLineReviewStar;
-  const [clicked, setClicked] = useState([false, false, false, false, false]);
+  const [clicked, setClicked] = useState([true, true, true, false, false]);
   const array = [0, 1, 2, 3, 4];
+
   const handleStarClick = (index) => {
     let clickStates = [...clicked];
     for (let i = 0; i < 5; i++) {
@@ -118,13 +119,13 @@ const MyOneline = ({ res }) => {
                   >
                     <TiPencil size="22" />
                   </button>
-                  <button className="2xl:px-6 xl:px-6 lg:px-6 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream ">
-                    <BsTrash
-                      onClick={() => {
-                        mutate();
-                      }}
-                      size="22"
-                    />
+                  <button
+                    onClick={() => {
+                      mutate();
+                    }}
+                    className="2xl:px-6 xl:px-6 lg:px-6 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
+                  >
+                    <BsTrash size="22" />
                   </button>
                 </div>
               </div>
@@ -156,20 +157,20 @@ const MyOneline = ({ res }) => {
                   >
                     <IoMdArrowBack size="22" />
                   </button>
-                  <button className="2xl:px-6 xl:px-6 lg:px-6 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream ">
-                    <TiPencil
-                      size="22"
-                      onClick={() => {
-                        const data = {
-                          movieId: res[0].movieId,
-                          oneLineReviewContent: myOneline.current.value,
-                          oneLineReviewStar: score,
-                          posterPath: poster_path,
-                          title: title,
-                        };
-                        editBtnHandler(data);
-                      }}
-                    />
+                  <button
+                    onClick={() => {
+                      const data = {
+                        movieId: res[0].movieId,
+                        oneLineReviewContent: myOneline.current.value,
+                        oneLineReviewStar: score,
+                        posterPath: poster_path,
+                        title: title,
+                      };
+                      editBtnHandler(data);
+                    }}
+                    className="2xl:px-6 xl:px-6 lg:px-6 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
+                  >
+                    <TiPencil size="22" />
                   </button>
                 </div>
               </div>
