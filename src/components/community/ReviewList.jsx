@@ -5,10 +5,15 @@ import TableHead from "./TableHead";
 import TableItem from "./TableItem";
 
 import Spinner from "components/common/Spinner";
-import WriteBox from "./WriteBox";
 import Pagination from "components/common/pagination/Pagination";
+import CommunityButton from "./CommunityButton";
+import { MdEdit } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ReviewList = ({ queryFn }) => {
+  const navigate = useNavigate();
+
   const postsPerPage = 10;
   const [page, setPage] = useState(1);
 
@@ -41,6 +46,14 @@ const ReviewList = ({ queryFn }) => {
     .fill()
     .map((_, index) => index + 1);
 
+  const goEdit = () => {
+    if (localStorage.getItem("accessToken") != null) {
+      navigate("/community/edit");
+    } else {
+      Swal.fire("로그인이 필요합니다!");
+    }
+  };
+
   return (
     <div className="shadow-md m-4 mt-6">
       <table className="w-full bg-mBlack text-mWhite text-left border-collapse table-fixed rounded-t-xl">
@@ -54,7 +67,10 @@ const ReviewList = ({ queryFn }) => {
           totalPages={totalPages}
           pagesArray={pagesArray}
         />
-        <WriteBox />
+        <CommunityButton onClickHandler={goEdit}>
+          <MdEdit className="mr-1" />
+          쓰기
+        </CommunityButton>
       </div>
     </div>
   );
