@@ -10,6 +10,8 @@ import Profile from "components/common/Profile";
 import Spinner from "components/common/Spinner";
 import { api } from "shared/api";
 import Swal from "sweetalert2";
+import CommunityButton from "components/community/CommunityButton";
+import { Toast } from "components/common/Toast";
 
 const CommunityDetail = () => {
   const { id } = useParams();
@@ -30,11 +32,23 @@ const CommunityDetail = () => {
     data: post,
   } = useQuery(["post", id], () => getPostDetail(id));
 
+  const onDeleteHandler = () => {
+    deletePostMutation.mutate({ id });
+  };
+
+  const onUpdateHandler = () => {
+    setUpdatePostMode(true);
+  };
+
+  const onCancelHandler = () => {
+    setUpdatePostMode(false);
+  };
+
   const deletePostMutation = useMutation(deletePost, {
     onSuccess: () => {
       queryClient.invalidateQueries("post");
+      Toast.fire({ icon: "success", title: "삭제되었습니다." });
       navigate("/community/all");
-      alert("삭제되었습니다.");
     },
     onError: () => {
       console.log(error);
@@ -45,7 +59,7 @@ const CommunityDetail = () => {
     onSuccess: () => {
       queryClient.invalidateQueries("post");
       setUpdatePostMode(false);
-      alert("수정되었습니다");
+      Toast.fire({ icon: "success", title: "수정되었습니다." });
     },
     onError: () => {
       console.log(error);
@@ -61,7 +75,7 @@ const CommunityDetail = () => {
     });
   };
 
-  const addReviewlike = async (data) => {
+  const addReviewLike = async (data) => {
     return await api.post(`/auth/post/like/${id}`, data, {
       headers: {
         Authorization: localStorage.getItem("accessToken"),
@@ -69,7 +83,7 @@ const CommunityDetail = () => {
       },
     });
   };
-  const { mutate } = useMutation(addReviewlike, {
+  const { mutate } = useMutation(addReviewLike, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("post");
     },
@@ -78,7 +92,7 @@ const CommunityDetail = () => {
     },
   });
 
-  const deleteReviewlike = async (data) => {
+  const deleteReviewLike = async (data) => {
     return await api.delete(`/auth/post/like/${id}`, {
       headers: {
         Authorization: localStorage.getItem("accessToken"),
@@ -86,7 +100,7 @@ const CommunityDetail = () => {
       },
     });
   };
-  const deleteLike = useMutation(deleteReviewlike, {
+  const deleteLike = useMutation(deleteReviewLike, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("post");
     },
@@ -156,20 +170,20 @@ const CommunityDetail = () => {
 
               {postData.nickname === nickname ? (
                 <DetailControlContainer>
-                  <button
-                    className="rounded-lg shadow-lg bg-mCream hover:bg-mYellow p-2 hover:font-bold m-2 px-4 flex text-md text-mBlack"
-                    onClick={() => deletePostMutation.mutate({ id })}
+                  <CommunityButton
+                    type="button"
+                    onClickHandler={onDeleteHandler}
                   >
                     <FaTrash className="mr-1" />
                     삭제
-                  </button>
-                  <button
-                    className="rounded-lg shadow-lg bg-mCream hover:bg-mYellow p-2 hover:font-bold m-2 px-4 flex text-md text-mBlack"
-                    onClick={() => setUpdatePostMode(true)}
+                  </CommunityButton>
+                  <CommunityButton
+                    type="button"
+                    onClickHandler={onUpdateHandler}
                   >
                     <FaEdit className="mr-1" />
                     수정
-                  </button>
+                  </CommunityButton>
                 </DetailControlContainer>
               ) : (
                 <></>
@@ -202,20 +216,20 @@ const CommunityDetail = () => {
               </DetailContent>
               {postData.nickname === nickname ? (
                 <DetailControlContainer>
-                  <button
-                    className="rounded-lg shadow-lg bg-mCream hover:bg-mYellow p-2 hover:font-bold m-2 px-4 flex text-md text-mBlack"
-                    onClick={() => setUpdatePostMode(false)}
+                  <CommunityButton
+                    type="button"
+                    onClickHandler={onCancelHandler}
                   >
                     <AiOutlineClose className="mr-1" />
                     취소
-                  </button>
-                  <button
-                    className="rounded-lg shadow-lg bg-mCream hover:bg-mYellow p-2 hover:font-bold m-2 px-4 flex text-md text-mBlack"
-                    onClick={onSubmitHandler}
+                  </CommunityButton>
+                  <CommunityButton
+                    type="button"
+                    onClickHandler={onSubmitHandler}
                   >
                     <AiOutlineCheck className="mr-1" />
                     등록
-                  </button>
+                  </CommunityButton>
                 </DetailControlContainer>
               ) : (
                 <></>
@@ -257,7 +271,7 @@ text-mYellow
 `;
 
 const DetailControlContainer = tw.div`
-flex justify-end gap-2 text-mWhite
+flex justify-end gap-2 text-mBlack
 `;
 
 export default CommunityDetail;
