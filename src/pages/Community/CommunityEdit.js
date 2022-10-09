@@ -3,6 +3,8 @@ import tw from "tailwind-styled-components";
 import { addPost } from "apis/postApi";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
+import CommunityButton from "components/community/CommunityButton";
+import { MdPostAdd } from "react-icons/md";
 
 const CommunityEdit = () => {
   const navigate = useNavigate();
@@ -102,13 +104,10 @@ const CommunityEdit = () => {
                   </div>
                 </div>
               </div>
-              <div className="px-4 py-3 bg-mWhite text-right sm:px-6">
-                <button
-                  type="submit"
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-mBlack bg-mYellow hover:bg-mCream "
-                >
-                  등록
-                </button>
+              <div className="px-4 py-1 bg-mWhite text-right sm:px-6 flex justify-end">
+                <CommunityButton type="submit">
+                  <MdPostAdd className="mr-1" /> 등록
+                </CommunityButton>
               </div>
             </div>
           </form>
