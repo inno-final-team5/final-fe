@@ -67,7 +67,7 @@ const ReviewList = ({ queryFn }) => {
           totalPages={totalPages}
           pagesArray={pagesArray}
         />
-        <CommunityButton onClickHandler={goEdit}>
+        <CommunityButton type="button" onClickHandler={goEdit}>
           <MdEdit className="mr-1" />
           쓰기
         </CommunityButton>
