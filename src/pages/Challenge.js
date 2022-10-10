@@ -10,8 +10,8 @@ const Challenge = () => {
     <Layout>
       <ChallengeContainer>
         <ChallengeHeader />
-        <ChallengeList />
-        {/* <ChallengeListT /> */}
+        {/* <ChallengeList /> */}
+        <ChallengeListT />
       </ChallengeContainer>
     </Layout>
   );
