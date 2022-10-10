@@ -5,6 +5,7 @@ import { api } from "shared/api";
 import { useParams, Link } from "react-router-dom";
 import Like from "./Like";
 import Dislike from "./Dislike";
+import OnelineForm from "./OnelineForm";
 
 const MovieSum = () => {
   const refreshToken = localStorage.getItem("refreshToken");
@@ -15,6 +16,7 @@ const MovieSum = () => {
   };
   const [img, setImg] = useState(null);
   const [myFav, setMyFav] = useState([]);
+  const [movie, setMovie] = useState([]);
   const params = useParams();
   const id = params.id;
 
@@ -24,6 +26,7 @@ const MovieSum = () => {
   };
   const movieQuery = useQuery("movieList", getMovieSum, {
     onSuccess: (data) => {
+      setMovie(data.data.data);
       setImg(`https://image.tmdb.org/t/p/w342` + data.data.data.poster_path);
     },
   });
@@ -79,6 +82,7 @@ const MovieSum = () => {
           </div>
         </div>
       </section>
+      <OnelineForm res={movie} />
     </div>
   );
 };

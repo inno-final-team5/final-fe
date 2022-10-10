@@ -10,7 +10,6 @@ import { IoMdArrowBack } from "react-icons/io";
 import Spinner from "components/common/Spinner";
 
 const MyOneline = ({ res }) => {
-  //console.log(res[0],"내가 작성한 한줄평");
   const params = useParams();
   const myOneline = useRef("");
   const id = res[0].oneLineReviewId;
@@ -108,7 +107,11 @@ const MyOneline = ({ res }) => {
               <div className="flex md:w-1/2 2xl:w-full xl:w-full md:w-full space-x-2">
                 <MyStars className="mt-2 ml-5">{starRating(res[0].oneLineReviewStar)}</MyStars>
                 <div className="2xl:w-full md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
-                  <input className="pl-2 pt-2 text-xl w-full h-10 bg-gray-400 rounded-xl" value={res[0].oneLineReviewContent} disabled />
+                  <input
+                    className="pl-2 pt-2 text-xl sm:text-sm md:text-base w-full h-10 bg-gray-400 rounded-xl"
+                    value={res[0].oneLineReviewContent}
+                    disabled
+                  />
                 </div>
                 <div className="flex-shrink-0 gap-4 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
                   <button

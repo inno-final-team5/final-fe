@@ -7,7 +7,6 @@ const Detail = () => {
   return (
     <Layout>
       <MovieSum />
-      <OnelineForm />
       <OnelineList />
     </Layout>
   );

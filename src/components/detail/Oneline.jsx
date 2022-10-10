@@ -77,18 +77,19 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
   return (
     <div>
       <div className="container mt-2 bg-gray-500 h-20 rounded-3xl px-4 py-8 mx-auto flex items-center sm:flex-row flex-col">
-        <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-          <div className="flex ml-4 md:w-20">
-            <span className="text-md text-mCream ">{nickname}</span>
+        <a className="flex title-font items-center md:justify-start justify-center text-gray-900">
+          <div className="sm:w-2">👤</div>
+          <div className="flex ml-3 2xl:w-36 xl:w-36 md:w-20 sm:w-12">
+            <span className="text-sm text-mCream sm:text-xs">{nickname}</span>
           </div>
         </a>
         <div>
-          <span className="flex ml-8">
+          <span className="flex">
             <Stars>{starRating(oneLineReviewStar)}</Stars>
           </span>
         </div>
-        <span className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-          <h2 className="text-lg font-medium text-gray-300 title-font mb-1 mt-2">{oneLineReviewContent}</h2>
+        <span className="text-sm text-gray-500 md:ml-2 sm:ml-3 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+          <h2 className="text-lg md:text-base sm:text-sm font-medium text-gray-300 title-font mb-1 mt-2">{oneLineReviewContent}</h2>
         </span>
         <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
           <span className="text-mYellow hover:text-mCream items-center">

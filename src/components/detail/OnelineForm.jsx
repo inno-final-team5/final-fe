@@ -6,7 +6,9 @@ import { api } from "shared/api";
 import { useParams } from "react-router-dom";
 import MyOneline from "./MyOneline";
 
-const OnelineForm = () => {
+const OnelineForm = (props) => {
+  const movieGenres = props.res.genres;
+  //console.log(movieGenres);
   const params = useParams();
   const id = params.id;
   const [allmyline, setAllmyline] = useState([]);
