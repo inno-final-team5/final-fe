@@ -30,7 +30,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full  mx-auto justify-center px-40">
+    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full  mx-auto justify-center md:px-40">
       <div className="flex items-center justify-around ">
         <div className="z-50 md:w-auto w-full flex justify-between p-5 md:px-2 md:py-0 items-center">
           <Link to="/">
