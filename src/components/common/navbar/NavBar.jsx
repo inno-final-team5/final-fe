@@ -99,7 +99,7 @@ const NavBar = () => {
         >
           <div>
             {accessToken != null ? (
-              <div className="bg-mWhite">
+              <div>
                 <div className="w-full flex items-center justify-between pr-8 ">
                   <div className="flex items-center ">
                     <Profile />
