@@ -26,7 +26,7 @@ export const getMyPosts = async () => {
 };
 
 export const addPost = async (post) => {
-  return await authApi.post("/auth/post");
+  return await authApi.post("/auth/post", post);
 };
 
 export const deletePost = async ({ id }) => {

@@ -19,7 +19,7 @@ const ChallengeList = () => {
   } else if (isError) {
     content = <p>{error.message}</p>;
   } else {
-    content = challenges.map((challenge) => {
+    content = challenges.data.map((challenge) => {
       return (
         <ChallengeItem
           key={challenge.badgeId}
