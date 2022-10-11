@@ -19,7 +19,7 @@ const Footer = () => {
 };
 
 const TwFooter = tw.footer`
-text-mWhite  text-center lg:text-left h-8 flex gap-12 bottom:0 p-2
+text-mWhite  text-center lg:text-left h-8 flex gap-12 bottom:0 p-2 flex-col md:flex-row
 
 `;
 
