@@ -3,7 +3,8 @@ const ChallengeItem = ({ icon, name, description }) => {
   return (
     <ChallengeItemContainer>
       <ChallengeBadgeBox>
-        <img src={icon} alt="badge" width={56} height={56} />
+        {/* <img src={icon} alt="badge" width={56} height={56} /> */}
+        <span className="text-4xl p-1">{icon}</span>
       </ChallengeBadgeBox>
       <ChallengeDescriptionBox>
         <ChallengeBadgeTitle>{name}</ChallengeBadgeTitle>

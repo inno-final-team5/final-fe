@@ -1,6 +1,11 @@
 import { FaCrown } from "react-icons/fa";
+import DefaultBadge from "./DefaultBadge";
 
-const MainBadge = ({ badgeImage }) => {
+const MainBadge = ({ badgeIcon }) => {
+  const resetBadge = () => {
+    console.log("배지 초기화");
+  };
+
   return (
     <div className="flex justify-center items-center border-gray-800 border p-2 rounded-lg flex-col ">
       <div className="relative w-24 h-24 bg-mWhite rounded-xl py-4 flex justify-center items-center mt-4">
@@ -8,14 +13,10 @@ const MainBadge = ({ badgeImage }) => {
           <FaCrown />
         </div>
 
-        {badgeImage === "" ? (
-          <div></div>
+        {badgeIcon === "" ? (
+          <DefaultBadge />
         ) : (
-          <img
-            alt="mainBadge"
-            className="w-16 h-16  object-cover object-center flex-shrink-0 rounded-sm"
-            src={badgeImage}
-          />
+          <span onClick={resetBadge}>{badgeIcon}</span>
         )}
       </div>
     </div>

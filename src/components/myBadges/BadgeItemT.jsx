@@ -7,12 +7,13 @@ const BadgeItemT = ({ id, icon, name, description, isActive }) => {
 
   const showModal = () => {
     Swal.fire({
-      title: name,
-      text: description,
-      imageUrl: icon,
-      imageWidth: 100,
-      imageHeight: 100,
-      imageAlt: "badgeIcon",
+      html: `
+      <div class="flex flex-col gap-2">
+        <span class="text-5xl m-2 p-2">${icon}</span>
+        <h2 class="text-2xl text-black font-semibold">${name}</h2>
+        <p>${description}</p
+      </div>
+      `,
       showCancelButton: true,
       confirmButtonText: "대표 배지 설정",
       cancelButtonText: "취소",
@@ -24,14 +25,17 @@ const BadgeItemT = ({ id, icon, name, description, isActive }) => {
   };
 
   return (
-    <div onClick={onClickBadgeHandler}>
+    <div>
       {isActive === true ? (
-        <div className="w-20 h-20 bg-mWhite rounded-xl py-4 flex justify-center items-center m-2">
-          <img className=" w-16 h-16 m-4" alt="active" src={icon} />
+        <div
+          className="w-20 h-20 bg-mWhite rounded-xl py-4 flex justify-center items-center m-2 cursor-pointer"
+          onClick={onClickBadgeHandler}
+        >
+          <span className="text-4xl">{icon}</span>
         </div>
       ) : (
-        <div className="w-20 h-20 bg-mGray border-solid border-mWhite border rounded-xl py-4 flex justify-center items-center m-2">
-          <img className=" w-16 h-16 grayscale " alt="inActive" src={icon} />
+        <div className="w-20 h-20 bg-mGray border-solid border-mWhite border rounded-xl py-4 flex justify-center items-center m-2 cursor-default">
+          <span className="text-gray grayscale text-4xl">{icon}</span>
         </div>
       )}
     </div>

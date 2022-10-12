@@ -1,12 +1,6 @@
-import api from "shared/api";
+import { authApi } from "apis";
 
 export const getMyOneLineReviews = async () => {
-  const response = await api.get(`/auth/movie/one-line-review`, {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
-
+  const response = await authApi.get(`/auth/movie/one-line-review`);
   return response.data;
 };
