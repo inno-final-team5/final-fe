@@ -19,7 +19,6 @@ const BadgeItem = ({ id, icon, name, description, isActive }) => {
       cancelButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(id);
         updateMainBadgeMutation.mutate({ badgeId: id });
         localStorage.setItem("badgeIcon", icon);
       }

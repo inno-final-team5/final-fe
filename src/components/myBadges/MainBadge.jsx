@@ -15,7 +15,6 @@ const MainBadge = () => {
   } = useQuery("MainBadge", getMyMainBadge);
 
   const resetBadge = () => {
-    console.log("배지 초기화");
     Swal.fire({
       title: "대표 배지 삭제",
       text: "대표 배지를 삭제하시겠습니까?",
@@ -24,7 +23,6 @@ const MainBadge = () => {
       cancelButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log("삭제");
         deleteMainBadgeMutation.mutate();
         localStorage.setItem("badgeIcon", "👤");
       }
@@ -44,8 +42,6 @@ const MainBadge = () => {
   } else if (isError) {
     content = <p>{error.message}</p>;
   } else {
-    console.log(mainBadge.data);
-
     content =
       mainBadge.data === "badgeId : 0" ? (
         <DefaultBadge />
