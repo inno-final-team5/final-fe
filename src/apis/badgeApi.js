@@ -10,10 +10,15 @@ export const getMyBadges = async () => {
   return response.data;
 };
 
-export const updateMainBadge = async ({ badgeId }) => {
-  return await authApi.post(`/auth/badge/${badgeId}`);
+export const getMyMainBadge = async () => {
+  const response = await authApi.get("/auth/mainBadge");
+  return response.data;
 };
 
-export const deleteMainBadge = async ({ badgeId }) => {
-  return await authApi.delete(`/auth/badge/${badgeId}`);
+export const updateMyMainBadge = async ({ badgeId }) => {
+  return await authApi.post(`/auth/mainBadge/${badgeId}`);
+};
+
+export const deleteMyMainBadge = async () => {
+  return await authApi.delete(`/auth/mainBadge`);
 };
