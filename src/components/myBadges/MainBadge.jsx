@@ -1,7 +1,7 @@
 import { FaCrown } from "react-icons/fa";
 import DefaultBadge from "./DefaultBadge";
 
-const MainBadge = ({ badgeIcon }) => {
+const MainBadge = ({ badgeId, badgeIcon }) => {
   const resetBadge = () => {
     console.log("배지 초기화");
   };
@@ -13,7 +13,7 @@ const MainBadge = ({ badgeIcon }) => {
           <FaCrown />
         </div>
 
-        {badgeIcon === "" ? (
+        {badgeId === 0 ? (
           <DefaultBadge />
         ) : (
           <span onClick={resetBadge}>{badgeIcon}</span>

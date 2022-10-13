@@ -14,3 +14,10 @@ export const authApi = axios.create({
     "refresh-token": localStorage.getItem("refreshToken"),
   },
 });
+
+export const localApi = axios.create({
+  baseURL: "http://localhost:3001",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
