@@ -1,12 +1,11 @@
+import { updateMyMainBadge } from "apis/badgeApi";
+import { useMutation, useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 
 const BadgeItem = ({ id, icon, name, description, isActive }) => {
-  console.log(isActive);
-  const onClickBadgeHandler = () => {
-    showModal();
-  };
+  const queryClient = useQueryClient();
 
-  const showModal = () => {
+  const onClickBadgeHandler = () => {
     Swal.fire({
       html: `
       <div class="flex flex-col gap-2">
@@ -21,9 +20,17 @@ const BadgeItem = ({ id, icon, name, description, isActive }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(id);
+        updateMainBadgeMutation.mutate({ badgeId: id });
+        localStorage.setItem("badgeIcon", icon);
       }
     });
   };
+
+  const updateMainBadgeMutation = useMutation(updateMyMainBadge, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("MainBadge");
+    },
+  });
 
   return (
     <div>

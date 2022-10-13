@@ -1,4 +1,4 @@
-import { getMyBadges, updateMainBadge } from "apis/badgeApi";
+import { getMyBadges, updateMyMainBadge } from "apis/badgeApi";
 import { useMutation, useQuery } from "react-query";
 
 import Spinner from "components/common/Spinner";
@@ -15,16 +15,8 @@ const MyBadges = () => {
     data: badges,
   } = useQuery("badges", getMyBadges);
 
-  //배지 초기화
-  const resetMainBadgeMutation = useMutation(updateMainBadge, {
-    onSuccess: (data) => {
-      // queryClient.invalidateQueries("badges");
-      console.log(data);
-    },
-  });
-
   //대표배지 설정
-  const updateMainBadgeMutation = useMutation(updateMainBadge, {
+  const updateMainBadgeMutation = useMutation(updateMyMainBadge, {
     onSuccess: (data) => {
       // queryClient.invalidateQueries("badges");
       console.log(data);
@@ -47,7 +39,7 @@ const MyBadges = () => {
 
   return (
     <div className="bg-mGray rounded-lg">
-      <MainBadge badgeId={0} updateMainBadgeMutation={resetMainBadgeMutation} />
+      <MainBadge />
       <div className="container p-8 mx-auto">{content}</div>
     </div>
   );

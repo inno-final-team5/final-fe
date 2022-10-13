@@ -24,6 +24,7 @@ const BadgeList = ({ data, updateMainBadgeMutation }) => {
         return (
           <BadgeItem
             key={badge.badgeId}
+            id={badge.badgeId}
             icon={badge.badgeIcon}
             name={badge.badgeName}
             description={badge.badgeInfo}
