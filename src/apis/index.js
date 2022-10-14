@@ -9,7 +9,6 @@ export const api = axios.create({
     accept: "application/json,",
     "Access-Control-Allow-Origin": "*",
   },
-  // withCredentials: true,
 });
 
 export const authApi = axios.create({
@@ -17,6 +16,7 @@ export const authApi = axios.create({
   headers: {
     authorization: localStorage.getItem("accessToken"),
     "refresh-token": localStorage.getItem("refreshToken"),
+    accept: "application/json,",
+    "Access-Control-Allow-Origin": "*",
   },
-  // withCredentials: true,
 });
