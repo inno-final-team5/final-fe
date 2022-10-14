@@ -48,7 +48,9 @@ const BoxOfiice = () => {
   };
   /**테이터가 onSuccess일 때 가져오기 */
   const BoxOfficequery = useQuery("boxoffice", getBoxOfficeWithApi, {
-    onSuccess: () => {},
+    onSuccess: () => {
+      window.scrollTo(0, 0);
+    },
   });
 
   if (BoxOfficequery.isLoading) {
