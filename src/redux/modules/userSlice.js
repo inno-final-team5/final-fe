@@ -39,8 +39,7 @@ export const loginUserDB = (payload) => {
             localStorage.setItem("nickname", response.data.data.nickname),
             localStorage.setItem("refreshToken", response.headers["refresh-token"]),
             localStorage.setItem("accessToken", response.headers.authorization),
-            localStorage.setItem("badge", badge),
-            alert(`로그인 성공!`),
+            localStorage.setItem("badgeIcon", badge),
             (document.location.href = "/")
           );
         }
@@ -72,8 +71,7 @@ export const kakaoLoginDB = (payload) => {
             localStorage.setItem("refreshToken", response.headers["refresh-token"]),
             localStorage.setItem("nickname", response.data.data.username),
             localStorage.setItem("badge", badge),
-            alert(`카카오 로그인 성공!`)
-            // (document.location.href = "/")
+            (document.location.href = "/")
           );
         }
       })
