@@ -30,7 +30,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full  mx-auto justify-center px-40">
+    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full  mx-auto justify-center md:px-40">
       <div className="flex items-center justify-around ">
         <div className="z-50 md:w-auto w-full flex justify-between p-5 md:px-2 md:py-0 items-center">
           <Link to="/">
@@ -56,8 +56,8 @@ const NavBar = () => {
           <div className="md:block hidden">
             {accessToken != null ? (
               <div className="flex items-center">
-                <div className="flex items-center group">
-                  <div className="">
+                <div className="flex items-center  group">
+                  <>
                     <Profile />
 
                     <div className="absolute top-16 right-64 hidden group-hover:block hover:block ">
@@ -80,7 +80,7 @@ const NavBar = () => {
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </>
 
                   <span className="text-mYellow "> {nickname} 평론가님</span>
                 </div>
@@ -101,13 +101,12 @@ const NavBar = () => {
             {accessToken != null ? (
               <div>
                 <div className="w-full flex items-center justify-between pr-8 ">
-                  <div className="flex items-center">
+                  <div className="flex items-center ">
                     <Profile />
                     <span className="text-mYellow "> {nickname} 평론가님</span>
                   </div>
                   <LogoutButton logoutHandler={logoutHandler} />
                 </div>
-                <div className="text-mCream"></div>
               </div>
             ) : (
               <LoginBox />

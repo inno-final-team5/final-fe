@@ -1,22 +1,24 @@
-import axios from "axios";
+import { api, authApi } from "apis";
 
-const badgeApi = axios.create({ baseURL: "http://localhost:3001" });
-
-export const getMyBadges = async () => {
-  const response = await badgeApi.get("/badges");
+export const getAllBadges = async () => {
+  const response = await api.get("/badge");
   return response.data;
 };
 
-// export const addChallenge = async (challenge) => {
-//   return await badgeApi.post("/challenges", challenge);
-// };
-
-export const updateMainBadge = async (badge) => {
-  return await badgeApi.patch(`/badges/${badge.id}`, badge);
+export const getMyBadges = async () => {
+  const response = await authApi.get("/auth/badge");
+  return response.data;
 };
 
-// export const deleteChallenge = async ({ id }) => {
-//   return await badgeApi.delete(`/challenges/${id}`, id);
-// };
+export const getMyMainBadge = async () => {
+  const response = await authApi.get("/auth/mainBadge");
+  return response.data;
+};
 
-export default badgeApi;
+export const updateMyMainBadge = async ({ badgeId }) => {
+  return await authApi.post(`/auth/mainBadge/${badgeId}`);
+};
+
+export const deleteMyMainBadge = async () => {
+  return await authApi.delete(`/auth/mainBadge`);
+};
