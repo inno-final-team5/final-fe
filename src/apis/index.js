@@ -1,7 +1,5 @@
 import axios from "axios";
 
-axios.defaults.withCredentials = true;
-
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 export const api = axios.create({
@@ -9,6 +7,7 @@ export const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
 
 export const authApi = axios.create({
@@ -17,4 +16,5 @@ export const authApi = axios.create({
     authorization: localStorage.getItem("accessToken"),
     "refresh-token": localStorage.getItem("refreshToken"),
   },
+  withCredentials: true,
 });
