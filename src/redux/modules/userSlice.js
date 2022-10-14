@@ -7,6 +7,19 @@ const initialState = {
   isLoading: false,
   isSuccess: false,
 };
+
+const badgeIcon = [
+  { badgeId: 0, badge: "👤" },
+  { badgeId: 1, badge: "💃" },
+  { badgeId: 2, badge: "😎" },
+  { badgeId: 3, badge: "🧑‍🤝‍🧑 " },
+  { badgeId: 4, badge: "🙌 " },
+  { badgeId: 5, badge: "🎬" },
+  { badgeId: 6, badge: "👼" },
+  { badgeId: 7, badge: "😈" },
+  { badgeId: 8, badge: "🏆" },
+];
+
 //login
 export const loginUserDB = (payload) => {
   return async function () {
@@ -16,10 +29,17 @@ export const loginUserDB = (payload) => {
         if (response.data.success === false) {
           return window.alert(response.data.error.message);
         } else {
+          function findBadge(element) {
+            if (element.badgeId === response.data.data.badgeId) {
+              return element.badge;
+            }
+          }
+          const { badge } = badgeIcon.filter(findBadge)[0];
           return (
             localStorage.setItem("nickname", response.data.data.nickname),
             localStorage.setItem("refreshToken", response.headers["refresh-token"]),
             localStorage.setItem("accessToken", response.headers.authorization),
+            localStorage.setItem("badge", badge),
             alert(`로그인 성공!`),
             (document.location.href = "/")
           );
@@ -40,12 +60,20 @@ export const kakaoLoginDB = (payload) => {
         if (response.data.success === false) {
           return window.alert(response.data.error.message);
         } else {
+          console.log(response);
+          function findBadge(element) {
+            if (element.badgeId === response.data.data.badgeId) {
+              return element.badge;
+            }
+          }
+          const { badge } = badgeIcon.filter(findBadge)[0];
           return (
             localStorage.setItem("accessToken", response.headers["access-token"]),
             localStorage.setItem("refreshToken", response.headers["refresh-token"]),
             localStorage.setItem("nickname", response.data.data.username),
-            alert(`카카오 로그인 성공!`),
-            (document.location.href = "/")
+            localStorage.setItem("badge", badge),
+            alert(`카카오 로그인 성공!`)
+            // (document.location.href = "/")
           );
         }
       })

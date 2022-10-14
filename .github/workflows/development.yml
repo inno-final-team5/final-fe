@@ -27,6 +27,11 @@ jobs:
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
 
+      - name: Setting .env
+        run: |
+          echo "REACT_APP_API_URL=${{secrets.REACT_APP_API_URL}}" >> .env
+          cat .env
+
       - name: Install project Dependencies
         run: yarn
 
@@ -43,4 +48,4 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            build s3://moviereviewroom
+            build s3://moviecritic.site
