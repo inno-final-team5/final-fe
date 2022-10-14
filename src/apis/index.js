@@ -7,7 +7,7 @@ export const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true,
+  // withCredentials: true,
 });
 
 export const authApi = axios.create({
@@ -16,5 +16,5 @@ export const authApi = axios.create({
     authorization: localStorage.getItem("accessToken"),
     "refresh-token": localStorage.getItem("refreshToken"),
   },
-  withCredentials: true,
+  // withCredentials: true,
 });
