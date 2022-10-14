@@ -5,8 +5,9 @@ import styled from "styled-components";
 import { api } from "shared/api";
 import { useParams } from "react-router-dom";
 import MyOneline from "./MyOneline";
+import { Toast } from "components/common/Toast";
 
-const OnelineForm = () => {
+const OnelineForm = (props) => {
   const params = useParams();
   const id = params.id;
   const [allmyline, setAllmyline] = useState([]);
@@ -38,10 +39,13 @@ const OnelineForm = () => {
   /**한줄평 추가 */
   const addOneline = (data) => {
     if (data.oneLineReviewContent == 0) {
-      alert("한줄평을 모두 입력해주세요");
+      Toast.fire({ icon: "warning", title: "한줄평을 입력해주세요" });
       return;
     } else if (data.oneLineReviewStar == 0) {
-      alert("별점을 입력해주세요");
+      Toast.fire({ icon: "warning", title: "별점을 입력해주세요" });
+      return;
+    } else if (data.oneLineReviewContent.length > 80) {
+      Toast.fire({ icon: "warning", title: "한줄평은 80자 이내입니다" });
       return;
     } else {
       return api.post(`/auth/movie/one-line-review`, data, {
@@ -77,6 +81,9 @@ const OnelineForm = () => {
   //작성한 한줄평과 영화가 맞는지 확인
   let res = allmyline.filter((ele) => ele.movieId == id);
 
+  function countingWords() {
+    document.getElementById("txtLength").innerHTML = document.getElementById("userTxt").value.length;
+  }
   return (
     <div>
       {accessToken == null ? null : res?.length ? (
@@ -96,10 +103,19 @@ const OnelineForm = () => {
                 })}
               </Stars>
               <div className="flex w-3/4 2xl:w-3/4 xl:w-full lg:w-full md:w-full sm:items-center sm:flex-col md:flex-row sm:w-full  space-x-4">
-                <div className="2xl:w-full md:w-full xl:w-full lg:w-full xl:mt-0 sm:mt-2 sm:w-5/6 md:mr-auto md:ml-2 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
-                  <input ref={myOneline} className="pl-2 leading-10 w-full rounded-xl sm:mt-2" />
+                <div className="2xl:w-full md:w-full xl:w-full lg:w-full xl:mt-0 sm:mt-2 sm:w-5/6 lg:mr-0 md:mr-auto md:ml-2 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
+                  <textarea
+                    id="userTxt"
+                    onKeyUp={() => countingWords()}
+                    ref={myOneline}
+                    className="pl-2 h-10 w-full rounded-xl md:mt-0 sm:mt-2 resize-none text-lg"
+                  />
                 </div>
                 <div className="flex-shrink-0 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
+                  <div className="text-sm text-gray-500 mt-6 mr-2">
+                    <span id="txtLength">0</span>
+                    /80
+                  </div>
                   <button
                     onClick={() => {
                       const data = {
