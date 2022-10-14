@@ -5,8 +5,10 @@ import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
 import { api } from "shared/api";
 import { useQuery, useMutation, useQueryClient } from "react-query";
+import BadgeEmoji from "../common/BadgeEmoji";
+import { Toast } from "components/common/Toast";
 
-function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, likeNum }) {
+function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, likeNum, badgeId }) {
   const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
   const headers = {
@@ -78,7 +80,9 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
     <div>
       <div className="container mt-2 bg-gray-500 h-20 rounded-3xl px-4 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <a className="flex title-font items-center md:justify-start justify-center text-gray-900">
-          <div className="sm:w-2">👤</div>
+          <div className="sm:w-2">
+            <BadgeEmoji badgeId={badgeId} />
+          </div>
           <div className="flex ml-3 2xl:w-36 xl:w-36 md:w-20 sm:w-12">
             <span className="text-sm text-mCream sm:text-xs">{nickname}</span>
           </div>
@@ -88,12 +92,21 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
             <Stars>{starRating(oneLineReviewStar)}</Stars>
           </span>
         </div>
-        <span className="text-sm text-gray-500 md:ml-2 sm:ml-3 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-          <h2 className="text-lg md:text-base sm:text-sm font-medium text-gray-300 title-font mb-1 mt-2">{oneLineReviewContent}</h2>
+        <span className="text-gray-500 md:ml-2 sm:ml-3 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
+          <h2 className="text-md md:text-base sm:text-sm font-medium text-gray-300 title-font mb-1 mt-2">{oneLineReviewContent}</h2>
         </span>
         <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
           <span className="text-mYellow hover:text-mCream items-center">
-            {res?.length ? (
+            {accessToken == null ? (
+              <button
+                onClick={() => {
+                  Toast.fire({ icon: "warning", title: "로그인이 필요합니다" });
+                }}
+              >
+                <FaRegThumbsUp size={30} />
+                <p className="mt-2 text-xl hover:text-mCream">{likeNum}</p>
+              </button>
+            ) : res?.length ? (
               <button
                 onClick={() => {
                   deleteLike();
