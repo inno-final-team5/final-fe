@@ -20,6 +20,7 @@ const Community = () => {
 };
 
 const CommunityWrapper = tw.div`
+mt-4
 `;
 const CommunitySidebarWrapper = tw.div`bg-mBlack md:block hidden md:fixed`;
 
