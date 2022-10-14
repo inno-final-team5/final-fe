@@ -12,6 +12,7 @@ import { api } from "shared/api";
 import Swal from "sweetalert2";
 import CommunityButton from "components/community/CommunityButton";
 import { Toast } from "components/common/Toast";
+import PostAuthor from "components/community/PostAuthor";
 
 const CommunityDetail = () => {
   const { id } = useParams();
@@ -25,7 +26,12 @@ const CommunityDetail = () => {
   const [updatePostMode, setUpdatePostMode] = useState(false);
   const [like, setLike] = useState(false);
 
-  const { isLoading, isError, error, data: post } = useQuery(["post", id], () => getPostDetail(id));
+  const {
+    isLoading,
+    isError,
+    error,
+    data: post,
+  } = useQuery(["post", id], () => getPostDetail(id));
 
   const onDeleteHandler = () => {
     deletePostMutation.mutate({ id });
@@ -129,10 +135,10 @@ const CommunityDetail = () => {
         <>
           <DetailContainer>
             <DetailContentContainer>
-              <DetailProfileContainer>
-                <Profile />
-                <p> {postData.nickname}</p>
-              </DetailProfileContainer>
+              <PostAuthor
+                nickname={postData.nickname}
+                badgeId={postData.badgeId}
+              />
               <DetailTitle>{postData.postTitle}</DetailTitle>
               <DetailContent>
                 <p>{postData.postContent}</p>
@@ -195,10 +201,19 @@ const CommunityDetail = () => {
                 <p> {postData.nickname}</p>
               </DetailProfileContainer>
               <DetailTitle>
-                <input className="bg-mWhite w-full h-full focus:outline-none" defaultValue={postData.postTitle} ref={updateTitle} />
+                <input
+                  className="bg-mWhite w-full h-full focus:outline-none"
+                  defaultValue={postData.postTitle}
+                  ref={updateTitle}
+                />
               </DetailTitle>
               <DetailContent>
-                <input className="bg-mWhite w-full h-full focus:outline-none" defaultValue={postData.postContent} autoFocus ref={updateReview} />
+                <input
+                  className="bg-mWhite w-full h-full focus:outline-none"
+                  defaultValue={postData.postContent}
+                  autoFocus
+                  ref={updateReview}
+                />
               </DetailContent>
               {postData.nickname === nickname ? (
                 <DetailControlContainer>
