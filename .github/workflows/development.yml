@@ -30,6 +30,12 @@ jobs:
       - name: Install project Dependencies
         run: yarn
 
+      - name: Setting .env
+        run: |
+          echo "REACT_APP_API_DOMAIN=${{ secrets.REACT_APP_API_DOMAIN }}" >> .env
+          echo "REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }}" >> .env
+          cat .env
+
       - name: Build
         run: yarn build
         env:
