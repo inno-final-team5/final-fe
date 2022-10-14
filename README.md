@@ -6,7 +6,7 @@
 
 - SA : [노션링크](https://www.notion.so/woongsnote/aacf5be13a1242b29f4e3d215f0f516f)
 
-- 주소 : [바로가기](http://moviereviewroom.s3-website.ap-northeast-2.amazonaws.com/)
+- 주소 : [바로가기](https://www.moviecritic.site)
 
 ## 프로젝트 기간
 
