@@ -5,6 +5,9 @@ import { api } from "shared/api";
 import { useParams, Link } from "react-router-dom";
 import Like from "./Like";
 import Dislike from "./Dislike";
+import OnelineForm from "./OnelineForm";
+import { RiHeartAddLine } from "react-icons/ri";
+import { Toast } from "components/common/Toast";
 
 const MovieSum = () => {
   const refreshToken = localStorage.getItem("refreshToken");
@@ -15,6 +18,7 @@ const MovieSum = () => {
   };
   const [img, setImg] = useState(null);
   const [myFav, setMyFav] = useState([]);
+  const [movie, setMovie] = useState([]);
   const params = useParams();
   const id = params.id;
 
@@ -24,6 +28,7 @@ const MovieSum = () => {
   };
   const movieQuery = useQuery("movieList", getMovieSum, {
     onSuccess: (data) => {
+      setMovie(data.data.data);
       setImg(`https://image.tmdb.org/t/p/w342` + data.data.data.poster_path);
     },
   });
@@ -37,6 +42,7 @@ const MovieSum = () => {
   const myMovieQuery = useQuery("myMovieList", getMyMovie, {
     onSuccess: (data) => {
       setMyFav(data.data.data);
+      window.scrollTo(0, 0);
     },
   });
   //즐겨찾기 상태유지 위해 내가 즐겨찾기한 영화와 현재 영화 일치하는 데이터 찾기
@@ -56,7 +62,15 @@ const MovieSum = () => {
           <div className="lg:flex-grow md:w-2/3 lg:pl-18 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
             <div className="flex">
               <h1 className="title-font sm:text-4xl text-white text-3xl mb-4 font-medium">{movieQuery?.data.data.data.title}</h1>
-              {res?.length ? (
+              {accessToken == null ? (
+                <RiHeartAddLine
+                  onClick={() => {
+                    Toast.fire({ icon: "warning", title: "로그인이 필요합니다" });
+                  }}
+                  className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor"
+                  size={34}
+                />
+              ) : res?.length ? (
                 <>
                   <Dislike res={res} />
                 </>
@@ -79,6 +93,7 @@ const MovieSum = () => {
           </div>
         </div>
       </section>
+      <OnelineForm res={movie} />
     </div>
   );
 };

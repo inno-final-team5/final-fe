@@ -25,12 +25,7 @@ const CommunityDetail = () => {
   const [updatePostMode, setUpdatePostMode] = useState(false);
   const [like, setLike] = useState(false);
 
-  const {
-    isLoading,
-    isError,
-    error,
-    data: post,
-  } = useQuery(["post", id], () => getPostDetail(id));
+  const { isLoading, isError, error, data: post } = useQuery(["post", id], () => getPostDetail(id));
 
   const onDeleteHandler = () => {
     deletePostMutation.mutate({ id });
@@ -200,19 +195,10 @@ const CommunityDetail = () => {
                 <p> {postData.nickname}</p>
               </DetailProfileContainer>
               <DetailTitle>
-                <input
-                  className="bg-mWhite w-full h-full focus:outline-none"
-                  defaultValue={postData.postTitle}
-                  ref={updateTitle}
-                />
+                <input className="bg-mWhite w-full h-full focus:outline-none" defaultValue={postData.postTitle} ref={updateTitle} />
               </DetailTitle>
               <DetailContent>
-                <input
-                  className="bg-mWhite w-full h-full focus:outline-none"
-                  defaultValue={postData.postContent}
-                  autoFocus
-                  ref={updateReview}
-                />
+                <input className="bg-mWhite w-full h-full focus:outline-none" defaultValue={postData.postContent} autoFocus ref={updateReview} />
               </DetailContent>
               {postData.nickname === nickname ? (
                 <DetailControlContainer>

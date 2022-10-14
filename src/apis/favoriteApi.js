@@ -1,34 +1,10 @@
-import axios from "axios";
-import api from "shared/api";
+import { authApi } from "apis";
 
-const favoriteApi = axios.create({ baseURL: "http://localhost:3001" });
-
-export const getFavorites = async () => {
-  const response = await api.get("/auth/movie/favorites", {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
-  console.log(response);
+export const getMyFavorites = async () => {
+  const response = await authApi.get("/auth/movie/favorites");
   return response.data;
 };
 
-export const addFavorite = async (movie) => {
-  return await favoriteApi.post("/favorites", movie);
+export const deleteMyFavorite = async (id) => {
+  return await authApi.delete(`/auth/movie/favorite/${id}`);
 };
-
-export const updateFavorite = async (movie) => {
-  return await favoriteApi.patch(`/favorites/${movie.id}`, movie);
-};
-
-export const deleteFavorite = async (id) => {
-  return await api.delete(`/auth/movie/favorite/${id}`, {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
-};
-
-export default favoriteApi;

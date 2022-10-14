@@ -1,4 +1,4 @@
-import api from "shared/api";
+import { api, authApi } from "apis";
 
 export const getAllPosts = async () => {
   const response = await api.get("/post");
@@ -21,57 +21,26 @@ export const getPostDetail = async (id) => {
 };
 
 export const getMyPosts = async () => {
-  const response = await api.get("/auth/post", {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
-  console.log(response);
+  const response = await authApi.get("/auth/post");
   return response.data;
 };
 
 export const addPost = async (post) => {
-  return await api.post("/auth/post", post, {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
+  return await authApi.post("/auth/post", post);
 };
 
 export const deletePost = async ({ id }) => {
-  return await api.delete(`/auth/post/${id}`, {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
+  return await authApi.delete(`/auth/post/${id}`);
 };
 
 export const updatePost = async (post) => {
-  return await api.put(`/auth/post/${post.id}`, post, {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
+  return await authApi.put(`/auth/post/${post.id}`, post);
 };
 
 export const addLike = async ({ id }) => {
-  return await api.post(`/auth/post/like/${id}`, {
-    headers: {
-      Authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
+  return await authApi.post(`/auth/post/like/${id}`);
 };
 
 export const deleteLike = async ({ id }) => {
-  return await api.delete(`/auth/post/like/${id}`, {
-    headers: {
-      Authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
+  return await authApi.delete(`/auth/post/like/${id}`);
 };
