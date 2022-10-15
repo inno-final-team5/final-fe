@@ -7,7 +7,8 @@ import Dislike from "./Dislike";
 import OnelineForm from "./OnelineForm";
 import { RiHeartAddLine } from "react-icons/ri";
 import { Toast } from "components/common/Toast";
-import { getMovieSum, getMyMovie } from "apis/movieApi";
+import { getMovieSum } from "apis/movieApi";
+import { getMyLikes } from "apis/favoriteApi";
 
 const MovieSum = () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -20,14 +21,15 @@ const MovieSum = () => {
 
   const movieQuery = useQuery(["movieList", id], () => getMovieSum(id), {
     onSuccess: (data) => {
-      setMovie(data.data.data);
-      setImg(`https://image.tmdb.org/t/p/w342` + data.data.data.poster_path);
+      console.log(data);
+      setMovie(data.data);
+      setImg(`https://image.tmdb.org/t/p/w342` + data.data.poster_path);
     },
   });
 
-  const myMovieQuery = useQuery("myMovieList", getMyMovie, {
+  const myMovieQuery = useQuery("myMovieList", getMyLikes, {
     onSuccess: (data) => {
-      setMyFav(data.data.data);
+      setMyFav(data.data);
       window.scrollTo(0, 0);
     },
   });
@@ -48,7 +50,7 @@ const MovieSum = () => {
           <div className="lg:flex-grow md:w-2/3 lg:pl-18 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
             <div className="flex ">
               <h1 className="font-bold title-font 2xl:text-3xl lg:text-2xl md:text-xl sm:text-lg text-white text-3xl mb-4 ">
-                {movieQuery?.data.data.data.title}
+                {movieQuery?.data.data.title}
               </h1>
               {accessToken == null ? (
                 <RiHeartAddLine
@@ -72,10 +74,10 @@ const MovieSum = () => {
               )}
             </div>
             <p className="mb-8 text-white sm:text-sm lg:text-sm leading-relaxed">
-              {movieQuery?.data.data.data.overview}
+              {movieQuery?.data.data.overview}
             </p>
             <div className="flex lg:flex-row md:flex-row lg:mt-16 sm:mt-0">
-              {movieQuery?.data.data.data.genres.map((movie) => (
+              {movieQuery?.data.data.genres.map((movie) => (
                 <Link to={`/genre/${movie.name}`} key={movie.id}>
                   <button className="bg-mWhite sm:text-sm md:px-2 sm:px-2 inline-flex py-2 xl:px-3 ml-2 rounded-full items-center hover:bg-gray-400 focus:outline-none">
                     <span>{movie.name} </span>

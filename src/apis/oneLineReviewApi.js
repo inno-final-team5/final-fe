@@ -13,8 +13,8 @@ export const getOneLineList = async (id) => {
 };
 
 /** 한줄평 작성 */
-export const createMyOneLine = async (data) => {
-  return await api.post(`/auth/movie/one-line-review`);
+export const addMyOneLine = async (data) => {
+  return await authApi.post(`/auth/movie/one-line-review`, data);
 };
 
 /**내가 작성한 한줄평 불러오기 */
@@ -38,11 +38,11 @@ export const getMyLikeComment = async () => {
 };
 
 /**한줄평 좋아요 추가 */
-export const addCommentLike = async (reviewId, data) => {
-  return await api.post(`/auth/movie/${reviewId}/like`, data);
+export const addCommentLike = async (reviewId) => {
+  return await authApi.post(`/auth/movie/${reviewId}/like`);
 };
 
 /**한줄평 좋아요 삭제 */
-export const deleteCommentLike = async (reviewId, data) => {
-  return await api.delete(`/auth/movie/${reviewId}/like`);
+export const deleteCommentLike = async (reviewId) => {
+  return await authApi.delete(`/auth/movie/${reviewId}/like`);
 };

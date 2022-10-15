@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { api } from "apis";
+import { kakaoLogin, signIn } from "apis/userApi";
 import { Toast } from "components/common/Toast";
 
 const initialState = {
@@ -24,8 +24,7 @@ const badgeIcon = [
 //login
 export const loginUserDB = (payload) => {
   return async function () {
-    await api
-      .post("/members/login", payload)
+    await signIn(payload)
       .then((response) => {
         if (response.data.success === false) {
           return Toast.fire({
@@ -60,8 +59,7 @@ export const loginUserDB = (payload) => {
 
 export const kakaoLoginDB = (payload) => {
   return async function () {
-    await api
-      .post(`/oauth/kakao?code=${payload}`)
+    await kakaoLogin(payload)
       .then((response) => {
         if (response.data.success === false) {
           return window.alert(response.data.error.message);

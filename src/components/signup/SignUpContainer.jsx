@@ -6,18 +6,14 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 /**유효성을 위한 정규식 */
-import {
-  checkEmail,
-  checkUserName,
-  checkPassword,
-} from "../../utils/validation";
+import { checkEmail, checkUserName, checkPassword } from "utils/validation";
 import {
   emailDuplicateCheck,
   nicknameDuplicateCheck,
   signUp,
 } from "apis/userApi";
 
-const SignUpBox = () => {
+const SignUpContainer = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState();
@@ -226,4 +222,4 @@ const InputBox = tw.input`
     focus:border-mYellow  
     focus:outline-none
 `;
-export default SignUpBox;
+export default SignUpContainer;

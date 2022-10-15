@@ -1,4 +1,4 @@
-import { api, authApi } from "apis";
+import { api } from "apis";
 
 /** 검색페이지 영화 전체 리스트 불러오기 */
 export const getSearchList = async (pageParam) => {
@@ -23,10 +23,6 @@ export const getGenreList = async (category, pageParam) => {
 
 /** 영화정보 불러오기 */
 export const getMovieSum = async (id) => {
-  return await api.get(`/movie/detail/${id}`);
-};
-
-/**내가 즐겨찾기한 영화 불러오기 */
-export const getMyMovie = async () => {
-  return await authApi.get(`/auth/movie/favorites`);
+  const response = await api.get(`/movie/detail/${id}`);
+  return response.data;
 };

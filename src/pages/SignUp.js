@@ -1,5 +1,5 @@
 import Logo from "../images/Logo.png";
-import SignUpBox from "components/signup/SignUpBox";
+import SignUpContainer from "components/signup/SignUpContainer";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
@@ -8,7 +8,7 @@ const SignUp = () => {
       <Link to={"/"}>
         <img src={Logo} alt="Logo" className="w-40" />
       </Link>
-      <SignUpBox />
+      <SignUpContainer />
     </div>
   );
 };
