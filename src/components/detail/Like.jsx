@@ -54,7 +54,7 @@ const Like = () => {
             mutate(data);
           }}
           className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor"
-          size={34}
+          size={30}
         />
       )}
     </div>

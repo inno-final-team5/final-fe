@@ -42,7 +42,7 @@ const Unlike = (props) => {
           onClick={() => {
             mutate();
           }}
-          size={34}
+          size={30}
           className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor"
         />
       )}
