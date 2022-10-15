@@ -44,8 +44,9 @@ const NavBar = () => {
               className="md:cursor-pointer w-28 lg:w-56"
             />
           </Link>
-
-          <ModalButton content={<Alarm />} />
+          <div className="md:hidden">
+            <ModalButton content={<Alarm />} />
+          </div>
         </div>
         <div className="md:flex w-full items-center justify-between bg-mGray px-4 ml-4 h-12 rounded-lg hidden">
           <ul className="md:flex hidden uppercase items-center gap-8">
