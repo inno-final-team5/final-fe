@@ -6,8 +6,6 @@ export const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    accept: "application/json,",
-    "Access-Control-Allow-Origin": "*",
   },
 });
 
@@ -16,7 +14,5 @@ export const authApi = axios.create({
   headers: {
     authorization: localStorage.getItem("accessToken"),
     "refresh-token": localStorage.getItem("refreshToken"),
-    accept: "application/json,",
-    "Access-Control-Allow-Origin": "*",
   },
 });
