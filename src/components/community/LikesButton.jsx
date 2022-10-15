@@ -1,9 +1,9 @@
 import React from "react";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import { useQuery, useMutation, useQueryClient } from "react-query";
-import { api } from "shared/api";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { api } from "apis";
 
 const LikesButton = () => {
   const { id } = useParams();
