@@ -2,20 +2,18 @@ import React, { useState, useRef } from "react";
 import { FaStar } from "react-icons/fa";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import styled from "styled-components";
-import { api } from "shared/api";
+import { addMyOneLine, getMyOneLineReviews } from "apis/oneLineReviewApi";
 import { useParams } from "react-router-dom";
 import MyOneline from "./MyOneline";
+import { Toast } from "components/common/Toast";
 
-const OnelineForm = () => {
+const OnelineForm = (props) => {
+  const queryClient = useQueryClient();
   const params = useParams();
   const id = params.id;
   const [allmyline, setAllmyline] = useState([]);
-  const refreshToken = localStorage.getItem("refreshToken");
+
   const accessToken = localStorage.getItem("accessToken");
-  const headers = {
-    Authorization: accessToken,
-    "refresh-token": refreshToken,
-  };
 
   /* 별점 추가 */
   const [clicked, setClicked] = useState([false, false, false, false, false]);
@@ -38,19 +36,20 @@ const OnelineForm = () => {
   /**한줄평 추가 */
   const addOneline = (data) => {
     if (data.oneLineReviewContent == 0) {
-      alert("한줄평을 모두 입력해주세요");
+      Toast.fire({ icon: "warning", title: "한줄평을 입력해주세요" });
       return;
     } else if (data.oneLineReviewStar == 0) {
-      alert("별점을 입력해주세요");
+      Toast.fire({ icon: "warning", title: "별점을 입력해주세요" });
+      return;
+    } else if (data.oneLineReviewContent.length > 80) {
+      Toast.fire({ icon: "warning", title: "한줄평은 80자 이내입니다" });
       return;
     } else {
-      return api.post(`/auth/movie/one-line-review`, data, {
-        headers: headers,
-      });
+      return addMyOneLine(data);
     }
   };
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation(addOneline, {
+
+  const addOneLineComment = useMutation(addOneline, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("onelineList");
       queryClient.invalidateQueries("myOneline");
@@ -60,15 +59,9 @@ const OnelineForm = () => {
     },
   });
 
-  /**내가 작성한 한줄평 불러오기 */
-  const getMyOneline = async () => {
-    return await api.get(`/auth/movie/one-line-review`, {
-      headers: headers,
-    });
-  };
-  const myMovieQuery = useQuery("myOneline", getMyOneline, {
+  const myMovieQuery = useQuery("myOneline", getMyOneLineReviews, {
     onSuccess: (data) => {
-      setAllmyline(data.data.data);
+      setAllmyline(data.data);
     },
     onError: (error) => {
       console.log(error);
@@ -77,6 +70,10 @@ const OnelineForm = () => {
   //작성한 한줄평과 영화가 맞는지 확인
   let res = allmyline.filter((ele) => ele.movieId == id);
 
+  function countingWords() {
+    document.getElementById("txtLength").innerHTML =
+      document.getElementById("userTxt").value.length;
+  }
   return (
     <div>
       {accessToken == null ? null : res?.length ? (
@@ -86,20 +83,38 @@ const OnelineForm = () => {
       ) : (
         <>
           <section className="mt-6">
-            <div className="container pl-3 pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap flex-col md:flex-row items-center">
-              <div className="flex mr-6 title-font font-medium items-center ml-2 mr-2 mb-4 md:mb-0">
-                <h1 className="md:text-xl font-medium title-font md:flex-row flex-col text-mYellow">한줄평작성하기</h1>
+            <div className="container md:w-5/6 sm:w-5/6 lg:w-full pl-3 pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap flex-col md:flex-row items-center">
+              <div className="flex lg:w-full 2xl:w-full mr-6 title-font font-medium items-center ml-2 mb-4 md:mb-0">
+                <h1 className="md:text-lg font-medium title-font md:flex-row flex-col text-mYellow">
+                  한줄평작성하기
+                </h1>
               </div>
-              <Stars>
+              <Stars className="lg:ml-5 lg:mr-0">
                 {array.map((el, idx) => {
-                  return <FaStar key={idx} size="30" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
+                  return (
+                    <FaStar
+                      key={idx}
+                      size="30"
+                      onClick={() => handleStarClick(el)}
+                      className={clicked[el] && "yellowStar"}
+                    />
+                  );
                 })}
               </Stars>
-              <div className="flex w-3/4 2xl:w-3/4 xl:w-full lg:w-full md:w-full sm:items-center sm:flex-col md:flex-row sm:w-full  space-x-4">
-                <div className="2xl:w-full md:w-full xl:w-full lg:w-full xl:mt-0 sm:mt-2 sm:w-5/6 md:mr-auto md:ml-2 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
-                  <input ref={myOneline} className="pl-2 leading-10 w-full rounded-xl sm:mt-2" />
+              <div className="flex  lg:w-4/5 xl:w-5/6 md:w-full sm:items-center sm:flex-col md:flex-row sm:w-full space-x-1">
+                <div className="2xl:w-full md:w-full lg:w-5/6 xl:mt-0 sm:mt-2 sm:w-5/6 lg:mr-0 md:mr-auto md:ml-2 lg:ml-0 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
+                  <textarea
+                    id="userTxt"
+                    onKeyUp={() => countingWords()}
+                    ref={myOneline}
+                    className="pl-2 py-1 h-10 w-full rounded-xl md:mt-0 sm:mt-2 resize-none text-lg"
+                  />
                 </div>
                 <div className="flex-shrink-0 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
+                  <div className="text-sm text-gray-500 mt-6 mr-2">
+                    <span id="txtLength">0</span>
+                    /80
+                  </div>
                   <button
                     onClick={() => {
                       const data = {
@@ -109,7 +124,7 @@ const OnelineForm = () => {
                         oneLineReviewStar: score,
                         oneLineReviewContent: myOneline.current.value,
                       };
-                      mutate(data);
+                      addOneLineComment.mutate(data);
                     }}
                     className="2xl:px-6 xl:px-10 md:mt-3 sm:mt-4 lg:px-6 sm:px-10 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
                   >

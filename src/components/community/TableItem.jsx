@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import BadgeEmoji from "components/common/BadgeEmoji";
 
 const TableItem = ({ post }) => {
   return (
@@ -15,7 +15,10 @@ const TableItem = ({ post }) => {
           {post.postTitle}
         </Link>
       </td>
-      <td className="py-4 px-3 whitespace-nowrap w-[400px]">{post.nickname}</td>
+      <td className="py-4 px-3 whitespace-nowrap w-[400px]">
+        <BadgeEmoji badgeId={post.badgeId} />
+        {post.nickname}
+      </td>
       <td className="py-4 px-2 w-4">
         {new Date(post.createdAt).toLocaleDateString("ko-KR")}
       </td>

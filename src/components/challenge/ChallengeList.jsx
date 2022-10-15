@@ -1,7 +1,7 @@
 import tw from "tailwind-styled-components";
 import ChallengeItem from "components/challenge/ChallengeItem";
 import { useQuery } from "react-query";
-import { getChallenges } from "apis/challengeApi";
+import { getAllBadges } from "apis/badgeApi";
 import Spinner from "components/common/Spinner";
 
 const ChallengeList = () => {
@@ -10,7 +10,7 @@ const ChallengeList = () => {
     isError,
     error,
     data: challenges,
-  } = useQuery("challenges", getChallenges);
+  } = useQuery("challenges", getAllBadges);
 
   let content;
 
@@ -19,7 +19,7 @@ const ChallengeList = () => {
   } else if (isError) {
     content = <p>{error.message}</p>;
   } else {
-    content = challenges.map((challenge) => {
+    content = challenges.data.map((challenge) => {
       return (
         <ChallengeItem
           key={challenge.badgeId}

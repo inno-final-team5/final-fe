@@ -7,9 +7,6 @@ const Footer = () => {
       <p>
         &copy; <span>{thisYear}</span> Copyright: 방구석평론가
       </p>
-      <a href="https://www.flaticon.com/free-icons/genre" title="genre icons">
-        Genre icons created by Freepik - Flaticon
-      </a>
 
       <a href="https://www.themoviedb.org/" title="TMDB API">
         Movie Data From TMDB API
@@ -19,7 +16,7 @@ const Footer = () => {
 };
 
 const TwFooter = tw.footer`
-text-mWhite  text-center lg:text-left h-8 flex gap-12 bottom:0 p-2
+text-mWhite  text-center lg:text-left h-8 flex gap-12 bottom:0 p-2 flex-col md:flex-row
 
 `;
 

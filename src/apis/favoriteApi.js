@@ -1,34 +1,17 @@
-import axios from "axios";
-import api from "shared/api";
+import { authApi } from "apis";
 
-const favoriteApi = axios.create({ baseURL: "http://localhost:3001" });
-
-export const getFavorites = async () => {
-  const response = await api.get("/auth/movie/favorites", {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
-  console.log(response);
+/** 즐겨찾기 목록 조회 */
+export const getMyLikes = async () => {
+  const response = await authApi.get("/auth/movie/favorites");
   return response.data;
 };
 
-export const addFavorite = async (movie) => {
-  return await favoriteApi.post("/favorites", movie);
+/**영화 즐겨찾기 추가 */
+export const addMyLike = async (data) => {
+  return await authApi.post(`/auth/movie/favorite`, data);
 };
 
-export const updateFavorite = async (movie) => {
-  return await favoriteApi.patch(`/favorites/${movie.id}`, movie);
+/**영화 즐겨찾기 삭제 */
+export const deleteMyLike = async (id) => {
+  return await authApi.delete(`/auth/movie/favorite/${id}`);
 };
-
-export const deleteFavorite = async (id) => {
-  return await api.delete(`/auth/movie/favorite/${id}`, {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
-};
-
-export default favoriteApi;

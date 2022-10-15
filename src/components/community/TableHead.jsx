@@ -8,7 +8,7 @@ const TableHead = () => {
         <th scope="col" className="py-3 px-6">
           제목
         </th>
-        <th scope="col" className="py-3 px-6 w-[180px]">
+        <th scope="col" className="py-3 px-6 w-[200px]">
           작성자
         </th>
         <th scope="col" className="py-3 px-8 w-[140px]">

@@ -1,16 +1,12 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Spinner from "components/common/Spinner";
-import api from "shared/api";
+import { getRecentPosteWithApi } from "apis/mainApi";
 import { useNavigate } from "react-router-dom";
+import BadgeEmoji from "../../common/BadgeEmoji";
 
 const NewPosts = () => {
   const navigate = useNavigate();
-  /**Recent Post 데이터 불러오기*/
-  const getRecentPosteWithApi = async () => {
-    const { data } = await api.get("/main/post");
-    return data;
-  };
 
   /**데이터가 onSuccess일때 가져오기*/
   const Recentquery = useQuery("post", getRecentPosteWithApi, {
@@ -37,14 +33,10 @@ const NewPosts = () => {
               {i.postCategory}
             </div>
             {/* 뱃지와 닉네임 */}
-            <div className="mr-4 my-2 md:my-0">
+            <div className="mr-4 my-2 md:my-0 pt-1">
               <div className="flex align-center">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-                  alt="profile"
-                  className="w-6 mr-3"
-                />
-                <div className="w-fit md:w-40 flex text-sm mt-1 text-mGray">
+                <BadgeEmoji badgeId={i.badgeId} />
+                <div className="w-fit md:w-40 flex text-sm ml-1 text-mGray">
                   {i.nickname}
                 </div>
               </div>

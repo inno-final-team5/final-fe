@@ -2,18 +2,15 @@ import React from "react";
 import Spinner from "components/common/Spinner";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import api from "shared/api";
+import { getBestReviewWithApi } from "apis/mainApi";
+import BadgeEmoji from "../../common/BadgeEmoji";
+
 // 아이콘
 import { FaStar } from "react-icons/fa";
 import { FaThumbsUp } from "react-icons/fa";
 
 const BestReview = () => {
   const navigate = useNavigate();
-  /**Best Review 데이터 불러오기*/
-  const getBestReviewWithApi = async () => {
-    const { data } = await api.get("/main/best");
-    return data;
-  };
 
   /**데이터가 onSuccess일때 가져오기*/
   const BestReviewquery = useQuery("bestReview", getBestReviewWithApi, {
@@ -53,12 +50,8 @@ const BestReview = () => {
                 </div>
                 {/* 뱃지와 닉네임 */}
                 <div className="flex">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
-                    alt="profile"
-                    className="w-6 mr-3"
-                  />
-                  <div className="pr-5 flex text-sm text-mGray mt-1 ">
+                  <BadgeEmoji badgeId={i.badgeId} />
+                  <div className="pr-5 flex text-sm text-mGray ml-1">
                     {i.nickname}
                   </div>
                 </div>

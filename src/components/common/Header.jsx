@@ -7,7 +7,7 @@ import Alarm from "./Alarm";
 
 const Header = () => {
   const nickname = localStorage.getItem("nickname");
-  const refreshToken = localStorage.getItem("refreshToken");
+  const badgeIcon = localStorage.getItem("badgeIcon");
   const accessToken = localStorage.getItem("accessToken");
 
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ const Header = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("nickname");
+    localStorage.removeItem("badgeIcon");
     alert("로그아웃 되셨습니다 ");
     navigate("/");
   };
@@ -30,10 +31,7 @@ const Header = () => {
           <MenuTitle>영화 검색</MenuTitle>
           <MenuTitle>커뮤니티</MenuTitle>
           <MenuTitle>
-            <NavLink
-              to="/challenge"
-              className={({ isActive }) => (isActive ? activeLink : normalLink)}
-            >
+            <NavLink to="/challenge" className={({ isActive }) => (isActive ? activeLink : normalLink)}>
               챌린지
             </NavLink>
           </MenuTitle>
@@ -42,6 +40,7 @@ const Header = () => {
           {accessToken != null ? (
             <>
               <Link to={"/mypage/favorites"}>
+                {badgeIcon}
                 <MenuTitle>{nickname}평론가님</MenuTitle>
               </Link>
               <button onClick={logoutHandler}>

@@ -5,13 +5,12 @@ import NavLinks from "./NavLinks";
 import { MdClose, MdMenu } from "react-icons/md";
 import LoginBox from "./LoginBox";
 
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-
 import { myLinks, navigationLinks } from "./MyLinks";
 import LogoutButton from "./LogoutButton";
 import ModalButton from "components/Modal/ModalButton";
 import Alarm from "../Alarm";
 import Profile from "../Profile";
+import MobileNavbar from "./MobileNavbar";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -30,9 +29,14 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full  mx-auto justify-center px-40">
-      <div className="flex items-center justify-around ">
+    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full  mx-auto justify-center md:px-40">
+      <div className="flex items-center justify-around">
         <div className="z-50 md:w-auto w-full flex justify-between p-5 md:px-2 md:py-0 items-center">
+          <div className="text-3xl md:hidden flex items-center">
+            <button onClick={() => setOpen(!open)} className="text-mYellow">
+              {open ? <MdClose /> : <MdMenu />}
+            </button>
+          </div>
           <Link to="/">
             <img
               src={Logo}
@@ -40,12 +44,7 @@ const NavBar = () => {
               className="md:cursor-pointer w-28 lg:w-56"
             />
           </Link>
-
-          <div className="text-3xl md:hidden flex items-center">
-            <button onClick={() => setOpen(!open)} className="text-mYellow">
-              {open ? <MdClose /> : <MdMenu />}
-            </button>
-
+          <div className="md:hidden">
             <ModalButton content={<Alarm />} />
           </div>
         </div>
@@ -57,7 +56,7 @@ const NavBar = () => {
             {accessToken != null ? (
               <div className="flex items-center">
                 <div className="flex items-center group">
-                  <div className="">
+                  <div>
                     <Profile />
 
                     <div className="absolute top-16 right-64 hidden group-hover:block hover:block ">
@@ -92,48 +91,13 @@ const NavBar = () => {
             )}
           </div>
         </div>
-        <ul
-          className={`
-          md:hidden bg-mBlack absolute w-full h-screen bottom-0 py-24 pl-4 top-0 
-          duration-500 ${open ? "left-0" : "left-[-120%]"} `}
-        >
-          <div>
-            {accessToken != null ? (
-              <div>
-                <div className="w-full flex items-center justify-between pr-8 ">
-                  <div className="flex items-center">
-                    <Profile />
-                    <span className="text-mYellow "> {nickname} 평론가님</span>
-                  </div>
-                  <LogoutButton logoutHandler={logoutHandler} />
-                </div>
-                <div className="text-mCream"></div>
-              </div>
-            ) : (
-              <LoginBox />
-            )}
-          </div>
-          <div>
-            <NavLinks links={navigationLinks} />
-            {accessToken != null ? (
-              <div className="text-mCream">
-                <h1
-                  className="pl-3 flex justify-between hover:cursor-pointer"
-                  onClick={() => {}}
-                >
-                  마이페이지
-                  <span>
-                    {/* <FaChevronDown /> */}
-                    <FaChevronUp />
-                  </span>
-                </h1>
-                <div className="pl-8 md:hidden">
-                  <NavLinks links={myLinks} />
-                </div>
-              </div>
-            ) : null}
-          </div>
-        </ul>
+        <MobileNavbar
+          open={open}
+          myLinks={myLinks}
+          accessToken={accessToken}
+          logoutHandler={logoutHandler}
+          nickname={nickname}
+        />
       </div>
     </nav>
   );

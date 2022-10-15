@@ -1,19 +1,13 @@
 import React, { useEffect } from "react";
 import Spinner from "components/common/Spinner";
 import SearchMovie from "./SearchMovie";
-import { api } from "shared/api";
+import { getSearchList } from "apis/movieApi";
 
 // 무한스크롤
 import { useInView } from "react-intersection-observer";
 import { useInfiniteQuery } from "react-query";
 
 const SearchList = () => {
-  const getSearchList = async (pageParam) => {
-    const res = await api.get(`/movie/${pageParam}`);
-    const { results, page } = res.data.data;
-    return { results, page };
-  };
-
   const { ref, inView } = useInView();
 
   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
@@ -36,7 +30,7 @@ const SearchList = () => {
   if (status === "loading") return <Spinner />;
 
   return (
-    <div className="mt-10">
+    <div className="mt-0">
       <div className="items-center justify-center pt-0 pb-4 rounded-3xl bg-mGray container mx-auto px-2 py-22 md:flex-row flex-col">
         <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-14 p-14">
           {data?.pages.map((page, index) => (

@@ -3,13 +3,17 @@
 > 누구나 평론가가 되어 영화에 대한 정보를 마음껏 공유하는 **영화 커뮤니티** 입니다.
 
 ## 프로젝트 주소
-* SA : https://www.notion.so/woongsnote/aacf5be13a1242b29f4e3d215f0f516f
-* 주소 : http://moviereviewroom.s3-website.ap-northeast-2.amazonaws.com/
+
+- SA : [노션링크](https://www.notion.so/woongsnote/aacf5be13a1242b29f4e3d215f0f516f)
+
+- 주소 : [바로가기](https://www.moviecritic.site)
 
 ## 프로젝트 기간
+
 2022.09.16 - 2022.10.28
 
 ## 팀원
+
 FE : 문지웅, 유민아, 전혜림, 장소정
 
 BE : 전선향, 유연정, 정수민
@@ -27,7 +31,6 @@ BE : 전선향, 유연정, 정수민
 
 - 배지 시스템
 - 알림 시스템
-
 
 ## 미리보기
 

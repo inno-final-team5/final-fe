@@ -1,86 +1,56 @@
-import api from "shared/api";
+import { api, authApi } from "apis";
 
+/** 커뮤니티 게시글 전체 조회*/
 export const getAllPosts = async () => {
   const response = await api.get("/post");
   return response.data;
 };
 
+/** 커뮤니티- 영화관 게시글 전체 조회 */
 export const getCinemaPosts = async () => {
   const response = await api.get("/post/cinemas");
   return response.data;
 };
 
+/** 커뮤니티- 영화 게시글 전체 조회 */
 export const getMoviePosts = async () => {
   const response = await api.get("/post/movies");
   return response.data;
 };
 
+/** 커뮤니티- 게시글 상세 조회 */
 export const getPostDetail = async (id) => {
   const response = await api.get(`/post/${id}`);
   return response.data;
 };
 
+/** 마이페이지- 나의 게시글 전체 조회 */
 export const getMyPosts = async () => {
-  const response = await api.get("/auth/post", {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
-  console.log(response);
+  const response = await authApi.get("/auth/post");
   return response.data;
 };
 
+/** 커뮤니티 - 새 게시글 작성 */
 export const addPost = async (post) => {
-  return await api.post("/auth/post", post, {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
+  return await authApi.post("/auth/post", post);
 };
 
+/** 커뮤니티 - 작성한 게시글 삭제 */
 export const deletePost = async ({ id }) => {
-  return await api.delete(`/auth/post/${id}`, {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
+  return await authApi.delete(`/auth/post/${id}`);
 };
 
+/** 커뮤니티 - 작성한 게시글 수정 */
 export const updatePost = async (post) => {
-  return await api.put(`/auth/post/${post.id}`, post, {
-    headers: {
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
+  return await authApi.put(`/auth/post/${post.id}`, post);
 };
 
-export const getLike = async ({ id }) => {
-  return await api.get(`/auth/post/like/${id}`, {
-    headers: {
-      Authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
+/** 커뮤니티 - 게시글 좋아요 */
+export const addLike = async ({ id }) => {
+  return await authApi.post(`/auth/post/like/${id}`);
 };
 
-// export const addLike = async ({ id }) => {
-//   return await api.post(`/auth/post/like/${id}`, {
-//     headers: {
-//       Authorization: localStorage.getItem("accessToken"),
-//       "refresh-token": localStorage.getItem("refreshToken"),
-//     },
-//   });
-// };
-
-// export const deleteLike = async ({ id }) => {
-//   return await api.delete(`/auth/post/like/${id}`, {
-//     headers: {
-//       Authorization: localStorage.getItem("accessToken"),
-//       "refresh-token": localStorage.getItem("refreshToken"),
-//     },
-//   });
-// };
+/** 커뮤니티 - 게시글 좋아요 취소 */
+export const deleteLike = async ({ id }) => {
+  return await authApi.delete(`/auth/post/like/${id}`);
+};

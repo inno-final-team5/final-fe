@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Spinner from "components/common/Spinner";
-import api from "shared/api";
+import { getBoxOfficeWithApi } from "apis/mainApi";
 import BoxOfficeMovie from "./BoxOfficeMovie";
 
 //슬라이더
@@ -9,7 +9,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BoxOfiice = () => {
+const BoxOffice = () => {
   /**carousel 설정*/
   const settings = {
     dots: false,
@@ -41,17 +41,14 @@ const BoxOfiice = () => {
     ],
   };
 
-  /**BoxOffice 데이터 불러오기*/
-  const getBoxOfficeWithApi = async () => {
-    const { data } = await api.get("main/boxoffice");
-    return data;
-  };
   /**테이터가 onSuccess일 때 가져오기 */
-  const BoxOfficequery = useQuery("boxoffice", getBoxOfficeWithApi, {
-    onSuccess: () => {},
+  const BoxOfficeQuery = useQuery("boxoffice", getBoxOfficeWithApi, {
+    onSuccess: () => {
+      window.scrollTo(0, 0);
+    },
   });
 
-  if (BoxOfficequery.isLoading) {
+  if (BoxOfficeQuery.isLoading) {
     return <Spinner />;
   }
 
@@ -59,7 +56,7 @@ const BoxOfiice = () => {
     <div className="w-11/12 m-auto mt-14">
       <h2 className="text-mYellow text-2xl my-10 font-bold"> BOX OFFICE </h2>
       <Slider {...settings} className="flex ">
-        {BoxOfficequery.data.data.map((movie) => (
+        {BoxOfficeQuery.data.data.map((movie) => (
           <BoxOfficeMovie {...movie} key={movie.movieId}></BoxOfficeMovie>
         ))}
       </Slider>
@@ -67,4 +64,4 @@ const BoxOfiice = () => {
   );
 };
 
-export default BoxOfiice;
+export default BoxOffice;
