@@ -58,8 +58,8 @@ export const updatePost = async (post) => {
   });
 };
 
-export const addLike = async ({ id }) => {
-  return await api.post(`/auth/post/like/${id}`, {
+export const getLike = async ({ id }) => {
+  return await api.get(`/auth/post/like/${id}`, {
     headers: {
       Authorization: localStorage.getItem("accessToken"),
       "refresh-token": localStorage.getItem("refreshToken"),
@@ -67,11 +67,20 @@ export const addLike = async ({ id }) => {
   });
 };
 
-export const deleteLike = async ({ id }) => {
-  return await api.delete(`/auth/post/like/${id}`, {
-    headers: {
-      Authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    },
-  });
-};
+// export const addLike = async ({ id }) => {
+//   return await api.post(`/auth/post/like/${id}`, {
+//     headers: {
+//       Authorization: localStorage.getItem("accessToken"),
+//       "refresh-token": localStorage.getItem("refreshToken"),
+//     },
+//   });
+// };
+
+// export const deleteLike = async ({ id }) => {
+//   return await api.delete(`/auth/post/like/${id}`, {
+//     headers: {
+//       Authorization: localStorage.getItem("accessToken"),
+//       "refresh-token": localStorage.getItem("refreshToken"),
+//     },
+//   });
+// };
