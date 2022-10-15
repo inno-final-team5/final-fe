@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { api } from "../../shared/api";
+import { Toast } from "components/common/Toast";
 
 const initialState = {
   users: [],
@@ -27,7 +28,7 @@ export const loginUserDB = (payload) => {
       .post("/members/login", payload)
       .then((response) => {
         if (response.data.success === false) {
-          return window.alert(response.data.error.message);
+          return Toast.fire({ icon: "warning", title: "이메일과 비밀번호를 다시 확인해주세요." });
         } else {
           function findBadge(element) {
             if (element.badgeId === response.data.data.badgeId) {
@@ -45,7 +46,7 @@ export const loginUserDB = (payload) => {
         }
       })
       .catch((response) => {
-        alert("사용자를 찾을 수 없습니다");
+        Toast.fire({ icon: "warning", title: "사용자를 찾을수 없습니다." });
         console.log(response);
       });
   };
@@ -70,7 +71,7 @@ export const kakaoLoginDB = (payload) => {
             localStorage.setItem("accessToken", response.headers["access-token"]),
             localStorage.setItem("refreshToken", response.headers["refresh-token"]),
             localStorage.setItem("nickname", response.data.data.username),
-            localStorage.setItem("badge", badge),
+            localStorage.setItem("badgeIcon", badge),
             (document.location.href = "/")
           );
         }
