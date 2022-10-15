@@ -13,7 +13,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import Profile from "components/common/Profile";
 import Spinner from "components/common/Spinner";
-
+import { api } from "apis";
 import Swal from "sweetalert2";
 import CommunityButton from "components/community/CommunityButton";
 import { Toast } from "components/common/Toast";
