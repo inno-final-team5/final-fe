@@ -2,7 +2,7 @@ import React from "react";
 import Spinner from "components/common/Spinner";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
-import api from "shared/api";
+import { getBestReviewWithApi } from "apis/mainApi";
 import BadgeEmoji from "../../common/BadgeEmoji";
 
 // 아이콘
@@ -11,11 +11,6 @@ import { FaThumbsUp } from "react-icons/fa";
 
 const BestReview = () => {
   const navigate = useNavigate();
-  /**Best Review 데이터 불러오기*/
-  const getBestReviewWithApi = async () => {
-    const { data } = await api.get("/main/best");
-    return data;
-  };
 
   /**데이터가 onSuccess일때 가져오기*/
   const BestReviewquery = useQuery("bestReview", getBestReviewWithApi, {

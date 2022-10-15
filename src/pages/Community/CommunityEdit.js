@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import CommunityButton from "components/community/CommunityButton";
 import { MdPostAdd } from "react-icons/md";
+import { Toast } from "components/common/Toast";
 
 const CommunityEdit = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const CommunityEdit = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries("posts");
+      Toast.fire({ icon: "success", title: "등록되었습니다." });
       navigate("/community/all");
     },
   });

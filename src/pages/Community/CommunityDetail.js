@@ -1,18 +1,24 @@
-import React from "react";
 import tw from "tailwind-styled-components";
 import { FaThumbsUp, FaRegThumbsUp, FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { useQueryClient, useMutation, useQuery } from "react-query";
-import { getPostDetail, deletePost, updatePost } from "apis/postApi";
+import {
+  getPostDetail,
+  deletePost,
+  updatePost,
+  deleteLike,
+  addLike,
+} from "apis/postApi";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import Profile from "components/common/Profile";
 import Spinner from "components/common/Spinner";
-import { api } from "shared/api";
+import { api } from "apis";
 import Swal from "sweetalert2";
 import CommunityButton from "components/community/CommunityButton";
 import { Toast } from "components/common/Toast";
 import PostAuthor from "components/community/PostAuthor";
+import LikesButton from "components/community/LikesButton";
 
 const CommunityDetail = () => {
   const { id } = useParams();
@@ -31,7 +37,11 @@ const CommunityDetail = () => {
     isError,
     error,
     data: post,
-  } = useQuery(["post", id], () => getPostDetail(id));
+  } = useQuery(["post", id], () => getPostDetail(id), {
+    onSuccess: () => {
+      // queryClient.invalidateQueries("post");
+    },
+  });
 
   const onDeleteHandler = () => {
     deletePostMutation.mutate({ id });
@@ -76,6 +86,35 @@ const CommunityDetail = () => {
     });
   };
 
+  const getReviewLike = async (id) => {
+    return await api.get(`/auth/post/like/${id}`, {
+      headers: {
+        Authorization: localStorage.getItem("accessToken"),
+        "refresh-token": localStorage.getItem("refreshToken"),
+      },
+    });
+  };
+  const { data: myLike, isSuccess } = useQuery(
+    ["likes", id],
+    () => getReviewLike(id),
+    {
+      onSuccess: (data) => {
+        // console.log(myLike);
+        // console.log("likes", data);
+        // if (data.data.data === true) {
+        //   setLike(true);
+        //   console.log("true", like);
+        // } else if (data.data.data == false) {
+        //   // setLike(false);
+        //   console.log("false", like);
+        // }
+      },
+      onError: () => {
+        console.log(error);
+      },
+    }
+  );
+
   const addReviewLike = async (data) => {
     return await api.post(`/auth/post/like/${id}`, data, {
       headers: {
@@ -93,15 +132,7 @@ const CommunityDetail = () => {
     },
   });
 
-  const deleteReviewLike = async (data) => {
-    return await api.delete(`/auth/post/like/${id}`, {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-        "refresh-token": localStorage.getItem("refreshToken"),
-      },
-    });
-  };
-  const deleteLike = useMutation(deleteReviewLike, {
+  const deleteMyLike = useMutation(deleteLike, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("post");
     },
@@ -144,30 +175,18 @@ const CommunityDetail = () => {
                 <p>{postData.postContent}</p>
               </DetailContent>
 
-              {like ? (
-                <DetailLikeContainer>
-                  <button
+              <DetailLikeContainer>
+                <LikesButton />
+                {/* <button
                     onClick={() => {
                       deleteLike();
                       setLike(false);
                     }}
                   >
                     <FaThumbsUp className="text-mYellow hover:text-mCream" />
-                  </button>
-                  <DetailLikeCount> {postData.likeNum}</DetailLikeCount>
-                </DetailLikeContainer>
-              ) : (
-                <DetailLikeContainer>
-                  <button
-                    onClick={() => {
-                      checkLogin();
-                    }}
-                  >
-                    <FaRegThumbsUp className="text-mYellow hover:text-mCream" />
-                  </button>
-                  <DetailLikeCount> {postData.likeNum}</DetailLikeCount>
-                </DetailLikeContainer>
-              )}
+                  </button> */}
+                <DetailLikeCount> {postData.likeNum}</DetailLikeCount>
+              </DetailLikeContainer>
 
               {postData.nickname === nickname ? (
                 <DetailControlContainer>
@@ -208,8 +227,9 @@ const CommunityDetail = () => {
                 />
               </DetailTitle>
               <DetailContent>
-                <input
-                  className="bg-mWhite w-full h-full focus:outline-none"
+                <textarea
+                  className="bg-mWhite w-full focus:outline-none"
+                  rows="10"
                   defaultValue={postData.postContent}
                   autoFocus
                   ref={updateReview}

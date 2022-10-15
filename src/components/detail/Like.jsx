@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { api } from "shared/api";
+import { addMyLike } from "apis/favoriteApi";
 import { useParams } from "react-router-dom";
 import { RiHeartAddLine } from "react-icons/ri";
 import { ImHeart } from "react-icons/im";
@@ -13,21 +13,8 @@ const Like = () => {
   const poster_path = "/" + poster + ".jpg";
   const [success, setSuccess] = useState("");
 
-  const refreshToken = localStorage.getItem("refreshToken");
-  const accessToken = localStorage.getItem("accessToken");
-  const headers = {
-    Authorization: accessToken,
-    "refresh-token": refreshToken,
-  };
-
-  /**영화 즐겨찾기 추가 */
-  const addMylike = async (data) => {
-    return await api.post(`/auth/movie/favorite`, data, {
-      headers: headers,
-    });
-  };
   const queryClient = useQueryClient();
-  const { mutate } = useMutation(addMylike, {
+  const { mutate } = useMutation(addMyLike, {
     onSuccess: (data) => {
       setSuccess(data.data.data);
       queryClient.invalidateQueries("myMovieList");
@@ -41,7 +28,10 @@ const Like = () => {
     <div>
       {success == "favorite success" ? (
         <>
-          <ImHeart className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor" size={34} />
+          <ImHeart
+            className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor"
+            size={34}
+          />
         </>
       ) : (
         <RiHeartAddLine
@@ -54,7 +44,7 @@ const Like = () => {
             mutate(data);
           }}
           className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor"
-          size={34}
+          size={30}
         />
       )}
     </div>

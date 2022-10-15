@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { api } from "../../shared/api";
+import { kakaoLogin, signIn } from "apis/userApi";
+import { Toast } from "components/common/Toast";
 
 const initialState = {
   users: [],
@@ -23,11 +24,13 @@ const badgeIcon = [
 //login
 export const loginUserDB = (payload) => {
   return async function () {
-    await api
-      .post("/members/login", payload)
+    await signIn(payload)
       .then((response) => {
         if (response.data.success === false) {
-          return window.alert(response.data.error.message);
+          return Toast.fire({
+            icon: "warning",
+            title: "이메일과 비밀번호를 다시 확인해주세요.",
+          });
         } else {
           function findBadge(element) {
             if (element.badgeId === response.data.data.badgeId) {
@@ -37,7 +40,10 @@ export const loginUserDB = (payload) => {
           const { badge } = badgeIcon.filter(findBadge)[0];
           return (
             localStorage.setItem("nickname", response.data.data.nickname),
-            localStorage.setItem("refreshToken", response.headers["refresh-token"]),
+            localStorage.setItem(
+              "refreshToken",
+              response.headers["refresh-token"]
+            ),
             localStorage.setItem("accessToken", response.headers.authorization),
             localStorage.setItem("badgeIcon", badge),
             (document.location.href = "/")
@@ -45,7 +51,7 @@ export const loginUserDB = (payload) => {
         }
       })
       .catch((response) => {
-        alert("사용자를 찾을 수 없습니다");
+        Toast.fire({ icon: "warning", title: "사용자를 찾을수 없습니다." });
         console.log(response);
       });
   };
@@ -53,8 +59,7 @@ export const loginUserDB = (payload) => {
 
 export const kakaoLoginDB = (payload) => {
   return async function () {
-    await api
-      .post(`/oauth/kakao?code=${payload}`)
+    await kakaoLogin(payload)
       .then((response) => {
         if (response.data.success === false) {
           return window.alert(response.data.error.message);
@@ -67,10 +72,16 @@ export const kakaoLoginDB = (payload) => {
           }
           const { badge } = badgeIcon.filter(findBadge)[0];
           return (
-            localStorage.setItem("accessToken", response.headers["access-token"]),
-            localStorage.setItem("refreshToken", response.headers["refresh-token"]),
+            localStorage.setItem(
+              "accessToken",
+              response.headers["access-token"]
+            ),
+            localStorage.setItem(
+              "refreshToken",
+              response.headers["refresh-token"]
+            ),
             localStorage.setItem("nickname", response.data.data.username),
-            localStorage.setItem("badge", badge),
+            localStorage.setItem("badgeIcon", badge),
             (document.location.href = "/")
           );
         }

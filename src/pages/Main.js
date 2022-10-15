@@ -1,5 +1,5 @@
 import Layout from "components/common/Layout";
-import BoxOfiice from "components/mainpage/BoxOfiice";
+import BoxOffice from "components/mainpage/BoxOffice";
 import MainTabList from "components/mainpage/MainTabList";
 import SearchBar from "components/search/SearchBar";
 
@@ -7,7 +7,7 @@ const Main = () => {
   return (
     <Layout>
       <SearchBar />
-      <BoxOfiice />
+      <BoxOffice />
       <MainTabList />
     </Layout>
   );
