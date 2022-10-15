@@ -58,18 +58,20 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
   return (
     <div>
       <div className="container mt-2 bg-gray-500 h-8 rounded-2xl px-6 py-6 mx-auto flex items-center sm:flex-row flex-col">
-        <a className="flex title-font items-center md:justify-start justify-center text-gray-900">
-          <div className="sm:w-2">
-            <BadgeEmoji badgeId={badgeId} />
+        <div className="flex md:flex-col sm:flex-col lg:flex-row">
+          <a className="flex title-font items-center md:justify-start justify-center text-gray-900">
+            <div className="sm:w-2">
+              <BadgeEmoji badgeId={badgeId} />
+            </div>
+            <div className="flex ml-3 2xl:w-36 xl:w-36 md:w-20 sm:w-12">
+              <span className="text-sm text-mCream sm:text-xs">{nickname}</span>
+            </div>
+          </a>
+          <div>
+            <span className="flex">
+              <Stars>{starRating(oneLineReviewStar)}</Stars>
+            </span>
           </div>
-          <div className="flex ml-3 2xl:w-36 xl:w-36 md:w-20 sm:w-12">
-            <span className="text-sm text-mCream sm:text-xs">{nickname}</span>
-          </div>
-        </a>
-        <div>
-          <span className="flex">
-            <Stars>{starRating(oneLineReviewStar)}</Stars>
-          </span>
         </div>
         <span className="text-gray-500 md:ml-2 sm:ml-3 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
           <h2 className="text-base lg:text-base md:text-sm sm:text-sm font-medium text-gray-300 title-font mb-1 mt-2 sm:mr-2 ">
