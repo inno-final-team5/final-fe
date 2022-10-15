@@ -42,7 +42,7 @@ const MyOneLineReviews = () => {
   };
   const content = currentPosts(myOneLineReviews).map((oneLineReview) => (
     <OneLineReviewItem
-      key={oneLineReview.postId}
+      key={oneLineReview.oneLineReviewId}
       oneLineReview={oneLineReview}
     />
   ));

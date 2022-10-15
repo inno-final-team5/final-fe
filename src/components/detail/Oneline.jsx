@@ -3,18 +3,26 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import { FaThumbsUp } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
-import { api } from "shared/api";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import BadgeEmoji from "../common/BadgeEmoji";
 import { Toast } from "components/common/Toast";
+import {
+  addCommentLike,
+  deleteCommentLike,
+  getMyLikeComment,
+} from "apis/oneLineReviewApi";
 
-function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, likeNum, badgeId }) {
-  const refreshToken = localStorage.getItem("refreshToken");
+function Oneline({
+  reviewId,
+  oneLineReviewStar,
+  oneLineReviewContent,
+  nickname,
+  likeNum,
+  badgeId,
+}) {
+  const queryClient = useQueryClient();
   const accessToken = localStorage.getItem("accessToken");
-  const headers = {
-    Authorization: accessToken,
-    "refresh-token": refreshToken,
-  };
+
   const starRating = (rating) => {
     const star = [];
     for (let i = 0; i < 5; i++) {
@@ -30,11 +38,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
   /**내가 좋아요한 댓글 불러오기 */
   const likeReviewId = reviewId;
   const [myLike, setMyLike] = useState([]);
-  const getMyLikeComment = async () => {
-    return await api.get(`/auth/movie/like`, {
-      headers: headers,
-    });
-  };
+
   const myLikeCommnetQuery = useQuery("myLikeCommentList", getMyLikeComment, {
     onSuccess: (data) => {
       setMyLike(data.data.data);
@@ -43,14 +47,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
   // //좋아요 상태유지 위해 내가 좋아요한 댓글과 현재 댓글들과 일치하는 데이터 찾기
   let res = myLike.filter((ele) => ele.oneLineReviewId == likeReviewId);
 
-  /**한줄평 좋아요 추가 */
-  const addCommentlike = async (data) => {
-    return await api.post(`/auth/movie/${reviewId}/like`, data, {
-      headers: headers,
-    });
-  };
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation(addCommentlike, {
+  const addLike = useMutation(() => addCommentLike(reviewId), {
     onSuccess: (data) => {
       queryClient.invalidateQueries("onelineList");
       queryClient.invalidateQueries("myLikeCommentList");
@@ -60,13 +57,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
     },
   });
 
-  /**한줄평 좋아요 삭제 */
-  const deleteCommentlike = async (data) => {
-    return await api.delete(`/auth/movie/${reviewId}/like`, {
-      headers: headers,
-    });
-  };
-  const deleteLike = useMutation(deleteCommentlike, {
+  const deleteLike = useMutation(() => deleteCommentLike(reviewId), {
     onSuccess: (data) => {
       queryClient.invalidateQueries("onelineList");
       queryClient.invalidateQueries("myLikeCommentList");
@@ -107,7 +98,9 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
                 }}
               >
                 <FaRegThumbsUp size={18} />
-                <p className="mt-1 text-sm hover:text-mCream lg:mr-4">{likeNum}</p>
+                <p className="mt-1 text-sm hover:text-mCream lg:mr-4">
+                  {likeNum}
+                </p>
               </button>
             ) : res?.length ? (
               <button
@@ -123,7 +116,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
               <button
                 className="mt-1 lg:mr-4"
                 onClick={() => {
-                  mutate();
+                  addLike.mutate();
                 }}
               >
                 <FaRegThumbsUp size={18} />

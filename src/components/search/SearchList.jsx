@@ -1,30 +1,28 @@
 import React, { useEffect } from "react";
 import Spinner from "components/common/Spinner";
 import SearchMovie from "./SearchMovie";
-import { api } from "shared/api";
+import { getSearchList } from "apis/movieApi";
 
 // 무한스크롤
 import { useInView } from "react-intersection-observer";
 import { useInfiniteQuery } from "react-query";
 
 const SearchList = () => {
-  const getSearchList = async (pageParam) => {
-    const res = await api.get(`/movie/${pageParam}`);
-    const { results, page } = res.data.data;
-    return { results, page };
-  };
-
   const { ref, inView } = useInView();
 
-  const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery("searchList", ({ pageParam = 1 }) => getSearchList(pageParam), {
-    getNextPageParam: (lastPage) => {
-      if (lastPage.results.length === 0) {
-        return undefined;
-      } else {
-        return lastPage.page + 1;
-      }
-    },
-  });
+  const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    "searchList",
+    ({ pageParam = 1 }) => getSearchList(pageParam),
+    {
+      getNextPageParam: (lastPage) => {
+        if (lastPage.results.length === 0) {
+          return undefined;
+        } else {
+          return lastPage.page + 1;
+        }
+      },
+    }
+  );
   useEffect(() => {
     if (inView) fetchNextPage();
   }, [inView]);

@@ -3,12 +3,18 @@ import tw from "tailwind-styled-components";
 import { FaThumbsUp, FaRegThumbsUp, FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { useQueryClient, useMutation, useQuery } from "react-query";
-import { getPostDetail, deletePost, updatePost } from "apis/postApi";
+import {
+  getPostDetail,
+  deletePost,
+  updatePost,
+  deleteLike,
+  addLike,
+} from "apis/postApi";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import Profile from "components/common/Profile";
 import Spinner from "components/common/Spinner";
-import { api } from "shared/api";
+
 import Swal from "sweetalert2";
 import CommunityButton from "components/community/CommunityButton";
 import { Toast } from "components/common/Toast";
@@ -76,15 +82,7 @@ const CommunityDetail = () => {
     });
   };
 
-  const addReviewLike = async (data) => {
-    return await api.post(`/auth/post/like/${id}`, data, {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-        "refresh-token": localStorage.getItem("refreshToken"),
-      },
-    });
-  };
-  const { mutate } = useMutation(addReviewLike, {
+  const { mutate } = useMutation(addLike, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("post");
     },
@@ -93,15 +91,7 @@ const CommunityDetail = () => {
     },
   });
 
-  const deleteReviewLike = async (data) => {
-    return await api.delete(`/auth/post/like/${id}`, {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-        "refresh-token": localStorage.getItem("refreshToken"),
-      },
-    });
-  };
-  const deleteLike = useMutation(deleteReviewLike, {
+  const deleteMyLike = useMutation(deleteLike, {
     onSuccess: (data) => {
       queryClient.invalidateQueries("post");
     },
