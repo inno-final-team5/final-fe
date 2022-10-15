@@ -72,6 +72,11 @@ const OnelineForm = (props) => {
   function countingWords() {
     document.getElementById("txtLength").innerHTML = document.getElementById("userTxt").value.length;
   }
+  const onKeyPress = (e) => {
+    if (e.key == "Enter") {
+      document.getElementById("addLine").click();
+    }
+  };
   return (
     <div>
       {accessToken == null ? null : res?.length ? (
@@ -81,30 +86,32 @@ const OnelineForm = (props) => {
       ) : (
         <>
           <section className="mt-6">
-            <div className="container md:w-5/6 sm:w-5/6 lg:w-full pl-3 pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap flex-col md:flex-row items-center">
-              <div className="flex lg:w-full 2xl:w-full mr-6 title-font font-medium items-center ml-2 mb-4 md:mb-0">
-                <h1 className="md:text-lg font-medium title-font md:flex-row flex-col text-mYellow">한줄평작성하기</h1>
+            <div className="container md:w-5/6 sm:w-5/6 lg:w-full xl:w-full pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap flex-col md:flex-row items-center">
+              <div className="flex lg:w-full 2xl:w-full mr-6 title-font ml-8 font-medium items-center ml-2 mb-4 md:mb-0">
+                <h1 className="md:text-lg font-medium title-font md:flex-row flex-col text-mYellow mt-2">한줄평작성하기</h1>
               </div>
-              <Stars className="lg:ml-5 lg:mr-0">
+              <Stars className="lg:ml-10 lg:mr-0 lg:mt-2 xl:ml-14 ">
                 {array.map((el, idx) => {
-                  return <FaStar key={idx} size="30" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
+                  return <FaStar key={idx} size="28" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
                 })}
               </Stars>
-              <div className="flex  lg:w-4/5 xl:w-5/6 md:w-full sm:items-center sm:flex-col md:flex-row sm:w-full space-x-1">
-                <div className="2xl:w-full md:w-full lg:w-5/6 xl:mt-0 sm:mt-2 sm:w-5/6 lg:mr-0 md:mr-auto md:ml-2 lg:ml-0 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
+              <div className="flex lg:w-3/4 xl:w-5/6 md:w-full sm:items-center sm:flex-col md:flex-row sm:w-full">
+                <div className="2xl:w-full md:w-full lg:w-full xl:mt-0 sm:mt-2 sm:w-full sm:mr-3 lg:mr-0 md:mr-auto md:ml-2 lg:ml-0 md:py-2 pl-5 md:border-l md:border-gray-400 flex flex-wrap text-sm ">
                   <textarea
                     id="userTxt"
                     onKeyUp={() => countingWords()}
                     ref={myOneline}
-                    className="pl-2 py-1 h-10 w-full rounded-xl md:mt-0 sm:mt-2 resize-none text-lg"
+                    className="pl-2 py-1 h-8 w-full rounded-xl lg:mt-2 md:mt-0 sm:mt-2 resize-none"
+                    onKeyPress={onKeyPress}
                   />
                 </div>
-                <div className="flex-shrink-0 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
-                  <div className="text-sm text-gray-500 mt-6 mr-2 md:visible sm:invisible">
+                <div className="flex-shrink-0 inline-flex md:flex-row sm:flex-col items-center focus:outline-none text-base xl:mr-6 md:mt-0">
+                  <div className="text-sm text-gray-500 lg:ml-1 lg:mt-6 md:mt-8 sm:mt-2 mr-2 md:visible  ">
                     <span id="txtLength">0</span>
                     /80
                   </div>
                   <button
+                    id="addLine"
                     onClick={() => {
                       const data = {
                         movieId: id,
@@ -115,7 +122,7 @@ const OnelineForm = (props) => {
                       };
                       addOneLineComment.mutate(data);
                     }}
-                    className="2xl:px-6 xl:px-10 md:mt-3 sm:mt-4 lg:px-6 sm:px-10 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
+                    className="2xl:px-10 xl:px-8 md:mt-3 lg:px-6 sm:mt-2 sm:px-10 md:px-5 xl:mt-2 lg:mt-4 bg-mYellow inline-flex py-2 rounded-full items-center hover:bg-mCream "
                   >
                     작성하기
                   </button>

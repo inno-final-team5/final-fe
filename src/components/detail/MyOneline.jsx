@@ -85,27 +85,32 @@ const MyOneline = ({ res }) => {
     },
   }).mutate;
 
+  const onKeyPress = (e) => {
+    if (e.key == "Enter") {
+      document.getElementById("editLine").click();
+    }
+  };
   return (
     <div>
       {!isEditMode ? (
         <>
           <section className="mt-6 md:flex-col">
             <div className="container sm:w-5/6  lg:w-full pt-2 pb-2  rounded-3xl bg-mGray mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-              <div className="flex font-medium items-center mr-4 mb-4 md:mb-0">
-                <h1 className="p-2 md:text-lg title-font md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
+              <div className="flex font-medium items-center mr-4 mb-4 md:mb-0 sm:mb-0">
+                <h1 className="p-2 md:text-lg title-font md:flex-row flex-col text-mYellow ">내가쓴한줄평</h1>
               </div>
               <div className="flex lg:flex-row md:flex-col sm:flex-col 2xl:w-full xl:w-full md:w-full space-x-2 sm:w-full items-center">
                 <MyStars className="md:mt-2 md:ml-5">{starRating(res[0].oneLineReviewStar)}</MyStars>
-                <div className="2xl:w-full sm:w-2/3 md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
+                <div className="2xl:w-full sm:w-full md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
                   <input
-                    className="pl-2 pt-2 text-lg sm:text-sm sm:mt-2 md:text-sm w-full h-10 bg-gray-400 rounded-xl"
+                    className="pl-2 mt-2 pt-2 text-lg sm:text-sm sm:mt-2 md:text-sm w-full h-10 bg-gray-400 rounded-xl"
                     value={res[0].oneLineReviewContent}
                     disabled
                   />
                 </div>
                 <div className="flex-shrink-0 gap-4 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
                   <button
-                    className="inline-flex 2xl:px-6 xl:px-6 lg:px-6 md:px-6 bg-mYellow sm:mt-4 sm:px-8 inline-flex py-3 rounded-full items-center hover:bg-mCream"
+                    className="inline-flex 2xl:px-6 xl:px-6 lg:px-6 md:px-8 bg-mYellow sm:mt-4 sm:px-8 lg:mt-2 inline-flex py-3 rounded-full items-center hover:bg-mCream"
                     onClick={() => {
                       setIsEditMode(true);
                     }}
@@ -116,7 +121,7 @@ const MyOneline = ({ res }) => {
                     onClick={() => {
                       mutate();
                     }}
-                    className="2xl:px-6 xl:px-6 lg:px-6 md:px-6 sm:mt-4 sm:px-8 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
+                    className="2xl:px-6 xl:px-6 lg:px-6 md:px-8 sm:mt-4 sm:px-8 lg:mt-2 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
                   >
                     <BsTrash size="22" />
                   </button>
@@ -144,6 +149,7 @@ const MyOneline = ({ res }) => {
                     autoFocus
                     defaultValue={res[0].oneLineReviewContent}
                     ref={myOneline}
+                    onKeyPress={onKeyPress}
                   />
                 </div>
                 <div className="flex-shrink-0 gap-4 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
@@ -156,6 +162,7 @@ const MyOneline = ({ res }) => {
                     <IoMdArrowBack size="22" />
                   </button>
                   <button
+                    id="editLine"
                     onClick={() => {
                       const data = {
                         movieId: res[0].movieId,
