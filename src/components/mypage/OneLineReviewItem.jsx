@@ -25,7 +25,10 @@ const OneLineReviewItem = ({ oneLineReview }) => {
         className="flex bg-mGray m-2 px-2 py-3 gap-12 w-full rounded-xl my-6"
       >
         <div className="flex text-mYellow w-[10%] pl-4 gap-1">
-          <MyStars star={oneLineReview.oneLineReviewStar} />
+          <MyStars
+            key={oneLineReview.title}
+            star={oneLineReview.oneLineReviewStar}
+          />
         </div>
         <div className="w-[28%] text-left text-mWhite">
           <h2 className="truncate">{oneLineReview.title}</h2>

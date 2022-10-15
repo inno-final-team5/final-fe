@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { authApi } from "apis/index";
+import { addMyLike } from "apis/favoriteApi";
 import { useParams } from "react-router-dom";
 import { RiHeartAddLine } from "react-icons/ri";
 import { ImHeart } from "react-icons/im";
@@ -13,12 +13,8 @@ const Like = () => {
   const poster_path = "/" + poster + ".jpg";
   const [success, setSuccess] = useState("");
 
-  /**영화 즐겨찾기 추가 */
-  const addMylike = async (data) => {
-    return await authApi.post(`/auth/movie/favorite`, data);
-  };
   const queryClient = useQueryClient();
-  const { mutate } = useMutation(addMylike, {
+  const { mutate } = useMutation(addMyLike, {
     onSuccess: (data) => {
       setSuccess(data.data.data);
       queryClient.invalidateQueries("myMovieList");

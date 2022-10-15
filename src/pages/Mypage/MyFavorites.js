@@ -1,5 +1,5 @@
 import FavoriteCard from "components/favorite/FavoriteCard";
-import { getMyFavorites, deleteMyFavorite } from "apis/favoriteApi";
+import { getMyLikes, deleteMyLike } from "apis/favoriteApi";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import tw from "tailwind-styled-components";
 import Spinner from "components/common/Spinner";
@@ -12,9 +12,9 @@ const MyFavorites = () => {
     isError,
     error,
     data: favorites,
-  } = useQuery("favorites", getMyFavorites);
+  } = useQuery("favorites", getMyLikes);
 
-  const deleteFavoriteMutation = useMutation(deleteMyFavorite, {
+  const deleteFavoriteMutation = useMutation(deleteMyLike, {
     onSuccess: () => {
       queryClient.invalidateQueries("favorites");
     },

@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { authApi } from "apis/index";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
@@ -8,11 +7,13 @@ import { TiPencil } from "react-icons/ti";
 import { useParams } from "react-router-dom";
 import { IoMdArrowBack } from "react-icons/io";
 import { Toast } from "components/common/Toast";
+import { deleteMyOneLine, updateMyOneLine } from "apis/oneLineReviewApi";
 
 const MyOneline = ({ res }) => {
   const params = useParams();
   const myOneline = useRef("");
   const id = res[0].oneLineReviewId;
+
   const title = params.title;
   const poster = params.poster;
   const poster_path = "/" + poster + ".jpg";
@@ -45,12 +46,8 @@ const MyOneline = ({ res }) => {
     return star;
   };
 
-  /**한줄평 삭제 */
-  const deleteMyline = async () => {
-    return await authApi.delete(`/auth/movie/${id}`);
-  };
   const queryClient = useQueryClient();
-  const { mutate } = useMutation(deleteMyline, {
+  const { mutate } = useMutation(() => deleteMyOneLine(id), {
     onSuccess: (data) => {
       queryClient.invalidateQueries("onelineList");
       queryClient.invalidateQueries("myOneline");
@@ -73,7 +70,7 @@ const MyOneline = ({ res }) => {
       Toast.fire({ icon: "warning", title: "한줄평은 80자 이내입니다" });
       return;
     } else {
-      return await authApi.put(`/auth/movie/${id}`, data);
+      return await updateMyOneLine(id, data);
     }
   };
   const editBtnHandler = useMutation(editMyline, {
@@ -101,12 +98,12 @@ const MyOneline = ({ res }) => {
                 <MyStars className="mt-2 ml-5">{starRating(res[0].oneLineReviewStar)}</MyStars>
                 <div className="2xl:w-full sm:w-2/3 md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
                   <input
-                    className="pl-2 pt-2 text-lg sm:text-sm md:text-base md:text-sm w-full h-10 bg-gray-400 rounded-xl"
+                    className="pl-2 pt-2 text-lg sm:text-sm md:text-sm w-full h-10 bg-gray-400 rounded-xl"
                     value={res[0].oneLineReviewContent}
                     disabled
                   />
                 </div>
-                <div className="flex flex-shrink-0 gap-4 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
+                <div className="flex-shrink-0 gap-4 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
                   <button
                     className="2xl:px-6 xl:px-6 lg:px-6 md:px-2 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream"
                     onClick={() => {
@@ -135,13 +132,13 @@ const MyOneline = ({ res }) => {
               <div className="flex title-font font-medium items-center mr-4 mb-4 md:mb-0">
                 <h1 className="p-2 md:text-base font-medium title-font md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
               </div>
-              <div className="flex sm:w-full md:w-full sm:w-full 2xl:w-full xl:w-full md:w-full space-x-2">
+              <div className="flex sm:w-full md:w-full  2xl:w-full xl:w-full space-x-2">
                 <Stars className="mt-2 ml-5">
                   {array.map((el, idx) => {
                     return <FaStar key={idx} size="24" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
                   })}
                 </Stars>
-                <div className="flex 2xl:w-full md:w-full sm:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
+                <div className="flex 2xl:w-full md:w-full sm:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex-wrap text-base ">
                   <input
                     className="sm:text-sm pl-2 pt-2 text-lg w-full h-10 rounded-xl"
                     autoFocus
@@ -151,7 +148,7 @@ const MyOneline = ({ res }) => {
                 </div>
                 <div className="flex-shrink-0 gap-4 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
                   <button
-                    className="inline-flex 2xl:px-6 xl:px-6 lg:px-6 md:px-2 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
+                    className="inline-flex 2xl:px-6 xl:px-6 lg:px-6 md:px-2 bg-mYellow  py-3 rounded-full items-center hover:bg-mCream "
                     onClick={() => {
                       setIsEditMode(false);
                     }}
@@ -169,7 +166,7 @@ const MyOneline = ({ res }) => {
                       };
                       editBtnHandler(data);
                     }}
-                    className="inline-flex 2xl:px-6 xl:px-6 lg:px-6 md:px-2 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
+                    className="inline-flex 2xl:px-6 xl:px-6 lg:px-6 md:px-2 bg-mYellow py-3 rounded-full items-center hover:bg-mCream"
                   >
                     <TiPencil size="22" />
                   </button>
