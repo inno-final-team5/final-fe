@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Spinner from "components/common/Spinner";
 import SearchMovie from "./SearchMovie";
-import { api } from "shared/api";
+import { api } from "apis/index";
 
 // 무한스크롤
 import { useInView } from "react-intersection-observer";

@@ -23,15 +23,8 @@ const SearchBar = () => {
               onChange={onChangeHandler}
               required
             />
-            <button
-              type="submit"
-              onClick={() => navigate(`/search/${keyword}`)}
-              className="absolute right-4 bottom-1.5 focus:outline-none px-3 py-2"
-            >
-              <BsSearch
-                className="text-mBlack hover:text-gray-500 hover:text-2xl"
-                size={30}
-              />
+            <button type="submit" onClick={() => navigate(`/search/${keyword}`)} className="absolute right-4 bottom-1.5 focus:outline-none px-3 py-2">
+              <BsSearch className="text-mBlack hover:text-gray-500 hover:text-2xl" size={30} />
             </button>
           </div>
         </form>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Spinner from "components/common/Spinner";
 import { useQuery } from "react-query";
-import { api } from "shared/api";
+import { api, authApi } from "apis/index";
 import { useParams, Link } from "react-router-dom";
 import Like from "./Like";
 import Dislike from "./Dislike";
@@ -10,12 +10,8 @@ import { RiHeartAddLine } from "react-icons/ri";
 import { Toast } from "components/common/Toast";
 
 const MovieSum = () => {
-  const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
-  const headers = {
-    Authorization: accessToken,
-    "refresh-token": refreshToken,
-  };
+
   const [img, setImg] = useState(null);
   const [myFav, setMyFav] = useState([]);
   const [movie, setMovie] = useState([]);
@@ -35,9 +31,7 @@ const MovieSum = () => {
 
   /**내가 즐겨찾기한 영화 불러오기 */
   const getMyMovie = async () => {
-    return await api.get(`/auth/movie/favorites`, {
-      headers: headers,
-    });
+    return await authApi.get(`/auth/movie/favorites`);
   };
   const myMovieQuery = useQuery("myMovieList", getMyMovie, {
     onSuccess: (data) => {

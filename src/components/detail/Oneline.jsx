@@ -3,18 +3,14 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import { FaThumbsUp } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
-import { api } from "shared/api";
+import { authApi } from "apis/index";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import BadgeEmoji from "../common/BadgeEmoji";
 import { Toast } from "components/common/Toast";
 
 function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, likeNum, badgeId }) {
-  const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
-  const headers = {
-    Authorization: accessToken,
-    "refresh-token": refreshToken,
-  };
+
   const starRating = (rating) => {
     const star = [];
     for (let i = 0; i < 5; i++) {
@@ -31,9 +27,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
   const likeReviewId = reviewId;
   const [myLike, setMyLike] = useState([]);
   const getMyLikeComment = async () => {
-    return await api.get(`/auth/movie/like`, {
-      headers: headers,
-    });
+    return await authApi.get(`/auth/movie/like`);
   };
   const myLikeCommnetQuery = useQuery("myLikeCommentList", getMyLikeComment, {
     onSuccess: (data) => {
@@ -45,9 +39,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
 
   /**한줄평 좋아요 추가 */
   const addCommentlike = async (data) => {
-    return await api.post(`/auth/movie/${reviewId}/like`, data, {
-      headers: headers,
-    });
+    return await authApi.post(`/auth/movie/${reviewId}/like`, data);
   };
   const queryClient = useQueryClient();
   const { mutate } = useMutation(addCommentlike, {
@@ -62,9 +54,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
 
   /**한줄평 좋아요 삭제 */
   const deleteCommentlike = async (data) => {
-    return await api.delete(`/auth/movie/${reviewId}/like`, {
-      headers: headers,
-    });
+    return await authApi.delete(`/auth/movie/${reviewId}/like`);
   };
   const deleteLike = useMutation(deleteCommentlike, {
     onSuccess: (data) => {
@@ -93,7 +83,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
           </span>
         </div>
         <span className="text-gray-500 md:ml-2 sm:ml-3 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-          <h2 className="truncate text-base lg:text-base md:text-sm sm:text-sm font-medium text-gray-300 title-font mb-1 mt-2 sm:mr-2 ">
+          <h2 className="text-base lg:text-base md:text-sm sm:text-sm font-medium text-gray-300 title-font mb-1 mt-2 sm:mr-2 ">
             {oneLineReviewContent}
           </h2>
         </span>
@@ -116,7 +106,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
                   deleteLike();
                 }}
               >
-                <FaThumbsUp size={18} />
+                <FaThumbsUp size={18} className="sm:text-sm" />
                 <p className="mt-1 text-sm hover:text-mCream">{likeNum}</p>
               </button>
             ) : (

@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import Spinner from "components/common/Spinner";
 import { useQuery } from "react-query";
 import Oneline from "./Oneline";
-import { api } from "shared/api";
+import { api } from "apis/index";
 import { useParams } from "react-router-dom";
-import { getOnelineList } from "apis/oneLineReviewApi";
 
 function OnelineList() {
   const params = useParams();

@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { FaStar } from "react-icons/fa";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import styled from "styled-components";
-import { api } from "shared/api";
+import { authApi } from "apis/index";
 import { useParams } from "react-router-dom";
 import MyOneline from "./MyOneline";
 import { Toast } from "components/common/Toast";
@@ -11,12 +11,7 @@ const OnelineForm = (props) => {
   const params = useParams();
   const id = params.id;
   const [allmyline, setAllmyline] = useState([]);
-  const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
-  const headers = {
-    Authorization: accessToken,
-    "refresh-token": refreshToken,
-  };
 
   /* 별점 추가 */
   const [clicked, setClicked] = useState([false, false, false, false, false]);
@@ -48,9 +43,7 @@ const OnelineForm = (props) => {
       Toast.fire({ icon: "warning", title: "한줄평은 80자 이내입니다" });
       return;
     } else {
-      return api.post(`/auth/movie/one-line-review`, data, {
-        headers: headers,
-      });
+      return authApi.post(`/auth/movie/one-line-review`, data);
     }
   };
   const queryClient = useQueryClient();
@@ -66,9 +59,7 @@ const OnelineForm = (props) => {
 
   /**내가 작성한 한줄평 불러오기 */
   const getMyOneline = async () => {
-    return await api.get(`/auth/movie/one-line-review`, {
-      headers: headers,
-    });
+    return await authApi.get(`/auth/movie/one-line-review`);
   };
   const myMovieQuery = useQuery("myOneline", getMyOneline, {
     onSuccess: (data) => {
@@ -103,7 +94,7 @@ const OnelineForm = (props) => {
                 })}
               </Stars>
               <div className="flex xl:w-full lg:w-4/5 xl:w-5/6 md:w-full sm:items-center sm:flex-col md:flex-row sm:w-full space-x-1">
-                <div className="2xl:w-full md:w-full lg:w-5/6 xl:mt-0 sm:mt-2 sm:w-5/6 lg:mr-0 md:mr-auto md:ml-2 lg:ml-0 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
+                <div className="2xl:w-full md:w-full lg:w-full xl:mt-0 sm:mt-2 sm:w-5/6 lg:mr-0 md:mr-auto md:ml-2 lg:ml-0 md:py-2 md:pl-8 md:border-l md:border-gray-400 flex flex-wrap text-base ">
                   <textarea
                     id="userTxt"
                     onKeyUp={() => countingWords()}
@@ -112,7 +103,7 @@ const OnelineForm = (props) => {
                   />
                 </div>
                 <div className="flex-shrink-0 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
-                  <div className="text-sm text-gray-500 mt-6 mr-2">
+                  <div className="text-sm text-gray-500 mt-6 mr-2 md:visible sm:invisible">
                     <span id="txtLength">0</span>
                     /80
                   </div>
@@ -127,7 +118,7 @@ const OnelineForm = (props) => {
                       };
                       mutate(data);
                     }}
-                    className="2xl:px-6 xl:px-10 md:mt-3 md:px-3 sm:mt-4 lg:px-6 sm:px-10 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
+                    className="2xl:px-6 xl:px-10 md:mt-2 md:px-4 sm:mt-4 lg:px-6 sm:px-10 md:px-10 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
                   >
                     작성하기
                   </button>

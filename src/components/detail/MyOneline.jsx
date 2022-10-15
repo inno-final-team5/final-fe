@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useMutation, useQueryClient } from "react-query";
-import { api } from "shared/api";
+import { authApi } from "apis/index";
 import styled from "styled-components";
 import { FaStar } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
@@ -13,12 +13,6 @@ const MyOneline = ({ res }) => {
   const params = useParams();
   const myOneline = useRef("");
   const id = res[0].oneLineReviewId;
-  const refreshToken = localStorage.getItem("refreshToken");
-  const accessToken = localStorage.getItem("accessToken");
-  const headers = {
-    Authorization: accessToken,
-    "refresh-token": refreshToken,
-  };
   const title = params.title;
   const poster = params.poster;
   const poster_path = "/" + poster + ".jpg";
@@ -53,9 +47,7 @@ const MyOneline = ({ res }) => {
 
   /**한줄평 삭제 */
   const deleteMyline = async () => {
-    return await api.delete(`/auth/movie/${id}`, {
-      headers: headers,
-    });
+    return await authApi.delete(`/auth/movie/${id}`);
   };
   const queryClient = useQueryClient();
   const { mutate } = useMutation(deleteMyline, {
@@ -81,9 +73,7 @@ const MyOneline = ({ res }) => {
       Toast.fire({ icon: "warning", title: "한줄평은 80자 이내입니다" });
       return;
     } else {
-      return await api.put(`/auth/movie/${id}`, data, {
-        headers: headers,
-      });
+      return await authApi.put(`/auth/movie/${id}`, data);
     }
   };
   const editBtnHandler = useMutation(editMyline, {
