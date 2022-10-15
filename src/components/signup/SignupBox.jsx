@@ -1,14 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import tw from "tailwind-styled-components";
-import { api } from "../../shared/api";
+
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 /**유효성을 위한 정규식 */
-import { checkEmail, checkUserName, checkPassword } from "../../utils/validation";
+import {
+  checkEmail,
+  checkUserName,
+  checkPassword,
+} from "../../utils/validation";
+import {
+  emailDuplicateCheck,
+  nicknameDuplicateCheck,
+  signUp,
+} from "apis/userApi";
 
-const SingupBox = () => {
+const SignUpBox = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState();
@@ -42,7 +51,7 @@ const SingupBox = () => {
     }
 
     //중복확인
-    const response = await api.post("/members/signup/email", { email });
+    const response = emailDuplicateCheck(email);
     if (response.data.success) {
       alert("사용 가능한 이메일입니다.");
     } else {
@@ -62,7 +71,7 @@ const SingupBox = () => {
     }
 
     //중복확인
-    const response = await api.post("/members/signup/nickname", { nickname });
+    const response = nicknameDuplicateCheck(nickname);
     if (response.data.success) {
       alert("사용 가능한 닉네임입니다.");
     } else {
@@ -74,7 +83,7 @@ const SingupBox = () => {
   const passwordConfirmCheck = passwordConfirm === password;
 
   /** submit */
-  const onSumitSignup = async (e) => {
+  const onSubmitSignup = async (e) => {
     e.preventDefault();
 
     /** 회원가입 유효성 확인*/
@@ -88,7 +97,7 @@ const SingupBox = () => {
 
     /** 회원가입 로직  */
     try {
-      const res = await api.post(`/members/signup`, {
+      const res = await signUp({
         email,
         nickname,
         password,
@@ -110,9 +119,15 @@ const SingupBox = () => {
   return (
     <LoginFormContainer>
       {/* 회원가입 폼 */}
-      <form onSubmit={onSumitSignup}>
+      <form onSubmit={onSubmitSignup}>
         <RegisterInputBox>
-          <InputBox type="email" id="email" onChange={emailInput} placeholder="이메일을 입력하세요" required />
+          <InputBox
+            type="email"
+            id="email"
+            onChange={emailInput}
+            placeholder="이메일을 입력하세요"
+            required
+          />
 
           <DoubleCheckButton type="button" onClick={emailCheck}>
             중복확인
@@ -120,17 +135,35 @@ const SingupBox = () => {
         </RegisterInputBox>
 
         <RegisterInputBox>
-          <InputBox type="text" id="nickname" onChange={nicknameInput} placeholder="닉네임 10자이내" required />
+          <InputBox
+            type="text"
+            id="nickname"
+            onChange={nicknameInput}
+            placeholder="닉네임 10자이내"
+            required
+          />
 
           <DoubleCheckButton type="button" onClick={nicknameCheck}>
             중복확인
           </DoubleCheckButton>
         </RegisterInputBox>
         <RegisterInputBox>
-          <InputBox type="password" id="password" onChange={passwordInput} placeholder="비밀번호 영어+숫자 4-16자리" required />
+          <InputBox
+            type="password"
+            id="password"
+            onChange={passwordInput}
+            placeholder="비밀번호 영어+숫자 4-16자리"
+            required
+          />
         </RegisterInputBox>
         <RegisterInputBox>
-          <InputBox type="password" id="passwordConfirm" onChange={passwordConfirmInput} placeholder="비밀번호를 한 번 더 입력하세요" required />
+          <InputBox
+            type="password"
+            id="passwordConfirm"
+            onChange={passwordConfirmInput}
+            placeholder="비밀번호를 한 번 더 입력하세요"
+            required
+          />
         </RegisterInputBox>
 
         <RegisterButton type="submit">회원가입</RegisterButton>
@@ -193,4 +226,4 @@ const InputBox = tw.input`
     focus:border-mYellow  
     focus:outline-none
 `;
-export default SingupBox;
+export default SignUpBox;

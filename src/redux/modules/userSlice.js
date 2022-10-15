@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { api } from "../../shared/api";
+import { api } from "apis";
 import { Toast } from "components/common/Toast";
 
 const initialState = {
@@ -28,7 +28,10 @@ export const loginUserDB = (payload) => {
       .post("/members/login", payload)
       .then((response) => {
         if (response.data.success === false) {
-          return Toast.fire({ icon: "warning", title: "이메일과 비밀번호를 다시 확인해주세요." });
+          return Toast.fire({
+            icon: "warning",
+            title: "이메일과 비밀번호를 다시 확인해주세요.",
+          });
         } else {
           function findBadge(element) {
             if (element.badgeId === response.data.data.badgeId) {
@@ -38,7 +41,10 @@ export const loginUserDB = (payload) => {
           const { badge } = badgeIcon.filter(findBadge)[0];
           return (
             localStorage.setItem("nickname", response.data.data.nickname),
-            localStorage.setItem("refreshToken", response.headers["refresh-token"]),
+            localStorage.setItem(
+              "refreshToken",
+              response.headers["refresh-token"]
+            ),
             localStorage.setItem("accessToken", response.headers.authorization),
             localStorage.setItem("badgeIcon", badge),
             (document.location.href = "/")
@@ -68,8 +74,14 @@ export const kakaoLoginDB = (payload) => {
           }
           const { badge } = badgeIcon.filter(findBadge)[0];
           return (
-            localStorage.setItem("accessToken", response.headers["access-token"]),
-            localStorage.setItem("refreshToken", response.headers["refresh-token"]),
+            localStorage.setItem(
+              "accessToken",
+              response.headers["access-token"]
+            ),
+            localStorage.setItem(
+              "refreshToken",
+              response.headers["refresh-token"]
+            ),
             localStorage.setItem("nickname", response.data.data.username),
             localStorage.setItem("badgeIcon", badge),
             (document.location.href = "/")

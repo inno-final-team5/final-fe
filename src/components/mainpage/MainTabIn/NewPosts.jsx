@@ -1,17 +1,12 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Spinner from "components/common/Spinner";
-import api from "shared/api";
+import { getRecentPosteWithApi } from "apis/mainApi";
 import { useNavigate } from "react-router-dom";
 import BadgeEmoji from "../../common/BadgeEmoji";
 
 const NewPosts = () => {
   const navigate = useNavigate();
-  /**Recent Post 데이터 불러오기*/
-  const getRecentPosteWithApi = async () => {
-    const { data } = await api.get("/main/post");
-    return data;
-  };
 
   /**데이터가 onSuccess일때 가져오기*/
   const Recentquery = useQuery("post", getRecentPosteWithApi, {

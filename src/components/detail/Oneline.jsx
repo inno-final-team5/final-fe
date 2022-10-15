@@ -3,12 +3,19 @@ import { FaRegThumbsUp } from "react-icons/fa";
 import { FaThumbsUp } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
-import { api } from "shared/api";
+import { authApi } from "apis";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import BadgeEmoji from "../common/BadgeEmoji";
 import { Toast } from "components/common/Toast";
 
-function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, likeNum, badgeId }) {
+function Oneline({
+  reviewId,
+  oneLineReviewStar,
+  oneLineReviewContent,
+  nickname,
+  likeNum,
+  badgeId,
+}) {
   const refreshToken = localStorage.getItem("refreshToken");
   const accessToken = localStorage.getItem("accessToken");
   const headers = {
@@ -31,7 +38,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
   const likeReviewId = reviewId;
   const [myLike, setMyLike] = useState([]);
   const getMyLikeComment = async () => {
-    return await api.get(`/auth/movie/like`, {
+    return await authApi.get(`/auth/movie/like`, {
       headers: headers,
     });
   };
@@ -45,7 +52,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
 
   /**한줄평 좋아요 추가 */
   const addCommentlike = async (data) => {
-    return await api.post(`/auth/movie/${reviewId}/like`, data, {
+    return await authApi.post(`/auth/movie/${reviewId}/like`, data, {
       headers: headers,
     });
   };
@@ -62,7 +69,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
 
   /**한줄평 좋아요 삭제 */
   const deleteCommentlike = async (data) => {
-    return await api.delete(`/auth/movie/${reviewId}/like`, {
+    return await authApi.delete(`/auth/movie/${reviewId}/like`, {
       headers: headers,
     });
   };
@@ -107,7 +114,9 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
                 }}
               >
                 <FaRegThumbsUp size={18} />
-                <p className="mt-1 text-sm hover:text-mCream lg:mr-4">{likeNum}</p>
+                <p className="mt-1 text-sm hover:text-mCream lg:mr-4">
+                  {likeNum}
+                </p>
               </button>
             ) : res?.length ? (
               <button

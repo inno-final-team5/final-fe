@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { FaStar } from "react-icons/fa";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import styled from "styled-components";
-import { api } from "shared/api";
+import { createMyOneLine, getMyOneLine } from "apis/oneLineReviewApi";
 import { useParams } from "react-router-dom";
 import MyOneline from "./MyOneline";
 import { Toast } from "components/common/Toast";
@@ -48,9 +48,7 @@ const OnelineForm = (props) => {
       Toast.fire({ icon: "warning", title: "한줄평은 80자 이내입니다" });
       return;
     } else {
-      return api.post(`/auth/movie/one-line-review`, data, {
-        headers: headers,
-      });
+      return createMyOneLine({ data });
     }
   };
   const queryClient = useQueryClient();
@@ -64,13 +62,7 @@ const OnelineForm = (props) => {
     },
   });
 
-  /**내가 작성한 한줄평 불러오기 */
-  const getMyOneline = async () => {
-    return await api.get(`/auth/movie/one-line-review`, {
-      headers: headers,
-    });
-  };
-  const myMovieQuery = useQuery("myOneline", getMyOneline, {
+  const myMovieQuery = useQuery("myOneline", getMyOneLine, {
     onSuccess: (data) => {
       setAllmyline(data.data.data);
     },
@@ -82,7 +74,8 @@ const OnelineForm = (props) => {
   let res = allmyline.filter((ele) => ele.movieId == id);
 
   function countingWords() {
-    document.getElementById("txtLength").innerHTML = document.getElementById("userTxt").value.length;
+    document.getElementById("txtLength").innerHTML =
+      document.getElementById("userTxt").value.length;
   }
   return (
     <div>
@@ -95,11 +88,20 @@ const OnelineForm = (props) => {
           <section className="mt-6">
             <div className="container md:w-5/6 sm:w-5/6 lg:w-full pl-3 pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap flex-col md:flex-row items-center">
               <div className="flex lg:w-full 2xl:w-full mr-6 title-font font-medium items-center ml-2 mb-4 md:mb-0">
-                <h1 className="md:text-lg dfont-medium title-font md:flex-row flex-col text-mYellow">한줄평작성하기</h1>
+                <h1 className="md:text-lg dfont-medium title-font md:flex-row flex-col text-mYellow">
+                  한줄평작성하기
+                </h1>
               </div>
               <Stars className="lg:ml-5 lg:mr-0">
                 {array.map((el, idx) => {
-                  return <FaStar key={idx} size="30" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
+                  return (
+                    <FaStar
+                      key={idx}
+                      size="30"
+                      onClick={() => handleStarClick(el)}
+                      className={clicked[el] && "yellowStar"}
+                    />
+                  );
                 })}
               </Stars>
               <div className="flex xl:w-full lg:w-4/5 xl:w-5/6 md:w-full sm:items-center sm:flex-col md:flex-row sm:w-full space-x-1">
