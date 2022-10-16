@@ -10,19 +10,15 @@ import { useInfiniteQuery } from "react-query";
 const SearchList = () => {
   const { ref, inView } = useInView();
 
-  const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    "searchList",
-    ({ pageParam = 1 }) => getSearchList(pageParam),
-    {
-      getNextPageParam: (lastPage) => {
-        if (lastPage.results.length === 0) {
-          return undefined;
-        } else {
-          return lastPage.page + 1;
-        }
-      },
-    }
-  );
+  const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery("searchList", ({ pageParam = 1 }) => getSearchList(pageParam), {
+    getNextPageParam: (lastPage) => {
+      if (lastPage.results.length === 0) {
+        return undefined;
+      } else {
+        return lastPage.page + 1;
+      }
+    },
+  });
   useEffect(() => {
     if (inView) fetchNextPage();
   }, [inView]);
