@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Toast } from "./Toast";
 import NavBar from "./navbar/NavBar";
 
 const Header = () => {
@@ -14,7 +15,7 @@ const Header = () => {
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("nickname");
     localStorage.removeItem("badgeIcon");
-    alert("로그아웃 되셨습니다 ");
+    Toast.fire({ icon: "success", title: "로그아웃 되었습니다." });
     navigate("/");
   };
 
