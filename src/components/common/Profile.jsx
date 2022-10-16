@@ -1,8 +1,7 @@
 import React from "react";
 
-const Profile = () => {
-  let badge = localStorage.getItem("badgeIcon");
-  return <span className="text-xl m-1">{badge}</span>;
+const Profile = ({ badgeIcon }) => {
+  return <span className="text-xl m-1">{badgeIcon}</span>;
 };
 
 export default Profile;
