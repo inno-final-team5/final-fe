@@ -7,7 +7,8 @@ import { useMutation } from "react-query";
 import { Toast } from "components/common/Toast";
 
 const LoginForm = () => {
-  const REDIRECT_URI = "https://www.moviecritic.site/kakaoLogin";
+  const REDIRECT_URI = "https://moviecritic.site/kakaoLogin";
+  //const REST_API_KEY = process.env.REACT_APP_KAKAO_ID
   const REST_API_KEY = "3ad9053f0b013a449d0f5d06dfb86796";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
@@ -26,10 +27,7 @@ const LoginForm = () => {
     { badgeId: 8, badge: "🏆" },
   ];
 
-  const loginHandler = (data) => {
-    return signIn(data);
-  };
-  const loginUser = useMutation(loginHandler, {
+  const loginUser = useMutation(signIn, {
     onSuccess: (data) => {
       if (data.data.error === "MEMBER_NOT_FOUND") {
         return Toast.fire({
@@ -134,7 +132,7 @@ const LoginForm = () => {
                 </button>
               </div>
               <div className="pt-10 pb-8 w-full">
-                <a href={KAKAO_AUTH_URL} className="">
+                <a href={KAKAO_AUTH_URL}>
                   <img src={kakao_login} alt="카카오로그인" className="2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-1/2 sm:w-1/2 w-1/2 flex mx-auto"></img>
                 </a>
               </div>
