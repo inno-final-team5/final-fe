@@ -82,7 +82,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
           <span className="text-mYellow hover:text-mCream items-center">
             {accessToken == null ? (
               <button
-                className="mt-1 lg:mr-4"
+                className="mt-1 lg:mr-2"
                 onClick={() => {
                   Toast.fire({ icon: "warning", title: "로그인이 필요합니다" });
                 }}
@@ -92,7 +92,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
               </button>
             ) : res?.length ? (
               <button
-                className="mt-1 lg:mr-4"
+                className="mt-1 lg:mr-2"
                 onClick={() => {
                   deleteLike();
                 }}
@@ -102,7 +102,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
               </button>
             ) : (
               <button
-                className="mt-1 lg:mr-4"
+                className="mt-1 lg:mr-2"
                 onClick={() => {
                   addLike.mutate();
                 }}

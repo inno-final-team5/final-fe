@@ -28,7 +28,7 @@ const Like = () => {
     <div>
       {success == "favorite success" ? (
         <>
-          <ImHeart className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor" size={34} />
+          <ImHeart className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor" size={28} />
         </>
       ) : (
         <RiHeartAddLine
@@ -41,7 +41,7 @@ const Like = () => {
             mutate(data);
           }}
           className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor"
-          size={22}
+          size={26}
         />
       )}
     </div>
