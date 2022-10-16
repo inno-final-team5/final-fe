@@ -88,7 +88,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
                 }}
               >
                 <FaRegThumbsUp size={22} />
-                <p className="mt-1 text-sm hover:text-mCream lg:mr-4">{likeNum}</p>
+                <p className="mt-1 text-sm hover:text-mCream ml-1 lg:mr-4">{likeNum}</p>
               </button>
             ) : res?.length ? (
               <button
@@ -97,8 +97,8 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
                   deleteLike();
                 }}
               >
-                <FaThumbsUp size={22} className="sm:text-sm" />
-                <p className="mt-1 text-sm hover:text-mCream">{likeNum}</p>
+                <FaThumbsUp size={22} />
+                <p className="mt-1 text-sm hover:text-mCream ml-1">{likeNum}</p>
               </button>
             ) : (
               <button
@@ -108,7 +108,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
                 }}
               >
                 <FaRegThumbsUp size={22} />
-                <p className="mt-1 text-sm hover:text-mCream ">{likeNum}</p>
+                <p className="mt-1 text-sm hover:text-mCream ml-1">{likeNum}</p>
               </button>
             )}
           </span>

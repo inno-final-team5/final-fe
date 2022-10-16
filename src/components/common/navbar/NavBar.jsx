@@ -11,6 +11,7 @@ import ModalButton from "components/Modal/ModalButton";
 import Alarm from "../Alarm";
 import Profile from "../Profile";
 import MobileNavbar from "./MobileNavbar";
+import { Toast } from "components/common/Toast";
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
@@ -24,12 +25,13 @@ const NavBar = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("nickname");
-    alert("로그아웃 되셨습니다 ");
+    localStorage.removeItem("badgeIcon");
+    Toast.fire({ icon: "success", title: "로그아웃 되셨습니다" });
     navigate("/");
   };
 
   return (
-    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full  mx-auto justify-center md:px-40">
+    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full mx-auto lg:px-40 justify-center md:px-20">
       <div className="flex items-center justify-around">
         <div className="z-50 md:w-auto w-full flex justify-between p-5 md:px-2 md:py-0 items-center">
           <div className="text-3xl md:hidden flex items-center">
@@ -38,11 +40,7 @@ const NavBar = () => {
             </button>
           </div>
           <Link to="/">
-            <img
-              src={Logo}
-              alt="logo"
-              className="md:cursor-pointer w-28 lg:w-56"
-            />
+            <img src={Logo} alt="logo" className="md:cursor-pointer w-28 lg:w-56" />
           </Link>
           <div className="md:hidden">
             <ModalButton content={<Alarm />} />
@@ -66,10 +64,7 @@ const NavBar = () => {
                       <div className="bg-mCream p-3 list-none rounded-lg ">
                         <ul className="text-center">
                           <li className="text-sm text-mGray my-2.5 ">
-                            <Link
-                              className="hover:font-bold text-mBlack"
-                              to="/mypage/favorites"
-                            >
+                            <Link className="hover:font-bold text-mBlack" to="/mypage/favorites">
                               마이페이지
                             </Link>
                           </li>
@@ -91,13 +86,7 @@ const NavBar = () => {
             )}
           </div>
         </div>
-        <MobileNavbar
-          open={open}
-          myLinks={myLinks}
-          accessToken={accessToken}
-          logoutHandler={logoutHandler}
-          nickname={nickname}
-        />
+        <MobileNavbar open={open} myLinks={myLinks} accessToken={accessToken} logoutHandler={logoutHandler} nickname={nickname} />
       </div>
     </nav>
   );

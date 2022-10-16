@@ -4,7 +4,6 @@ import tw from "tailwind-styled-components/";
 import ModalButton from "components/Modal/ModalButton";
 import { Link, useNavigate, NavLink } from "react-router-dom";
 import Alarm from "./Alarm";
-import { Toast } from "components/common/Toast";
 
 const Header = () => {
   const nickname = localStorage.getItem("nickname");
@@ -20,7 +19,6 @@ const Header = () => {
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("nickname");
     localStorage.removeItem("badgeIcon");
-    Toast.fire({ icon: "success", title: "삭제되었습니다." });
     navigate("/");
   };
 
