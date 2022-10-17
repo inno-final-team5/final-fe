@@ -17,7 +17,7 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full  mx-auto justify-center md:px-40">
+    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full mx-auto lg:px-40 justify-center md:px-12">
       <div className="flex items-center justify-around">
         <div className="z-50 md:w-auto w-full flex justify-between p-5 md:px-2 md:py-0 items-center">
           <div className="text-3xl md:hidden flex items-center">
@@ -26,11 +26,7 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
             </button>
           </div>
           <Link to="/">
-            <img
-              src={Logo}
-              alt="logo"
-              className="md:cursor-pointer w-28 lg:w-56"
-            />
+            <img src={Logo} alt="logo" className="md:cursor-pointer w-28 lg:w-56" />
           </Link>
           <div className="md:hidden">
             <div className="hidden">
@@ -41,11 +37,7 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
         <div className="md:flex w-full items-center justify-between bg-mGray px-4 ml-4 h-12 rounded-lg hidden">
           <ul className="md:flex hidden uppercase items-center gap-8">
             <NavLinks links={navigationLinks} />
-            {accessToken != null ? (
-              <NavItem link={"/mypage/favorites"} name={"마이페이지"} />
-            ) : (
-              <></>
-            )}
+            {accessToken != null ? <NavItem link={"/mypage/favorites"} name={"마이페이지"} /> : <></>}
           </ul>
           <div className="md:block hidden">
             {accessToken != null ? (
