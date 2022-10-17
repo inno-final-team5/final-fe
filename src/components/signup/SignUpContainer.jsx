@@ -47,7 +47,8 @@ const SignUpContainer = () => {
     }
 
     //중복확인
-    const response = emailDuplicateCheck(email);
+    const response = await emailDuplicateCheck(email);
+
     if (response.data.success) {
       alert("사용 가능한 이메일입니다.");
     } else {
@@ -67,7 +68,7 @@ const SignUpContainer = () => {
     }
 
     //중복확인
-    const response = nicknameDuplicateCheck(nickname);
+    const response = await nicknameDuplicateCheck(nickname);
     if (response.data.success) {
       alert("사용 가능한 닉네임입니다.");
     } else {
