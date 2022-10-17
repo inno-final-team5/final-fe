@@ -25,9 +25,9 @@ export const kakaoLoginDB = (payload) => {
           return (
             localStorage.setItem("accessToken", response.headers["access-token"]),
             localStorage.setItem("refreshToken", response.headers["refresh-token"]),
-            localStorage.setItem("nickname", response.data.data.username)
+            localStorage.setItem("nickname", response.data.data.username),
             // localStorage.setItem("badgeIcon", badge),
-            // (document.location.href = "/")
+            (document.location.href = "/")
           );
         }
       })
