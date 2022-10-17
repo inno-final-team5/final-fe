@@ -43,10 +43,6 @@ const KakaoRedirect = () => {
     },
     onError: (error) => {
       console.log(error);
-      Toast.fire({
-        icon: "warning",
-        title: error,
-      });
     },
   });
 
