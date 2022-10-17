@@ -45,9 +45,14 @@ export const updatePost = async (post) => {
   return await authApi.put(`/auth/post/${post.id}`, post);
 };
 
+/** 커뮤니티 - 게시글 좋아요 조회 */
+export const getLike = async (id) => {
+  return await authApi.get(`/auth/post/like/${id}`);
+};
+
 /** 커뮤니티 - 게시글 좋아요 */
 export const addLike = async ({ id }) => {
-  return await authApi.post(`/auth/post/like/${id}`);
+  return await authApi.post(`/auth/post/like/${id}`, { id });
 };
 
 /** 커뮤니티 - 게시글 좋아요 취소 */

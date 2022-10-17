@@ -3,34 +3,19 @@ import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { api } from "apis";
+import { getLike, addLike, deleteLike } from "../../apis/postApi";
 
-const LikesButton = () => {
+const LikeButton = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
-  const getReviewLike = async (id) => {
-    return await api.get(`/auth/post/like/${id}`, {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-        "refresh-token": localStorage.getItem("refreshToken"),
-      },
-    });
-  };
+
   const {
     data: myLike,
     isLoading,
     isError,
-  } = useQuery(["myLike", id], () => getReviewLike(id));
+  } = useQuery(["myLike", id], () => getLike(id));
 
-  const addReviewLike = async (data) => {
-    return await api.post(`/auth/post/like/${id}`, data, {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-        "refresh-token": localStorage.getItem("refreshToken"),
-      },
-    });
-  };
-  const addLikeMutation = useMutation(addReviewLike, {
+  const addLikeMutation = useMutation(addLike, {
     onSuccess: () => {
       queryClient.invalidateQueries("myLike");
       queryClient.invalidateQueries("post");
@@ -40,16 +25,8 @@ const LikesButton = () => {
     },
   });
 
-  const deleteReviewLike = async ({ id }) => {
-    return await api.delete(`/auth/post/like/${id}`, {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-        "refresh-token": localStorage.getItem("refreshToken"),
-      },
-    });
-  };
-  const deleteLikeMutation = useMutation(deleteReviewLike, {
-    onSuccess: (data) => {
+  const deleteLikeMutation = useMutation(deleteLike, {
+    onSuccess: () => {
       queryClient.invalidateQueries("myLike");
       queryClient.invalidateQueries("post");
     },
@@ -79,11 +56,10 @@ const LikesButton = () => {
   }
 
   let likes = myLike.data.data;
-  console.log(likes);
 
   return (
     <>
-      {likes == "true" ? (
+      {likes === "true" ? (
         <button onClick={onDeleteHandler}>
           <FaThumbsUp className="text-mYellow hover:text-mCream" />
         </button>
@@ -100,4 +76,4 @@ const LikesButton = () => {
   );
 };
 
-export default LikesButton;
+export default LikeButton;

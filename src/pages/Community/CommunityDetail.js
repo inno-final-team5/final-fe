@@ -1,24 +1,16 @@
 import tw from "tailwind-styled-components";
-import { FaThumbsUp, FaRegThumbsUp, FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { useQueryClient, useMutation, useQuery } from "react-query";
-import {
-  getPostDetail,
-  deletePost,
-  updatePost,
-  deleteLike,
-  addLike,
-} from "apis/postApi";
+import { getPostDetail, deletePost, updatePost } from "apis/postApi";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import Profile from "components/common/Profile";
 import Spinner from "components/common/Spinner";
-import { api } from "apis";
-import Swal from "sweetalert2";
 import CommunityButton from "components/community/CommunityButton";
 import { Toast } from "components/common/Toast";
 import PostAuthor from "components/community/PostAuthor";
-import LikesButton from "components/community/LikesButton";
+import LikeButton from "components/community/LikeButton";
 
 const CommunityDetail = () => {
   const { id } = useParams();
@@ -30,18 +22,13 @@ const CommunityDetail = () => {
   const nickname = localStorage.getItem("nickname");
 
   const [updatePostMode, setUpdatePostMode] = useState(false);
-  const [like, setLike] = useState(false);
 
   const {
     isLoading,
     isError,
     error,
     data: post,
-  } = useQuery(["post", id], () => getPostDetail(id), {
-    onSuccess: () => {
-      // queryClient.invalidateQueries("post");
-    },
-  });
+  } = useQuery(["post", id], () => getPostDetail(id));
 
   const onDeleteHandler = () => {
     deletePostMutation.mutate({ id });
@@ -86,70 +73,6 @@ const CommunityDetail = () => {
     });
   };
 
-  const getReviewLike = async (id) => {
-    return await api.get(`/auth/post/like/${id}`, {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-        "refresh-token": localStorage.getItem("refreshToken"),
-      },
-    });
-  };
-  const { data: myLike, isSuccess } = useQuery(
-    ["likes", id],
-    () => getReviewLike(id),
-    {
-      onSuccess: (data) => {
-        // console.log(myLike);
-        // console.log("likes", data);
-        // if (data.data.data === true) {
-        //   setLike(true);
-        //   console.log("true", like);
-        // } else if (data.data.data == false) {
-        //   // setLike(false);
-        //   console.log("false", like);
-        // }
-      },
-      onError: () => {
-        console.log(error);
-      },
-    }
-  );
-
-  const addReviewLike = async (data) => {
-    return await api.post(`/auth/post/like/${id}`, data, {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-        "refresh-token": localStorage.getItem("refreshToken"),
-      },
-    });
-  };
-  const { mutate } = useMutation(addReviewLike, {
-    onSuccess: (data) => {
-      queryClient.invalidateQueries("post");
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-
-  const deleteMyLike = useMutation(deleteLike, {
-    onSuccess: (data) => {
-      queryClient.invalidateQueries("post");
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  }).mutate;
-
-  const checkLogin = () => {
-    if (localStorage.getItem("accessToken") === null) {
-      Swal.fire("로그인이 필요합니다!");
-    } else {
-      mutate();
-      setLike(true);
-    }
-  };
-
   if (isLoading) {
     return <Spinner />;
   }
@@ -176,15 +99,7 @@ const CommunityDetail = () => {
               </DetailContent>
 
               <DetailLikeContainer>
-                <LikesButton />
-                {/* <button
-                    onClick={() => {
-                      deleteLike();
-                      setLike(false);
-                    }}
-                  >
-                    <FaThumbsUp className="text-mYellow hover:text-mCream" />
-                  </button> */}
+                <LikeButton />
                 <DetailLikeCount> {postData.likeNum}</DetailLikeCount>
               </DetailLikeContainer>
 
