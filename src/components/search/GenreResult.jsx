@@ -64,10 +64,10 @@ const GenreResult = () => {
   return (
     <div>
       <div>
-        <div className="mt-8">
-          <p className="text-2xl text-mCream ml-10">{keyword} 장르 영화입니다</p>
+        <div className="md:mt-8">
+          <p className="text-base md:text-2xl text-mCream ml-10">{keyword} 장르 영화입니다</p>
           <div className="mt-2 items-center justify-center pt-0 pb-4 rounded-3xl bg-mGray container mx-auto flex px-2 py-22 md:flex-row flex-col">
-            <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-14 p-14">
+            <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-8 md:gap-12 lg:gap-10 lg:p-12 xl:p-18 xl:gap-14">
               {data?.pages.map((page, index) => (
                 <React.Fragment key={index}>
                   {page.results.map((movie) => (
