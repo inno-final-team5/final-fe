@@ -58,13 +58,13 @@ const BestReview = () => {
               </div>
 
               <div className="flex justify-between items-center mt-2">
-                <div className="flex grow w-4/5 ">
+                <div className="flex grow w-4/5">
                   {/* 별점 */}
                   <div className="flex text-mYellow w-28 pt-1">
                     {starIcon(i.oneLineReviewStar)}
                   </div>
                   {/* 한줄평 내용 */}
-                  <div className="truncate w-10/12 py-1">
+                  <div className="truncate w-10/12 py-1 ">
                     <span className="pl-2 pr-16 ">
                       {i.oneLineReviewContent}
                     </span>
@@ -72,7 +72,13 @@ const BestReview = () => {
                 </div>
 
                 {/* 좋아요 수 */}
-                <div className="flex mx-5 bg-mGray px-3 py-1 rounded-lg">
+                <div className="md:flex mx-5 bg-mGray px-3 py-1 rounded-lg hidden">
+                  <FaThumbsUp className="mr-2 text-mYellow " />
+                  <div className="text-mCream">{i.likeNum}</div>
+                </div>
+              </div>
+              <div className="flex justify-end md:hidden ">
+                <div className="flex justify-end bg-mGray px-3 py-1 rounded-lg w-fit mt-3">
                   <FaThumbsUp className="mr-2 text-mYellow " />
                   <div className="text-mCream">{i.likeNum}</div>
                 </div>

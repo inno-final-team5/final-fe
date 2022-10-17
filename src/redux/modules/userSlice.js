@@ -8,6 +8,18 @@ const initialState = {
   isSuccess: false,
 };
 
+const badgeIcon = [
+  { badgeId: 0, badge: "👤" },
+  { badgeId: 1, badge: "💃" },
+  { badgeId: 2, badge: "😎" },
+  { badgeId: 3, badge: "🧑‍🤝‍🧑 " },
+  { badgeId: 4, badge: "🙌 " },
+  { badgeId: 5, badge: "🎬" },
+  { badgeId: 6, badge: "👼" },
+  { badgeId: 7, badge: "😈" },
+  { badgeId: 8, badge: "🏆" },
+];
+
 export const kakaoLoginDB = (payload) => {
   return async function () {
     await kakaoLogin(payload)
@@ -16,17 +28,17 @@ export const kakaoLoginDB = (payload) => {
           return window.alert(response.data.error.message);
         } else {
           console.log(response);
-          // function findBadge(element) {
-          //   if (element.badgeId === response.data.data.badgeId) {
-          //     return element.badge;
-          //   }
-          // }
-          // const { badge } = badgeIcon.filter(findBadge)[0];
+          function findBadge(element) {
+            if (element.badgeId === response.data.data.mainBadge) {
+              return element.badge;
+            }
+          }
+          const { badge } = badgeIcon.filter(findBadge)[0];
           return (
             localStorage.setItem("accessToken", response.headers["access-token"]),
             localStorage.setItem("refreshToken", response.headers["refresh-token"]),
             localStorage.setItem("nickname", response.data.data.username),
-            // localStorage.setItem("badgeIcon", badge),
+            localStorage.setItem("badgeIcon", badge),
             (document.location.href = "/")
           );
         }
