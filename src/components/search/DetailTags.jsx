@@ -40,6 +40,6 @@ const DetailTags = () => {
 };
 
 const TagButton = tw.button`
-bg-mWhite ml-3 py-2 lg:px-4 md:px-2 md:text-sm rounded-full items-center hover:bg-gray-400 focus:outline-none
+bg-mWhite ml-3 py-2 px-3 lg:px-4 md:px-2 md:text-sm rounded-full items-center hover:bg-gray-400 focus:outline-none
 `;
 export default DetailTags;
