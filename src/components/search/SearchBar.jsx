@@ -14,7 +14,7 @@ const SearchBar = () => {
   return (
     <div>
       <div className="mt-3 justify-center flex">
-        <form className="w-4/5 ">
+        <form className="md:w-4/5 w-full">
           <div className="relative">
             <input
               type="input"

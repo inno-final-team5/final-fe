@@ -132,11 +132,11 @@ const LoginForm = () => {
                   로그인
                 </button>
               </div>
-              <div className="pt-10 pb-8 w-full">
+              {/* <div className="pt-10 pb-8 w-full">
                 <a href={KAKAO_AUTH_URL}>
                   <img src={kakao_login} alt="카카오로그인" className="h-11 2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-1/2 sm:w-1/2 w-1/2 flex mx-auto"></img>
                 </a>
-              </div>
+              </div> */}
               <div className="p-2 w-full text-center ">
                 <span className="text-mCream">
                   계정이 없으신가요? &emsp;
