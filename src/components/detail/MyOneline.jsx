@@ -99,14 +99,14 @@ const MyOneline = ({ res }) => {
         <>
           <section className="mt-6 md:flex-col">
             <div className="container sm:w-5/6 lg:w-full pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-              <div className="flex font-bold items-center mr-4 mb-4 md:mb-0 sm:mb-0">
-                <h1 className="p-2 md:text-base title-font md:flex-row flex-col text-mYellow ">내가쓴한줄평</h1>
+              <div className="flex font-bold items-center mr-4 mb-4 md:mb-0 sm:mb-0 ">
+                <h1 className="p-2 ml-2 pb-0 sm:pb-2 md:text-base title-font md:flex-row flex-col text-mYellow ">내가쓴한줄평</h1>
               </div>
               <div className="flex w-full flex-col lg:flex-row md:flex-col sm:flex-col 2xl:w-full xl:w-full md:w-full space-x-2 sm:w-full items-center">
-                <MyStars className="md:mt-2 md:ml-5">{starRating(res[0].oneLineReviewStar)}</MyStars>
+                <MyStars className="md:mt-2 md:ml-8">{starRating(res[0].oneLineReviewStar)}</MyStars>
                 <div className="2xl:w-full w-full sm:w-full md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
                   <input
-                    className="text-sm pl-2 mt-2 pt-2 text-lg sm:text-sm sm:mt-2 md:text-sm w-full h-10 bg-gray-400 rounded-xl"
+                    className="text-sm pl-2 mt-4 pt-2 text-lg sm:text-sm sm:mt-2 md:text-sm w-full h-10 bg-gray-400 rounded-xl"
                     value={res[0].oneLineReviewContent}
                     disabled
                   />
@@ -137,16 +137,16 @@ const MyOneline = ({ res }) => {
         <>
           <section className="mt-6 md:flex-col">
             <div className="container md:w-5/6 sm:w-5/6 lg:w-full xl:w-full pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap flex-col md:flex-row items-center">
-              <div className="flex lg:w-full 2xl:w-full mr-6 font-bold lg:ml-6 md:ml-4 sm:ml-0 items-center ml-2 mb-4 md:mb-0">
-                <h1 className="p-2 md:text-base font-bold md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
+              <div className="flex font-bold items-center mr-4 mb-4 md:mb-0 sm:mb-0">
+                <h1 className="p-2 ml-2 pb-0 lg:ml-6 sm:pb-2 md:text-base title-font md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
               </div>
               <div className="flex w-full flex-col lg:flex-row md:flex-col sm:flex-col 2xl:w-full xl:w-full md:w-full space-x-2 sm:w-full items-center">
-                <Stars className="md:mt-0 md:ml-5 lg:mt-2 lg:ml-10">
+                <Stars className="md:mt-0 md:ml-8 lg:mt-2 lg:ml-12">
                   {array.map((el, idx) => {
                     return <FaStar key={idx} size="24" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
                   })}
                 </Stars>
-                <div className="2xl:w-full w-full sm:w-full md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
+                <div className="2xl:w-full mt-2 w-full lg:mt-0 sm:w-full md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
                   <input
                     className="sm:text-sm mt-2 mr-2 sm:mt-2 pl-2 pt-2 text-lg w-full h-10 rounded-xl text-sm"
                     autoFocus
@@ -175,7 +175,7 @@ const MyOneline = ({ res }) => {
                       };
                       editBtnHandler(data);
                     }}
-                    className="px-6 mt-2 2xl:px-6 xl:px-6 lg:px-6 md:px-8 sm:mt-4 sm:px-8 lg:mt-2 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream"
+                    className="px-6 mt-2 mr-2 2xl:px-6 xl:px-6 lg:px-6 md:px-8 sm:mt-4 sm:px-8 lg:mt-2 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream"
                   >
                     <TiPencil size="22" />
                   </button>
