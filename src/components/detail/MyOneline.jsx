@@ -12,6 +12,9 @@ import { deleteMyOneLine, updateMyOneLine } from "apis/oneLineReviewApi";
 const MyOneline = ({ res }) => {
   const params = useParams();
   const myOneline = useRef(res[0].oneLineReviewContent);
+  const onFocus = () => {
+    myOneline.current.focus();
+  };
   const id = res[0].oneLineReviewId;
 
   const title = params.title;
@@ -20,7 +23,7 @@ const MyOneline = ({ res }) => {
   const [isEditMode, setIsEditMode] = useState(false);
 
   /* 별점 추가 */
-  //const beforeRating = res[0].oneLineReviewStar;
+  const beforeRating = res[0].oneLineReviewStar;
   const [clicked, setClicked] = useState([true, true, true, false, false]);
   const array = [0, 1, 2, 3, 4];
 
@@ -60,7 +63,18 @@ const MyOneline = ({ res }) => {
 
   /**한줄평 수정 */
   const editMyline = async (data) => {
-    return await updateMyOneLine(id, data);
+    if (data.oneLineReviewContent == 0) {
+      Toast.fire({ icon: "warning", title: "한줄평을 입력해주세요" });
+      return;
+    } else if (data.oneLineReviewStar == 0) {
+      Toast.fire({ icon: "warning", title: "별점을 입력해주세요" });
+      return;
+    } else if (data.oneLineReviewContent.length > 80) {
+      Toast.fire({ icon: "warning", title: "한줄평은 80자 이내입니다" });
+      return;
+    } else {
+      return await updateMyOneLine(id, data);
+    }
   };
   const editBtnHandler = useMutation(editMyline, {
     onSuccess: (data) => {
@@ -75,7 +89,7 @@ const MyOneline = ({ res }) => {
   }).mutate;
 
   const onKeyPress = (e) => {
-    if (e.key === "Enter") {
+    if (e.key == "Enter") {
       document.getElementById("editLine").click();
     }
   };
@@ -84,12 +98,12 @@ const MyOneline = ({ res }) => {
       {!isEditMode ? (
         <>
           <section className="mt-6 md:flex-col">
-            <div className="container sm:w-5/6 lg:w-full pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap p-5 flex-col lg:flex-row items-center">
-              <div className="flex font-medium items-center mr-4 mb-4 md:mb-0 sm:mb-0 md:ml-4 sm:ml-3 ml-3">
-                <h1 className="p-2 md:text-lg title-font flex-col text-mYellow ">내가쓴한줄평</h1>
+            <div className="container sm:w-5/6  lg:w-full pt-2 pb-2  rounded-3xl bg-mGray mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+              <div className="flex font-medium items-center mr-4 mb-4 md:mb-0 sm:mb-0">
+                <h1 className="p-2 md:text-lg title-font md:flex-row flex-col text-mYellow ">내가쓴한줄평</h1>
               </div>
-              <div className="flex flex-col w-full lg:flex-row md:flex-col sm:flex-col 2xl:w-full xl:w-full md:w-full space-x-2 sm:w-full items-center">
-                <MyStars className="lg:ml-6">{starRating(res[0].oneLineReviewStar)}</MyStars>
+              <div className="flex flex-col lg:flex-row md:flex-col sm:flex-col 2xl:w-full xl:w-full md:w-full space-x-2 sm:w-full items-center">
+                <MyStars className="md:mt-2 md:ml-5">{starRating(res[0].oneLineReviewStar)}</MyStars>
                 <div className="2xl:w-full w-full sm:w-full md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
                   <input
                     className="text-sm pl-2 mt-2 pt-2 text-lg sm:text-sm sm:mt-2 md:text-sm w-full h-10 bg-gray-400 rounded-xl"
@@ -122,27 +136,22 @@ const MyOneline = ({ res }) => {
       ) : (
         <>
           <section className="mt-6 md:flex-col">
-            <div className="container sm:w-5/6  lg:w-full pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap p-5 flex-col lg:flex-row items-center">
-              <div className="flex title-font font-medium items-center mr-4 mb-4 md:mb-0 sm:mb-0 md:ml-4 sm:ml-3 ml-3">
-                <h1 className="p-2 md:text-base flex-col text-mYellow">내가쓴한줄평</h1>
+            <div className="container sm:w-5/6  lg:w-full pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+              <div className="flex title-font font-medium items-center mr-4 mb-4 md:mb-0 sm:mb-0">
+                <h1 className="p-2 md:text-base font-medium title-font md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
               </div>
-              <div className="flex flex-col w-full lg:flex-row md:flex-col sm:flex-col 2xl:w-full xl:w-full md:w-full space-x-2 sm:w-full items-center">
-                <Stars className="lg:ml-6">
+              <div className="flex lg:flex-row md:flex-col sm:flex-col 2xl:w-full xl:w-full md:w-full space-x-2 sm:w-full items-center">
+                <Stars className="md:mt-0 md:ml-5">
                   {array.map((el, idx) => {
                     return <FaStar key={idx} size="24" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
                   })}
                 </Stars>
-                <div className="2xl:w-full w-full md:w-full sm:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex-wrap text-base ">
-                  <input
-                    className="sm:text-sm mt-2 sm:mt-2 pl-2 pt-2 text-sm w-full h-10 rounded-xl"
-                    autoFocus
-                    ref={myOneline}
-                    onKeyPress={onKeyPress}
-                  />
+                <div className="2xl:w-full md:w-full sm:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex-wrap text-base ">
+                  <input className="sm:text-sm sm:mt-2 pl-2 pt-2 text-lg w-full h-10 rounded-xl" autoFocus ref={myOneline} onKeyPress={onKeyPress} />
                 </div>
                 <div className="flex-shrink-0 gap-4 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
                   <button
-                    className="inline-flex px-6 mt-2 2xl:px-6 xl:px-6 lg:px-6 md:px-6 sm:px-8 sm:mt-2 bg-mYellow  py-3 rounded-full items-center hover:bg-mCream "
+                    className="inline-flex 2xl:px-6 xl:px-6 lg:px-6 md:px-6 sm:px-8 sm:mt-2 bg-mYellow  py-3 rounded-full items-center hover:bg-mCream "
                     onClick={() => {
                       setIsEditMode(false);
                     }}
@@ -159,21 +168,9 @@ const MyOneline = ({ res }) => {
                         posterPath: poster_path,
                         title: title,
                       };
-                      if (myOneline.current.value.length > 80) {
-                        Toast.fire({
-                          icon: "warning",
-                          title: "80자 이내로 입력해주세요",
-                        });
-                      } else if (myOneline.current.value.length === 0) {
-                        Toast.fire({
-                          icon: "warning",
-                          title: "한줄평을 입력해주세요",
-                        });
-                      } else {
-                        editBtnHandler(data);
-                      }
+                      editBtnHandler(data);
                     }}
-                    className="inline-flex px-6 mt-2 2xl:px-6 xl:px-6 lg:px-6 md:px-6 sm:px-8 sm:mt-2 bg-mYellow py-3 rounded-full items-center hover:bg-mCream"
+                    className="inline-flex 2xl:px-6 xl:px-6 lg:px-6 md:px-6 sm:px-8 sm:mt-2 bg-mYellow py-3 rounded-full items-center hover:bg-mCream"
                   >
                     <TiPencil size="22" />
                   </button>
