@@ -18,22 +18,21 @@ const OneLineReviewItem = ({ oneLineReview }) => {
       to={`/detail/${oneLineReview.movieId}/${oneLineReview.title}${
         oneLineReview.posterPath.split(".")[0]
       }`}
-      className="hover:text-mBlack "
     >
       <div
         key={oneLineReview.oneLineReviewId}
-        className="flex bg-mGray m-2 px-2 py-3 gap-12 w-full rounded-xl my-6"
+        className="flex bg-mGray gap-2 w-full rounded-xl my-6 flex-col md:flex-row p-2"
       >
-        <div className="flex text-mYellow w-[10%] pl-4 gap-1">
+        <div className="flex text-mYellow items-center md:basis-2/12">
           <MyStars
             key={oneLineReview.title}
             star={oneLineReview.oneLineReviewStar}
           />
         </div>
-        <div className="w-[28%] text-left text-mWhite">
-          <h2 className="truncate">{oneLineReview.title}</h2>
+        <div className="w-full text-left text-mWhite text-sm py-2 md:basis-4/12">
+          <h2>{oneLineReview.title}</h2>
         </div>
-        <div className="w-[62%] text-mWhite truncate">
+        <div className="w-full text-mWhite truncate text-sm py-2 md:basis-6/12">
           <p>{oneLineReview.oneLineReviewContent}</p>
         </div>
       </div>

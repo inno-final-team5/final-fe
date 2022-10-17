@@ -9,17 +9,19 @@ const PostItem = ({ post }) => {
     >
       <div
         key={post.postId}
-        className="flex bg-mGray gap-12 px-2 my-6 py-3 rounded-xl justify-between text-mGray items-center"
+        className="flex bg-mGray gap-2 w-full rounded-xl my-6 flex-col md:flex-row p-2 items-center"
       >
-        <div className="pl-4 flex justify-center items-center">
+        <div className="md:pl-4 flex justify-start items-center w-full md:basis-2/12">
           <p className="w-16 text-mWhite bg-mBlack rounded-lg p-2 text-center">
             {post.postCategory}
           </p>
         </div>
-        <div className="w-full truncate text-mWhite">{post.postTitle}</div>
+        <div className="w-full truncate text-mWhite items-center md:basis-8/12">
+          <p className="text-left">{post.postTitle}</p>
+        </div>
 
-        <div>
-          <p className="w-28 text-mWhite">
+        <div className="justify-end w-full flex md:basis-3/12">
+          <p className="w-28 text-mWhite text-start">
             {new Date(post.createdAt).toLocaleDateString("ko-KR")}
           </p>
         </div>
