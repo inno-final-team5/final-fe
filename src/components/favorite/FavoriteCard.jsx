@@ -1,13 +1,7 @@
 import tw from "tailwind-styled-components/";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-const FavoriteCard = ({
-  imageUrl,
-  id,
-  title,
-  movieId,
-  deleteFavoriteMutation,
-}) => {
+const FavoriteCard = ({ imageUrl, id, title, movieId, deleteFavoriteMutation }) => {
   const navigate = useNavigate();
 
   /** 즐겨찾기 삭제 함수 */
@@ -22,11 +16,7 @@ const FavoriteCard = ({
     <div className="w-64 h-96 bg-transparent group perspective m-6 p-2">
       <div className="relative preserve-3d group-hover:my-rotate-y-180 w-full h-full duration-1000 ">
         <div className="absolute backface-hidden border-2 w-full h-full ">
-          <img
-            src={`https://image.tmdb.org/t/p/w342${imageUrl}`}
-            alt="포스터"
-            className="w-full h-full rounded-lg"
-          />
+          <img src={`https://image.tmdb.org/t/p/w342${imageUrl}`} alt="포스터" className="w-full h-full rounded-lg" />
         </div>
         <div className="absolute my-rotate-y-180 backface-hidden w-full h-full bg-mBlack overflow-hidden rounded-lg">
           <div className="text-center flex flex-col items-center justify-center h-full text-mCream px-2 pb-24">

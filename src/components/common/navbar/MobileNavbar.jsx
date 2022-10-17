@@ -12,6 +12,7 @@ const MobileNavbar = ({
   nickname,
   logoutHandler,
   myLinks,
+  badgeIcon,
 }) => {
   return (
     <ul
@@ -24,7 +25,7 @@ const MobileNavbar = ({
           <div>
             <div className="w-full flex items-center justify-between pr-8 ">
               <div className="flex items-center">
-                <Profile />
+                <Profile badgeIcon={badgeIcon} />
                 <span className="text-mYellow "> {nickname} 평론가님</span>
               </div>
               <LogoutButton logoutHandler={logoutHandler} />
@@ -39,7 +40,7 @@ const MobileNavbar = ({
           <LoginBox />
         )}
       </div>
-      <div className="pl-4">
+      <div className="pl-3">
         <NavItem link={"/search"} name={"영화 검색"} />
         <h1 className="text-mCream cursor-default">커뮤니티</h1>
         <div className="pl-4">

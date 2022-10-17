@@ -80,7 +80,7 @@ const LoginForm = () => {
             </div>
           </Link>
 
-          <div className="xl:w-1/2 lg:w-2/3 md:w-full sm:w-full w-full mx-auto ">
+          <div className="xl:w-1/2 lg:w-2/3 md:w-full sm:w-full w-full mx-auto mt-10">
             <div className="flex flex-wrap -m-2 mx-auto place-content-center ">
               <div className="p-4 w-2/3 xl:w-3/4 md:w-2/3">
                 <div className="relative  ">
