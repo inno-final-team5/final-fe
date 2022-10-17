@@ -137,7 +137,7 @@ const LoginForm = () => {
                   <img src={kakao_login} alt="카카오로그인" className="h-11 2xl:w-1/2 xl:w-1/2 lg:w-1/2 md:w-1/2 sm:w-1/2 w-1/2 flex mx-auto"></img>
                 </a>
               </div> */}
-              <div className="p-2 w-full text-center ">
+              <div className="p-2 w-full text-center mt-12">
                 <span className="text-mCream">
                   계정이 없으신가요? &emsp;
                   <Link to={"/signup"}>
