@@ -56,7 +56,7 @@ const MyFavorites = () => {
 };
 
 const FavoriteCardsContainer = tw.div`
-grid grid-cols-1 lg:grid-cols-4 bg-mGray p-4 justify-items-center rounded-lg
+grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 bg-mGray p-4 justify-items-center rounded-lg
 `;
 
 export default MyFavorites;

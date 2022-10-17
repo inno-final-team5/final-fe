@@ -10,7 +10,7 @@ const CommunityContainer = ({ children }) => {
 };
 
 const Base = tw.div`
-    bg-mGray p-4 rounded-xl 
+    bg-mGray p-2 rounded-xl 
 `;
 
 export default CommunityContainer;
