@@ -36,7 +36,7 @@ const KakaoRedirect = () => {
       return (
         localStorage.setItem("nickname", data.data.data.username),
         localStorage.setItem("refreshToken", data.headers["refresh-token"]),
-        localStorage.setItem("accessToken", data.headers.authorization),
+        localStorage.setItem("accessToken", data.headers["access-token"]),
         localStorage.setItem("badgeIcon", badge),
         (document.location.href = "/")
       );
