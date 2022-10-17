@@ -6,10 +6,7 @@ const NavItem = ({ link, name }) => {
   const normalLink = `my-5 flex items-center gap-2 text-mCream`;
 
   return (
-    <NavLink
-      to={link}
-      className={({ isActive }) => (isActive ? activeLink : normalLink)}
-    >
+    <NavLink to={link} className={({ isActive }) => (isActive ? activeLink : normalLink)}>
       {name}
     </NavLink>
   );

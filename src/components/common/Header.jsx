@@ -21,12 +21,7 @@ const Header = () => {
 
   return (
     <header>
-      <NavBar
-        logoutHandler={logoutHandler}
-        nickname={nickname}
-        accessToken={accessToken}
-        badgeIcon={badgeIcon}
-      />
+      <NavBar logoutHandler={logoutHandler} nickname={nickname} accessToken={accessToken} badgeIcon={badgeIcon} />
     </header>
   );
 };

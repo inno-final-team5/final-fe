@@ -16,8 +16,8 @@ import {
 const SignUpContainer = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState();
-  const [nickname, setNickname] = useState();
+  const [email, setEmail] = useState("");
+  const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState();
   const [passwordConfirm, setPasswordConfirm] = useState();
   const [emailOk, setEmailOk] = useState(false);
@@ -40,7 +40,7 @@ const SignUpContainer = () => {
   };
 
   /** 이메일 중복확인 */
-  const emailCheck = async () => {
+  const emailCheck = async (email) => {
     //빈칸확인
     if (email.length === 0) {
       alert("이메일을 입력해주세요");
@@ -61,7 +61,7 @@ const SignUpContainer = () => {
   };
 
   /** 닉네임 중복확인 */
-  const nicknameCheck = async () => {
+  const nicknameCheck = async (nickname) => {
     //빈칸확인
     if (nickname.length === 0) {
       alert("닉네임을 입력해주세요.");
@@ -72,7 +72,7 @@ const SignUpContainer = () => {
     }
 
     //중복확인
-    const response = await nicknameDuplicateCheck(nickname);
+    const response = await nicknameDuplicateCheck({ nickname });
     if (response.data.success) {
       setNicknameOk(true);
       alert("사용 가능한 닉네임입니다.");
@@ -140,7 +140,7 @@ const SignUpContainer = () => {
             required
           />
 
-          <DoubleCheckButton type="button" onClick={emailCheck}>
+          <DoubleCheckButton type="button" onClick={() => emailCheck(email)}>
             중복확인
           </DoubleCheckButton>
         </RegisterInputBox>
@@ -154,7 +154,10 @@ const SignUpContainer = () => {
             required
           />
 
-          <DoubleCheckButton type="button" onClick={nicknameCheck}>
+          <DoubleCheckButton
+            type="button"
+            onClick={() => nicknameCheck(nickname)}
+          >
             중복확인
           </DoubleCheckButton>
         </RegisterInputBox>
