@@ -23,7 +23,7 @@ function OnelineList() {
     <div className="mt-6 pb-6 ">
       {success.length > 0 ? (
         <>
-          <div className=" sm:w-5/6 lg:w-full pr-8 pt-0 pb-4 container mx-auto rounded-3xl bg-mGray ">
+          <div className="sm:w-5/6 lg:w-full pr-8 pt-0 pb-4 container mx-auto rounded-3xl bg-mGray ">
             <section className="text-gray-600 body-font ml-10 overflow-hidden">
               {onelineQuery?.data.data.map((line) => (
                 <Oneline {...line} key={line.reviewId} />

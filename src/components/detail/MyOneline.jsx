@@ -137,11 +137,11 @@ const MyOneline = ({ res }) => {
         <>
           <section className="mt-6 md:flex-col">
             <div className="container md:w-5/6 sm:w-5/6 lg:w-full xl:w-full pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap flex-col md:flex-row items-center">
-              <div className="flex font-bold lg:w-full 2xl:w-full mr-4 title-font lg:ml-8 md:ml-4 sm:ml-0 font-medium items-center ml-2 mb-4 md:mb-0">
-                <h1 className="p-2 md:text-base title-font md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
+              <div className="flex lg:w-full 2xl:w-full mr-6 font-bold lg:ml-6 md:ml-4 sm:ml-0 items-center ml-2 mb-4 md:mb-0">
+                <h1 className="p-2 md:text-base font-bold md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
               </div>
-              <div className="flex w-full flex-col ml-5 lg:flex-row md:flex-col sm:flex-col 2xl:w-full xl:w-full md:w-full space-x-2 sm:w-full items-center">
-                <Stars className="md:mt-2 md:ml-5">
+              <div className="flex w-full flex-col lg:flex-row md:flex-col sm:flex-col 2xl:w-full xl:w-full md:w-full space-x-2 sm:w-full items-center">
+                <Stars className="md:mt-0 md:ml-5 lg:mt-2 lg:ml-10">
                   {array.map((el, idx) => {
                     return <FaStar key={idx} size="24" onClick={() => handleStarClick(el)} className={clicked[el] && "yellowStar"} />;
                   })}

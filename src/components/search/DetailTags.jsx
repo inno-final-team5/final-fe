@@ -5,8 +5,8 @@ import tw from "tailwind-styled-components/";
 const DetailTags = () => {
   const navigate = useNavigate();
   return (
-    <div className="invisible md:mt-4 md:mb-2 sm:mt-0">
-      <div className="flex lg:mt-6 lg:mb-6 md:visible justify-center ">
+    <div className="invisible md:visible md:mt-4 md:mb-2 sm:mt-0">
+      <div className="flex lg:mt-6 lg:mb-6  justify-center ">
         <TagButton onClick={() => navigate(`/genre/드라마`)}>
           <span>드라마</span>
         </TagButton>
@@ -40,6 +40,6 @@ const DetailTags = () => {
 };
 
 const TagButton = tw.button`
-bg-mWhite ml-3 py-2 px-3 lg:px-4 md:px-2 md:text-sm rounded-full items-center hover:bg-gray-400 focus:outline-none
+bg-mWhite ml-3 py-0 px-3 md:py-2 lg:px-4 md:px-2 md:text-sm rounded-full items-center hover:bg-gray-400 focus:outline-none
 `;
 export default DetailTags;
