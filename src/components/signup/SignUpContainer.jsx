@@ -20,13 +20,17 @@ const SignUpContainer = () => {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState();
   const [passwordConfirm, setPasswordConfirm] = useState();
+  const [emailOk, setEmailOk] = useState(false);
+  const [nicknameOk, setNicknameOk] = useState(false);
 
   /** input */
   const emailInput = (e) => {
     setEmail(e.target.value);
+    setEmailOk(false);
   };
   const nicknameInput = (e) => {
     setNickname(e.target.value);
+    setNicknameOk(false);
   };
   const passwordInput = (e) => {
     setPassword(e.target.value);
@@ -48,8 +52,8 @@ const SignUpContainer = () => {
 
     //중복확인
     const response = await emailDuplicateCheck(email);
-
     if (response.data.success) {
+      setEmailOk(true);
       alert("사용 가능한 이메일입니다.");
     } else {
       alert("이미 사용 중인 이메일입니다.");
@@ -70,6 +74,7 @@ const SignUpContainer = () => {
     //중복확인
     const response = await nicknameDuplicateCheck({ nickname });
     if (response.data.success) {
+      setNicknameOk(true);
       alert("사용 가능한 닉네임입니다.");
     } else {
       alert("이미 사용 중인 닉네임입니다.");
@@ -94,6 +99,15 @@ const SignUpContainer = () => {
 
     /** 회원가입 로직  */
     try {
+      //중복확인 버튼 클릭해야 회원가입 가능
+      if (emailOk === false) {
+        alert("이메일 중복확인을 해주세요");
+        return;
+      } else if (nicknameOk === false) {
+        alert("닉네임 중복확인을 해주세요");
+        return;
+      }
+
       const res = await signUp({
         email,
         nickname,
