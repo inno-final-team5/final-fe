@@ -69,7 +69,7 @@ const MyOneLineReviews = () => {
 };
 
 const OneLineReviewList = tw.div`
-h-screen
+h-full
 `;
 
 export default MyOneLineReviews;

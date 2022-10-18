@@ -65,7 +65,7 @@ const MyPosts = () => {
 };
 
 const MyPostsList = tw.div`
-h-screen
+h-full
 `;
 
 export default MyPosts;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Logo from "images/Logo2.png";
 import { Link } from "react-router-dom";
-import NavLinks from "./NavLinks";
+import NavMainLinks from "./NavMainLinks";
 import { MdClose, MdMenu } from "react-icons/md";
 import LoginBox from "./LoginBox";
 
@@ -11,7 +11,7 @@ import ModalButton from "components/Modal/ModalButton";
 import Alarm from "../Alarm";
 import Profile from "../Profile";
 import MobileNavbar from "./MobileNavbar";
-import NavItem from "./NavItem";
+import NavMainMenu from "./NavMainMenu";
 import { BsFillBellFill } from "react-icons/bs";
 
 const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
@@ -42,9 +42,9 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
         </div>
         <div className="md:flex w-full items-center justify-between bg-mGray px-4 ml-4 h-12 rounded-lg hidden">
           <ul className="md:flex hidden uppercase items-center gap-8">
-            <NavLinks links={navigationLinks} />
+            <NavMainLinks links={navigationLinks} />
             {accessToken != null ? (
-              <NavItem link={"/mypage/favorites"} name={"마이페이지"} />
+              <NavMainMenu link={"/mypage/favorites"} name={"마이페이지"} />
             ) : (
               <></>
             )}

@@ -1,12 +1,32 @@
+import { useNavigate } from "react-router-dom";
 import tw from "tailwind-styled-components/";
 const ChallengeHeader = () => {
+  const accessToken = localStorage.getItem("accessToken");
+  const navigate = useNavigate();
+  const goChallenge = () => {
+    navigate("/mypage/badges");
+  };
+
   return (
     <ChallengeHeaderBox>
       <ChallengeHeaderTitle>Challenge List</ChallengeHeaderTitle>
-      <ChallengeHeaderDescription>
-        챌린지를 달성하고 배지를 모아보세요! 획득하신 배지는 닉네임 앞에
-        보입니다.
-      </ChallengeHeaderDescription>
+      <div className="w-full flex justify-between">
+        <ChallengeHeaderDescription>
+          챌린지를 달성하고 배지를 모아보세요!
+        </ChallengeHeaderDescription>
+        {accessToken !== null ? (
+          <button
+            className="bg-mCream p-1 rounded-xl my-2 text-sm px-2"
+            onClick={goChallenge}
+          >
+            나의 챌린지
+          </button>
+        ) : (
+          <></>
+        )}
+      </div>
+
+      <div className="w-full flex justify-end"></div>
     </ChallengeHeaderBox>
   );
 };
@@ -20,7 +40,7 @@ text-3xl font-extrabold text-mYellow dark:text-white
 `;
 
 const ChallengeHeaderDescription = tw.p`
-my-4 text-lg text-gray-500 indent-4
+my-4 text-lg text-gray-500 
 `;
 
 export default ChallengeHeader;

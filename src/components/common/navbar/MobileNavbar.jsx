@@ -2,9 +2,10 @@ import React from "react";
 import Profile from "../Profile";
 import LogoutButton from "./LogoutButton";
 import LoginBox from "./LoginBox";
-import NavLinks from "./NavLinks";
+import NavMainLinks from "./NavMainLinks";
 import { communityLinks } from "./MyLinks";
-import NavItem from "./NavItem";
+import NavMainMenu from "./NavMainMenu";
+import NavSubLinks from "./NavSubLinks";
 
 const MobileNavbar = ({
   open,
@@ -32,7 +33,7 @@ const MobileNavbar = ({
             </div>
             <div className="text-mCream">
               <div className="pl-8 md:hidden">
-                <NavLinks links={myLinks} />
+                <NavSubLinks links={myLinks} />
               </div>
             </div>
           </div>
@@ -41,13 +42,12 @@ const MobileNavbar = ({
         )}
       </div>
       <div className="pl-3">
-        <NavItem link={"/search"} name={"영화 검색"} />
+        <NavMainMenu link={"/search"} name={"영화 검색"} />
         <h1 className="text-mCream cursor-default">커뮤니티</h1>
         <div className="pl-4">
-          <NavLinks links={communityLinks} />
+          <NavSubLinks links={communityLinks} />
         </div>
-
-        <NavItem link={"/challenge"} name={"챌린지"} />
+        <NavMainMenu link={"/challenge"} name={"챌린지"} />
       </div>
     </ul>
   );
