@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Spinner from "components/common/Spinner";
 import SearchMovie from "./SearchMovie";
 import { getSearchResult } from "apis/movieApi";
+import { MovieListContainer, MovieList, InputResult } from "./GenreResult";
 
 // 무한스크롤
 import { useInView } from "react-intersection-observer";
@@ -14,8 +15,8 @@ const SearchResult = () => {
 
   const { ref, inView } = useInView();
   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    "searchList",
-    ({ pageParam = 1 }) => getSearchResult(keyword, pageParam),
+    "searchResult",
+    async ({ pageParam = 1 }) => await getSearchResult(keyword, pageParam),
     {
       getNextPageParam: (lastPage) => {
         if (lastPage.results.length === 0) {
@@ -33,23 +34,23 @@ const SearchResult = () => {
   if (status === "loading") return <Spinner />;
 
   return (
-    <div>
+    <>
       <div className="md:mt-8">
-        <p className="text-base md:text-2xl text-mCream ml-10">"{keyword}" 검색결과</p>
-        <div className="mt-2 items-center justify-center pt-0 pb-4 rounded-3xl bg-mGray container mx-auto flex px-2 py-22 md:flex-row flex-col">
-          <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-8 md:gap-12 lg:gap-10 lg:p-12 xl:p-18 xl:gap-14">
-            {data?.pages.map((page, index) => (
+        <InputResult>"{keyword}" 검색결과</InputResult>
+        <MovieListContainer>
+          <MovieList>
+            {data?.pages?.map((page, index) => (
               <React.Fragment key={index}>
-                {page.results.map((movie) => (
+                {page?.results.map((movie) => (
                   <SearchMovie {...movie} key={movie.movieId} />
                 ))}
               </React.Fragment>
             ))}
-          </section>
-        </div>
+          </MovieList>
+        </MovieListContainer>
       </div>
       {isFetchingNextPage ? <Spinner /> : <div ref={ref}></div>}
-    </div>
+    </>
   );
 };
 

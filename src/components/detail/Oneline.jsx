@@ -68,7 +68,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
             </div>
           </a>
           <div>
-            <span className="flex mt-2 lg:mt-0 items-center justify-center">
+            <span className="flex mt-2 lg:mt-0 items-center justify-center text-gray-600">
               <Stars>{starRating(oneLineReviewStar)}</Stars>
             </span>
           </div>
