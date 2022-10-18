@@ -86,7 +86,7 @@ const GenreResult = () => {
 export default GenreResult;
 
 export const MovieListContainer = tw.div`
-mt-2 items-center justify-center pt-0 pb-4 rounded-3xl bg-mGray container mx-auto flex px-2 py-22 md:flex-row flex-col
+mt-2 items-center justify-center rounded-3xl bg-mGray container mx-auto flex px-2 py-22 md:flex-row flex-col h-full
 `;
 export const MovieList = tw.section`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-8 md:gap-12 lg:gap-10 lg:p-12 xl:p-18 xl:gap-14`;
 
