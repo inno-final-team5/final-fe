@@ -17,7 +17,7 @@ const SearchResult = () => {
   const [mySearch, setMySearch] = useState([]);
 
   const { ref, inView } = useInView();
-  const { data, status, fetchNextPage, isFetchingNextPage, isSuccess } = useInfiniteQuery(
+  const { data, status, fetchNextPage, isFetchingNextPage, isLoading } = useInfiniteQuery(
     "searchResult",
     async ({ pageParam = 1 }) => await getSearchResult(keyword, pageParam),
     {
@@ -43,12 +43,12 @@ const SearchResult = () => {
   }, [keyword]);
 
   if (status === "loading") return <Spinner />;
-
+  if (isLoading) return <Spinner />;
   return (
     <>
       <div className="md:mt-8">
         <InputResult>"{keyword}" 검색결과</InputResult>
-        {mySearch?.length !== 0 ? (
+        {mySearch?.length > 0 ? (
           <MovieListContainer>
             <MovieList>
               {data?.pages?.map((page, index) => (
@@ -61,10 +61,10 @@ const SearchResult = () => {
             </MovieList>
           </MovieListContainer>
         ) : (
-          <div className="pt-16 pb-14 mt-4 sm:w-5/6 lg:w-full pl-6 container mx-auto rounded-3xl bg-mGray">
+          <div className="pt-14 pb-14 mt-4 w-full pl-6 container mx-auto rounded-3xl bg-mGray">
             <section className="flex-col flex text-mYellow text-xl ml-6">
               <p>검색결과가 없어요🥲</p>
-              <p className="mt-2">검색하실 영화제목을 올바르게 입력해주세요</p>
+              <p className="mt-2">검색하실 영화제목을 다시 입력해주세요</p>
             </section>
           </div>
         )}

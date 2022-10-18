@@ -43,7 +43,7 @@ const GenreResult = () => {
   const { category } = categoryEng.filter(findGenre)[0];
 
   const { ref, inView } = useInView();
-  const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+  const { data, status, fetchNextPage, isFetchingNextPage, isLoading } = useInfiniteQuery(
     ["genreList", keyword],
     async ({ pageParam = 1 }) => await getGenreList(category, pageParam),
     {
@@ -66,7 +66,7 @@ const GenreResult = () => {
   }, [keyword]);
 
   if (status === "loading") return <Spinner />;
-
+  if (isLoading) return <Spinner />;
   return (
     <>
       <div className="md:mt-6 mt-0">
