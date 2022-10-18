@@ -17,7 +17,7 @@ const MobileNavbar = ({
   return (
     <ul
       className={`
-          md:hidden bg-mBlack absolute w-3/4 h-screen bottom-0 py-24 pl-4 top-0 
+          md:hidden bg-mBlack absolute w-full h-screen bottom-0 py-24 pl-4 top-0 
           duration-500 ${open ? "left-0" : "left-[-120%]"} `}
     >
       <div>

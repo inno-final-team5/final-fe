@@ -58,7 +58,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
   return (
     <div>
       <div className="container 2xl:px-10 mt-2 bg-gray-500 lg:h-8 md:h-24 rounded-2xl px-6 py-0 lg:py-7 sm:py-2 mx-auto flex items-center sm:flex-row flex-col">
-        <div className="flex md:flex-col sm:flex-col lg:flex-row mt-2">
+        <div className="flex flex-col lg:flex-row mt-3 lg:mt-0">
           <a className="flex title-font items-center md:justify-start justify-center text-gray-900">
             <div className="sm:w-2">
               <BadgeEmoji badgeId={badgeId} />
@@ -68,12 +68,12 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
             </div>
           </a>
           <div>
-            <span className="flex">
+            <span className="flex mt-2 lg:mt-0 items-center justify-center">
               <Stars>{starRating(oneLineReviewStar)}</Stars>
             </span>
           </div>
         </div>
-        <span className="text-gray-500 md:ml-2 sm:ml-2 sm:mt-0 mt-4 lg:ml-4 lg:mt-2">
+        <span className="text-gray-500 md:ml-2 sm:ml-2 sm:mt-0 mt-4 lg:ml-4 lg:mt-0">
           <h2 className="text-base 2xl:text-base lg:text-sm md:text-sm sm:text-sm font-medium text-gray-300 title-font mb-1 mt-2 sm:mr-2 ">
             {oneLineReviewContent}
           </h2>

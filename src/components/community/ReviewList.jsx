@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 
-import TableHead from "./TableHead";
-import TableItem from "./TableItem";
+import ReviewItem from "./ReviewItem";
 
 import Spinner from "components/common/Spinner";
 import Pagination from "components/common/pagination/Pagination";
@@ -37,7 +36,7 @@ const ReviewList = ({ queryFn }) => {
   };
 
   const content = currentPosts(posts).map((post) => (
-    <TableItem key={post.postId} post={post} />
+    <ReviewItem key={post.postId} post={post} />
   ));
 
   const totalPages = Math.ceil(posts.data.length / postsPerPage);
@@ -55,12 +54,10 @@ const ReviewList = ({ queryFn }) => {
   };
 
   return (
-    <div className="shadow-md m-4 mt-6">
-      <table className="w-full bg-mBlack text-mWhite text-left border-collapse table-fixed rounded-t-xl">
-        <TableHead />
-        <tbody>{content}</tbody>
-      </table>
-      <div className="flex justify-between bg-mBlack border-t-2 border-mGray border-solid rounded-b-xl">
+    <div className="m-4 mt-6">
+      {content}
+
+      <div className="flex justify-between">
         <Pagination
           page={page}
           setPage={setPage}

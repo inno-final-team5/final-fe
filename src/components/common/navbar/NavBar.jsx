@@ -12,6 +12,7 @@ import Alarm from "../Alarm";
 import Profile from "../Profile";
 import MobileNavbar from "./MobileNavbar";
 import NavItem from "./NavItem";
+import { BsFillBellFill } from "react-icons/bs";
 
 const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
   const [open, setOpen] = useState(false);
@@ -26,9 +27,14 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
             </button>
           </div>
           <Link to="/">
-            <img src={Logo} alt="logo" className="md:cursor-pointer w-28 lg:w-56" />
+            <img
+              src={Logo}
+              alt="logo"
+              className="md:cursor-pointer w-28 lg:w-56"
+            />
           </Link>
           <div className="md:hidden">
+            <BsFillBellFill className="text-mBlack" />
             <div className="hidden">
               <ModalButton content={<Alarm />} />
             </div>
@@ -37,7 +43,11 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
         <div className="md:flex w-full items-center justify-between bg-mGray px-4 ml-4 h-12 rounded-lg hidden">
           <ul className="md:flex hidden uppercase items-center gap-8">
             <NavLinks links={navigationLinks} />
-            {accessToken != null ? <NavItem link={"/mypage/favorites"} name={"마이페이지"} /> : <></>}
+            {accessToken != null ? (
+              <NavItem link={"/mypage/favorites"} name={"마이페이지"} />
+            ) : (
+              <></>
+            )}
           </ul>
           <div className="md:block hidden">
             {accessToken != null ? (
