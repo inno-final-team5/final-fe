@@ -18,8 +18,8 @@ const FavoriteCard = ({
     navigate(`/detail/${movieId}/${title}${imageUrl.split(".")[0]}`);
   };
   return (
-    <div className="w-64 h-96 bg-transparent group perspective m-6 p-2">
-      <div className="relative preserve-3d group-hover:my-rotate-y-180 w-full h-full duration-1000 ">
+    <div className="w-48 h-72 bg-transparent group perspective m-6 p-2">
+      <div className="relative preserve-3d group-hover:my-rotate-y-180 w-full h-full duration-700">
         <div className="absolute backface-hidden border-2 w-full h-full ">
           <img
             src={`https://image.tmdb.org/t/p/w342${imageUrl}`}
@@ -29,7 +29,7 @@ const FavoriteCard = ({
         </div>
         <div className="absolute my-rotate-y-180 backface-hidden w-full h-full bg-mBlack overflow-hidden rounded-lg">
           <div className="text-center flex flex-col items-center justify-center h-full text-mCream px-2 pb-24">
-            <h1 className="text-2xl font-semibold text-mYellow">{title}</h1>
+            <h1 className="text-xl font-semibold text-mYellow">{title}</h1>
 
             <button
               className="bg-mCream px-4 text-sm py-2 font-semibold text-mBlack rounded-full absolute -bottom-20  group-hover:bottom-20 scale-0 group-hover:scale-100"

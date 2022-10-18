@@ -16,7 +16,7 @@ const ChallengeHeader = () => {
         </ChallengeHeaderDescription>
         {accessToken !== null ? (
           <button
-            className="bg-mCream p-1 rounded-xl my-2 text-sm px-2"
+            className="bg-mGray p-1 rounded-xl my-2 text-sm px-6 text-mYellow"
             onClick={goChallenge}
           >
             나의 챌린지
