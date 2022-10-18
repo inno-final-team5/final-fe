@@ -5,12 +5,13 @@ import SearchMovie from "./SearchMovie";
 import tw from "tailwind-styled-components/";
 // 무한스크롤
 import { useInView } from "react-intersection-observer";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery, useQueryClient } from "react-query";
 import { getGenreList } from "apis/movieApi";
 
 const GenreResult = () => {
   const params = useParams();
   const keyword = params.keyword;
+  const queryClient = useQueryClient();
 
   const categoryEng = [
     { category: "drama", genre: "드라마" },
@@ -60,6 +61,10 @@ const GenreResult = () => {
     if (inView) fetchNextPage();
   }, [inView]);
 
+  useEffect(() => {
+    queryClient.setQueryData("genreList");
+  }, [keyword]);
+
   if (status === "loading") return <Spinner />;
 
   return (
@@ -88,6 +93,6 @@ export default GenreResult;
 export const MovieListContainer = tw.div`
 mt-2 items-center justify-center rounded-3xl bg-mGray container mx-auto flex px-2 py-22 md:flex-row flex-col h-full
 `;
-export const MovieList = tw.section`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-8 md:gap-12 lg:gap-10 lg:p-12 xl:p-18 xl:gap-14`;
+export const MovieList = tw.section`pb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 pb-4 lg:grid-cols-5 gap-6 p-8 md:gap-12 lg:gap-10 lg:p-12 xl:p-18 xl:gap-14`;
 
 export const InputResult = tw.p`text-base md:text-2xl text-mCream ml-10`;
