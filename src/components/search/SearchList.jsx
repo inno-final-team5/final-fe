@@ -22,6 +22,8 @@ const SearchList = () => {
           return lastPage.page + 1;
         }
       },
+      staleTime: 1000,
+      onSuccess: (result) => {},
     }
   );
   useEffect(() => {
