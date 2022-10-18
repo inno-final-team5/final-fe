@@ -5,7 +5,8 @@ const Footer = () => {
   return (
     <TwFooter>
       <p>
-        &copy; <span>{thisYear}</span> Copyright: 방구석평론가
+        &copy; <span>{thisYear}. </span>
+        방구석평론가 All rights reserved
       </p>
 
       <a href="https://www.themoviedb.org/" title="TMDB API">
@@ -16,7 +17,7 @@ const Footer = () => {
 };
 
 const TwFooter = tw.footer`
-text-mWhite  text-center lg:text-left h-8 flex gap-12 bottom:0 p-2 flex-col md:flex-row
+text-mWhite  text-center  flex gap-4 bottom:0 p-2 flex-col items-center justify-center pb-4
 
 `;
 

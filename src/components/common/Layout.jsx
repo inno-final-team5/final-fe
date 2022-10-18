@@ -19,6 +19,7 @@ w-full
 mx-0
 md:w-4/5
 md:mx-auto
+h-full
 `;
 
 const Main = tw.main`
