@@ -65,7 +65,7 @@ const MyPosts = () => {
 };
 
 const MyPostsList = tw.div`
-h-full
+h-full md:min-h-[28rem]
 `;
 
 export default MyPosts;

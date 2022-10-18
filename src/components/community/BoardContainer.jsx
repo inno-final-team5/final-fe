@@ -13,7 +13,7 @@ const BoardContainer = () => {
           <Route path="all" element={<CommunityAll />} />
           <Route path="movies" element={<CommunityMovies />} />
           <Route path="cinemas" element={<CommunityCinemas />} />
-          <Route path="detail/:id" element={<CommunityDetail />} />
+          <Route path="/:id" element={<CommunityDetail />} />
           <Route path="edit" element={<CommunityEdit />} />
         </Routes>
       </section>
