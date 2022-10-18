@@ -2,7 +2,7 @@ import { api } from "apis";
 
 /**BoxOffice 데이터 불러오기*/
 export const getBoxOfficeWithApi = async () => {
-  const response = await api.get("main/boxoffice");
+  const response = await api.get("main/bestfavorite");
   return response.data;
 };
 
