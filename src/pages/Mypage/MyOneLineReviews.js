@@ -69,7 +69,7 @@ const MyOneLineReviews = () => {
 };
 
 const OneLineReviewList = tw.div`
-h-full
+h-full md:min-h-[28rem]
 `;
 
 export default MyOneLineReviews;
