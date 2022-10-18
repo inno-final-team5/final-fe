@@ -15,13 +15,17 @@ const Layout = ({ children }) => {
 };
 
 const TwLayout = tw.div`
-w-4/5
-mx-auto
+w-full
+mx-0
+md:w-4/5
+md:mx-auto
 `;
 
 const Main = tw.main`
   min-h-5/6
   py-24
+  px-4
+  mx-auto
   
 `;
 export default Layout;

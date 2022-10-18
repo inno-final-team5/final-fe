@@ -15,7 +15,7 @@ const Challenge = () => {
 };
 
 const ChallengeContainer = tw.div`
-text-black flex flex-col items-center 
+text-black flex flex-col items-center pt-2
 `;
 
 export default Challenge;

@@ -39,16 +39,14 @@ const MyPage = () => {
 
   return (
     <Layout>
-      <section>
-        <MyPageContainer>
-          <MyPageSidebarContainer>
-            <SideBar />
-          </MyPageSidebarContainer>
-          <MyPageContentContainer>
-            <MyContainer />
-          </MyPageContentContainer>
-        </MyPageContainer>
-      </section>
+      <MyPageContainer>
+        <MyPageSidebarContainer>
+          <SideBar />
+        </MyPageSidebarContainer>
+        <MyPageContentContainer>
+          <MyContainer />
+        </MyPageContentContainer>
+      </MyPageContainer>
     </Layout>
   );
 };
