@@ -12,9 +12,6 @@ import { deleteMyOneLine, updateMyOneLine } from "apis/oneLineReviewApi";
 const MyOneline = ({ res }) => {
   const params = useParams();
   const myOneline = useRef(res[0].oneLineReviewContent);
-  const onFocus = () => {
-    myOneline.current.focus();
-  };
   const id = res[0].oneLineReviewId;
 
   const title = params.title;
@@ -24,7 +21,19 @@ const MyOneline = ({ res }) => {
 
   /* 별점 추가 */
   const beforeRating = res[0].oneLineReviewStar;
-  const [clicked, setClicked] = useState([true, true, true, false, false]);
+  const beforeStar = (index) => {
+    const noStar = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < index) {
+        noStar.push(true);
+      } else {
+        noStar.push(false);
+      }
+    }
+    return noStar;
+  };
+  const [clicked, setClicked] = useState(beforeStar(beforeRating));
+
   const array = [0, 1, 2, 3, 4];
 
   const handleStarClick = (index) => {
@@ -113,7 +122,7 @@ const MyOneline = ({ res }) => {
                 </div>
                 <div className="flex-shrink-0 gap-4 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
                   <button
-                    className="px-6 mt-2 2xl:px-6 xl:px-6 lg:px-6 md:px-8 bg-mYellow sm:mt-4 sm:px-8 lg:mt-2 inline-flex py-3 rounded-full items-center hover:bg-mCream"
+                    className="px-6 mt-2 2xl:px-6 xl:px-7 lg:px-6 md:px-8 bg-mYellow sm:mt-4 sm:px-8 lg:mt-2 inline-flex py-3 rounded-full items-center hover:bg-mCream"
                     onClick={() => {
                       setIsEditMode(true);
                     }}
@@ -124,7 +133,7 @@ const MyOneline = ({ res }) => {
                     onClick={() => {
                       mutate();
                     }}
-                    className="px-6 mt-2 2xl:px-6 xl:px-6 lg:px-6 md:px-8 sm:mt-4 sm:px-8 lg:mt-2 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
+                    className="px-6 mt-2 2xl:px-6 xl:px-7 lg:px-6 md:px-8 sm:mt-4 sm:px-8 lg:mt-2 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream "
                   >
                     <BsTrash size="22" />
                   </button>
@@ -148,7 +157,7 @@ const MyOneline = ({ res }) => {
                 </Stars>
                 <div className="2xl:w-full mt-2 w-full lg:mt-0 sm:w-full md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
                   <input
-                    className="sm:text-sm mt-2 mr-2 sm:mt-2 pl-2 pt-2 text-lg w-full h-10 rounded-xl text-sm"
+                    className="sm:text-sm mt-2 mr-2 lg:mr-0 md:mr-4 sm:mt-2 pl-2 pt-2 text-lg w-full h-10 rounded-xl text-sm"
                     autoFocus
                     ref={myOneline}
                     onKeyPress={onKeyPress}
@@ -156,7 +165,7 @@ const MyOneline = ({ res }) => {
                 </div>
                 <div className="flex-shrink-0 gap-4 inline-flex items-center focus:outline-none text-base xl:mr-6 md:mt-0">
                   <button
-                    className="px-6 mt-2 2xl:px-6 xl:px-6 lg:px-6 md:px-8 bg-mYellow sm:mt-4 sm:px-8 lg:mt-2 inline-flex py-3 rounded-full items-center hover:bg-mCream"
+                    className="px-6 mt-2 2xl:px-6 xl:px-7 lg:px-6 md:px-8 bg-mYellow sm:mt-4 sm:px-8 lg:mt-2 inline-flex py-3 rounded-full items-center hover:bg-mCream"
                     onClick={() => {
                       setIsEditMode(false);
                     }}
@@ -175,7 +184,7 @@ const MyOneline = ({ res }) => {
                       };
                       editBtnHandler(data);
                     }}
-                    className="px-6 mt-2 mr-2 2xl:px-6 xl:px-6 lg:px-6 md:px-8 sm:mt-4 sm:px-8 lg:mt-2 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream"
+                    className="px-6 mt-2 mr-2 2xl:px-6 xl:px-7 lg:px-6 md:px-8 sm:mt-4 sm:px-8 lg:mt-2 bg-mYellow inline-flex py-3 rounded-full items-center hover:bg-mCream"
                   >
                     <TiPencil size="22" />
                   </button>
