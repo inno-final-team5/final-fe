@@ -15,7 +15,6 @@ const SearchResult = () => {
   const keyword = params.keyword;
   const queryClient = useQueryClient();
   const [mySearch, setMySearch] = useState([]);
-  const [success, setSuccess] = useState({});
 
   const { ref, inView } = useInView();
   const { data, status, fetchNextPage, isFetchingNextPage, isSuccess } = useInfiniteQuery(
@@ -31,7 +30,6 @@ const SearchResult = () => {
       },
       onSuccess: (result) => {
         setMySearch(result.pages[0].results);
-        console.log(result);
       },
     }
   );
