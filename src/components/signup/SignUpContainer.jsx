@@ -20,6 +20,8 @@ const SignUpContainer = () => {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState();
   const [passwordConfirm, setPasswordConfirm] = useState();
+
+  //중복확인 통과/불통과
   const [emailOk, setEmailOk] = useState(false);
   const [nicknameOk, setNicknameOk] = useState(false);
 
