@@ -15,8 +15,8 @@ const SearchResult = () => {
 
   const { ref, inView } = useInView();
   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-    "searchList",
-    ({ pageParam = 1 }) => getSearchResult(keyword, pageParam),
+    "searchResult",
+    async ({ pageParam = 1 }) => await getSearchResult(keyword, pageParam),
     {
       getNextPageParam: (lastPage) => {
         if (lastPage.results.length === 0) {
@@ -39,9 +39,9 @@ const SearchResult = () => {
         <InputResult>"{keyword}" 검색결과</InputResult>
         <MovieListContainer>
           <MovieList>
-            {data?.pages.map((page, index) => (
+            {data?.pages?.map((page, index) => (
               <React.Fragment key={index}>
-                {page.results.map((movie) => (
+                {page?.results.map((movie) => (
                   <SearchMovie {...movie} key={movie.movieId} />
                 ))}
               </React.Fragment>

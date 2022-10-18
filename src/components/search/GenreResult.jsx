@@ -44,7 +44,7 @@ const GenreResult = () => {
   const { ref, inView } = useInView();
   const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
     ["genreList", keyword],
-    ({ pageParam = 1 }) => getGenreList(category, pageParam),
+    async ({ pageParam = 1 }) => await getGenreList(category, pageParam),
     {
       getNextPageParam: (lastPage) => {
         if (lastPage.results.length === 0) {
@@ -68,7 +68,7 @@ const GenreResult = () => {
         <InputResult className="text-lg md:text-2xl text-mCream ml-10">{keyword} 장르 영화입니다</InputResult>
         <MovieListContainer>
           <MovieList>
-            {data?.pages.map((page, index) => (
+            {data?.pages?.map((page, index) => (
               <React.Fragment key={index}>
                 {page.results.map((movie) => (
                   <SearchMovie {...movie} key={movie.movieId} />
@@ -88,6 +88,6 @@ export default GenreResult;
 export const MovieListContainer = tw.div`
 mt-2 items-center justify-center pt-0 pb-4 rounded-3xl bg-mGray container mx-auto flex px-2 py-22 md:flex-row flex-col
 `;
-export const MovieList = tw.section`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-8 md:gap-12 lg:gap-10 lg:p-12 xl:p-18 xl:gap-14`;
+export const MovieList = tw.section`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-8 md:gap-12 lg:gap-10 lg:p-12 xl:p-18 xl:gap-14`;
 
 export const InputResult = tw.p`text-base md:text-2xl text-mCream ml-10`;

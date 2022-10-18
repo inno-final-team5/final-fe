@@ -11,15 +11,19 @@ import { useInfiniteQuery } from "react-query";
 const SearchList = () => {
   const { ref, inView } = useInView();
 
-  const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery("searchList", ({ pageParam = 1 }) => getSearchList(pageParam), {
-    getNextPageParam: (lastPage) => {
-      if (lastPage.results.length === 0) {
-        return undefined;
-      } else {
-        return lastPage.page + 1;
-      }
-    },
-  });
+  const { data, status, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
+    "searchList",
+    async ({ pageParam = 1 }) => await getSearchList(pageParam),
+    {
+      getNextPageParam: (lastPage) => {
+        if (lastPage.results.length === 0) {
+          return undefined;
+        } else {
+          return lastPage.page + 1;
+        }
+      },
+    }
+  );
   useEffect(() => {
     if (inView) fetchNextPage();
   }, [inView]);
@@ -30,7 +34,7 @@ const SearchList = () => {
     <>
       <MovieListContainer>
         <MovieList>
-          {data?.pages.map((page, index) => (
+          {data?.pages?.map((page, index) => (
             <React.Fragment key={index}>
               {page.results.map((movie) => (
                 <SearchMovie {...movie} key={movie.movieId} />
