@@ -19,7 +19,7 @@ const BoxOfficeMovie = ({ ranking, movieId, title, poster_path }) => {
           className="relative top-7 left-24 lg:left-16 w-40 h-60 z-40 bg-cover"
         />
         {/* 영화 제목 */}
-        <div className=" relative top-10 left-24 lg:left-16 text-mYellow z-10 my-2.5 mr-10 w-3/6 lg:w-4/6 leading-5 tracking-wider">
+        <div className=" relative top-10 left-24 lg:left-16 text-mCream text-sm z-10 my-2.5 mr-10 w-3/6 lg:w-4/6 leading-5 tracking-wider">
           {title}
         </div>
       </Link>
