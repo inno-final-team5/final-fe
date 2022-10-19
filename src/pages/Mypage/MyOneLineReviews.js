@@ -3,7 +3,7 @@ import Empty from "components/common/Empty";
 import Pagination from "components/common/pagination/Pagination";
 import Spinner from "components/common/Spinner";
 import OneLineReviewItem from "components/mypage/OneLineReviewItem";
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import tw from "tailwind-styled-components/";
 
@@ -54,17 +54,15 @@ const MyOneLineReviews = () => {
     .map((_, index) => index + 1);
 
   return (
-    <Fragment>
-      <OneLineReviewList>
-        {content}
-        <Pagination
-          page={page}
-          setPage={setPage}
-          totalPages={totalPages}
-          pagesArray={pagesArray}
-        />
-      </OneLineReviewList>
-    </Fragment>
+    <OneLineReviewList>
+      {content}
+      <Pagination
+        page={page}
+        setPage={setPage}
+        totalPages={totalPages}
+        pagesArray={pagesArray}
+      />
+    </OneLineReviewList>
   );
 };
 

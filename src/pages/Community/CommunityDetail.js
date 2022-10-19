@@ -75,7 +75,6 @@ const CommunityDetail = () => {
   };
 
   const goBack = () => {
-    // history.goBack();
     navigate(-1);
   };
 

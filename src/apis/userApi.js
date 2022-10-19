@@ -1,4 +1,4 @@
-import { api } from "apis";
+import { api, authApi } from "apis";
 
 /** 이메일 중복 확인 */
 export const emailDuplicateCheck = async (email) => {
@@ -23,4 +23,8 @@ export const signIn = async (data) => {
 /** 카카오 로그인 */
 export const kakaoLogin = async (data) => {
   return await api.post(`/oauth/kakao?code=${data}`);
+};
+
+export const nicknameChange = async (nickname) => {
+  return await authApi.put(`/auth/members/nickname`, nickname);
 };

@@ -1,37 +1,51 @@
 import tw from "tailwind-styled-components/";
-const ChallengeItem = ({ icon, name, description }) => {
+
+import Swal from "sweetalert2";
+const ChallengeItem = ({ icon, name, maxUser, getUser, description }) => {
+  const rate = Math.floor((getUser / maxUser) * 100) + "%";
+  const showChallengeDetail = () => {
+    Swal.fire({
+      html: `
+      <div class="flex flex-col gap-2">
+        <span class="text-5xl m-2 p-2">${icon}</span>
+        <h2 class="text-2xl text-black font-semibold">${name}</h2>
+        <p>${description}</p>
+        <div class="w-full flex items-center justify-center">
+          <p class="w-2/3 text-lg font-extrabold text-yellow-500 bg-amber-50 my-2 rounded-lg"><span class="text-xl">${rate}</span>의 사용자가 획득했습니다.</p>
+        </div>
+        
+      </div>
+      `,
+      buttonsStyling: false,
+      showConfirmButton: true,
+      confirmButtonText: "확인",
+      customClass: {
+        confirmButton:
+          "bg-yellow-500 focus:outline-none px-4 py-2 text-mGray rounded-md",
+      },
+    });
+  };
+
   return (
     <ChallengeItemContainer>
-      <ChallengeBadgeBox>
-        {/* <img src={icon} alt="badge" width={56} height={56} /> */}
+      <ChallengeBadgeBox onClick={showChallengeDetail}>
         <span className="text-4xl p-1">{icon}</span>
       </ChallengeBadgeBox>
-      <ChallengeDescriptionBox>
-        <ChallengeBadgeTitle>{name}</ChallengeBadgeTitle>
-        <ChallengeBadgeInfo>{description}</ChallengeBadgeInfo>
-      </ChallengeDescriptionBox>
+      <ChallengeBadgeTitle>{name}</ChallengeBadgeTitle>
     </ChallengeItemContainer>
   );
 };
 
 const ChallengeItemContainer = tw.div`
-  flex justify-around  p-2 items-center md:mx-4  min-w-max
+  flex justify-around  p-2 items-center md:mx-4  min-w-max flex-col 
 `;
 
 const ChallengeBadgeBox = tw.div`
-  p-4 border border-mWhite bg-mWhite border-solid  flex items-center rounded-lg lg:p-3.5
-`;
-
-const ChallengeDescriptionBox = tw.div`
-  flex-col  mx-2 border border-solid border-mWhite bg-mWhite p-2 flex rounded-lg justify-start items-center w-full 
+ border border-mWhite bg-mWhite border-solid  flex items-center rounded-lg cursor-pointer w-16 h-16 justify-center
 `;
 
 const ChallengeBadgeTitle = tw.span`
-  text-mBlack text-lg lg:text-2xl  w-full text-start font-bold
-`;
-
-const ChallengeBadgeInfo = tw.p`
-  text-sm text-mGray text-start w-full mt-2
+  text-sm  w-full text-start font-bold text-center text-mCream mt-2 md:text-lg
 `;
 
 export default ChallengeItem;

@@ -1,11 +1,26 @@
 import { updateMyMainBadge } from "apis/badgeApi";
+import MainBadgeContext from "contexts/MainBadgeContext";
+import { useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import Swal from "sweetalert2";
 
-const BadgeItem = ({ id, icon, name, description, isActive }) => {
+const BadgeItem = ({
+  id,
+  icon,
+  name,
+  currentCount,
+  maxCount,
+  description,
+  isActive,
+}) => {
   const queryClient = useQueryClient();
 
-  const onClickBadgeHandler = () => {
+  const { setMainBadge } = useContext(MainBadgeContext);
+  let tempCurrentCount = 1;
+  let tempMaxCount = 5;
+  const rate = Math.floor((tempCurrentCount / tempMaxCount) * 100) + "%";
+
+  const onClickActiveBadgeHandler = () => {
     Swal.fire({
       html: `
       <div class="flex flex-col gap-2">
@@ -20,14 +35,28 @@ const BadgeItem = ({ id, icon, name, description, isActive }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         updateMainBadgeMutation.mutate({ badgeId: id });
-        localStorage.setItem("badgeIcon", icon);
       }
+    });
+  };
+
+  const onClickInActiveBadgeHandler = () => {
+    Swal.fire({
+      html: `
+      <div class="flex flex-col gap-2">
+        <span class="text-5xl m-2 p-2">${icon}</span>
+        <h2 class="text-2xl text-black font-semibold">${name}</h2>
+        <p>${description}</p
+        <p>현재 ${rate} 달성 하셨습니다.</p>
+      </div>
+      `,
+      confirmButtonText: "확인",
     });
   };
 
   const updateMainBadgeMutation = useMutation(updateMyMainBadge, {
     onSuccess: () => {
       queryClient.invalidateQueries("MainBadge");
+      setMainBadge(icon);
     },
   });
 
@@ -36,12 +65,15 @@ const BadgeItem = ({ id, icon, name, description, isActive }) => {
       {isActive === true ? (
         <div
           className="w-20 h-20 bg-mWhite rounded-xl py-4 flex justify-center items-center m-2 cursor-pointer"
-          onClick={onClickBadgeHandler}
+          onClick={onClickActiveBadgeHandler}
         >
           <span className="text-4xl">{icon}</span>
         </div>
       ) : (
-        <div className="w-20 h-20 bg-mGray border-solid border-mWhite border rounded-xl py-4 flex justify-center items-center m-2 cursor-default">
+        <div
+          className="w-20 h-20 bg-mGray border-solid border-mWhite border rounded-xl py-4 flex justify-center items-center m-2 cursor-default"
+          onClick={onClickInActiveBadgeHandler}
+        >
           <span className="text-gray grayscale text-4xl">{icon}</span>
         </div>
       )}

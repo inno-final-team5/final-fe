@@ -24,6 +24,8 @@ const ChallengeList = () => {
         <ChallengeItem
           key={challenge.badgeId}
           icon={challenge.badgeIcon}
+          getUser={14}
+          maxUser={100}
           name={challenge.badgeName}
           description={challenge.badgeInfo}
         />
@@ -34,7 +36,7 @@ const ChallengeList = () => {
 };
 
 const ChallengeListBox = tw.div`
-  grid grid-cols-1  h-auto bg-mGray p-4 lg:p-8 rounded-md  min-w-max mx-4 md:grid-cols-2 w-full  shadow-lg lg:mb-6
+  grid grid-cols-2  h-auto bg-mGray p-4 lg:p-8 rounded-md  min-w-max mx-4 md:grid-cols-4  w-full md:w-5/6 mt-4  shadow-lg lg:mb-6 
 `;
 
 export default ChallengeList;

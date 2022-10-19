@@ -52,7 +52,7 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
           <div className="md:block hidden">
             {accessToken != null ? (
               <div className="flex items-center">
-                <Profile badgeIcon={badgeIcon} />
+                <Profile />
                 <span className="text-mYellow "> {nickname} 평론가님</span>
 
                 <LogoutButton logoutHandler={logoutHandler} />

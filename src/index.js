@@ -9,6 +9,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { MainBadgeProvider } from "contexts/MainBadgeContext";
 
 const queryClient = new QueryClient();
 
@@ -17,7 +18,9 @@ root.render(
   <React.StrictMode>
     <GlobalStyle />
     <QueryClientProvider client={queryClient}>
-      <App />
+      <MainBadgeProvider>
+        <App />
+      </MainBadgeProvider>
       <ReactQueryDevtools initialIsOpen />
     </QueryClientProvider>
   </React.StrictMode>

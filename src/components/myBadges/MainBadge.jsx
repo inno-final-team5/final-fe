@@ -52,8 +52,8 @@ const MainBadge = () => {
       );
   }
   return (
-    <div className="flex justify-center items-center border-gray-800 border p-2 rounded-lg flex-col hover:cursor-pointer">
-      <div className="relative w-24 h-24 bg-mWhite rounded-xl py-4 flex justify-center items-center mt-4">
+    <div className="flex justify-center items-center border-gray-800 border p-2 rounded-lg flex-col">
+      <div className="relative w-24 h-24 bg-mWhite rounded-xl py-4 flex justify-center items-center mt-4 hover:cursor-pointer">
         <div className=" absolute text-mYellow text-4xl -top-4 -left-4 -rotate-45">
           <FaCrown />
         </div>

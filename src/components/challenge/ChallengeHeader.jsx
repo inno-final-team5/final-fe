@@ -16,7 +16,7 @@ const ChallengeHeader = () => {
         </ChallengeHeaderDescription>
         {accessToken !== null ? (
           <button
-            className="bg-mGray p-1 rounded-xl my-2 text-sm px-6 text-mYellow"
+            className="bg-mGray p-1 rounded-xl my-2 text-sm px-6 text-mYellow "
             onClick={goChallenge}
           >
             나의 챌린지
@@ -32,15 +32,15 @@ const ChallengeHeader = () => {
 };
 
 const ChallengeHeaderBox = tw.div`
-    flex justify-start flex-col w-full
+    flex justify-start flex-col md:w-5/6 w-full
 `;
 
 const ChallengeHeaderTitle = tw.h2`
-text-3xl font-extrabold text-mYellow dark:text-white
+text-3xl font-extrabold text-mYellow
 `;
 
 const ChallengeHeaderDescription = tw.p`
-my-4 text-lg text-gray-500 
+my-4  text-sm md:text-lg text-gray-500 
 `;
 
 export default ChallengeHeader;
