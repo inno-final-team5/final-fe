@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const PostItem = ({ post }) => {
   return (
     <Link
-      to={`/community/detail/${post.postId}`}
+      to={`/community/${post.postId}`}
       className="hover:text-mBlack hover:font-bold"
     >
       <div

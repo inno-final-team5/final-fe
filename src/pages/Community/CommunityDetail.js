@@ -1,5 +1,5 @@
 import tw from "tailwind-styled-components";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaArrowLeft, FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { useQueryClient, useMutation, useQuery } from "react-query";
 import { getPostDetail, deletePost, updatePost } from "apis/postApi";
@@ -16,6 +16,7 @@ const CommunityDetail = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
   const updateTitle = useRef("");
   const updateReview = useRef("");
 
@@ -73,6 +74,11 @@ const CommunityDetail = () => {
     });
   };
 
+  const goBack = () => {
+    // history.goBack();
+    navigate(-1);
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -89,10 +95,18 @@ const CommunityDetail = () => {
         <>
           <DetailContainer>
             <DetailContentContainer>
-              <PostAuthor
-                nickname={postData.nickname}
-                badgeId={postData.badgeId}
-              />
+              <div className="flex justify-between">
+                <div>
+                  <button onClick={goBack} className="text-mYellow">
+                    <FaArrowLeft />
+                  </button>
+                </div>
+                <PostAuthor
+                  nickname={postData.nickname}
+                  badgeId={postData.badgeId}
+                />
+              </div>
+
               <DetailTitle>{postData.postTitle}</DetailTitle>
               <DetailContent>
                 <p>{postData.postContent}</p>

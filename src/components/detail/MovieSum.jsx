@@ -9,19 +9,21 @@ import { RiHeartAddLine } from "react-icons/ri";
 import { Toast } from "components/common/Toast";
 import { getMovieSum } from "apis/movieApi";
 import { getMyLikes } from "apis/favoriteApi";
+import tw from "tailwind-styled-components/";
+import { TagButton } from "../search/DetailTags";
 
 const MovieSum = () => {
   const accessToken = localStorage.getItem("accessToken");
 
   const [img, setImg] = useState(null);
   const [myFav, setMyFav] = useState([]);
-  const [movie, setMovie] = useState([]);
+  const [thisMovie, setThisMovie] = useState([]);
   const params = useParams();
   const id = params.id;
 
   const movieQuery = useQuery(["movieList", id], () => getMovieSum(id), {
     onSuccess: (data) => {
-      setMovie(data.data);
+      setThisMovie(data.data);
       setImg(`https://image.tmdb.org/t/p/w342` + data.data.poster_path);
     },
   });
@@ -40,53 +42,51 @@ const MovieSum = () => {
   }
 
   return (
-    <div>
-      <section className="mt-2">
-        <div className="pt-6 pb-6 bg-mGray sm:w-5/6 lg:w-full rounded-3xl container mx-auto flex px-12 py-24 md:flex-row flex-col items-center">
-          <div className="lg:w-40 md:w-1/3 sm:w-1/2 w-30 mb-10 md:mb-0 sm:mb-4">
-            <img src={img} alt="영화포스터" />
+    <>
+      <div className="mt-1 pt-6 pb-6 bg-mGray sm:w-5/6 lg:w-full rounded-3xl container mx-auto flex px-12 py-24 md:flex-row flex-col items-center">
+        <div className="lg:w-40 md:w-1/3 sm:w-1/2 w-30 mb-10 md:mb-0 sm:mb-4">
+          <img src={img} alt="영화포스터" />
+        </div>
+        <div className="lg:flex-grow md:w-2/3 lg:pl-18 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+          <div className="flex">
+            <h1 className="font-bold title-font 2xl:text-3xl lg:text-2xl md:text-xl sm:text-lg text-white text-3xl mb-4 ">
+              {movieQuery?.data.data.title}
+            </h1>
+            {accessToken == null ? (
+              <RiHeartAddLine
+                onClick={() => {
+                  Toast.fire({
+                    icon: "warning",
+                    title: "로그인이 필요합니다",
+                  });
+                }}
+                className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor"
+                size={33}
+              />
+            ) : res?.length ? (
+              <>
+                <Dislike res={res} />
+              </>
+            ) : (
+              <>
+                <Like />
+              </>
+            )}
           </div>
-          <div className="lg:flex-grow md:w-2/3 lg:pl-18 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-            <div className="flex ">
-              <h1 className="font-bold title-font 2xl:text-3xl lg:text-2xl md:text-xl sm:text-lg text-white text-3xl mb-4 ">
-                {movieQuery?.data.data.title}
-              </h1>
-              {accessToken == null ? (
-                <RiHeartAddLine
-                  onClick={() => {
-                    Toast.fire({
-                      icon: "warning",
-                      title: "로그인이 필요합니다",
-                    });
-                  }}
-                  className="flex ml-2 text-red-500 hover:text-red-900 cursor-pointer hover:cursor"
-                  size={33}
-                />
-              ) : res?.length ? (
-                <>
-                  <Dislike res={res} />
-                </>
-              ) : (
-                <>
-                  <Like />
-                </>
-              )}
-            </div>
-            <p className="mb-8 text-white sm:text-sm lg:text-sm leading-relaxed">{movieQuery?.data.data.overview}</p>
-            <div className="flex lg:flex-row md:flex-row lg:mt-16 sm:mt-0">
-              {movieQuery?.data.data.genres.map((movie) => (
-                <Link to={`/genre/${movie.name}`} key={movie.id}>
-                  <button className="bg-mWhite xl:px-4 xl:py-1.5 px-2 py-2 text-sm md:px-2 sm:text-sm sm:px-3 sm:py-2 inline-flex ml-2 rounded-full items-center hover:bg-gray-400 focus:outline-none">
-                    <span>{movie.name} </span>
-                  </button>
-                </Link>
-              ))}
-            </div>
+          <p className="mb-8 text-white sm:text-sm lg:text-sm leading-relaxed">{movieQuery?.data.data.overview}</p>
+          <div className="flex lg:flex-row md:flex-row lg:mt-16 sm:mt-0">
+            {movieQuery?.data.data.genres.map((movie) => (
+              <Link to={`/genre/${movie.name}`} key={movie.id}>
+                <TagButton className="ml-2 xl:px-4 xl:py-1.5 px-1.5 py-2.5 md:px-1 md:py-2 text-sm sm:px-3 sm:py-2 inline-flex">
+                  <span>{movie.name} </span>
+                </TagButton>
+              </Link>
+            ))}
           </div>
         </div>
-      </section>
-      <OnelineForm res={movie} />
-    </div>
+      </div>
+      <OnelineForm res={thisMovie} />
+    </>
   );
 };
 

@@ -39,22 +39,20 @@ const MyPage = () => {
 
   return (
     <Layout>
-      <section>
-        <MyPageContainer>
-          <MyPageSidebarContainer>
-            <SideBar />
-          </MyPageSidebarContainer>
-          <MyPageContentContainer>
-            <MyContainer />
-          </MyPageContentContainer>
-        </MyPageContainer>
-      </section>
+      <MyPageContainer>
+        <MyPageSidebarContainer>
+          <SideBar />
+        </MyPageSidebarContainer>
+        <MyPageContentContainer>
+          <MyContainer />
+        </MyPageContentContainer>
+      </MyPageContainer>
     </Layout>
   );
 };
 
 const MyPageContainer = tw.div`
-mt-4 
+mt-4 h-full
 `;
 const MyPageSidebarContainer = tw.div`
 bg-mBlack md:block hidden md:fixed

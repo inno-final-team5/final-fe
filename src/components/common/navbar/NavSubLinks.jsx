@@ -1,13 +1,13 @@
 import React from "react";
-import NavItem from "./NavItem";
+import NavSubMenu from "./NavSubMenu";
 
-const NavLinks = ({ links }) => {
+const NavSubLinks = ({ links }) => {
   return (
     <>
       {links.map((link) => (
         <div key={link.name}>
           <div className="px-3 text-left md:cursor-pointer group">
-            <NavItem link={link.link} name={link.name} />
+            <NavSubMenu link={link.link} name={link.name} />
           </div>
         </div>
       ))}
@@ -15,4 +15,4 @@ const NavLinks = ({ links }) => {
   );
 };
 
-export default NavLinks;
+export default NavSubLinks;
