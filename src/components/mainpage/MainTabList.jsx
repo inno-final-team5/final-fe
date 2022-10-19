@@ -28,7 +28,7 @@ const MainTabList = () => {
       <div className="flex">
         {MainListTabMenu.map((item, idx) => {
           return (
-            <div key={idx} className="flex w-fit mx-1">
+            <div key={idx} className="flex w-fit mr-1">
               <div
                 onClick={() => {
                   setIndex(idx);
@@ -43,7 +43,7 @@ const MainTabList = () => {
       </div>
 
       {/* 클릭한 title의 내용만 보여주기 */}
-      <div className="bg-mGray p-5 mb-10 rounded-lg">
+      <div className="bg-mGray p-5 mb-10 rounded-tr-lg rounded-br-lg rounded-bl-lg">
         {MainListTabMenu[index].component}
       </div>
     </div>

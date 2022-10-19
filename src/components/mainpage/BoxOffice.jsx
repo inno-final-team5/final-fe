@@ -16,9 +16,9 @@ const BoxOffice = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 3000,
     responsive: [
       {
         breakpoint: 1300,
@@ -54,7 +54,7 @@ const BoxOffice = () => {
 
   return (
     <div className="w-11/12 m-auto mt-14">
-      <h2 className="text-mYellow text-2xl my-10 font-bold">
+      <h2 className="text-mYellow text-lg md:text-2xl my-10 font-bold">
         방구석 평론가들이 사랑한 영화🧡
       </h2>
       <Slider {...settings} className="flex ">
