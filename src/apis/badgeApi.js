@@ -7,7 +7,6 @@ export const getAllBadges = async () => {
 
 export const getMyBadges = async () => {
   const response = await authApi.get("/auth/badge");
-  console.log(response);
   return response.data;
 };
 

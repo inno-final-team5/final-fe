@@ -1,6 +1,6 @@
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-const FavoriteCard = ({
+const MyFavoriteCard = ({
   imageUrl,
   id,
   title,
@@ -52,4 +52,4 @@ const FavoriteCard = ({
   );
 };
 
-export default FavoriteCard;
+export default MyFavoriteCard;

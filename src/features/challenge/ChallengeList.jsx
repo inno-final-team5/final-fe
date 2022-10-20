@@ -1,5 +1,5 @@
 import tw from "tailwind-styled-components";
-import ChallengeItem from "components/challenge/ChallengeItem";
+import ChallengeItem from "./ChallengeItem";
 import { useQuery } from "react-query";
 import { getAllBadges } from "apis/badgeApi";
 import Spinner from "components/common/Spinner";

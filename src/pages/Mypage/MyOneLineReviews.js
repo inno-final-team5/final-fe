@@ -2,7 +2,7 @@ import { getMyOneLineReviews } from "apis/oneLineReviewApi";
 import Empty from "components/common/Empty";
 import Pagination from "components/common/pagination/Pagination";
 import Spinner from "components/common/Spinner";
-import OneLineReviewItem from "components/mypage/OneLineReviewItem";
+import OneLineReviewItem from "features/mypage/onelinereview/OneLineReviewItem";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import tw from "tailwind-styled-components/";

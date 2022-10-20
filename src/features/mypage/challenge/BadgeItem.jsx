@@ -1,5 +1,5 @@
 import { updateMyMainBadge } from "apis/badgeApi";
-import MainBadgeContext from "contexts/MainBadgeContext";
+import UserContext from "contexts/UserContext";
 import { useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import Swal from "sweetalert2";
@@ -15,7 +15,7 @@ const BadgeItem = ({
 }) => {
   const queryClient = useQueryClient();
 
-  const { setMainBadge } = useContext(MainBadgeContext);
+  const { setMainBadge } = useContext(UserContext);
   let tempCurrentCount = 1;
   let tempMaxCount = 5;
   const rate = Math.floor((tempCurrentCount / tempMaxCount) * 100) + "%";

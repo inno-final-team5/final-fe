@@ -9,7 +9,7 @@ import GlobalStyle from "./styles/GlobalStyle";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { MainBadgeProvider } from "contexts/MainBadgeContext";
+import { UserProvider } from "contexts/UserContext";
 
 const queryClient = new QueryClient();
 
@@ -17,12 +17,12 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <MainBadgeProvider>
+    <UserProvider>
       <QueryClientProvider client={queryClient}>
         <App />
         <ReactQueryDevtools initialIsOpen />
       </QueryClientProvider>
-    </MainBadgeProvider>
+    </UserProvider>
   </React.StrictMode>
 );
 

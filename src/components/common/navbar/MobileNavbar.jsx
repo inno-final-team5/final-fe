@@ -2,7 +2,6 @@ import React from "react";
 import Profile from "../Profile";
 import LogoutButton from "./LogoutButton";
 import LoginBox from "./LoginBox";
-import NavMainLinks from "./NavMainLinks";
 import { communityLinks } from "./MyLinks";
 import NavMainMenu from "./NavMainMenu";
 import NavSubLinks from "./NavSubLinks";

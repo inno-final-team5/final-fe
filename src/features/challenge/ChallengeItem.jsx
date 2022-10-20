@@ -1,8 +1,9 @@
 import tw from "tailwind-styled-components/";
-
 import Swal from "sweetalert2";
+
 const ChallengeItem = ({ icon, name, maxUser, getUser, description }) => {
   const rate = Math.floor((getUser / maxUser) * 100) + "%";
+
   const showChallengeDetail = () => {
     Swal.fire({
       html: `
@@ -13,7 +14,6 @@ const ChallengeItem = ({ icon, name, maxUser, getUser, description }) => {
         <div class="w-full flex items-center justify-center">
           <p class="w-2/3 text-lg font-extrabold text-yellow-500 bg-amber-50 my-2 rounded-lg"><span class="text-xl">${rate}</span>의 사용자가 획득했습니다.</p>
         </div>
-        
       </div>
       `,
       buttonsStyling: false,
@@ -29,7 +29,7 @@ const ChallengeItem = ({ icon, name, maxUser, getUser, description }) => {
   return (
     <ChallengeItemContainer>
       <ChallengeBadgeBox onClick={showChallengeDetail}>
-        <span className="text-4xl p-1">{icon}</span>
+        <ChallengeBadgeIcon>{icon}</ChallengeBadgeIcon>
       </ChallengeBadgeBox>
       <ChallengeBadgeTitle>{name}</ChallengeBadgeTitle>
     </ChallengeItemContainer>
@@ -37,15 +37,19 @@ const ChallengeItem = ({ icon, name, maxUser, getUser, description }) => {
 };
 
 const ChallengeItemContainer = tw.div`
-  flex justify-around  p-2 items-center md:mx-4  min-w-max flex-col 
+flex justify-around  p-2 items-center md:mx-4  min-w-max flex-col 
 `;
 
 const ChallengeBadgeBox = tw.div`
- border border-mWhite bg-mWhite border-solid  flex items-center rounded-lg cursor-pointer w-16 h-16 justify-center
+border border-mWhite bg-mWhite border-solid  flex items-center rounded-lg cursor-pointer w-20 h-20 justify-center
+`;
+
+const ChallengeBadgeIcon = tw.span`
+  text-5xl p-1
 `;
 
 const ChallengeBadgeTitle = tw.span`
-  text-sm  w-full text-start font-bold text-center text-mWhite mt-2 md:text-lg
+text-sm  w-full text-start font-bold text-center text-mWhite mt-2 md:text-lg
 `;
 
 export default ChallengeItem;

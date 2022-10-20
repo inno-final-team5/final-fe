@@ -1,8 +1,9 @@
 import React from "react";
 import { BadgeListData } from "data/BadgeListData";
 import BadgeItem from "./BadgeItem";
+import tw from "tailwind-styled-components";
 
-const BadgeList = ({ data, updateMainBadgeMutation }) => {
+const BadgeList = ({ data }) => {
   const badgeList = BadgeListData;
   let activeBadges = [];
   if (data.length > 0) {
@@ -15,7 +16,7 @@ const BadgeList = ({ data, updateMainBadgeMutation }) => {
   }
 
   return (
-    <div className=" grid grid-cols-2 md:grid-cols-4 justify-items-center gap-4">
+    <BadgeListContainer>
       {badgeList.map((badge, i) => {
         activeIds.includes(i + 1)
           ? (badge.isActive = true)
@@ -29,12 +30,15 @@ const BadgeList = ({ data, updateMainBadgeMutation }) => {
             name={badge.badgeName}
             description={badge.badgeInfo}
             isActive={badge.isActive}
-            updateMainBadgeMutation={updateMainBadgeMutation}
           />
         );
       })}
-    </div>
+    </BadgeListContainer>
   );
 };
+
+const BadgeListContainer = tw.div`
+  grid grid-cols-2 md:grid-cols-4 justify-items-center gap-4 p-8 mx-auto
+`;
 
 export default BadgeList;

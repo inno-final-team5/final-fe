@@ -1,4 +1,4 @@
-import MyBadges from "pages/Mypage/MyBadges";
+import MyChallenge from "pages/Mypage/MyChallenge";
 import MyOneLineReviews from "pages/Mypage/MyOneLineReviews";
 import MyFavorites from "pages/Mypage/MyFavorites";
 import MyPosts from "pages/Mypage/MyPosts";
@@ -13,7 +13,7 @@ const MyContainer = () => {
           <Route path="favorites" element={<MyFavorites />} />
           <Route path="posts" element={<MyPosts />} />
           <Route path="onelinereviews" element={<MyOneLineReviews />} />
-          <Route path="badges" element={<MyBadges />} />
+          <Route path="badges" element={<MyChallenge />} />
           <Route path="info" element={<MyInfo />} />
         </Routes>
       </section>
