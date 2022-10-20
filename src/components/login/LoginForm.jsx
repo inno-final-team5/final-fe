@@ -9,8 +9,7 @@ import tw from "tailwind-styled-components/";
 
 const LoginForm = () => {
   const REDIRECT_URI = "https://www.moviecritic.site/kakaoLogin";
-  //const REST_API_KEY = process.env.REACT_APP_KAKAO_ID
-  const REST_API_KEY = "3ad9053f0b013a449d0f5d06dfb86796";
+  const REST_API_KEY = process.env.REACT_APP_KAKAO_ID;
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
   const memberId_ref = useRef(null);

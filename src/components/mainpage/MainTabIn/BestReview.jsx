@@ -36,38 +36,28 @@ const BestReview = () => {
           <li
             key={i.reviewId}
             onClick={() => {
-              navigate(
-                `/detail/${i.movieId}/${i.title}${i.posterPath.split(".")[0]}`
-              );
+              navigate(`/${i.movieId}/${i.title}${i.posterPath.split(".")[0]}`);
             }}
             className="bg-mWhite hover:bg-neutral-300 px-5 py-2 items-center rounded-lg mb-5 last:mb-0 cursor-pointer "
           >
             <div className=" flex-col ">
               <div className="lg:flex lg:justify-between lg:items-center">
                 {/* 영화제목 */}
-                <div className=" pr-5 text-lg font-bold text-mBlack">
-                  {i.title}
-                </div>
+                <div className=" pr-5 text-lg font-bold text-mBlack">{i.title}</div>
                 {/* 뱃지와 닉네임 */}
                 <div className="flex">
                   <BadgeEmoji badgeId={i.badgeId} />
-                  <div className="pr-5 flex text-sm text-mGray ml-1">
-                    {i.nickname}
-                  </div>
+                  <div className="pr-5 flex text-sm text-mGray ml-1">{i.nickname}</div>
                 </div>
               </div>
 
               <div className="flex justify-between items-center mt-2">
                 <div className="flex grow w-4/5">
                   {/* 별점 */}
-                  <div className="flex text-mYellow w-28 pt-1">
-                    {starIcon(i.oneLineReviewStar)}
-                  </div>
+                  <div className="flex text-mYellow w-28 pt-1">{starIcon(i.oneLineReviewStar)}</div>
                   {/* 한줄평 내용 */}
                   <div className="truncate w-10/12 py-1 ">
-                    <span className="pl-2 pr-16 ">
-                      {i.oneLineReviewContent}
-                    </span>
+                    <span className="pl-2 pr-16 ">{i.oneLineReviewContent}</span>
                   </div>
                 </div>
 

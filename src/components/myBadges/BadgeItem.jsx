@@ -34,10 +34,7 @@ const BadgeItem = ({ id, icon, name, description, isActive }) => {
   return (
     <div>
       {isActive === true ? (
-        <div
-          className="w-20 h-20 bg-mWhite rounded-xl py-4 flex justify-center items-center m-2 cursor-pointer"
-          onClick={onClickBadgeHandler}
-        >
+        <div className="w-20 h-20 bg-mWhite rounded-xl py-4 flex justify-center items-center m-2 cursor-pointer" onClick={onClickBadgeHandler}>
           <span className="text-4xl">{icon}</span>
         </div>
       ) : (

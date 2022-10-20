@@ -46,3 +46,8 @@ export const addCommentLike = async (reviewId) => {
 export const deleteCommentLike = async (reviewId) => {
   return await authApi.delete(`/auth/movie/${reviewId}/like`);
 };
+
+export const getUserLineList = async (user) => {
+  const response = await api.get(`/one-line-review/${user}`);
+  return response.data;
+};

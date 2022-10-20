@@ -29,16 +29,12 @@ const NewPosts = () => {
             className="bg-mWhite flx-col md:flex  md:flex-nowrap px-5 py-3 rounded-lg mb-5 last:mb-0 cursor-pointer hover:bg-neutral-300 "
           >
             {/* 게시글 카테고리 이름 */}
-            <div className="flex justify-center w-16 text-sm bg-mGray py-1 mr-10 rounded-lg text-mCream ">
-              {i.postCategory}
-            </div>
+            <div className="flex justify-center w-16 text-sm bg-mGray py-1 mr-10 rounded-lg text-mCream ">{i.postCategory}</div>
             {/* 뱃지와 닉네임 */}
             <div className="mr-4 my-2 md:my-0 pt-1">
               <div className="flex align-center">
                 <BadgeEmoji badgeId={i.badgeId} />
-                <div className="w-fit md:w-40 flex text-sm ml-1 text-mGray">
-                  {i.nickname}
-                </div>
+                <div className="w-fit md:w-40 flex text-sm ml-1 text-mGray">{i.nickname}</div>
               </div>
             </div>
 

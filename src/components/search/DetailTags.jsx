@@ -5,37 +5,39 @@ import tw from "tailwind-styled-components/";
 const DetailTags = () => {
   const navigate = useNavigate();
   return (
-    <TagSpace>
-      <Tags>
-        <TagButton onClick={() => navigate(`/genre/드라마`)}>
-          <span>드라마</span>
-        </TagButton>
-        <TagButton onClick={() => navigate(`/genre/로맨스`)}>
-          <span>로맨스</span>
-        </TagButton>
-        <TagButton onClick={() => navigate(`/genre/공포`)}>
-          <span>공포</span>
-        </TagButton>
-        <TagButton onClick={() => navigate(`/genre/액션`)}>
-          <span>액션</span>
-        </TagButton>
-        <TagButton onClick={() => navigate(`/genre/판타지`)}>
-          <span>판타지</span>
-        </TagButton>
-        <TagButton onClick={() => navigate(`/genre/코미디`)}>
-          <span>코미디</span>
-        </TagButton>
-        <TagButton onClick={() => navigate(`/genre/애니메이션`)}>
-          <span>애니메이션</span>
-        </TagButton>
-        <TagButton onClick={() => navigate(`/genre/스릴러`)}>
-          <span>스릴러</span>
-        </TagButton>
-        <TagButton onClick={() => navigate(`/genre/SF`)}>
-          <span>SF</span>
-        </TagButton>
-      </Tags>
-    </TagSpace>
+    <>
+      <TagSpace>
+        <Tags>
+          <TagButton onClick={() => navigate(`/genre/드라마`)}>
+            <span>드라마</span>
+          </TagButton>
+          <TagButton onClick={() => navigate(`/genre/로맨스`)}>
+            <span>로맨스</span>
+          </TagButton>
+          <TagButton onClick={() => navigate(`/genre/공포`)}>
+            <span>공포</span>
+          </TagButton>
+          <TagButton onClick={() => navigate(`/genre/액션`)}>
+            <span>액션</span>
+          </TagButton>
+          <TagButton onClick={() => navigate(`/genre/판타지`)}>
+            <span>판타지</span>
+          </TagButton>
+          <TagButton onClick={() => navigate(`/genre/코미디`)}>
+            <span>코미디</span>
+          </TagButton>
+          <TagButton onClick={() => navigate(`/genre/애니메이션`)}>
+            <span>애니메이션</span>
+          </TagButton>
+          <TagButton onClick={() => navigate(`/genre/스릴러`)}>
+            <span>스릴러</span>
+          </TagButton>
+          <TagButton onClick={() => navigate(`/genre/SF`)}>
+            <span>SF</span>
+          </TagButton>
+        </Tags>
+      </TagSpace>
+    </>
   );
 };
 

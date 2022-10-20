@@ -43,7 +43,7 @@ const MovieSum = () => {
 
   return (
     <>
-      <div className="mt-1 pt-6 pb-6 bg-mGray sm:w-5/6 lg:w-full rounded-3xl container mx-auto flex px-12 py-24 md:flex-row flex-col items-center">
+      <div className="mt-1 pt-8 pb-6 bg-mGray sm:w-5/6 lg:w-full rounded-3xl container mx-auto flex px-12 py-24 md:flex-row flex-col items-center">
         <div className="lg:w-40 md:w-1/3 sm:w-1/2 w-30 mb-10 md:mb-0 sm:mb-4">
           <img src={img} alt="영화포스터" />
         </div>
@@ -73,8 +73,12 @@ const MovieSum = () => {
               </>
             )}
           </div>
-          <p className="mb-8 text-white sm:text-sm lg:text-sm leading-relaxed">{movieQuery?.data.data.overview}</p>
-          <div className="flex lg:flex-row md:flex-row lg:mt-16 sm:mt-0">
+          <p className="mb-6 text-white sm:text-sm lg:text-sm leading-relaxed">{movieQuery?.data.data.overview}</p>
+          <p className="mb-6 text-white sm:text-sm lg:text-sm leading-relaxed">
+            <span className="font-bold text-base text-white">개봉일자-</span>
+            {movieQuery?.data.data.release_date}
+          </p>
+          <div className="flex lg:flex-row md:flex-row lg:mt-8 sm:mt-0">
             {movieQuery?.data.data.genres.map((movie) => (
               <Link to={`/genre/${movie.name}`} key={movie.id}>
                 <TagButton className="ml-2 xl:px-4 xl:py-1.5 px-1.5 py-2.5 md:px-1 md:py-2 text-sm sm:px-3 sm:py-2 inline-flex">
