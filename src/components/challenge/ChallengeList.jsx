@@ -1,16 +1,10 @@
 import tw from "tailwind-styled-components";
 import ChallengeItem from "./ChallengeItem";
-import { useQuery } from "react-query";
-import { getAllBadges } from "apis/badgeApi";
 import Spinner from "components/common/Spinner";
+import useChallengeList from "./useChallengeList";
 
 const ChallengeList = () => {
-  const {
-    isLoading,
-    isError,
-    error,
-    data: challenges,
-  } = useQuery("challenges", getAllBadges);
+  const { isLoading, isError, error, data: challenges } = useChallengeList();
 
   let content;
 
@@ -23,19 +17,17 @@ const ChallengeList = () => {
       return (
         <ChallengeItem
           key={challenge.badgeId}
+          id={challenge.badgeId}
           icon={challenge.badgeIcon}
-          getUser={14}
-          maxUser={100}
           name={challenge.badgeName}
-          description={challenge.badgeInfo}
         />
       );
     });
   }
-  return <ChallengeListBox>{content}</ChallengeListBox>;
+  return <ChallengeListContainer>{content}</ChallengeListContainer>;
 };
 
-const ChallengeListBox = tw.div`
+const ChallengeListContainer = tw.div`
   grid grid-cols-2  h-auto bg-mGray p-4 lg:p-8 rounded-md  min-w-max mx-4 md:grid-cols-4  w-full md:w-5/6 mt-4  shadow-lg lg:mb-6 
 `;
 
