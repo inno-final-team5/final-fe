@@ -45,7 +45,7 @@ const ChallengeBadgeBox = tw.div`
 `;
 
 const ChallengeBadgeTitle = tw.span`
-  text-sm  w-full text-start font-bold text-center text-mCream mt-2 md:text-lg
+  text-sm  w-full text-start font-bold text-center text-mWhite mt-2 md:text-lg
 `;
 
 export default ChallengeItem;

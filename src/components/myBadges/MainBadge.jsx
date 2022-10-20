@@ -1,4 +1,6 @@
 import { deleteMyMainBadge, getMyMainBadge } from "apis/badgeApi";
+import MainBadgeContext from "contexts/MainBadgeContext";
+import { useContext } from "react";
 import { FaCrown } from "react-icons/fa";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import Swal from "sweetalert2";
@@ -6,6 +8,8 @@ import DefaultBadge from "./DefaultBadge";
 
 const MainBadge = () => {
   const queryClient = useQueryClient();
+
+  const { setMainBadge } = useContext(MainBadgeContext);
   //배지 초기화
   const {
     isLoading,
@@ -24,7 +28,7 @@ const MainBadge = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteMainBadgeMutation.mutate();
-        localStorage.setItem("badgeIcon", "👤");
+        setMainBadge("👤");
       }
     });
   };
