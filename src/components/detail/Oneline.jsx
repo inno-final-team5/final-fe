@@ -75,7 +75,7 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
                 onClick={() => {
                   navigate(`/${nickname}`);
                 }}
-                className="text-sm text-mCream sm:text-xs font-normal hover:font-bold hover:text-yellow-500 hover:cursor-pointer"
+                className="text-sm text-mCream sm:text-xs font-normal hover:font-black hover:text-yellow-600 hover:cursor-pointer "
               >
                 {nickname}
               </span>

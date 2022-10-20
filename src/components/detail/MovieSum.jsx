@@ -9,7 +9,6 @@ import { RiHeartAddLine } from "react-icons/ri";
 import { Toast } from "components/common/Toast";
 import { getMovieSum } from "apis/movieApi";
 import { getMyLikes } from "apis/favoriteApi";
-import tw from "tailwind-styled-components/";
 import { TagButton } from "../search/DetailTags";
 
 const MovieSum = () => {

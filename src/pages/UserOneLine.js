@@ -24,11 +24,11 @@ const UserOneLine = () => {
 
   return (
     <Layout>
-      <div className="text-mCream text-base md:text-2xl text-mCream ml-10 mt-4 mb-6">
+      <div className="text-mCream text-base md:text-2xl text-mCream ml-10 mt-6 mb-6 lg:mt-4 md:mt-0">
         <BadgeEmoji badgeId={userlineQuery?.data.data[0].badgeId} />
         {user} 님이 남기신 한줄평입니다
       </div>
-      <OnelineListSpace className="p-10">
+      <OnelineListSpace className="p-8">
         {userlineQuery?.data.data.map((line) => (
           <Userline {...line} key={line.reviewId} />
         ))}
