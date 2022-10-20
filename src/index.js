@@ -17,12 +17,12 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <GlobalStyle />
-    <QueryClientProvider client={queryClient}>
-      <MainBadgeProvider>
+    <MainBadgeProvider>
+      <QueryClientProvider client={queryClient}>
         <App />
-      </MainBadgeProvider>
-      <ReactQueryDevtools initialIsOpen />
-    </QueryClientProvider>
+        <ReactQueryDevtools initialIsOpen />
+      </QueryClientProvider>
+    </MainBadgeProvider>
   </React.StrictMode>
 );
 

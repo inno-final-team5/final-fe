@@ -12,7 +12,7 @@ const MyContainer = () => {
         <Routes>
           <Route path="favorites" element={<MyFavorites />} />
           <Route path="posts" element={<MyPosts />} />
-          <Route path="comments" element={<MyOneLineReviews />} />
+          <Route path="onelinereviews" element={<MyOneLineReviews />} />
           <Route path="badges" element={<MyBadges />} />
           <Route path="info" element={<MyInfo />} />
         </Routes>

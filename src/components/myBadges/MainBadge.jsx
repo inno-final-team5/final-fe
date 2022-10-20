@@ -28,14 +28,16 @@ const MainBadge = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteMainBadgeMutation.mutate();
-        setMainBadge("👤");
       }
     });
   };
 
   const deleteMainBadgeMutation = useMutation(deleteMyMainBadge, {
-    onSuccess: () => {
+    onSuccess: (data) => {
+      console.log(data);
       queryClient.invalidateQueries("MainBadge");
+      setMainBadge("👤");
+      localStorage.setItem("badgeIcon", "👤");
     },
   });
 

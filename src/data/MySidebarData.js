@@ -9,7 +9,7 @@ export const MySidebarData = [
   },
   {
     title: "✍ 나의 한줄평",
-    path: "./comments",
+    path: "./onelinereviews",
   },
   {
     title: "🏆 나의 챌린지",
