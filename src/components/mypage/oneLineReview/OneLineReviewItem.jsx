@@ -23,8 +23,8 @@ const OneLineReviewItem = ({ oneLineReview }) => {
         key={oneLineReview.oneLineReviewId}
         className="flex bg-mGray gap-2 w-full rounded-xl my-6 flex-col md:flex-row p-2"
       >
-        <div className="w-full text-left items-center text-mWhite text-sm py-2 md:basis-4/12">
-          <h2>{oneLineReview.title}</h2>
+        <div className="w-full text-left items-center text-mWhite text-sm py-2 md:basis-4/12 pl-2">
+          <h2 className="md:pl-4">{oneLineReview.title}</h2>
         </div>
         <div className="flex text-mYellow items-center md:basis-1/12">
           <MyStars

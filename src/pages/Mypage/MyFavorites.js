@@ -1,4 +1,4 @@
-import MyFavoriteSection from "features/mypage/favorite";
+import MyFavoriteSection from "components/mypage/favorite";
 import MyPageContainer from "components/mypage/MyPageContainer";
 
 const MyFavorites = () => {

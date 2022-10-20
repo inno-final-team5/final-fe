@@ -1,10 +1,15 @@
+import ChallengeContainer from "components/challenge/ChallengeContainer";
+import ChallengeHeader from "components/challenge/ChallengeHeader";
+import ChallengeList from "components/challenge/ChallengeList";
 import Layout from "components/common/Layout";
-import ChallengeSection from "features/challenge";
 
 const Challenge = () => {
   return (
     <Layout>
-      <ChallengeSection />
+      <ChallengeContainer>
+        <ChallengeHeader />
+        <ChallengeList />
+      </ChallengeContainer>
     </Layout>
   );
 };

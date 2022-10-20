@@ -25,8 +25,7 @@ const MobileNavbar = ({
           <div>
             <div className="w-full flex items-center justify-between pr-8 ">
               <div className="flex items-center">
-                <Profile badgeIcon={badgeIcon} />
-                <span className="text-mYellow "> {nickname} 평론가님</span>
+                <Profile />
               </div>
               <LogoutButton logoutHandler={logoutHandler} />
             </div>

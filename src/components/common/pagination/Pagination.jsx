@@ -7,13 +7,15 @@ import {
   BsChevronRight,
   BsChevronDoubleRight,
 } from "react-icons/bs";
-const Pagination = ({ page, setPage, totalPages, pagesArray }) => {
+const Pagination = ({ page, setPage, totalPages }) => {
   const firstPage = () => setPage(1);
   const PrevPage = () => setPage(page - 1);
   const NextPage = () => setPage(page + 1);
 
   const lastPage = () => setPage(totalPages);
-
+  const pagesArray = Array(totalPages)
+    .fill()
+    .map((_, index) => index + 1);
   return (
     <nav className="flex items-center">
       <ArrowButton

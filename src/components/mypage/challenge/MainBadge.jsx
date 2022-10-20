@@ -31,7 +31,7 @@ const MainBadge = () => {
   const deleteMainBadgeMutation = useMutation(deleteMyMainBadge, {
     onSuccess: (data) => {
       console.log(data);
-      queryClient.invalidateQueries("MainBadge");
+      queryClient.invalidateQueries("mainBadge");
       setMainBadge("👤");
       localStorage.setItem("badgeIcon", "👤");
     },

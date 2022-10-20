@@ -1,5 +1,5 @@
 import React from "react";
-import MyPostsSection from "features/mypage/posts";
+import MyPostsSection from "components/mypage/posts";
 import MyPageContainer from "components/mypage/MyPageContainer";
 
 const MyPosts = () => {

@@ -55,10 +55,9 @@ const BadgeItem = ({
 
   const updateMainBadgeMutation = useMutation(updateMyMainBadge, {
     onSuccess: (data) => {
-      const newMainBadge = data.data.data.badgeIcon;
-      queryClient.invalidateQueries("MainBadge");
-      setMainBadge(newMainBadge);
-      localStorage.setItem("badgeIcon", newMainBadge);
+      queryClient.invalidateQueries("mainBadge");
+      setMainBadge(data.data.data.badgeIcon);
+      localStorage.setItem("badgeIcon", data.data.data.badgeIcon);
     },
   });
 

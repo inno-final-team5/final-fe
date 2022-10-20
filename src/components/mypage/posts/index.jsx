@@ -8,8 +8,7 @@ import Pagination from "components/common/pagination/Pagination";
 
 const MyPostsSection = () => {
   const [pageNum, setPageNum] = useState(1);
-  const { data: myPosts, isLoading } = useMyPosts(pageNum);
-  console.log(myPosts);
+  const { isLoading, data: myPosts } = useMyPosts(pageNum);
 
   // const postsPerPage = 10;
   // const [page, setPage] = useState(1);
@@ -41,12 +40,14 @@ const MyPostsSection = () => {
             <PostItem key={post.postId} post={post} />
           ))}
 
-          {/* <Pagination
-            page={page}
-            setPage={setPage}
-            totalPages={totalPages}
-            pagesArray={pagesArray}
-          /> */}
+          {
+            <Pagination
+              page={pageNum}
+              setPage={setPageNum}
+              totalPages={myPosts.data.length}
+              // pagesArray={pagesArray}
+            />
+          }
         </MyPostsList>
       )}
     </MyPostContainer>

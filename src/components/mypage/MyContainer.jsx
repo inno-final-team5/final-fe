@@ -2,9 +2,11 @@ import MyChallenge from "pages/Mypage/MyChallenge";
 import MyOneLineReviews from "pages/Mypage/MyOneLineReviews";
 import MyFavorites from "pages/Mypage/MyFavorites";
 import MyPosts from "pages/Mypage/MyPosts";
+import MyInfo from "pages/Mypage/MyInfo";
+
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
-import MyInfo from "pages/Mypage/MyInfo";
+
 const MyContainer = () => {
   return (
     <Fragment>
