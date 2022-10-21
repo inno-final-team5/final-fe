@@ -22,7 +22,7 @@ const userline = ({ title, posterPath, oneLineReviewContent, oneLineReviewStar, 
         <div className="hover:font-bold hover:bg-gray-600 container 2xl:px-10 mt-2 bg-gray-500 lg:h-8 md:h-24 rounded-2xl px-4 py-0 lg:py-7 sm:py-2 mx-auto flex items-center sm:flex-row flex-col">
           <div className="flex flex-col lg:flex-row mt-3 lg:mt-0 items-center md:justify-start justify-center text-gray-900">
             <div className="flex ml-3 lg:w-64 md:w-40 sm:w-32">
-              <h2 className="text-sm md:ml-2 2xl:text-sm lg:text-sm md:text-sm sm:text-sm hover:font-bold text-mCream sm:mr-2 ">{title}</h2>
+              <h2 className="text-sm md:ml-2 2xl:text-sm lg:text-sm md:text-sm sm:text-sm hover:font-bold text-mYellow sm:mr-2 ">{title}</h2>
             </div>
             <div className="flex mt-2 lg:mt-0 items-center justify-center text-gray-600">
               <Stars>{starRating(oneLineReviewStar)}</Stars>
