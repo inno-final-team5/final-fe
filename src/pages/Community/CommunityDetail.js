@@ -11,6 +11,7 @@ import CommunityButton from "components/community/CommunityButton";
 import { Toast } from "components/common/Toast";
 import PostAuthor from "components/community/PostAuthor";
 import LikeButton from "components/community/LikeButton";
+import Comments from "components/community/Comments";
 
 const CommunityDetail = () => {
   const { id } = useParams();
@@ -139,6 +140,7 @@ const CommunityDetail = () => {
               )}
             </DetailContentContainer>
           </DetailContainer>
+          <Comments />
         </>
       ) : (
         <>
