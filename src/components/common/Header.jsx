@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "./Toast";
+import LoginBox from "./navbar/LoginBox";
 import NavBar from "./navbar/NavBar";
+import UserBox from "./navbar/UserBox";
+import LogoBox from "./LogoBox";
 
 const Header = () => {
-  const nickname = localStorage.getItem("nickname");
-  const badgeIcon = localStorage.getItem("badgeIcon");
   const accessToken = localStorage.getItem("accessToken");
 
   const navigate = useNavigate();
@@ -20,8 +21,19 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <NavBar logoutHandler={logoutHandler} nickname={nickname} accessToken={accessToken} badgeIcon={badgeIcon} />
+    <header className="text-gray-400  body-font fixed w-full mx-auto z-50">
+      <div class="container flex flex-wrap flex-col md:flex-row items-center mx-auto justify-around">
+        <LogoBox />
+        <div className="bg-mGray flex rounded-lg items-center my-4 justify-between w-fit">
+          <NavBar accessToken={accessToken} />
+
+          {accessToken !== null ? (
+            <UserBox logoutHandler={logoutHandler} />
+          ) : (
+            <LoginBox />
+          )}
+        </div>
+      </div>
     </header>
   );
 };

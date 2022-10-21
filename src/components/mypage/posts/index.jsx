@@ -59,7 +59,7 @@ const MyPostContainer = tw.div`
 `;
 
 const MyPostsList = tw.div`
-h-full md:min-h-[28rem]
+h-full md:min-h-[28rem] 
 `;
 
 export default MyPostsSection;

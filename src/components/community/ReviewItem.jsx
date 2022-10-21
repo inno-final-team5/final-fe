@@ -22,7 +22,7 @@ const ReviewItem = ({ post }) => {
           {post.nickname}
         </div>
         <div className="w-full flex text-mWhite items-center md:basis-6/12 px-1">
-          <p className="text-left">{post.postTitle}</p>
+          <p className="text-left text-md">{post.postTitle}</p>
         </div>
 
         <div className="justify-end w-full flex md:basis-2/12 px-1">

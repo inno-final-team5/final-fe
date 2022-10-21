@@ -61,15 +61,15 @@ flex justify-around  p-2 items-center md:mx-4  min-w-max flex-col
 `;
 
 const ChallengeBadgeBox = tw.div`
-border border-mWhite bg-mWhite border-solid  flex items-center rounded-lg cursor-pointer w-20 h-20 justify-center
+border border-solid  flex items-center rounded-lg cursor-pointer w-24 h-24 justify-center bg-mWhite border-mWhite shadow-md
 `;
 
 const ChallengeBadgeIcon = tw.span`
-  text-5xl p-1
+ inline-block align-bottom text-5xl font-serif
 `;
 
 const ChallengeBadgeTitle = tw.span`
-text-sm  w-full text-start font-bold text-center text-mWhite mt-2 md:text-lg
+text-sm  w-full text-start font-bold text-center text-mWhite mt-2 md:text-lg 
 `;
 
 export default ChallengeItem;

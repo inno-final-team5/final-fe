@@ -45,7 +45,7 @@ const Leave = () => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center mt-24">
+    <div className="w-full flex justify-center items-center mt-24 pb-8">
       <button
         className="bg-mBlack text-mYellow px-6 py-2 rounded-xl"
         onClick={showDeleteAccountModal}

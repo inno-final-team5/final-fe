@@ -1,15 +1,10 @@
 import { useState } from "react";
-import Logo from "images/Logo2.png";
-import { Link } from "react-router-dom";
 import NavMainLinks from "./NavMainLinks";
 import { MdClose, MdMenu } from "react-icons/md";
-import LoginBox from "./LoginBox";
 
 import { myLinks, navigationLinks } from "./MyLinks";
-import LogoutButton from "./LogoutButton";
 import ModalButton from "components/Modal/ModalButton";
 import Alarm from "../Alarm";
-import Profile from "../Profile";
 import MobileNavbar from "./MobileNavbar";
 import NavMainMenu from "./NavMainMenu";
 import { BsFillBellFill } from "react-icons/bs";
@@ -18,21 +13,15 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="bg-mBlack fixed top-0 z-50 left-0 w-full mx-auto lg:px-40 justify-center md:px-12">
+    <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-around">
       <div className="flex items-center justify-around">
-        <div className="z-50 md:w-auto w-full flex justify-between p-5 md:px-2 md:py-0 items-center">
+        <div className="z-50 md:w-auto flex justify-between p-5 md:px-2 md:py-0 items-center">
           <div className="text-3xl md:hidden flex items-center">
             <button onClick={() => setOpen(!open)} className="text-mYellow">
               {open ? <MdClose /> : <MdMenu />}
             </button>
           </div>
-          <Link to="/">
-            <img
-              src={Logo}
-              alt="logo"
-              className="md:cursor-pointer w-28 lg:w-56"
-            />
-          </Link>
+
           <div className="md:hidden">
             <BsFillBellFill className="text-mBlack" />
             <div className="hidden">
@@ -49,18 +38,6 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
               <></>
             )}
           </ul>
-          <div className="md:block hidden">
-            {accessToken != null ? (
-              <div className="flex items-center">
-                <Profile />
-
-                <LogoutButton logoutHandler={logoutHandler} />
-                {/* <ModalButton content={<Alarm />} /> */}
-              </div>
-            ) : (
-              <LoginBox />
-            )}
-          </div>
         </div>
         <MobileNavbar
           open={open}
