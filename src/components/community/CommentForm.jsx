@@ -20,8 +20,7 @@ const CommentForm = () => {
     onError: (error) => {
       console.log(error);
     },
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
       queryClient.invalidateQueries("post");
       Toast.fire({ icon: "success", title: "등록되었습니다." });
     },

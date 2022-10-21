@@ -2,25 +2,35 @@ import tw from "tailwind-styled-components";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 
-const Comments = () => {
+const Comments = ({ commentData }) => {
   const accessToken = localStorage.getItem("accessToken");
+
   return (
     <>
-      {accessToken !== null ? (
-        <CommentFormContainer>
-          <CommentFormContentsContainer>
-            <CommentForm />
-          </CommentFormContentsContainer>
-        </CommentFormContainer>
-      ) : (
+      {accessToken === null ? (
         <></>
+      ) : (
+        <>
+          {" "}
+          <CommentFormContainer>
+            <CommentFormContentsContainer>
+              <CommentForm />
+            </CommentFormContentsContainer>
+          </CommentFormContainer>
+        </>
       )}
 
-      <CommentsContainer>
-        <CommentsContentsContainer>
-          <Comment />
-        </CommentsContentsContainer>
-      </CommentsContainer>
+      {commentData.length === 0 ? (
+        <></>
+      ) : (
+        <CommentsContainer>
+          <CommentsContentsContainer>
+            {commentData.map((commentData) => (
+              <Comment key={commentData.id} commentData={commentData} />
+            ))}
+          </CommentsContentsContainer>
+        </CommentsContainer>
+      )}
     </>
   );
 };
