@@ -1,28 +1,17 @@
 import tw from "tailwind-styled-components/";
 import Swal from "sweetalert2";
 import { getRate } from "utils/utils";
-import useChallengeItem from "./useChallengeItem";
 
-const ChallengeItem = ({ id, icon, name }) => {
-  const {
-    isLoading,
-    error,
-    isError,
-    data: challengeDetail,
-  } = useChallengeItem({ badgeId: id });
-
+const ChallengeItem = ({
+  id,
+  icon,
+  name,
+  badgeInfo,
+  badgeTotal,
+  memberTotal,
+}) => {
   let rate = 0;
-
-  if (isLoading) {
-    rate = 0;
-  } else if (isError) {
-    rate = error.message;
-  } else {
-    rate = getRate(
-      challengeDetail.data[0].badgeTotal,
-      challengeDetail.data[0].memberTotal
-    );
-  }
+  rate = getRate(badgeTotal, memberTotal);
 
   const showChallengeDetailModal = () => {
     Swal.fire({
@@ -30,7 +19,7 @@ const ChallengeItem = ({ id, icon, name }) => {
       <div class="flex flex-col gap-2">
         <span class="text-5xl m-2 p-2">${icon}</span>
         <h2 class="text-2xl text-black font-semibold">${name}</h2>
-        <p>${challengeDetail.data[0].badgeInfo}</p>
+        <p>${badgeInfo}</p>
         <div class="w-full flex items-center justify-center">
           <p class="w-2/3 text-lg font-extrabold text-yellow-500 bg-amber-50 my-2 rounded-lg"><span class="text-xl">${rate}</span>의 사용자가 획득했습니다.</p>
         </div>

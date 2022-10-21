@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Toast } from "./Toast";
 import LoginBox from "./navbar/LoginBox";
 import NavBar from "./navbar/NavBar";
 import UserBox from "./navbar/UserBox";
 import LogoBox from "./LogoBox";
+import { MdClose, MdMenu } from "react-icons/md";
+import MobileNavbar from "./navbar/MobileNavbar";
+import { BsFillBellFill } from "react-icons/bs";
 
 const Header = () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -19,20 +22,18 @@ const Header = () => {
     Toast.fire({ icon: "success", title: "로그아웃 되었습니다." });
     navigate("/");
   };
+  const [open, setOpen] = useState(false);
 
   return (
-    <header className="text-gray-400  body-font fixed w-full mx-auto z-50">
-      <div class="container flex flex-wrap flex-col md:flex-row items-center mx-auto justify-around">
+    <header className="fixed w-4/5 z-50  mx-auto flex items-center justify-center bg-mBlack">
+      <div className="basis-2/12">
         <LogoBox />
-        <div className="bg-mGray flex rounded-lg items-center my-4 justify-between w-fit">
-          <NavBar accessToken={accessToken} />
-
-          {accessToken !== null ? (
-            <UserBox logoutHandler={logoutHandler} />
-          ) : (
-            <LoginBox />
-          )}
-        </div>
+      </div>
+      <div className="basis-7/12 justify-start flex ">
+        <NavBar accessToken={accessToken} />
+      </div>
+      <div className="basis-3/12">
+        <LoginBox />
       </div>
     </header>
   );

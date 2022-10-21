@@ -5,16 +5,16 @@ import Header from "./Header";
 const Layout = ({ children }) => {
   return (
     <>
-      <TwLayout>
+      <Base>
         <Header />
         <Main>{children}</Main>
         <Footer />
-      </TwLayout>
+      </Base>
     </>
   );
 };
 
-const TwLayout = tw.div`
+const Base = tw.div`
 w-4/5
 mx-auto
 h-full
@@ -25,9 +25,8 @@ items-center
 
 const Main = tw.main`
   min-h-5/6
-  py-24
-  
-  px-4
+  py-28
+  px-2
   mx-auto
   w-4/5
   

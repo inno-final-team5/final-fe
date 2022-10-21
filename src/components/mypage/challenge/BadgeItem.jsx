@@ -3,6 +3,8 @@ import UserContext from "contexts/UserContext";
 import { useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import Swal from "sweetalert2";
+import ActiveBadge from "./ActiveBadge";
+import InActiveBadge from "./InActiveBadge";
 
 const BadgeItem = ({
   id,
@@ -64,19 +66,15 @@ const BadgeItem = ({
   return (
     <div>
       {isActive === true ? (
-        <div
-          className="w-20 h-20 bg-mWhite rounded-xl py-4 flex justify-center items-center m-2 cursor-pointer"
-          onClick={onClickActiveBadgeHandler}
-        >
-          <span className="text-4xl">{icon}</span>
-        </div>
+        <ActiveBadge
+          icon={icon}
+          onClickActiveBadgeHandler={onClickActiveBadgeHandler}
+        />
       ) : (
-        <div
-          className="w-20 h-20 bg-mGray border-solid border-mWhite border rounded-xl py-4 flex justify-center items-center m-2 cursor-default"
-          onClick={onClickInActiveBadgeHandler}
-        >
-          <span className="text-gray grayscale text-4xl">{icon}</span>
-        </div>
+        <InActiveBadge
+          icon={icon}
+          onClickInActiveBadgeHandler={onClickInActiveBadgeHandler}
+        />
       )}
     </div>
   );

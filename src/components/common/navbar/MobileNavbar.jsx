@@ -5,15 +5,8 @@ import LoginBox from "./LoginBox";
 import { communityLinks } from "./MyLinks";
 import NavMainMenu from "./NavMainMenu";
 import NavSubLinks from "./NavSubLinks";
-
-const MobileNavbar = ({
-  open,
-  accessToken,
-  nickname,
-  logoutHandler,
-  myLinks,
-  badgeIcon,
-}) => {
+import { myLinks } from "./MyLinks";
+const MobileNavbar = ({ open, accessToken, logoutHandler }) => {
   return (
     <ul
       className={`

@@ -13,6 +13,7 @@ const ChallengeList = () => {
   } else if (isError) {
     content = <p>{error.message}</p>;
   } else {
+    console.log(challenges);
     content = challenges.data.map((challenge) => {
       return (
         <ChallengeItem
@@ -20,6 +21,9 @@ const ChallengeList = () => {
           id={challenge.badgeId}
           icon={challenge.badgeIcon}
           name={challenge.badgeName}
+          badgeInfo={challenge.badgeInfo}
+          badgeTotal={challenge.badgeTotal}
+          memberTotal={challenge.memberTotal}
         />
       );
     });
