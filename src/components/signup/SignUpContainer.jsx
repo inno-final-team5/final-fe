@@ -48,7 +48,9 @@ const SignUpContainer = () => {
       alert("이메일을 입력해주세요");
       return;
     } else if (!checkEmail(email)) {
-      alert("이메일 형식에 맞게 써주세요");
+      alert(
+        "영문, 숫자와 특수기호(_),(-)를 사용하여 이메일 형식에 맞게 입력해주세요"
+      );
       return;
     }
 
@@ -69,7 +71,7 @@ const SignUpContainer = () => {
       alert("닉네임을 입력해주세요.");
       return;
     } else if (!checkUserName(nickname)) {
-      alert("닉네임 형식에 맞게 써주세요");
+      alert("닉네임은 영문, 숫자, 한글로 10자 이내로 입력해주세요.");
       return;
     }
 
@@ -95,7 +97,7 @@ const SignUpContainer = () => {
       alert("입력하신 비밀번호가 다릅니다.");
       return;
     } else if (!checkPassword(password)) {
-      alert("비밀번호 형식에 맞게 써주세요");
+      alert("비밀번호는 영어 + 숫자 4 ~ 16자리로 입력해주세요.");
       return;
     }
 

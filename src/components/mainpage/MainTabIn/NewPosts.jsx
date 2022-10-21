@@ -23,7 +23,7 @@ const NewPosts = () => {
           <li
             key={i.postId}
             onClick={() => {
-              navigate(`/community/detail/${i.postId}`);
+              navigate(`/community/${i.postId}`);
               window.scrollTo(0, 0);
             }}
             className="bg-mWhite flx-col md:flex  md:flex-nowrap px-5 py-3 rounded-lg mb-5 last:mb-0 cursor-pointer hover:bg-neutral-300 "
