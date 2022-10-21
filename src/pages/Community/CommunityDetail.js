@@ -90,6 +90,8 @@ const CommunityDetail = () => {
 
   let postData = post.data;
 
+  let commentData = post.data.commentResponseDtoList;
+
   return (
     <div>
       {!updatePostMode ? (
@@ -140,7 +142,7 @@ const CommunityDetail = () => {
               )}
             </DetailContentContainer>
           </DetailContainer>
-          <Comments />
+          <Comments commentData={commentData} />
         </>
       ) : (
         <>

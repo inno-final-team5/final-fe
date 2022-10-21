@@ -21,7 +21,7 @@ const CommentForm = () => {
       console.log(error);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries("comment");
+      queryClient.invalidateQueries("post");
       Toast.fire({ icon: "success", title: "등록되었습니다." });
     },
   });
@@ -30,7 +30,7 @@ const CommentForm = () => {
     e.preventDefault();
 
     addCommentMutation.mutate({
-      id,
+      postId: id,
       commentContent: comment,
     });
 

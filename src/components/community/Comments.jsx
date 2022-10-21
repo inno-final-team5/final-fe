@@ -2,7 +2,7 @@ import tw from "tailwind-styled-components";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 
-const Comments = () => {
+const Comments = ({ commentData }) => {
   return (
     <>
       <CommentFormContainer>
@@ -11,9 +11,17 @@ const Comments = () => {
         </CommentFormContentsContainer>
       </CommentFormContainer>
       <CommentsContainer>
-        <CommentsContentsContainer>
-          <Comment />
-        </CommentsContentsContainer>
+        {commentData.length === 0 ? (
+          <div className="bg-mGray p-4 text-mWhite rounded-lg mt-3">
+            댓글이 없네요!
+          </div>
+        ) : (
+          <CommentsContentsContainer>
+            {commentData.map((commentData) => (
+              <Comment key={commentData.id} commentData={commentData} />
+            ))}
+          </CommentsContentsContainer>
+        )}
       </CommentsContainer>
     </>
   );
