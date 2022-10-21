@@ -147,7 +147,7 @@ const MyOneline = ({ res }) => {
           <section className="mt-6 md:flex-col">
             <div className="container md:w-5/6 sm:w-5/6 lg:w-full xl:w-full pt-2 pb-2 rounded-3xl bg-mGray mx-auto flex flex-wrap flex-col md:flex-row items-center">
               <div className="flex font-bold items-center mr-4 mb-4 md:mb-0 sm:mb-0">
-                <h1 className="p-2 ml-2 pb-0 lg:ml-6 sm:pb-2 md:text-base title-font md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
+                <h1 className="p-2 ml-2 md:ml-4 pb-0 lg:ml-6 sm:pb-2 md:text-base title-font md:flex-row flex-col text-mYellow">내가쓴한줄평</h1>
               </div>
               <div className="flex w-full flex-col lg:flex-row md:flex-col sm:flex-col 2xl:w-full xl:w-full md:w-full space-x-2 sm:w-full items-center">
                 <Stars className="md:mt-0 md:ml-8 lg:mt-2 lg:ml-12">
@@ -157,7 +157,7 @@ const MyOneline = ({ res }) => {
                 </Stars>
                 <div className="2xl:w-full mt-2 w-full lg:mt-0 sm:w-full md:w-full md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap text-base ">
                   <input
-                    className="sm:text-sm mt-2 mr-2 lg:mr-0 md:mr-4 sm:mt-2 pl-2 pt-2 text-lg w-full h-10 rounded-xl text-sm"
+                    className="sm:text-sm mr-2 mt-2 lg:mr-0 md:mr-4 sm:mt-2 pl-2 pt-2 text-lg w-full h-10 rounded-xl text-sm"
                     autoFocus
                     ref={myOneline}
                     onKeyPress={onKeyPress}

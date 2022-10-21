@@ -15,7 +15,7 @@ const MyFavoriteCard = ({
   };
 
   const goDetail = () => {
-    navigate(`/detail/${movieId}/${title}${imageUrl.split(".")[0]}`);
+    navigate(`/${movieId}/${title}${imageUrl.split(".")[0]}`);
   };
   return (
     <div className="w-48 h-72 bg-transparent group perspective m-6 p-2">

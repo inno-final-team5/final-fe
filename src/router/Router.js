@@ -12,6 +12,7 @@ import SearchPage from "pages/SearchPage";
 import Community from "pages/Community/Community";
 import SearchList from "pages/SearchList";
 import GenreList from "pages/GenreList";
+import UserOneLine from "pages/UserOneLine";
 
 const Router = () => {
   return (
@@ -21,7 +22,7 @@ const Router = () => {
         <Route path="/challenge" element={<Challenge />} />
         <Route path="/*" element={<NotFound />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/detail/:id/:title/:poster" element={<Detail />} />
+        <Route path="/:id/:title/:poster" element={<Detail />} />
         <Route path="/kakaoLogin" element={<KakaoRedirect />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/mypage/*" element={<MyPage />} />
@@ -29,6 +30,7 @@ const Router = () => {
         <Route path="/community/*" element={<Community />} />
         <Route path="/search/:keyword" element={<SearchList />} />
         <Route path="/genre/:keyword" element={<GenreList />} />
+        <Route path="/:user" element={<UserOneLine />} />
       </Routes>
     </BrowserRouter>
   );
