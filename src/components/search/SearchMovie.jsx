@@ -16,7 +16,7 @@ function SearchMovie({ title, poster_path, id }) {
 
   return (
     <>
-      <Link to={`/detail/${id}/${title}${poster}`}>
+      <Link to={`/${id}/${title}${poster}`}>
         <MovieSpace>
           <MovieHover href="#!">
             <MovieTitle>{title}</MovieTitle>

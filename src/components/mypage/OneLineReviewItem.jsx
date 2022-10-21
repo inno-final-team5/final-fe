@@ -15,7 +15,7 @@ const MyStars = ({ star }) => {
 const OneLineReviewItem = ({ oneLineReview }) => {
   return (
     <Link
-      to={`/detail/${oneLineReview.movieId}/${oneLineReview.title}${
+      to={`/${oneLineReview.movieId}/${oneLineReview.title}${
         oneLineReview.posterPath.split(".")[0]
       }`}
     >
