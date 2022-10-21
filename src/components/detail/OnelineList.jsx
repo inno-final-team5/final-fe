@@ -46,7 +46,7 @@ function OnelineList() {
 
 export default OnelineList;
 
-const OnelineListSpace = tw.div`
+export const OnelineListSpace = tw.div`
 sm:w-5/6 lg:w-full p-6 pt-1 pb-3 container mx-auto rounded-3xl bg-mGray 
 `;
 const OnelineNone = tw.section`

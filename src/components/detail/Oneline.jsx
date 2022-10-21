@@ -7,10 +7,13 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import BadgeEmoji from "../common/BadgeEmoji";
 import { Toast } from "components/common/Toast";
 import { addCommentLike, deleteCommentLike, getMyLikeComment } from "apis/oneLineReviewApi";
+import { useNavigate } from "react-router-dom";
+import { getUserLineList } from "apis/oneLineReviewApi";
 
 function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, likeNum, badgeId }) {
   const queryClient = useQueryClient();
   const accessToken = localStorage.getItem("accessToken");
+  const navigate = useNavigate();
 
   const starRating = (rating) => {
     const star = [];
@@ -55,16 +58,25 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
     },
   }).mutate;
 
+  const postUserline = (user) => {
+    return getUserLineList(user);
+  };
+
   return (
     <div>
       <div className="container 2xl:px-10 mt-2 bg-gray-500 lg:h-8 md:h-24 rounded-2xl px-6 py-0 lg:py-7 sm:py-2 mx-auto flex items-center sm:flex-row flex-col">
         <div className="flex flex-col lg:flex-row mt-3 lg:mt-0">
-          <a className="flex title-font items-center md:justify-start justify-center text-gray-900">
+          <a
+            className="flex title-font items-center md:justify-start justify-center hover:font-bold  hover:cursor-pointer"
+            onClick={() => {
+              navigate(`/${nickname}`);
+            }}
+          >
             <div className="sm:w-2">
               <BadgeEmoji badgeId={badgeId} />
             </div>
-            <div className="flex ml-3 lg:w-32 md:w-20 sm:w-20">
-              <span className="text-sm text-mCream sm:text-xs">{nickname}</span>
+            <div className="flex ml-3 lg:w-32 md:w-20 sm:w-20 ">
+              <span className="text-sm text-mCream sm:text-xs font-normal hover:text-yellow-500">{nickname}</span>
             </div>
           </a>
           <div>
