@@ -3,26 +3,34 @@ import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 
 const Comments = ({ commentData }) => {
+  const accessToken = localStorage.getItem("accessToken");
+
   return (
     <>
-      <CommentFormContainer>
-        <CommentFormContentsContainer>
-          <CommentForm />
-        </CommentFormContentsContainer>
-      </CommentFormContainer>
-      <CommentsContainer>
-        {commentData.length === 0 ? (
-          <div className="bg-mGray p-4 text-mWhite rounded-lg mt-3">
-            댓글이 없네요!
-          </div>
-        ) : (
+      {accessToken === null ? (
+        <></>
+      ) : (
+        <>
+          {" "}
+          <CommentFormContainer>
+            <CommentFormContentsContainer>
+              <CommentForm />
+            </CommentFormContentsContainer>
+          </CommentFormContainer>
+        </>
+      )}
+
+      {commentData.length === 0 ? (
+        <></>
+      ) : (
+        <CommentsContainer>
           <CommentsContentsContainer>
             {commentData.map((commentData) => (
               <Comment key={commentData.id} commentData={commentData} />
             ))}
           </CommentsContentsContainer>
-        )}
-      </CommentsContainer>
+        </CommentsContainer>
+      )}
     </>
   );
 };

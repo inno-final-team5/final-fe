@@ -84,9 +84,9 @@ const Comment = ({ commentData }) => {
               </CommentButtonContainer>
             ) : (
               <CommentButtonContainer>
-                <button>
+                {/* <button>
                   <BsArrowReturnRight className="mr-1" />
-                </button>
+                </button> */}
               </CommentButtonContainer>
             )}
           </CommentContainer>
