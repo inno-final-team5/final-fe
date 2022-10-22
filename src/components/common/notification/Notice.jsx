@@ -1,30 +1,30 @@
-// import SockJs from "sockjs-client";
-// import StompJs from "stompjs";
+import SockJs from "sockjs-client";
+import StompJs from "stompjs";
 
-// const sock = new SockJs("http://13.124.170.188/ws");
+const sock = new SockJs("http://13.124.170.188/ws");
 
-// const stomp = StompJs.over(sock);
+const stomp = StompJs.over(sock);
 
-// const token = {
-//   authorization: localStorage.getItem("accessToken"),
-//   "refresh-token": localStorage.getItem("refreshToken"),
-// };
+const token = {
+  authorization: localStorage.getItem("accessToken"),
+  "refresh-token": localStorage.getItem("refreshToken"),
+};
 
-// export const stompConnect = () => {
-//   try {
-//     stomp.connect(token, () => {
-//       stomp.subscribe(
-//         `/sub/alarm/user/${userId}`,
-//         (data) => {
-//           const newMessage = JSON.parse(data.body);
-//         },
-//         token
-//       );
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const stompConnect = () => {
+  try {
+    stomp.connect(token, () => {
+      stomp.subscribe(
+        `/sub/alarm/user/${userId}`,
+        (data) => {
+          const newMessage = JSON.parse(data.body);
+        },
+        token
+      );
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // export const stompDisConnect = () => {
 //   try {
