@@ -8,7 +8,7 @@ import LoginBox from "./LoginBox";
 import { myLinks, navigationLinks } from "./MyLinks";
 import LogoutButton from "./LogoutButton";
 import ModalButton from "components/Modal/ModalButton";
-import Alarm from "../Alarm";
+import Notification from "../notification/Notification";
 import Profile from "../Profile";
 import MobileNavbar from "./MobileNavbar";
 import NavMainMenu from "./NavMainMenu";
@@ -35,8 +35,8 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
           </Link>
           <div className="md:hidden">
             <BsFillBellFill className="text-mBlack" />
-            <div className="hidden">
-              <ModalButton content={<Alarm />} />
+            <div>
+              <ModalButton content={<Notification />} />
             </div>
           </div>
         </div>
@@ -55,8 +55,8 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
                 <Profile badgeIcon={badgeIcon} />
                 <span className="text-mYellow "> {nickname} 평론가님</span>
 
+                <ModalButton content={<Notification />} />
                 <LogoutButton logoutHandler={logoutHandler} />
-                {/* <ModalButton content={<Alarm />} /> */}
               </div>
             ) : (
               <LoginBox />
