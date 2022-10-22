@@ -33,6 +33,7 @@ jobs:
       - name: Setting .env
         run: |
           echo "REACT_APP_API_URL=${{secrets.REACT_APP_API_URL}}" >> .env
+          echo "REACT_APP_KAKAO_ID=${{secrets.REACT_APP_KAKAO_ID}}" >> .env
           cat .env
 
       - name: Build
