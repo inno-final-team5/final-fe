@@ -1,25 +1,14 @@
-import { useState } from "react";
-import { MdClose, MdMenu } from "react-icons/md";
-
-import { myLinks, navigationLinks } from "./MyLinks";
-import ModalButton from "components/Modal/ModalButton";
-import Alarm from "../Alarm";
-import MobileNavbar from "./MobileNavbar";
+import { navigationLinks } from "./MyLinks";
 import NavMainMenu from "./NavMainMenu";
-import { BsFillBellFill } from "react-icons/bs";
 
-const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
-  const [open, setOpen] = useState(false);
-
+const NavBar = ({ accessToken }) => {
   return (
-    <nav className="md:ml-auto md:mr-auto flex items-center text-base w-full">
-      <div className="flex justify-start pl-8">
-        <ul className="flex gap-6">
+    <nav className="md:ml-auto md:mr-auto flex text-base w-full ">
+      <div className="flex justify-start pl-8 ">
+        <ul className="flex gap-12">
           {navigationLinks.map((link) => (
-            <div key={link.name}>
-              <div className="text-left md:cursor-pointer group">
-                <NavMainMenu link={link.link} name={link.name} />
-              </div>
+            <div className="text-left md:cursor-pointer" key={link.name}>
+              <NavMainMenu link={link.link} name={link.name} />
             </div>
           ))}
           {accessToken != null ? (

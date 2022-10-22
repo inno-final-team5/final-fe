@@ -48,7 +48,7 @@ const MainBadge = () => {
       mainBadge.data === "badgeId : 0" ? (
         <DefaultBadge />
       ) : (
-        <span className="text-5xl" onClick={resetBadge}>
+        <span className="text-5xl font-serif" onClick={resetBadge}>
           {mainBadge.data.badgeIcon}
         </span>
       );

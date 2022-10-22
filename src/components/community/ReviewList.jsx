@@ -9,6 +9,7 @@ import CommunityButton from "./CommunityButton";
 import { MdEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import SearchBox from "./SearchBox";
 
 const ReviewList = ({ queryFn }) => {
   const navigate = useNavigate();
@@ -57,13 +58,15 @@ const ReviewList = ({ queryFn }) => {
     <div className="m-4 mt-6">
       {content}
 
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <Pagination
           page={page}
           setPage={setPage}
           totalPages={totalPages}
           pagesArray={pagesArray}
         />
+
+        <SearchBox />
         <CommunityButton type="button" onClickHandler={goEdit}>
           <MdEdit className="mr-1" />
           쓰기

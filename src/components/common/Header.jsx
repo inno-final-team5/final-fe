@@ -25,15 +25,35 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed w-4/5 z-50  mx-auto flex items-center justify-center bg-mBlack">
-      <div className="basis-2/12">
-        <LogoBox />
-      </div>
-      <div className="basis-7/12 justify-start flex ">
-        <NavBar accessToken={accessToken} />
-      </div>
-      <div className="basis-3/12">
-        <LoginBox />
+    <header className="fixed w-full md:w-4/5 z-50  mx-auto flex  justify-center bg-mBlack">
+      <div className="flex w-full md:w-4/5 items-center justify-between bg-mBlack">
+        <div className="text-3xl md:hidden flex items-center z-50 px-4">
+          <button onClick={() => setOpen(!open)} className="text-mYellow">
+            {open ? <MdClose /> : <MdMenu />}
+          </button>
+        </div>
+
+        <div className="md:basis-2/12 z-50">
+          <LogoBox />
+        </div>
+
+        <div className="hidden basis-6/12 justify-start md:flex items-end content-end">
+          <NavBar accessToken={accessToken} />
+        </div>
+        <div className="hidden basis-4/12 justify-end md:flex">
+          {accessToken !== null ? (
+            <UserBox logoutHandler={logoutHandler} />
+          ) : (
+            <LoginBox />
+          )}
+        </div>
+        <div className="text-3xl md:hidden flex items-center z-50 px-4">
+          <button disabled className="text-mBlack">
+            <BsFillBellFill />
+          </button>
+        </div>
+
+        <MobileNavbar open={open} accessToken={accessToken} />
       </div>
     </header>
   );

@@ -137,15 +137,15 @@ const Comment = ({ commentData }) => {
 };
 
 const CommentContainer = tw.div`
-w-full h-full bg-mWhite rounded-xl p-4
+w-full h-full bg-mGray rounded-xl p-4 border-solid border-t-2 rounded-none border-gray-500
 `;
 
 const NicknameContainer = tw.div`
-flex text-s text-mBlack w-fit h-full mb-2
+flex text-s text-mWhite w-fit h-full mb-2
 `;
 
 const CommentContextContainer = tw.div`
-w-full h-full bg-mWhite rounded-xl p-2
+w-full h-full bg-mGray rounded-xl p-2 text-mWhite
 `;
 
 const CommentButtonContainer = tw.div`

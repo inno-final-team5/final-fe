@@ -6,6 +6,6 @@ const ChallengeContainer = ({ children }) => {
 };
 
 const Base = tw.div`
-text-black flex flex-col items-center md:pt-4
+text-black flex flex-col items-center md:pt-4 px-2 pt-2
 `;
 export default ChallengeContainer;

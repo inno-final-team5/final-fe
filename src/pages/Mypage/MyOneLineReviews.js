@@ -8,7 +8,7 @@ import { useQuery } from "react-query";
 import tw from "tailwind-styled-components/";
 
 const MyOneLineReviews = () => {
-  const postsPerPage = 10;
+  const postsPerPage = 5;
   const [page, setPage] = useState(1);
 
   const {

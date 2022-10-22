@@ -15,7 +15,8 @@ const Layout = ({ children }) => {
 };
 
 const Base = tw.div`
-w-4/5
+w-full
+md:w-4/5
 mx-auto
 h-full
 flex
@@ -27,8 +28,10 @@ const Main = tw.main`
   min-h-5/6
   py-28
   px-2
-  mx-auto
-  w-4/5
+  md:mx-auto
+  w-full
+  md:w-4/5
+
   
 `;
 export default Layout;

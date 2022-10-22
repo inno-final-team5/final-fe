@@ -7,7 +7,6 @@ const UserBox = ({ logoutHandler }) => {
       <div className="flex items-center">
         <Profile />
         <LogoutButton logoutHandler={logoutHandler} />
-        {/* <ModalButton content={<Alarm />} /> */}
       </div>
     </div>
   );
