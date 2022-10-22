@@ -10,7 +10,7 @@ const MobileNavbar = ({ open, accessToken, logoutHandler }) => {
   return (
     <ul
       className={`
-          md:hidden bg-mBlack absolute w-full h-screen bottom-0 py-24 pl-4 top-0 
+          lg:hidden bg-mBlack absolute w-full h-screen bottom-0 py-24 pl-4 top-0 
           duration-500 ${open ? "left-0" : "left-[-120%]"} `}
     >
       <div>

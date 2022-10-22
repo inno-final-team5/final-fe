@@ -22,11 +22,11 @@ const MyPageContainer = tw.div`
 mt-4 h-full
 `;
 const MyPageSidebarContainer = tw.div`
-bg-mBlack md:block hidden md:fixed
+bg-mBlack lg:block hidden lg:fixed
 `;
 
 const MyPageContentContainer = tw.div`
-bg-mBlack rounded-xl md:pl-56 h-full
+bg-mBlack rounded-xl lg:pl-56 h-full
 `;
 
 export default MyPage;

@@ -30,7 +30,7 @@ const Main = tw.main`
   px-2
   md:mx-auto
   w-full
-  md:w-4/5
+
 
   
 `;

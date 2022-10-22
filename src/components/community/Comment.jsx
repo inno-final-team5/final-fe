@@ -62,11 +62,22 @@ const Comment = ({ commentData }) => {
           <CommentContainer>
             <div className="flex-auto">
               <NicknameContainer>
-                <BadgeEmoji className="mr-2" badgeId={commentData.badgeId} />
-                <p className="mr-2">{commentData.nickname}</p>
-                <p>
-                  {new Date(commentData.createdAt).toLocaleDateString("ko-KR")}
-                </p>
+                <div className="flex flex-row justify-between w-full">
+                  <div className="w-fit flex flex-row">
+                    <BadgeEmoji
+                      className="mr-2"
+                      badgeId={commentData.badgeId}
+                    />
+                    <p className="mr-2">{commentData.nickname}</p>
+                  </div>
+                  <div className="text-xs">
+                    <p>
+                      {new Date(commentData.createdAt).toLocaleDateString(
+                        "ko-KR"
+                      )}
+                    </p>
+                  </div>
+                </div>
               </NicknameContainer>
             </div>
             <CommentContextContainer>
@@ -94,15 +105,14 @@ const Comment = ({ commentData }) => {
       ) : (
         <>
           <CommentContainer>
-            <div className="flex-auto">
-              <NicknameContainer>
-                <BadgeEmoji className="mr-2" badgeId={commentData.badgeId} />
-                <p className="mr-2">{commentData.nickname}</p>
-                <p>
-                  {new Date(commentData.createdAt).toLocaleDateString("ko-KR")}
-                </p>
-              </NicknameContainer>
-            </div>
+            <NicknameContainer>
+              <BadgeEmoji className="mr-2" badgeId={commentData.badgeId} />
+              <p className="mr-2">{commentData.nickname}</p>
+              <p className="text-xs">
+                {new Date(commentData.createdAt).toLocaleDateString("ko-KR")}
+              </p>
+            </NicknameContainer>
+
             <CommentContextContainer>
               <textarea
                 className="bg-mWhite w-full focus:outline-none p-2"
@@ -137,16 +147,15 @@ const Comment = ({ commentData }) => {
 };
 
 const CommentContainer = tw.div`
-w-full h-full bg-mGray rounded-xl p-4 border-solid border-t-2 rounded-none border-gray-500
+w-full h-full bg-mWhite rounded-xl p-4
 `;
 
 const NicknameContainer = tw.div`
-flex text-s text-mWhite w-fit h-full mb-2
+flex text-s w-full h-full mb-2 flex-row
 `;
 
 const CommentContextContainer = tw.div`
-w-full h-full bg-mGray rounded-xl p-2 text-mWhite
-`;
+w-full h-full bg-mWhite rounded-xl p-2 `;
 
 const CommentButtonContainer = tw.div`
 flex justify-end
