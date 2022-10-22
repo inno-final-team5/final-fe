@@ -16,11 +16,10 @@ import { getUserLineList } from "apis/oneLineReviewApi";
 
 // import SockJs from "sockjs-client";
 // import StompJs from "stompjs";
-import * as SockJs from "sockjs-client";
-import * as StompJs from "stompjs";
-
-import { useRef } from "react";
-import { useEffect } from "react";
+// import * as SockJs from "sockjs-client";
+// import * as StompJs from "stompjs";
+// import { useRef } from "react";
+// import { useEffect } from "react";
 
 function Oneline({
   reviewId,
@@ -76,6 +75,11 @@ function Oneline({
       console.log(error);
     },
   }).mutate;
+
+  const postUserline = (user) => {
+    return getUserLineList(user);
+  };
+
   ////////////////////////////////////////////////웹소켓
 
   // const webSocket = new WebSocket("ws://13.124.170.188/auth/notification");
@@ -145,48 +149,44 @@ function Oneline({
 
   // client.activate();
   //////////////////////////////////스톰프2
-  const client = useRef({});
+  // const client = useRef({});
 
-  useEffect(() => {
-    connect();
+  // useEffect(() => {
+  //   connect();
 
-    return () => disconnect();
-  }, []);
+  //   return () => disconnect();
+  // }, []);
 
-  const connect = () => {
-    client.current = new StompJs.Client({
-      // brokerURL: "ws://13.124.170.188/ws-stomp", // 웹소켓 서버로 직접 접속
-      webSocketFactory: () => new SockJs("http://13.124.170.188/ws-stomp"),
+  // const connect = () => {
+  //   client.current = new StompJs.Client({
+  //     // brokerURL: "ws://13.124.170.188/ws-stomp", // 웹소켓 서버로 직접 접속
+  //     webSocketFactory: () => new SockJs("http://13.124.170.188/ws-stomp"),
 
-      connectHeaders: {
-        authorization: localStorage.getItem("accessToken"),
-        "refresh-token": localStorage.getItem("refreshToken"),
-      },
-      debug: function (str) {
-        console.log(str);
-      },
-      reconnectDelay: 5000,
-      heartbeatIncoming: 4000,
-      heartbeatOutgoing: 4000,
-      onConnect: () => {
-        console.log("서버 클라이언트 연결");
-        // subscribe();
-      },
-      onStompError: (frame) => {
-        console.error(frame);
-      },
-    });
+  //     connectHeaders: {
+  //       authorization: localStorage.getItem("accessToken"),
+  //       "refresh-token": localStorage.getItem("refreshToken"),
+  //     },
+  //     debug: function (str) {
+  //       console.log(str);
+  //     },
+  //     reconnectDelay: 5000,
+  //     heartbeatIncoming: 4000,
+  //     heartbeatOutgoing: 4000,
+  //     onConnect: () => {
+  //       console.log("서버 클라이언트 연결");
+  //       // subscribe();
+  //     },
+  //     onStompError: (frame) => {
+  //       console.error(frame);
+  //     },
+  //   });
 
-    client.current.activate();
-  };
+  //   client.current.activate();
+  // };
 
-  const disconnect = () => {
-    client.current.deactivate();
-  };
-
-  const postUserline = (user) => {
-    return getUserLineList(user);
-  };
+  // const disconnect = () => {
+  //   client.current.deactivate();
+  // };
 
   // const subscribe = () => {
   //   console.log("구독");
