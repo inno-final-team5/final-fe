@@ -12,6 +12,7 @@ import { Toast } from "components/common/Toast";
 import PostAuthor from "components/community/PostAuthor";
 import LikeButton from "components/community/LikeButton";
 import Comments from "components/community/Comments";
+import BackButton from "components/common/BackButton";
 
 const CommunityDetail = () => {
   const { id } = useParams();
@@ -75,11 +76,6 @@ const CommunityDetail = () => {
     });
   };
 
-  const goBack = () => {
-    // history.goBack();
-    navigate(-1);
-  };
-
   if (isLoading) {
     return <Spinner />;
   }
@@ -99,11 +95,7 @@ const CommunityDetail = () => {
           <DetailContainer>
             <DetailContentContainer>
               <div className="flex justify-between">
-                <div>
-                  <button onClick={goBack} className="text-mYellow">
-                    <FaArrowLeft />
-                  </button>
-                </div>
+                <BackButton />
                 <PostAuthor
                   nickname={postData.nickname}
                   badgeId={postData.badgeId}

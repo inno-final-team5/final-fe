@@ -79,8 +79,8 @@ export const updateComment = async ({ commentId, commentContent }) => {
   });
 };
 
-export const getSearchKeyword = async (keyword) => {
-  const response = await api.get(`/post/search?keyword=${keyword}`);
+export const getSearchPosts = async (type, keyword) => {
+  const response = await api.get(`/post/search/${type}?keyword=${keyword}`);
   console.log(response);
   return response.data;
 };

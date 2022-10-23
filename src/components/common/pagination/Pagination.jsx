@@ -17,7 +17,7 @@ const Pagination = ({ page, setPage, totalPages }) => {
     .fill()
     .map((_, index) => index + 1);
   return (
-    <nav className="flex items-center">
+    <nav className="flex items-center w-full justify-center font-sans">
       <ArrowButton
         onClick={firstPage}
         disabled={page === 1}

@@ -35,7 +35,7 @@ const Comments = ({ commentData }) => {
 };
 
 const CommentsContainer = tw.div`
-bg-mGray p-4 text-mBlack rounded-t-lg
+bg-mGray p-4 text-mBlack rounded-lg
 `;
 
 const CommentsContentsContainer = tw.div`
@@ -43,7 +43,7 @@ px-4 py-2 flex gap-4 flex-col h-full
 `;
 
 const CommentFormContainer = tw.div`
-bg-mGray p-2 text-mBlack  mt-3 rounded-b-lg
+bg-mGray p-2 text-mBlack  mt-3 rounded-lg
 `;
 
 const CommentFormContentsContainer = tw.div`

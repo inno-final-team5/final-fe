@@ -1,6 +1,6 @@
 export const CommunitySidebarData = [
   {
-    title: "전체 조회",
+    title: "전체",
     path: "./all",
   },
   {

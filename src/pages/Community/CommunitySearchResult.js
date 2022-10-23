@@ -1,26 +1,16 @@
-import Spinner from "components/common/Spinner";
-import useSearchKeyword from "components/community/useSearchKeyword";
-import React from "react";
+import CommunityContainer from "components/community/CommunityContainer";
 import { useParams } from "react-router-dom";
+import SearchList from "components/community/SearchList";
 
 const CommunitySearchResult = () => {
   const params = useParams();
+  const type = params.type;
   const keyword = params.keyword;
-  console.log(keyword);
-  const {
-    isLoading,
-    isError,
-    error,
-    data: searchedList,
-  } = useSearchKeyword(keyword);
 
-  if (isLoading) return <Spinner />;
-  if (isError) return <p>{error.message}</p>;
-  else {
-    console.log(searchedList);
-  }
-
-  return <div></div>;
+  return (
+    <CommunityContainer>
+      <SearchList type={type} keyword={keyword} />
+    </CommunityContainer>
+  );
 };
-
 export default CommunitySearchResult;

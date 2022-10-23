@@ -37,7 +37,7 @@ const Header = () => {
           <LogoBox />
         </div>
         <div className="hidden lg:flex lg:basis-10/12 justify-between bg-mGray rounded-lg">
-          <div className="justify-start lg:flex items-end content-end bg-mGray md:py-2 rounded-l-lg">
+          <div className="justify-start lg:flex items-center bg-mGray md:py-2 rounded-l-lg">
             <NavBar accessToken={accessToken} />
           </div>
           <div className=" justify-end md:flex bg-mGray py-1 rounded-r-lg">

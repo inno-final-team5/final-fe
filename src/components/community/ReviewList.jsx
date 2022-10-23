@@ -58,20 +58,19 @@ const ReviewList = ({ queryFn }) => {
     <div className="m-4 mt-6">
       {content}
 
-      <div className="flex justify-between items-center">
-        <Pagination
-          page={page}
-          setPage={setPage}
-          totalPages={totalPages}
-          pagesArray={pagesArray}
-        />
-
+      <div className="flex justify-between items-center flex-col md:flex-row">
         <SearchBox />
         <CommunityButton type="button" onClickHandler={goEdit}>
           <MdEdit className="mr-1" />
           쓰기
         </CommunityButton>
       </div>
+      <Pagination
+        page={page}
+        setPage={setPage}
+        totalPages={totalPages}
+        pagesArray={pagesArray}
+      />
     </div>
   );
 };

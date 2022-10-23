@@ -7,7 +7,9 @@ const Profile = () => {
   return (
     <>
       <span className="text-2xl m-1">{mainBadge}</span>
-      <span className="text-mYellow text-lg "> {nickname} 평론가님</span>
+      <span className="text-mYellow text-sm xl:text-lg">
+        {nickname} 평론가님
+      </span>
     </>
   );
 };

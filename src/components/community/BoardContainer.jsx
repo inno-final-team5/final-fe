@@ -16,7 +16,7 @@ const BoardContainer = () => {
           <Route path="cinemas" element={<CommunityCinemas />} />
           <Route path="/:id" element={<CommunityDetail />} />
           <Route path="edit" element={<CommunityEdit />} />
-          <Route path="/search/:keyword" element={<CommunitySearchResult />} />
+          <Route path=":type/:keyword" element={<CommunitySearchResult />} />
         </Routes>
       </section>
     </Fragment>
