@@ -1,7 +1,7 @@
 import { Toast } from "components/common/Toast";
 import React from "react";
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const SearchBox = () => {
@@ -26,21 +26,26 @@ const SearchBox = () => {
           onChange={(e) => setCategory(e.target.value)}
           value={type}
           id="category"
-          className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-2.5"
+          className="bg-mWhite text-mBlack text-sm rounded-lg block w-full p-1.5"
         >
           <option value="postTitle">제목</option>
           <option value="postContent">내용</option>
         </select>
-
-        <input
-          placeholder="키워드를 입력하세요"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-          className="h-8 rounded-lg pl-2"
-        />
-        <button type="submit" onClick={searchKeywordHandler} className="px-2">
-          <FaSearch className="text-mWhite" />
-        </button>
+        <div className="relative">
+          <input
+            placeholder="키워드를 입력하세요"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            className="h-8 rounded-lg pl-2 py-4 w-64"
+          />
+          <button
+            type="submit"
+            onClick={searchKeywordHandler}
+            className="px-1 absolute right-1 top-2"
+          >
+            <BsSearch className="text-mBlack" />
+          </button>
+        </div>
       </div>
     </form>
   );
