@@ -64,7 +64,7 @@ const BadgeItem = ({
   });
 
   return (
-    <div>
+    <div className="items-center justify-center flex flex-col">
       {isActive === true ? (
         <ActiveBadge
           icon={icon}
@@ -76,6 +76,7 @@ const BadgeItem = ({
           onClickInActiveBadgeHandler={onClickInActiveBadgeHandler}
         />
       )}
+      <span className="text-mWhite pt-2 text-center">{name}</span>
     </div>
   );
 };

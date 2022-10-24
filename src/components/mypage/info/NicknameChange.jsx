@@ -24,6 +24,7 @@ const NicknameChange = () => {
           title: "이미 사용중인 닉네임입니다.",
         });
       } else if (data.data.success === true) {
+        Toast.fire({ icon: "success", title: "닉네임이 변경되었습니다." });
         setNickname(data.data.data);
         localStorage.setItem("nickname", data.data.data);
       }

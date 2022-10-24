@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import BadgeEmoji from "components/common/BadgeEmoji";
+import { IoIosChatbubbles } from "react-icons/io";
+import { FaThumbsUp } from "react-icons/fa";
 
 const ReviewItem = ({ post }) => {
   return (
@@ -23,6 +25,26 @@ const ReviewItem = ({ post }) => {
         </div>
         <div className="w-full flex text-mWhite items-center md:basis-6/12 px-1">
           <p className="text-left text-md">{post.postTitle}</p>
+          <span className="pl-2 flex gap-1 text-sm text-mYellow flex-row">
+            {post.commentNum ? (
+              <>
+                <IoIosChatbubbles />
+                {post.commentNum}
+              </>
+            ) : (
+              <></>
+            )}
+          </span>
+          <span className="pl-2 flex gap-1 text-sm text-mYellow flex-row">
+            {post.likeNum ? (
+              <>
+                <FaThumbsUp />
+                {post.likeNum}
+              </>
+            ) : (
+              <></>
+            )}
+          </span>
         </div>
 
         <div className="justify-end w-full flex md:basis-2/12 px-1">
