@@ -1,11 +1,11 @@
 import React from "react";
-import MyPostsSection from "components/mypage/posts";
+import MyPostsList from "components/mypage/posts/MyPostsList";
 import MyPageContainer from "components/mypage/MyPageContainer";
 
 const MyPosts = () => {
   return (
     <MyPageContainer>
-      <MyPostsSection />
+      <MyPostsList />
     </MyPageContainer>
   );
 };

@@ -1,15 +1,23 @@
 import React, { useState } from "react";
-import useMyPosts from "./useMyPosts";
 import Spinner from "components/common/Spinner";
 import Empty from "components/common/Empty";
 import tw from "tailwind-styled-components";
 import PostItem from "./PostItem";
 import Pagination from "components/common/pagination/Pagination";
+import { getMyPosts } from "apis/postApi";
+import { useQuery } from "react-query";
 
-const MyPostsSection = () => {
+const MyPostsList = () => {
   const postsPerPage = 5;
   const [pageNum, setPageNum] = useState(1);
-  const { isLoading, isError, error, data: myPosts } = useMyPosts();
+  const {
+    isLoading,
+    isError,
+    error,
+    data: myPosts,
+  } = useQuery("myPosts", getMyPosts, {
+    keepPreviousData: true,
+  });
 
   if (isLoading) {
     return <Spinner />;
@@ -42,7 +50,7 @@ const MyPostsSection = () => {
 
   return (
     <MyPostContainer>
-      <MyPostsList>
+      <PostsList>
         {content}
         <Pagination
           page={pageNum}
@@ -50,7 +58,7 @@ const MyPostsSection = () => {
           totalPages={totalPages}
           pagesArray={pagesArray}
         />
-      </MyPostsList>
+      </PostsList>
     </MyPostContainer>
   );
 };
@@ -59,8 +67,8 @@ const MyPostContainer = tw.div`
   bg-mBlack
 `;
 
-const MyPostsList = tw.div`
+const PostsList = tw.div`
 h-full md:min-h-[28rem] 
 `;
 
-export default MyPostsSection;
+export default MyPostsList;
