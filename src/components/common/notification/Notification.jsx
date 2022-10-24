@@ -16,14 +16,14 @@ const Notification = () => {
   // });
 
   /**알림 전체 삭제 */
-  const deleteAllNoticeQuery = useMutation(() => deleteAllNotice, {
-    onSuccess: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
+  // const deleteAllNoticeQuery = useMutation(() => deleteAllNotice, {
+  //   onSuccess: (data) => {
+  //     console.log(data);
+  //   },
+  //   onError: (error) => {
+  //     console.log(error);
+  //   },
+  // });
 
   useEffect(() => {
     stompConnect();
@@ -41,7 +41,7 @@ const Notification = () => {
       <div className="flex justify-end mr-2">
         <button
           onClick={() => {
-            deleteAllNoticeQuery();
+            // deleteAllNoticeQuery();
           }}
           className="text-xs text-mBlack hover:bg-mGray hover:text-white rounded-lg px-2 pb-1 pt-2 ml-2 flex"
         >
