@@ -1,40 +1,41 @@
 import SockJs from "sockjs-client";
 import StompJs from "stompjs";
 
-const sock = new SockJs("http://13.124.170.188/ws");
+const sock = new SockJs("https://yjcoding.shop");
 
 const stomp = StompJs.over(sock);
 
-const token = {
+const getToken = {
   authorization: localStorage.getItem("accessToken"),
   "refresh-token": localStorage.getItem("refreshToken"),
 };
 
 export const stompConnect = () => {
   try {
-    stomp.connect(token, () => {
-      stomp.subscribe(
-        `/sub/alarm/user/${userId}`,
-        (data) => {
-          const newMessage = JSON.parse(data.body);
-        },
-        token
-      );
+    stomp.connect(getToken, () => {
+      // stomp.subscribe(
+      //   `/sub/alarm/user/${userId}`,
+      //   (data) => {
+      //     const newMessage = )JSON.parse(data.body;
+      //   },
+      //   getToken
+      // );
+      console.log("스톰프 연결");
     });
   } catch (error) {
     console.log(error);
   }
 };
 
-// export const stompDisConnect = () => {
-//   try {
-//     stomp.disconnect(() => {
-//       stomp.unsubscribe("sub-0");
-//     }, token);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const stompDisConnect = () => {
+  try {
+    stomp.disconnect(() => {
+      stomp.unsubscribe("sub-0");
+    }, getToken);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 //   const AlarmClient = new StompJs.Client({
 //     brokerURL: "ws://13.124.170.188/ws-stomp",

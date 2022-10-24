@@ -17,7 +17,7 @@ function ModalButton({ content }) {
   return (
     <div>
       <Button type="button" onClick={openModal}>
-        <BsFillBellFill className="ml-4 mb-3 text-xl text-mYellow md:text-mBlack md:text-lg md:mb-0 md:mt-0.5" />
+        <BsFillBellFill className="ml-4 mb-3 text-xl text-mGray md:text-mBlack md:text-lg md:mb-0 md:mt-0.5" />
       </Button>
       <ModalWindow
         open={modalOpen}

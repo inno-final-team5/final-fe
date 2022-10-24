@@ -35,9 +35,11 @@ const NavBar = ({ badgeIcon, nickname, accessToken, logoutHandler }) => {
           </Link>
           <div className="md:hidden">
             <BsFillBellFill className="text-mBlack" />
-            <div>
+            {accessToken !== null ? (
               <ModalButton content={<Notification />} />
-            </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div className="md:flex w-full items-center justify-between bg-mGray px-4 ml-4 h-12 rounded-lg hidden">

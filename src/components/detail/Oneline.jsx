@@ -82,7 +82,7 @@ function Oneline({
 
   ////////////////////////////////////////////////웹소켓
 
-  // const webSocket = new WebSocket("ws://13.124.170.188/auth/notification");
+  // const webSocket = new WebSocket("wss://yjcoding.shop");
   // webSocket.onopen = function () {
   //   webSocket.send({
   //     authorization: localStorage.getItem("accessToken"),
