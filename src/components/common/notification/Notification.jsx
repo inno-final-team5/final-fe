@@ -5,15 +5,15 @@ import { BsTrash } from "react-icons/bs";
 import { getNotice, deleteAllNotice } from "apis/noticeApi";
 import { useMutation, useQuery } from "react-query";
 import { useEffect } from "react";
-import { stompConnect } from "./Notice";
+import { stompConnect } from "./NoticeSoket";
 
 const Notification = () => {
   /**알림 전체목록 가져오기 */
-  const getNoticeQuery = useQuery("noticeList", getNotice, {
-    onSuccess: (data) => {
-      console.log(data);
-    },
-  });
+  // const getNoticeQuery = useQuery("noticeList", getNotice, {
+  //   onSuccess: (data) => {
+  //     console.log(data);
+  //   },
+  // });
 
   /**알림 전체 삭제 */
   const deleteAllNoticeQuery = useMutation(() => deleteAllNotice, {
