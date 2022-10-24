@@ -82,39 +82,39 @@ function Oneline({
 
   ////////////////////////////////////////////////웹소켓
 
-  const webSocket = new WebSocket("wss://yjcoding.shop");
-  webSocket.onopen = function () {
-    webSocket.send({
-      authorization: localStorage.getItem("accessToken"),
-      "refresh-token": localStorage.getItem("refreshToken"),
-    });
-    console.log("서버와 웹 소켓 연결됨");
-  };
-  webSocket.onmessage = function (event) {
-    console.log(event.data);
-    webSocket.send("클라이언트에서 서버로 답장을 보냅니다.");
-  };
-  /////////////////////////////////쿼리 ,웹소켓
-  // const useReactQuerySubscription = () => {
-  //   const queryClient = useQueryClient();
-  //   React.useEffect(() => {
-  //     const websocket = new WebSocket("wss://13.124.170.188/auth/notification");
-  //     websocket.onopen = () => {
-  //       console.log("connected");
-  //     };
-  //     websocket.onmessage = (event) => {
-  //       console.log(event.data);
-  //       websocket.send("클라이언트에서 서버로 답장을 보냅니다.");
-  //       // const data = JSON.parse(event.data);
-  //       // const queryKey = [...data.entity, data.id].filter(Boolean);
-  //       // queryClient.invalidateQueries(queryKey);
-  //     };
-
-  //     return () => {
-  //       websocket.close();
-  //     };
-  //   }, [addLike]);
+  // const webSocket = new WebSocket("wss://yjcoding.shop/");
+  // webSocket.onopen = function () {
+  //   webSocket.send({
+  //     authorization: localStorage.getItem("accessToken"),
+  //     "refresh-token": localStorage.getItem("refreshToken"),
+  //   });
+  //   console.log("서버와 웹 소켓 연결됨");
   // };
+  // webSocket.onmessage = function (event) {
+  //   console.log(event.data);
+  //   webSocket.send("클라이언트에서 서버로 답장을 보냅니다.");
+  // };
+  /////////////////////////////////쿼리 ,웹소켓
+  const useReactQuerySubscription = () => {
+    // const queryClient = useQueryClient();
+    React.useEffect(() => {
+      const websocket = new WebSocket("wss://yjcoding.shop/ws");
+      websocket.onopen = () => {
+        console.log("connected");
+      };
+      websocket.onmessage = (event) => {
+        console.log(event.data);
+        websocket.send("클라이언트에서 서버로 답장을 보냅니다.");
+        // const data = JSON.parse(event.data);
+        // const queryKey = [...data.entity, data.id].filter(Boolean);
+        // queryClient.invalidateQueries(queryKey);
+      };
+
+      return () => {
+        websocket.close();
+      };
+    }, [addLike]);
+  };
   ////////////////////////////////스톰프1
   // const sock = new SockJs("http://13.124.170.188/auth/notification");
   // stompClient.current = Stomp.over(socket);
