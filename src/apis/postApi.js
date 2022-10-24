@@ -21,13 +21,14 @@ export const getMoviePosts = async () => {
 /** 커뮤니티- 게시글 상세 조회 */
 export const getPostDetail = async (id) => {
   const response = await api.get(`/post/${id}`);
-  console.log(response.data);
+
   return response.data;
 };
 
 /** 마이페이지- 나의 게시글 전체 조회 */
 export const getMyPosts = async () => {
   const response = await authApi.get("/auth/post");
+  console.log(response.data);
   return response.data;
 };
 
@@ -76,4 +77,10 @@ export const updateComment = async ({ commentId, commentContent }) => {
   return await authApi.put(`/auth/post/comment/${commentId}`, {
     commentContent,
   });
+};
+
+export const getSearchPosts = async (type, keyword) => {
+  const response = await api.get(`/post/search/${type}?keyword=${keyword}`);
+  console.log(response);
+  return response.data;
 };

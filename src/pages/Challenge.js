@@ -1,7 +1,7 @@
-import tw from "tailwind-styled-components";
-import Layout from "components/common/Layout";
+import ChallengeContainer from "components/challenge/ChallengeContainer";
 import ChallengeHeader from "components/challenge/ChallengeHeader";
 import ChallengeList from "components/challenge/ChallengeList";
+import Layout from "components/common/Layout";
 
 const Challenge = () => {
   return (
@@ -13,9 +13,5 @@ const Challenge = () => {
     </Layout>
   );
 };
-
-const ChallengeContainer = tw.div`
-text-black flex flex-col items-center pt-2
-`;
 
 export default Challenge;

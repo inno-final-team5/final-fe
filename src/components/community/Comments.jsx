@@ -6,20 +6,7 @@ const Comments = ({ commentData }) => {
   const accessToken = localStorage.getItem("accessToken");
 
   return (
-    <>
-      {accessToken === null ? (
-        <></>
-      ) : (
-        <>
-          {" "}
-          <CommentFormContainer>
-            <CommentFormContentsContainer>
-              <CommentForm />
-            </CommentFormContentsContainer>
-          </CommentFormContainer>
-        </>
-      )}
-
+    <div className="rounded-xl bg-mGray mt-3">
       {commentData.length === 0 ? (
         <></>
       ) : (
@@ -31,12 +18,24 @@ const Comments = ({ commentData }) => {
           </CommentsContentsContainer>
         </CommentsContainer>
       )}
-    </>
+
+      {accessToken === null ? (
+        <></>
+      ) : (
+        <>
+          <CommentFormContainer>
+            <CommentFormContentsContainer>
+              <CommentForm />
+            </CommentFormContentsContainer>
+          </CommentFormContainer>
+        </>
+      )}
+    </div>
   );
 };
 
 const CommentsContainer = tw.div`
-bg-mGray p-4 text-mBlack rounded-lg mt-3
+bg-mGray p-4 text-mBlack rounded-lg
 `;
 
 const CommentsContentsContainer = tw.div`
@@ -44,7 +43,7 @@ px-4 py-2 flex gap-4 flex-col h-full
 `;
 
 const CommentFormContainer = tw.div`
-bg-mGray p-2 text-mBlack rounded-lg mt-3
+bg-mGray p-2 text-mBlack  mt-3 rounded-lg
 `;
 
 const CommentFormContentsContainer = tw.div`

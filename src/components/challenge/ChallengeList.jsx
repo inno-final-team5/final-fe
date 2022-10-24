@@ -1,16 +1,10 @@
 import tw from "tailwind-styled-components";
-import ChallengeItem from "components/challenge/ChallengeItem";
-import { useQuery } from "react-query";
-import { getAllBadges } from "apis/badgeApi";
+import ChallengeItem from "./ChallengeItem";
 import Spinner from "components/common/Spinner";
+import useChallengeList from "./useChallengeList";
 
 const ChallengeList = () => {
-  const {
-    isLoading,
-    isError,
-    error,
-    data: challenges,
-  } = useQuery("challenges", getAllBadges);
+  const { isLoading, isError, error, data: challenges } = useChallengeList();
 
   let content;
 
@@ -19,22 +13,26 @@ const ChallengeList = () => {
   } else if (isError) {
     content = <p>{error.message}</p>;
   } else {
+    console.log(challenges);
     content = challenges.data.map((challenge) => {
       return (
         <ChallengeItem
           key={challenge.badgeId}
+          id={challenge.badgeId}
           icon={challenge.badgeIcon}
           name={challenge.badgeName}
-          description={challenge.badgeInfo}
+          badgeInfo={challenge.badgeInfo}
+          badgeTotal={challenge.badgeTotal}
+          memberTotal={challenge.memberTotal}
         />
       );
     });
   }
-  return <ChallengeListBox>{content}</ChallengeListBox>;
+  return <ChallengeListContainer>{content}</ChallengeListContainer>;
 };
 
-const ChallengeListBox = tw.div`
-  grid grid-cols-1  h-auto bg-mGray p-4 lg:p-8 rounded-md  min-w-max mx-4 md:grid-cols-2 w-full  shadow-lg lg:mb-6
+const ChallengeListContainer = tw.div`
+  grid grid-cols-2  h-auto bg-mGray p-4 lg:p-8 rounded-md  min-w-max mx-4 md:grid-cols-4  w-full md:w-5/6 mt-4  shadow-lg lg:mb-6 
 `;
 
 export default ChallengeList;

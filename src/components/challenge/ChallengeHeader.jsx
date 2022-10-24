@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import tw from "tailwind-styled-components/";
+
 const ChallengeHeader = () => {
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
-  const goChallenge = () => {
+  const goMyChallenge = () => {
     navigate("/mypage/badges");
   };
 
@@ -15,32 +16,31 @@ const ChallengeHeader = () => {
           챌린지를 달성하고 배지를 모아보세요!
         </ChallengeHeaderDescription>
         {accessToken !== null ? (
-          <button
-            className="bg-mGray p-1 rounded-xl my-2 text-sm px-6 text-mYellow"
-            onClick={goChallenge}
-          >
+          <MyChallengeButton onClick={goMyChallenge}>
             나의 챌린지
-          </button>
+          </MyChallengeButton>
         ) : (
           <></>
         )}
       </div>
-
-      <div className="w-full flex justify-end"></div>
     </ChallengeHeaderBox>
   );
 };
 
 const ChallengeHeaderBox = tw.div`
-    flex justify-start flex-col w-full
+    flex justify-start flex-col md:w-5/6 w-full
 `;
 
 const ChallengeHeaderTitle = tw.h2`
-text-3xl font-extrabold text-mYellow dark:text-white
+text-3xl font-extrabold text-mYellow
 `;
 
 const ChallengeHeaderDescription = tw.p`
-my-4 text-lg text-gray-500 
+my-4  text-sm md:text-lg text-gray-500 
+`;
+
+const MyChallengeButton = tw.button`
+  bg-mGray p-1 rounded-xl my-2 text-sm px-6 text-mYellow shadow-md
 `;
 
 export default ChallengeHeader;

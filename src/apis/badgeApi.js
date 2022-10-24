@@ -5,8 +5,14 @@ export const getAllBadges = async () => {
   return response.data;
 };
 
+export const getBadgeDetail = async ({ badgeId }) => {
+  const response = await api.get(`/badge/${badgeId}`);
+  return response.data;
+};
+
 export const getMyBadges = async () => {
   const response = await authApi.get("/auth/badge");
+  console.log(response);
   return response.data;
 };
 

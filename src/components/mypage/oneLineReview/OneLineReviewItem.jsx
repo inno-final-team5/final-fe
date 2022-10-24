@@ -21,19 +21,22 @@ const OneLineReviewItem = ({ oneLineReview }) => {
     >
       <div
         key={oneLineReview.oneLineReviewId}
-        className="flex bg-mGray gap-2 w-full rounded-xl my-6 flex-col md:flex-row p-2"
+        className="flex bg-mGray gap-2 w-full rounded-xl my-6 flex-col md:flex-row px-4 py-2"
       >
-        <div className="w-full text-left items-center text-mWhite text-sm py-2 md:basis-4/12">
-          <h2>{oneLineReview.title}</h2>
+        <div className="w-full text-left items-center text-mWhite text-sm py-2 md:basis-3/12 truncate">
+          <span className=" text-mYellow truncate md:pl-2">
+            {oneLineReview.title}
+          </span>
         </div>
-        <div className="flex text-mYellow items-center md:basis-1/12">
+
+        <div className="flex text-mYellow items-center md:basis-2/12">
           <MyStars
             key={oneLineReview.title}
             star={oneLineReview.oneLineReviewStar}
           />
         </div>
-        <div className="w-full truncate text-mWhite text-sm py-2 md:basis-7/12">
-          <span>{oneLineReview.oneLineReviewContent}</span>
+        <div className="w-full text-mWhite text-sm py-2 md:basis-7/12">
+          <span className="truncate">{oneLineReview.oneLineReviewContent}</span>
         </div>
       </div>
     </Link>
