@@ -4,7 +4,7 @@ import MainTabList from "components/mainpage/MainTabList";
 import SearchBar from "components/search/SearchBar";
 
 const Main = () => {
-  const webSocket = new WebSocket("wss://yjcoding.shop/");
+  const webSocket = new WebSocket("wss://yjcoding.shop/ws");
   webSocket.onopen = function () {
     webSocket.send({
       authorization: localStorage.getItem("accessToken"),
@@ -16,6 +16,7 @@ const Main = () => {
     console.log(event.data);
     webSocket.send("클라이언트에서 서버로 답장을 보냅니다.");
   };
+
   return (
     <Layout>
       <SearchBar />
