@@ -13,6 +13,7 @@ import Community from "pages/Community/Community";
 import SearchList from "pages/SearchList";
 import GenreList from "pages/GenreList";
 import UserOneLine from "pages/UserOneLine";
+import CommunitySearchResult from "pages/Community/CommunitySearchResult";
 
 const Router = () => {
   return (
@@ -27,7 +28,13 @@ const Router = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/mypage/*" element={<MyPage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/community/*" element={<Community />} />
+        <Route path="/community/*" element={<Community />}>
+          <Route
+            path=":type/:keyword"
+            element={<CommunitySearchResult />}
+          ></Route>
+        </Route>
+
         <Route path="/search/:keyword" element={<SearchList />} />
         <Route path="/genre/:keyword" element={<GenreList />} />
         <Route path="/:user" element={<UserOneLine />} />

@@ -5,28 +5,34 @@ import Header from "./Header";
 const Layout = ({ children }) => {
   return (
     <>
-      <TwLayout>
+      <Base>
         <Header />
         <Main>{children}</Main>
         <Footer />
-      </TwLayout>
+      </Base>
     </>
   );
 };
 
-const TwLayout = tw.div`
+const Base = tw.div`
 w-full
-mx-0
 md:w-4/5
-md:mx-auto
+mx-auto
 h-full
+flex
+flex-col
+items-center
 `;
 
 const Main = tw.main`
   min-h-5/6
-  py-24
-  px-4
-  mx-auto
+  py-20
+  xl:py-28
+  px-2
+  md:mx-auto
+  w-full
+
+
   
 `;
 export default Layout;

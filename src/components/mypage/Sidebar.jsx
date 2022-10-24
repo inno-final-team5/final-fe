@@ -4,8 +4,8 @@ import { MySidebarData } from "data/MySidebarData";
 import { Fragment } from "react";
 
 const SideBar = () => {
-  const activeLink = `hover:bg-mYellow my-4 w-full h-14 font-bold flex justify-center items-center text-mBlack text-md space-x-1 bg-mYellow rounded-full border-solid border px-3`;
-  const normalLink = `hover:bg-mYellow hover:text-mBlack hover:font-bold hover:rounded-full my-4 w-full h-14  flex justify-center items-center text-mYellow text-md space-x-1 px-3 `;
+  const activeLink = `hover:bg-mYellow my-4 w-full h-12 font-bold flex justify-center items-center text-mBlack text-md space-x-1 bg-mYellow rounded-full border-solid border px-3`;
+  const normalLink = `hover:bg-mYellow hover:text-mBlack hover:font-bold hover:rounded-full my-4 w-full h-12 flex justify-center items-center text-mYellow text-md space-x-1 px-3 `;
 
   return (
     <Fragment>

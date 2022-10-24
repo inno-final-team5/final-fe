@@ -6,7 +6,7 @@ const LogoutButton = ({ logoutHandler }) => {
     <button
       type="button"
       onClick={logoutHandler}
-      className="hover:text-mYellow text-mYellow md:ml-4 md:text-lg  md:hover:font-bold"
+      className="hover:text-mYellow text-mYellow md:ml-4 md:text-lg  md:hover:font-bold font-serif"
     >
       <MdLogout />
     </button>
