@@ -11,8 +11,7 @@ export const getBadgeDetail = async ({ badgeId }) => {
 };
 
 export const getMyBadges = async () => {
-  const response = await authApi.get("/auth/badge");
-  console.log(response);
+  const response = await authApi.get("/auth/active");
   return response.data;
 };
 
