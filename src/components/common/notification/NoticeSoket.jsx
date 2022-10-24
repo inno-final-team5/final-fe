@@ -1,7 +1,7 @@
 import SockJs from "sockjs-client";
 import StompJs from "stompjs";
 
-const sock = new SockJs("https://yjcoding.shop/");
+const sock = new SockJs("https://yjcoding.shop/ws");
 
 const stomp = StompJs.over(sock);
 
