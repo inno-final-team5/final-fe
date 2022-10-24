@@ -34,7 +34,7 @@ const MobileNavbar = ({ open, accessToken, logoutHandler }) => {
       </div>
       <div className="pl-3">
         <NavMainMenu link={"/search"} name={"영화 검색"} />
-        <h1 className="text-mCream cursor-default">커뮤니티</h1>
+        <span className="text-mCream cursor-default text-sm">커뮤니티</span>
         <div className="pl-4">
           <NavSubLinks links={communityLinks} />
         </div>

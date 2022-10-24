@@ -20,8 +20,8 @@ const SearchBox = () => {
     setKeyword("");
   };
   return (
-    <div className="flex items-center bg-mCream gap-2 p-1 rounded-lg">
-      <div>
+    <form>
+      <div className="flex items-center rounded-lg p-2 gap-2">
         <select
           onChange={(e) => setCategory(e.target.value)}
           value={type}
@@ -31,16 +31,18 @@ const SearchBox = () => {
           <option value="postTitle">제목</option>
           <option value="postContent">내용</option>
         </select>
+
+        <input
+          placeholder="키워드를 입력하세요"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          className="h-8 rounded-lg pl-2"
+        />
+        <button type="submit" onClick={searchKeywordHandler} className="px-2">
+          <FaSearch className="text-mWhite" />
+        </button>
       </div>
-      <input
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-        className="h-8 rounded-lg"
-      />
-      <button onClick={searchKeywordHandler} className="px-2">
-        <FaSearch className="text-mBlack" />
-      </button>
-    </div>
+    </form>
   );
 };
 

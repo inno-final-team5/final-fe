@@ -22,9 +22,9 @@ const Community = () => {
 const CommunityWrapper = tw.div`
 mt-4
 `;
-const CommunitySidebarWrapper = tw.div`bg-mBlack md:block hidden md:fixed`;
+const CommunitySidebarWrapper = tw.div`bg-mBlack lg:block hidden lg:fixed`;
 
 const CommunityContentWrapper = tw.div`
-bg-mBlack rounded-sm md:pl-52 
+bg-mBlack rounded-sm xl:pl-52 lg:pl-44
 `;
 export default Community;

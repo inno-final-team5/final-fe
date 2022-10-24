@@ -26,7 +26,8 @@ items-center
 
 const Main = tw.main`
   min-h-5/6
-  py-28
+  py-20
+  xl:py-28
   px-2
   md:mx-auto
   w-full
