@@ -99,7 +99,7 @@ const CommunityEdit = () => {
                       onChange={(e) => {
                         setReview(e.target.value);
                       }}
-                      className="block p-2.5 w-full text-sm text-mBlack bg-mWhite rounded-lg border border-gray-300"
+                      className="block p-2.5 w-full text-sm text-mBlack bg-mWhite rounded-lg border border-gray-300 resize-none"
                       placeholder="리뷰를 남겨주세요"
                       required
                     ></textarea>

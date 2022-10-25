@@ -114,7 +114,7 @@ const Comment = ({ commentData }) => {
             </div>
             <CommentContextContainer>
               <textarea
-                className="bg-mWhite w-full focus:outline-none p-2"
+                className="bg-mWhite w-full focus:outline-none p-2 resize-none"
                 rows="3"
                 autoFocus
                 defaultValue={commentData.commentContent}

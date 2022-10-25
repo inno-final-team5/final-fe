@@ -4,7 +4,6 @@ import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import BadgeEmoji from "components/common/BadgeEmoji";
 import { useQueryClient, useMutation } from "react-query";
 import { deleteSubComment, updateSubComment } from "apis/postApi";
-
 import { Toast } from "components/common/Toast";
 import { useState, useRef } from "react";
 
@@ -14,9 +13,9 @@ const Subcomment = ({ commentData }) => {
   const [updatSubCommentMode, setUpdateSubCommentMode] = useState(false);
   const updateSubCommentBody = useRef("");
 
-  const deleteSub = () => {
+  const deleteSub = (id) => {
     deleteSubCommentMutation.mutate({
-      subCommentId: subCommentData[0].subCommentId,
+      subCommentId: id,
     });
   };
 
@@ -43,7 +42,7 @@ const Subcomment = ({ commentData }) => {
 
   const submitSub = () => {
     updateSubCommentMutation.mutate({
-      SubCommentId: subCommentData[0].subCommentId,
+      subCommentId: subCommentData[0].subCommentId,
       subCommentContent: updateSubCommentBody.current.value,
     });
   };
@@ -97,7 +96,9 @@ const Subcomment = ({ commentData }) => {
                   >
                     <FaEdit className="mr-1" />
                   </button>
-                  <button onClick={deleteSub}>
+                  <button
+                    onClick={() => deleteSub(subCommentData.subCommentId)}
+                  >
                     <FaTrash className="mr-1" />
                   </button>
                 </CommentButtonContainer>
@@ -132,6 +133,7 @@ const Subcomment = ({ commentData }) => {
                   autoFocus
                   defaultValue={subCommentData.subCommentContent}
                   ref={updateSubCommentBody}
+                  required
                 ></textarea>
               </SubCommentContextContainer>
               {subCommentData.nickname === nickname ? (

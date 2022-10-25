@@ -52,7 +52,7 @@ const CommentForm = () => {
             onChange={(e) => {
               setComment(e.target.value);
             }}
-            className=" p-2 mt-2 w-full text-sm text-mBlack bg-mWhite rounded-lg focus:outline-none"
+            className=" p-2 mt-2 w-full text-sm text-mBlack bg-mWhite rounded-lg focus:outline-none resize-none"
             placeholder="댓글을 남겨주세요"
             required
           ></textarea>

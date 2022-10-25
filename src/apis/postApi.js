@@ -96,8 +96,8 @@ export const deleteSubComment = async ({ subCommentId }) => {
 };
 
 /** 커뮤니티 - 작성한 대댓글 수정 */
-export const updateSubComment = async ({ SubCommentId, subCommentContent }) => {
-  return await authApi.put(`/auth/post/subComment/${SubCommentId}`, {
+export const updateSubComment = async ({ subCommentId, subCommentContent }) => {
+  return await authApi.put(`/auth/post/subComment/${subCommentId}`, {
     subCommentContent,
   });
 };

@@ -160,7 +160,7 @@ const CommunityDetail = () => {
               </DetailTitle>
               <DetailContent>
                 <textarea
-                  className="bg-mWhite w-full focus:outline-none"
+                  className="bg-mWhite w-full focus:outline-none resize-none"
                   rows="10"
                   defaultValue={postData.postContent}
                   autoFocus
