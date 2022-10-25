@@ -3,11 +3,19 @@ import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { getLike, addLike, deleteLike } from "../../apis/postApi";
+import {
+  getLike,
+  addLike,
+  deleteLike,
+  getPostDetail,
+} from "../../apis/postApi";
+import { sendNoticeData } from "../common/notification/NoticeSoket";
 
 const LikeButton = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
+
+  const { data: post } = useQuery(["post", id], () => getPostDetail(id));
 
   const {
     data: myLike,
@@ -44,6 +52,7 @@ const LikeButton = () => {
       Swal.fire("로그인이 필요합니다!");
     } else {
       addLikeMutation.mutate({ id });
+      sendNoticeData(data);
     }
   };
 
@@ -57,6 +66,17 @@ const LikeButton = () => {
 
   let likes = myLike.data.data;
 
+  // sender
+  // receiver
+  // post
+  // useEffect(() => {
+  //   stompConnect();
+  // }, []);
+  const data = {
+    sender: localStorage.getItem("nickname"),
+    receiver: post.data.nickname,
+    post: post.data,
+  };
   return (
     <>
       {likes === "true" ? (
