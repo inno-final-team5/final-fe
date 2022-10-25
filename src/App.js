@@ -1,10 +1,18 @@
 import Router from "./router/Router";
-import { stompConnect } from "components/common/notification/NoticeSoket";
+import {
+  stompConnect,
+  stompDisConnect,
+} from "components/common/notification/NoticeSoket";
 import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
-    stompConnect();
+    if (localStorage.getItem("accessToken")) {
+      stompConnect();
+    }
+    return () => {
+      stompDisConnect();
+    };
   }, []);
 
   if (process.env.NODE_ENV === "production") {

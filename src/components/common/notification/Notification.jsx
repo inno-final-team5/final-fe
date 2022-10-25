@@ -4,8 +4,9 @@ import { BsFillBellFill } from "react-icons/bs";
 import { BsTrash } from "react-icons/bs";
 import { getNotice, deleteAllNotice } from "apis/noticeApi";
 import { useMutation, useQuery } from "react-query";
+
 // import { useEffect } from "react";
-// import { stompConnect, socketioConnect } from "./NoticeSoket";
+import { stompConnect } from "./NoticeSoket";
 const Notification = () => {
   // useEffect(() => {
   //   stompConnect();
@@ -71,6 +72,7 @@ const Notification = () => {
         );
       })} */}
       <NotificationForm />
+      <div></div>
     </div>
   );
 };

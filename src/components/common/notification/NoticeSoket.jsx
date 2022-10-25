@@ -6,10 +6,10 @@ const sock = new SockJs("https://yjcoding.shop/ws");
 const stomp = StompJs.over(sock);
 
 export const sendNoticeData = (data) => {
-  stomp.send("/sub/22", {}, JSON.stringify(data));
+  stomp.send(`/sub/${data.receiver}`, {}, JSON.stringify(data));
 };
 
-export const stompConnect = () => {
+export const stompConnect = (nickname) => {
   try {
     stomp.connect(
       {
@@ -17,10 +17,11 @@ export const stompConnect = () => {
       },
       () => {
         stomp.subscribe(
-          `/sub/22`,
+          `/sub/${nickname}`,
           (data) => {
             const newMessage = JSON.parse(data.body);
             console.log(newMessage);
+            // localStorage.setItem("receiver", newMessage.receiver);
           },
           {
             token: localStorage.getItem("refreshToken"),
