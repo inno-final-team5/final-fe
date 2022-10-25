@@ -14,12 +14,12 @@ import {
 import { useNavigate } from "react-router-dom";
 import { getUserLineList } from "apis/oneLineReviewApi";
 
+import SockJs from "sockjs-client";
+import StompJs from "stompjs";
 // import SockJs from "sockjs-client";
-// import StompJs from "stompjs";
-// import * as SockJs from "sockjs-client";
 // import * as StompJs from "stompjs";
-// import { useRef } from "react";
-// import { useEffect } from "react";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 function Oneline({
   reviewId,
@@ -95,32 +95,43 @@ function Oneline({
   //   webSocket.send("클라이언트에서 서버로 답장을 보냅니다.");
   // };
   /////////////////////////////////쿼리 ,웹소켓
-  const useReactQuerySubscription = () => {
-    // const queryClient = useQueryClient();
-    React.useEffect(() => {
-      const websocket = new WebSocket("wss://yjcoding.shop/ws");
-      websocket.onopen = () => {
-        console.log("connected");
-      };
-      websocket.onmessage = (event) => {
-        console.log(event.data);
-        websocket.send("클라이언트에서 서버로 답장을 보냅니다.");
-        // const data = JSON.parse(event.data);
-        // const queryKey = [...data.entity, data.id].filter(Boolean);
-        // queryClient.invalidateQueries(queryKey);
-      };
+  // const useReactQuerySubscription = () => {
+  //   // const queryClient = useQueryClient();
+  //   React.useEffect(() => {
+  //     const websocket = new WebSocket("wss://yjcoding.shop/ws");
+  //     websocket.onopen = () => {
+  //       console.log("connected");
+  //     };
+  //     websocket.onmessage = (event) => {
+  //       console.log(event.data);
+  //       websocket.send("클라이언트에서 서버로 답장을 보냅니다.");
+  //       // const data = JSON.parse(event.data);
+  //       // const queryKey = [...data.entity, data.id].filter(Boolean);
+  //       // queryClient.invalidateQueries(queryKey);
+  //     };
 
-      return () => {
-        websocket.close();
-      };
-    }, [addLike]);
-  };
+  //     return () => {
+  //       websocket.close();
+  //     };
+  //   }, []);
+  // };
+  ////////////////
+  // React.useEffect(() => {
+  //   const websocket = new WebSocket("wss://yjcoding.shop/ws");
+  //   websocket.onopen = () => {
+  //     console.log("connected");
+  //   };
+
+  //   return () => {
+  //     websocket.close();
+  //   };
+  // }, []);
   ////////////////////////////////스톰프1
   // const sock = new SockJs("http://13.124.170.188/auth/notification");
   // stompClient.current = Stomp.over(socket);
 
   // const client = new StompJs.Client({
-  //   brokerURL: "ws://13.124.170.188/auth/notification",
+  //   brokerURL: "wss://yjcoding.shop/ws/websocket",
   //   connectHeaders: {
   //     authorization: localStorage.getItem("accessToken"),
   //     "refresh-token": localStorage.getItem("refreshToken"),
@@ -134,6 +145,7 @@ function Oneline({
   // });
 
   // client.onConnect = function (frame) {
+  //   console.log("스톰프 / 서버랑 연결됨");
   //   // Do something, all subscribes must be done is this callback
   //   // This is needed because this will be executed after a (re)connect
   // };
@@ -146,66 +158,66 @@ function Oneline({
   //   console.log("Broker reported error: " + frame.headers["message"]);
   //   console.log("Additional details: " + frame.body);
   // };
-
   // client.activate();
+
   //////////////////////////////////스톰프2
-  // const client = useRef({});
+  const client = useRef({});
 
-  // useEffect(() => {
-  //   connect();
+  useEffect(() => {
+    connect();
 
-  //   return () => disconnect();
-  // }, []);
+    return () => disconnect();
+  }, []);
 
-  // const connect = () => {
-  //   client.current = new StompJs.Client({
-  //     // brokerURL: "ws://13.124.170.188/ws-stomp", // 웹소켓 서버로 직접 접속
-  //     webSocketFactory: () => new SockJs("http://13.124.170.188/ws-stomp"),
+  const connect = () => {
+    client.current = new StompJs.Client({
+      brokerURL: "wss://yjcoding.shop/ws/websocket", // 웹소켓 서버로 직접 접속
+      // webSocketFactory: () => new SockJs("https://yjcoding.shop/ws/websocket"),
 
-  //     connectHeaders: {
-  //       authorization: localStorage.getItem("accessToken"),
-  //       "refresh-token": localStorage.getItem("refreshToken"),
-  //     },
-  //     debug: function (str) {
-  //       console.log(str);
-  //     },
-  //     reconnectDelay: 5000,
-  //     heartbeatIncoming: 4000,
-  //     heartbeatOutgoing: 4000,
-  //     onConnect: () => {
-  //       console.log("서버 클라이언트 연결");
-  //       // subscribe();
-  //     },
-  //     onStompError: (frame) => {
-  //       console.error(frame);
-  //     },
-  //   });
+      connectHeaders: {
+        authorization: localStorage.getItem("accessToken"),
+        "refresh-token": localStorage.getItem("refreshToken"),
+      },
+      debug: function (str) {
+        console.log(str);
+      },
+      reconnectDelay: 5000,
+      heartbeatIncoming: 4000,
+      heartbeatOutgoing: 4000,
+      onConnect: () => {
+        console.log("서버 클라이언트 연결");
+        // subscribe();
+      },
+      onStompError: (frame) => {
+        console.error(frame);
+      },
+    });
 
-  //   client.current.activate();
-  // };
+    client.current.activate();
+  };
 
-  // const disconnect = () => {
-  //   client.current.deactivate();
-  // };
+  const disconnect = () => {
+    client.current.deactivate();
+  };
 
-  // const subscribe = () => {
-  //   console.log("구독");
-  // client.current.subscribe(`/sub/chat/${ROOM_SEQ}`, ({ body }) => {
-  //   setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
-  // });
-  // };
+  const subscribe = () => {
+    console.log("구독");
+    // client.current.subscribe(`/sub/chat/${ROOM_SEQ}`, ({ body }) => {
+    //   setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
+    // });
+  };
 
-  // const publish = () => {
-  //   console.log("연결됨");
-  // if (!client.current.connected) {
-  //   return;
-  // }
+  const publish = () => {
+    console.log("연결됨");
+    if (!client.current.connected) {
+      return;
+    }
 
-  // client.current.publish({
-  //   destination: "/pub/chat",
-  //   body: JSON.stringify({ roomSeq: ROOM_SEQ, message }),
-  // });
-  // };
+    client.current.publish({
+      // destination: "/pub/chat",
+      // body: JSON.stringify({ roomSeq: ROOM_SEQ, message }),
+    });
+  };
   return (
     <div>
       <div className="container 2xl:px-10 mt-2 bg-gray-500 lg:h-8 md:h-24 rounded-2xl px-6 py-0 lg:py-7 sm:py-2 mx-auto flex items-center sm:flex-row flex-col">

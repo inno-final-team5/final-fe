@@ -1,7 +1,18 @@
 import SockJs from "sockjs-client";
 import StompJs from "stompjs";
+// import socketio from "socket.io-client";
 
-const sock = new SockJs("https://yjcoding.shop/ws");
+// const socket = socketio.connect("https://yjcoding.shop/ws/websocket");
+
+// export const socketioConnect = () => {
+//   socket.emit("init", { name: "bella" });
+
+//   socket.on("welcome", (msg) => {
+//     console.log(msg);
+//   });
+// };
+
+const sock = new SockJs("https://yjcoding.shop/ws-stomp");
 
 const stomp = StompJs.over(sock);
 
