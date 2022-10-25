@@ -1,16 +1,12 @@
 import Router from "./router/Router";
-// import { useEffect } from "react";
-// import { stompConnect } from "./components/common/notification/NoticeSoket"
+import { stompConnect } from "components/common/notification/NoticeSoket";
+import { useEffect } from "react";
 
 function App() {
-  // const getToken = {
-  //   authorization: localStorage.getItem("accessToken"),
-  //   "refresh-token": localStorage.getItem("refreshToken"),
-  // };
+  useEffect(() => {
+    stompConnect();
+  }, []);
 
-  // useEffect(() => {
-  //   stompConnect();
-  // })
   if (process.env.NODE_ENV === "production") {
     // console.log = function no_console() {};
   }
