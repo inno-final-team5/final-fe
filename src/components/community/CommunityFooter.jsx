@@ -27,7 +27,7 @@ const CommunityFooter = () => {
 };
 
 const Container = tw.div`
-    flex justify-between flex-row items-center
+flex justify-between flex-row items-center
 `;
 
 export default CommunityFooter;

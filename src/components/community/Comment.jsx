@@ -2,16 +2,20 @@ import tw from "tailwind-styled-components";
 import { BsArrowReturnRight } from "react-icons/bs";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import BadgeEmoji from "components/common/BadgeEmoji";
+import SubCommentForm from "./SubCommentForm";
 import { useQueryClient, useMutation } from "react-query";
 import { deleteComment, updateComment } from "apis/postApi";
 import { Toast } from "components/common/Toast";
 import { useState, useRef } from "react";
+import SubCommentList from "./SubCommentList";
+import CommentItemHeader from "./CommentItemHeader";
 
 const Comment = ({ commentData }) => {
   const queryClient = useQueryClient();
   const nickname = localStorage.getItem("nickname");
   const [updateCommentMode, setUpdateCommentMode] = useState(false);
+
+  const [subComment, setSubComment] = useState(false);
   const updateCommentBody = useRef("");
 
   const onDeleteHandler = () => {
@@ -42,7 +46,6 @@ const Comment = ({ commentData }) => {
       commentContent: updateCommentBody.current.value,
     });
   };
-  console.log(commentData.commentId);
 
   const updateCommentMutation = useMutation(updateComment, {
     onSuccess: () => {
@@ -60,26 +63,11 @@ const Comment = ({ commentData }) => {
       {!updateCommentMode ? (
         <>
           <CommentContainer>
-            <div className="flex-auto">
-              <NicknameContainer>
-                <div className="flex flex-row justify-between w-full">
-                  <div className="w-fit flex flex-row">
-                    <BadgeEmoji
-                      className="mr-2"
-                      badgeId={commentData.badgeId}
-                    />
-                    <p className="mr-2">{commentData.nickname}</p>
-                  </div>
-                  <div className="text-xs">
-                    <p>
-                      {new Date(commentData.createdAt).toLocaleDateString(
-                        "ko-KR"
-                      )}
-                    </p>
-                  </div>
-                </div>
-              </NicknameContainer>
-            </div>
+            <CommentItemHeader
+              badgeId={commentData.badgeId}
+              nickname={commentData.nickname}
+              createdAt={commentData.createdAt}
+            />
             <CommentContextContainer>
               <p>{commentData.commentContent}</p>
             </CommentContextContainer>
@@ -95,24 +83,27 @@ const Comment = ({ commentData }) => {
               </CommentButtonContainer>
             ) : (
               <CommentButtonContainer>
-                {/* <button>
+                <button
+                  onClick={() => {
+                    setSubComment(!subComment);
+                  }}
+                >
                   <BsArrowReturnRight className="mr-1" />
-                </button> */}
+                </button>
               </CommentButtonContainer>
             )}
           </CommentContainer>
+          {subComment ? <SubCommentForm commentData={commentData} /> : <></>}
+          <SubCommentList commentData={commentData} />
         </>
       ) : (
         <>
           <CommentContainer>
-            <NicknameContainer>
-              <BadgeEmoji className="mr-2" badgeId={commentData.badgeId} />
-              <p className="mr-2">{commentData.nickname}</p>
-              <p className="text-xs">
-                {new Date(commentData.createdAt).toLocaleDateString("ko-KR")}
-              </p>
-            </NicknameContainer>
-
+            <CommentItemHeader
+              badgeId={commentData.badgeId}
+              nickname={commentData.nickname}
+              createdAt={commentData.createdAt}
+            />
             <CommentContextContainer>
               <textarea
                 className="bg-mWhite w-full focus:outline-none p-2"
@@ -133,13 +124,10 @@ const Comment = ({ commentData }) => {
                 </button>
               </CommentButtonContainer>
             ) : (
-              <CommentButtonContainer>
-                <button>
-                  <BsArrowReturnRight className="mr-1" />
-                </button>
-              </CommentButtonContainer>
+              <></>
             )}
           </CommentContainer>
+          <SubCommentList commentData={commentData} />
         </>
       )}
     </>
@@ -150,12 +138,9 @@ const CommentContainer = tw.div`
 w-full h-full bg-mWhite rounded-xl p-4
 `;
 
-const NicknameContainer = tw.div`
-flex text-s w-full h-full mb-2 flex-row
-`;
-
 const CommentContextContainer = tw.div`
-w-full h-full bg-mWhite rounded-xl p-2 `;
+w-full h-full bg-mWhite rounded-xl p-2
+`;
 
 const CommentButtonContainer = tw.div`
 flex justify-end

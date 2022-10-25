@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import BadgeEmoji from "components/common/BadgeEmoji";
 import { IoIosChatbubbles } from "react-icons/io";
 import { FaThumbsUp } from "react-icons/fa";
+import { timeForToday } from "utils/utils";
 
 const ReviewItem = ({ post }) => {
   return (
@@ -48,9 +49,7 @@ const ReviewItem = ({ post }) => {
         </div>
 
         <div className="justify-end w-full flex md:basis-2/12 px-1">
-          <p className="text-mWhite text-end">
-            {new Date(post.createdAt).toLocaleDateString("ko-KR")}
-          </p>
+          <p className="text-mWhite text-end">{timeForToday(post.createdAt)}</p>
         </div>
       </div>
     </Link>
