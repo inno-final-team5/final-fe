@@ -1,36 +1,36 @@
 import tw from "tailwind-styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import { AiOutlineCheck } from "react-icons/ai";
 import { Toast } from "components/common/Toast";
 import { addSubComment } from "apis/postApi";
 import CommunityButton from "components/community/CommunityButton";
+import UserContext from "contexts/UserContext";
 
-const SubcommentForm = ({ commentData }) => {
+const SubCommentForm = ({ commentData }) => {
   const queryClient = useQueryClient();
   const { id } = useParams();
-
-  const nickname = localStorage.getItem("nickname");
-  const badge = localStorage.getItem("badgeIcon");
-
+  const { nickname, mainBadge } = useContext(UserContext);
   const [subComment, setSubComment] = useState("");
+  const [activeSubComment, setActiveSubComment] = useState(true);
 
   const addSubCommentMutation = useMutation(addSubComment, {
     onError: (error) => {
       console.log(error);
     },
     onSuccess: () => {
-      console.log("성공");
+      setActiveSubComment(false);
       queryClient.invalidateQueries("post");
       Toast.fire({ icon: "success", title: "등록되었습니다." });
     },
   });
 
-  console.log(commentData);
-
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    if (subComment.length < 1) {
+      return Toast.fire({ icon: "error", title: "내용이 없습니다." });
+    }
 
     addSubCommentMutation.mutate({
       commentId: commentData.commentId,
@@ -43,37 +43,41 @@ const SubcommentForm = ({ commentData }) => {
 
   return (
     <>
-      <form className="ml-10">
-        <NicknameContainer>
-          <p className="mr-2">{badge}</p>
-          <p>{nickname}</p>
-        </NicknameContainer>
-        <div>
-          <textarea
-            id="subComment"
-            rows="3"
-            value={subComment}
-            onChange={(e) => {
-              setSubComment(e.target.value);
-            }}
-            className=" p-2 mt-2 w-full text-sm text-mBlack bg-mWhite rounded-lg focus:outline-none resize-none"
-            placeholder="댓글을 남겨주세요"
-            required
-          ></textarea>
-        </div>
-        <div className="flex justify-end">
-          <CommunityButton type="button" onClickHandler={onSubmitHandler}>
-            <AiOutlineCheck className="mr-1" />
-            등록
-          </CommunityButton>
-        </div>
-      </form>
+      {activeSubComment ? (
+        <form className="mr-10 bg-gray-400 rounded-lg p-2">
+          <NicknameContainer>
+            <span className="font-serif">{mainBadge}</span>
+            <span>{nickname}</span>
+          </NicknameContainer>
+          <div>
+            <textarea
+              id="subComment"
+              rows="3"
+              value={subComment}
+              onChange={(e) => {
+                setSubComment(e.target.value);
+              }}
+              className=" p-4 mt-2 w-full text-sm text-mBlack bg-mWhite rounded-lg focus:outline-none resize-none"
+              placeholder="댓글을 남겨주세요"
+              required
+            ></textarea>
+          </div>
+          <div className="flex justify-end">
+            <CommunityButton type="button" onClickHandler={onSubmitHandler}>
+              <AiOutlineCheck className="mr-1" />
+              등록
+            </CommunityButton>
+          </div>
+        </form>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
 
 const NicknameContainer = tw.div`
-flex text-m text-mYellow bg-mGray w-fit h-full p-2 rounded-xl
+flex text-m text-mYellow w-fit h-full p-2 rounded-xl items-center
 `;
 
-export default SubcommentForm;
+export default SubCommentForm;
