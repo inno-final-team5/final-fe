@@ -1,38 +1,34 @@
 import SockJs from "sockjs-client";
 import StompJs from "stompjs";
-// import socketio from "socket.io-client";
 
-// const socket = socketio.connect("https://yjcoding.shop/ws/websocket");
-
-// export const socketioConnect = () => {
-//   socket.emit("init", { name: "bella" });
-
-//   socket.on("welcome", (msg) => {
-//     console.log(msg);
-//   });
-// };
-
-const sock = new SockJs("https://yjcoding.shop/ws/");
+const sock = new SockJs("https://yjcoding.shop/ws");
 
 const stomp = StompJs.over(sock);
 
-const getToken = {
-  authorization: localStorage.getItem("accessToken"),
-  "refresh-token": localStorage.getItem("refreshToken"),
+export const sendNoticeData = (data) => {
+  stomp.send(`/sub/${data.receiver}`, {}, JSON.stringify(data));
 };
 
-export const stompConnect = () => {
+export const stompConnect = (nickname) => {
   try {
-    stomp.connect(getToken, () => {
-      // stomp.subscribe(
-      //   `/sub/alarm/user/${userId}`,
-      //   (data) => {
-      //     const newMessage = )JSON.parse(data.body;
-      //   },
-      //   getToken
-      // );
-      console.log("스톰프 연결");
-    });
+    stomp.connect(
+      {
+        token: localStorage.getItem("refreshToken"),
+      },
+      () => {
+        stomp.subscribe(
+          `/sub/${nickname}`,
+          (data) => {
+            const newMessage = JSON.parse(data.body);
+            console.log(newMessage);
+            // localStorage.setItem("receiver", newMessage.receiver);
+          },
+          {
+            token: localStorage.getItem("refreshToken"),
+          }
+        );
+      }
+    );
   } catch (error) {
     console.log(error);
   }
@@ -40,9 +36,12 @@ export const stompConnect = () => {
 
 export const stompDisConnect = () => {
   try {
-    stomp.disconnect(() => {
-      stomp.unsubscribe("sub-0");
-    }, getToken);
+    stomp.disconnect(
+      () => {
+        stomp.unsubscribe("sub-0");
+      },
+      { token: localStorage.getItem("refreshToken") }
+    );
   } catch (error) {
     console.log(error);
   }

@@ -4,16 +4,35 @@ import { BsFillBellFill } from "react-icons/bs";
 import { BsTrash } from "react-icons/bs";
 import { getNotice, deleteAllNotice } from "apis/noticeApi";
 import { useMutation, useQuery } from "react-query";
-import { useEffect } from "react";
-import { stompConnect, socketioConnect } from "./NoticeSoket";
 
+// import { useEffect } from "react";
+import { stompConnect } from "./NoticeSoket";
 const Notification = () => {
+  // useEffect(() => {
+  //   stompConnect();
+  // }, []);
+  // const webSocket = new WebSocket("wss://yjcoding.shop/ws/websocket");
+  // webSocket.onopen = function () {
+  //   webSocket.send(
+  //     {
+  //       authorization: localStorage.getItem("accessToken"),
+  //       "refresh-token": localStorage.getItem("refreshToken"),
+  //     },
+  //     JSON.stringify("보이시나요~~~")
+  //   );
+  //   console.log("서버와 웹 소켓 연결됨");
+  // };
+  // webSocket.onmessage = function (event) {
+  //   const data = JSON.parse(event.data);
+  //   console.log(data);
+  // };
+
   /**알림 전체목록 가져오기 */
-  // const getNoticeQuery = useQuery("noticeList", getNotice, {
-  //   onSuccess: (data) => {
-  //     console.log(data);
-  //   },
-  // });
+  const getNoticeQuery = useQuery("noticeList", getNotice, {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
 
   /**알림 전체 삭제 */
   // const deleteAllNoticeQuery = useMutation(() => deleteAllNotice, {
@@ -24,11 +43,6 @@ const Notification = () => {
   //     console.log(error);
   //   },
   // });
-
-  useEffect(() => {
-    // socketioConnect();
-    stompConnect();
-  }, []);
 
   return (
     <div>
@@ -41,9 +55,9 @@ const Notification = () => {
 
       <div className="flex justify-end mr-2">
         <button
-          onClick={() => {
-            // deleteAllNoticeQuery();
-          }}
+          // onClick={() => {
+          //   deleteAllNoticeQuery();
+          // }}
           className="text-xs text-mBlack hover:bg-mGray hover:text-white rounded-lg px-2 pb-1 pt-2 ml-2 flex"
         >
           <BsTrash className="mr-1" />
@@ -58,6 +72,7 @@ const Notification = () => {
         );
       })} */}
       <NotificationForm />
+      <div></div>
     </div>
   );
 };

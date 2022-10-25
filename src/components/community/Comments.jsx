@@ -6,7 +6,7 @@ const Comments = ({ commentData }) => {
   const accessToken = localStorage.getItem("accessToken");
 
   return (
-    <div className="bg-mGray rounded-lg">
+    <div className="bg-mGray rounded-lg mt-4">
       {commentData.length === 0 ? (
         <></>
       ) : (

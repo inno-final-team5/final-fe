@@ -10,8 +10,6 @@ import MobileNavbar from "./navbar/MobileNavbar";
 import ModalButton from "../Modal/ModalButton";
 import Notification from "../common/notification/Notification";
 
-import { BsFillBellFill } from "react-icons/bs";
-
 const Header = () => {
   const accessToken = localStorage.getItem("accessToken");
 
@@ -54,13 +52,14 @@ const Header = () => {
         </div>
 
         <div className="text-3xl lg:hidden flex items-center z-50 px-4 mt-3 mr-2">
-          {/* <button disabled className="text-mBlack">
-            <BsFillBellFill />
-          </button> */}
           <ModalButton content={<Notification />} />
         </div>
 
-        <MobileNavbar open={open} accessToken={accessToken} />
+        <MobileNavbar
+          open={open}
+          accessToken={accessToken}
+          logoutHandler={logoutHandler}
+        />
       </div>
     </header>
   );

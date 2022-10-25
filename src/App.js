@@ -1,16 +1,20 @@
 import Router from "./router/Router";
-// import { useEffect } from "react";
-// import { stompConnect } from "./components/common/notification/NoticeSoket"
+import {
+  stompConnect,
+  stompDisConnect,
+} from "components/common/notification/NoticeSoket";
+import { useEffect } from "react";
 
 function App() {
-  // const getToken = {
-  //   authorization: localStorage.getItem("accessToken"),
-  //   "refresh-token": localStorage.getItem("refreshToken"),
-  // };
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      stompConnect();
+    }
+    return () => {
+      stompDisConnect();
+    };
+  }, []);
 
-  // useEffect(() => {
-  //   stompConnect();
-  // })
   if (process.env.NODE_ENV === "production") {
     // console.log = function no_console() {};
   }

@@ -1,5 +1,5 @@
 import tw from "tailwind-styled-components";
-import { FaArrowLeft, FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { useQueryClient, useMutation, useQuery } from "react-query";
 import { getPostDetail, deletePost, updatePost } from "apis/postApi";
