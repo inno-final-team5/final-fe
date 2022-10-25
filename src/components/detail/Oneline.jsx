@@ -159,11 +159,11 @@ function Oneline({
                 className="mt-1"
                 onClick={() => {
                   addLike.mutate();
-                  stompConnect(nickname);
-                  sendNoticeData(noticeData);
-                  return () => {
-                    stompDisConnect();
-                  };
+                  // stompConnect(nickname);
+                  // sendNoticeData(noticeData);
+                  // return () => {
+                  //   stompDisConnect();
+                  // };
                 }}
               >
                 <FaRegThumbsUp size={29} />
