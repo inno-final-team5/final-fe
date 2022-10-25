@@ -161,63 +161,63 @@ function Oneline({
   // client.activate();
 
   //////////////////////////////////스톰프2
-  const client = useRef({});
+  // const client = useRef({});
 
-  useEffect(() => {
-    connect();
+  // useEffect(() => {
+  //   connect();
 
-    return () => disconnect();
-  }, []);
+  //   return () => disconnect();
+  // }, []);
 
-  const connect = () => {
-    client.current = new StompJs.Client({
-      brokerURL: "wss://yjcoding.shop/ws/websocket", // 웹소켓 서버로 직접 접속
-      // webSocketFactory: () => new SockJs("https://yjcoding.shop/ws/websocket"),
+  // const connect = () => {
+  //   client.current = new StompJs.Client({
+  //     brokerURL: "wss://yjcoding.shop/ws/websocket", // 웹소켓 서버로 직접 접속
+  //     // webSocketFactory: () => new SockJs("https://yjcoding.shop/ws/websocket"),
 
-      connectHeaders: {
-        authorization: localStorage.getItem("accessToken"),
-        "refresh-token": localStorage.getItem("refreshToken"),
-      },
-      debug: function (str) {
-        console.log(str);
-      },
-      reconnectDelay: 5000,
-      heartbeatIncoming: 4000,
-      heartbeatOutgoing: 4000,
-      onConnect: () => {
-        console.log("서버 클라이언트 연결");
-        // subscribe();
-      },
-      onStompError: (frame) => {
-        console.error(frame);
-      },
-    });
+  //     connectHeaders: {
+  //       authorization: localStorage.getItem("accessToken"),
+  //       "refresh-token": localStorage.getItem("refreshToken"),
+  //     },
+  //     debug: function (str) {
+  //       console.log(str);
+  //     },
+  //     reconnectDelay: 5000,
+  //     heartbeatIncoming: 4000,
+  //     heartbeatOutgoing: 4000,
+  //     onConnect: () => {
+  //       console.log("서버 클라이언트 연결");
+  //       // subscribe();
+  //     },
+  //     onStompError: (frame) => {
+  //       console.error(frame);
+  //     },
+  //   });
 
-    client.current.activate();
-  };
+  //   client.current.activate();
+  // };
 
-  const disconnect = () => {
-    client.current.deactivate();
-  };
+  // const disconnect = () => {
+  //   client.current.deactivate();
+  // };
 
-  const subscribe = () => {
-    console.log("구독");
-    // client.current.subscribe(`/sub/chat/${ROOM_SEQ}`, ({ body }) => {
-    //   setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
-    // });
-  };
+  // const subscribe = () => {
+  //   console.log("구독");
+  //   // client.current.subscribe(`/sub/chat/${ROOM_SEQ}`, ({ body }) => {
+  //   //   setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
+  //   // });
+  // };
 
-  const publish = () => {
-    console.log("연결됨");
-    if (!client.current.connected) {
-      return;
-    }
+  // const publish = () => {
+  //   console.log("연결됨");
+  //   if (!client.current.connected) {
+  //     return;
+  //   }
 
-    client.current.publish({
-      // destination: "/pub/chat",
-      // body: JSON.stringify({ roomSeq: ROOM_SEQ, message }),
-    });
-  };
+  //   client.current.publish({
+  //     // destination: "/pub/chat",
+  //     // body: JSON.stringify({ roomSeq: ROOM_SEQ, message }),
+  //   });
+  // };
   return (
     <div>
       <div className="container 2xl:px-10 mt-2 bg-gray-500 lg:h-8 md:h-24 rounded-2xl px-6 py-0 lg:py-7 sm:py-2 mx-auto flex items-center sm:flex-row flex-col">
