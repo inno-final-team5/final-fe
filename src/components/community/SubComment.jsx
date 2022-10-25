@@ -6,9 +6,9 @@ import UserContext from "contexts/UserContext";
 import { Toast } from "components/common/Toast";
 import { deleteSubComment, updateSubComment } from "apis/postApi";
 import CommentItemHeader from "./CommentItemHeader";
+import CommentItemFooter from "./CommentItemFooter";
 
 const SubComment = ({ data }) => {
-  console.log(data);
   const queryClient = useQueryClient();
   const { nickname } = useContext(UserContext);
   const [updateSubCommentMode, setUpdateSubCommentMode] = useState(false);
@@ -41,7 +41,7 @@ const SubComment = ({ data }) => {
 
   const submitSub = (id) => {
     if (updateSubCommentBody.current.value.length < 1) {
-      return Toast.fire({ icon: "warning", title: "내용이 없습니다." });
+      return Toast.fire({ icon: "error", title: "내용이 없습니다." });
     }
 
     updateSubCommentMutation.mutate({
@@ -62,21 +62,20 @@ const SubComment = ({ data }) => {
   });
 
   return (
-    <div className="mr-10">
+    <div
+      key={data.subCommentId}
+      className="mr-10 bg-mCream py-4 px-5 text-mBlack rounded-lg flex flex-col gap-2"
+    >
+      <CommentItemHeader
+        badgeId={data.badgeId}
+        nickname={data.nickname}
+        createdAt={data.createdAt}
+      />
       {!updateSubCommentMode ? (
-        <div
-          key={data.subCommentId}
-          className="bg-mCream py-4 px-5 text-mBlack rounded-lg flex flex-col gap-2"
-        >
-          <CommentItemHeader
-            badgeId={data.badgeId}
-            nickname={data.nickname}
-            createdAt={data.createdAt}
-          />
+        <>
           <p>{data.subCommentContent}</p>
-
           {nickname === data.nickname ? (
-            <div className="flex flex-row justify-end gap-2">
+            <CommentItemFooter>
               <button onClick={updateSub}>
                 <FaEdit className="mr-1" />
               </button>
@@ -87,21 +86,13 @@ const SubComment = ({ data }) => {
               >
                 <FaTrash className="mr-1" />
               </button>
-            </div>
+            </CommentItemFooter>
           ) : (
             <></>
           )}
-        </div>
+        </>
       ) : (
-        <div
-          key={data.subCommentId}
-          className="bg-mCream py-4 px-5 text-mBlack rounded-lg flex flex-col gap-2"
-        >
-          <CommentItemHeader
-            badgeId={data.badgeId}
-            nickname={data.nickname}
-            createdAt={data.createdAt}
-          />
+        <>
           <textarea
             className="bg-mCream w-full focus:outline-none p-2 resize-none"
             rows="3"
@@ -111,7 +102,7 @@ const SubComment = ({ data }) => {
             required
           ></textarea>
           {nickname === data.nickname ? (
-            <div className="flex flex-row justify-end gap-2">
+            <CommentItemFooter>
               <button onClick={cancelSub}>
                 <AiOutlineClose className="mr-1" />
               </button>
@@ -122,11 +113,11 @@ const SubComment = ({ data }) => {
               >
                 <AiOutlineCheck className="mr-1" />
               </button>
-            </div>
+            </CommentItemFooter>
           ) : (
             <></>
           )}
-        </div>
+        </>
       )}
     </div>
   );

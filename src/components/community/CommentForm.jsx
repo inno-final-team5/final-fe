@@ -38,35 +38,33 @@ const CommentForm = () => {
   };
 
   return (
-    <>
-      <form>
-        <div className="bg-mWhite p-2 rounded-lg">
-          <NicknameContainer>
-            <p className="mr-2">{badge}</p>
-            <p>{nickname}</p>
-          </NicknameContainer>
-          <div className="border-solid border-t-2">
-            <textarea
-              id="comment"
-              rows="3"
-              value={comment}
-              onChange={(e) => {
-                setComment(e.target.value);
-              }}
-              className=" p-2 mt-2 w-full text-sm text-mBlack bg-mWhite rounded-lg focus:outline-none"
-              placeholder="댓글을 남겨주세요"
-              required
-            ></textarea>
-          </div>
+    <form>
+      <div className="bg-mWhite p-2 rounded-lg">
+        <NicknameContainer>
+          <p className="mr-2">{badge}</p>
+          <p>{nickname}</p>
+        </NicknameContainer>
+        <div className="border-solid border-t-2">
+          <textarea
+            id="comment"
+            rows="3"
+            value={comment}
+            onChange={(e) => {
+              setComment(e.target.value);
+            }}
+            className=" p-2 mt-2 w-full text-sm text-mBlack bg-mWhite rounded-lg focus:outline-none"
+            placeholder="댓글을 남겨주세요"
+            required
+          ></textarea>
         </div>
-        <div className="flex justify-end">
-          <CommunityButton type="button" onClickHandler={onSubmitHandler}>
-            <AiOutlineCheck className="mr-1" />
-            등록
-          </CommunityButton>
-        </div>
-      </form>
-    </>
+      </div>
+      <div className="flex justify-end">
+        <CommunityButton type="button" onClickHandler={onSubmitHandler}>
+          <AiOutlineCheck className="mr-1" />
+          등록
+        </CommunityButton>
+      </div>
+    </form>
   );
 };
 

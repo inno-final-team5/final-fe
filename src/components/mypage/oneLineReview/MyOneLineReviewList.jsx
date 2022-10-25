@@ -6,16 +6,19 @@ import OneLineReviewItem from "components/mypage/oneLineReview/OneLineReviewItem
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import tw from "tailwind-styled-components/";
+
 const MyOneLineReviewList = () => {
-  const postsPerPage = 5;
-  const [page, setPage] = useState(1);
+  const reviewsPerPage = 5;
+  const [pageNum, setPageNum] = useState(1);
 
   const {
     isLoading,
     isError,
     error,
     data: myOneLineReviews,
-  } = useQuery("myOneLineReviews", getMyOneLineReviews);
+  } = useQuery("myOneLineReviews", getMyOneLineReviews, {
+    keepPreviousData: true,
+  });
 
   if (isLoading) {
     return <Spinner />;
@@ -31,12 +34,12 @@ const MyOneLineReviewList = () => {
     );
   }
 
-  const indexOfLast = page * postsPerPage;
-  const indexOfFirst = indexOfLast - postsPerPage;
+  const indexOfLast = pageNum * reviewsPerPage;
+  const indexOfFirst = indexOfLast - reviewsPerPage;
 
-  const currentPosts = (myPosts) => {
+  const currentPosts = (myOneLineReviews) => {
     let currentPosts = 0;
-    currentPosts = myPosts.data.slice(indexOfFirst, indexOfLast);
+    currentPosts = myOneLineReviews.data.slice(indexOfFirst, indexOfLast);
     return currentPosts;
   };
   const content = currentPosts(myOneLineReviews).map((oneLineReview) => (
@@ -46,27 +49,33 @@ const MyOneLineReviewList = () => {
     />
   ));
 
-  const totalPages = Math.ceil(myOneLineReviews.data.length / postsPerPage);
+  const totalPages = Math.ceil(myOneLineReviews.data.length / reviewsPerPage);
 
   const pagesArray = Array(totalPages)
     .fill()
     .map((_, index) => index + 1);
 
   return (
-    <OneLineReviewList>
-      {content}
-      <Pagination
-        page={page}
-        setPage={setPage}
-        totalPages={totalPages}
-        pagesArray={pagesArray}
-      />
-    </OneLineReviewList>
+    <MyReviewContainer>
+      <OneLineReviewList>
+        {content}
+        <Pagination
+          page={pageNum}
+          setPage={setPageNum}
+          totalPages={totalPages}
+          pagesArray={pagesArray}
+        />
+      </OneLineReviewList>
+    </MyReviewContainer>
   );
 };
 
+const MyReviewContainer = tw.div`
+  bg-mBlack
+`;
+
 const OneLineReviewList = tw.div`
- bg-mBlack h-full md:min-h-[28rem]
+ h-full md:min-h-[28rem]
 `;
 
 export default MyOneLineReviewList;

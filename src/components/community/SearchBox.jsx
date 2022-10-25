@@ -36,7 +36,7 @@ const SearchBox = () => {
             placeholder="키워드를 입력하세요"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
-            className="h-8 rounded-lg pl-2 py-4 w-64"
+            className="h-8 rounded-lg pl-2 py-4 w-45 lg:w-64"
           />
           <button
             type="submit"
