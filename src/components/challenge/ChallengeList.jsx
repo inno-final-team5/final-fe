@@ -13,7 +13,6 @@ const ChallengeList = () => {
   } else if (isError) {
     content = <p>{error.message}</p>;
   } else {
-    console.log(challenges);
     content = challenges.data.map((challenge) => {
       return (
         <ChallengeItem
