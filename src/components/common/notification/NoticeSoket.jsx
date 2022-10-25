@@ -12,7 +12,7 @@ import StompJs from "stompjs";
 //   });
 // };
 
-const sock = new SockJs("https://yjcoding.shop/ws-stomp");
+const sock = new SockJs("https://yjcoding.shop/ws/");
 
 const stomp = StompJs.over(sock);
 
