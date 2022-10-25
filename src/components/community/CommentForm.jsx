@@ -40,22 +40,24 @@ const CommentForm = () => {
   return (
     <>
       <form>
-        <NicknameContainer>
-          <p className="mr-2">{badge}</p>
-          <p>{nickname}</p>
-        </NicknameContainer>
-        <div>
-          <textarea
-            id="comment"
-            rows="3"
-            value={comment}
-            onChange={(e) => {
-              setComment(e.target.value);
-            }}
-            className=" p-2 mt-2 w-full text-sm text-mBlack bg-mWhite rounded-lg focus:outline-none resize-none"
-            placeholder="댓글을 남겨주세요"
-            required
-          ></textarea>
+        <div className="bg-mWhite p-2 rounded-lg">
+          <NicknameContainer>
+            <p className="mr-2">{badge}</p>
+            <p>{nickname}</p>
+          </NicknameContainer>
+          <div className="border-solid border-t-2">
+            <textarea
+              id="comment"
+              rows="3"
+              value={comment}
+              onChange={(e) => {
+                setComment(e.target.value);
+              }}
+              className=" p-2 mt-2 w-full text-sm text-mBlack bg-mWhite rounded-lg focus:outline-none"
+              placeholder="댓글을 남겨주세요"
+              required
+            ></textarea>
+          </div>
         </div>
         <div className="flex justify-end">
           <CommunityButton type="button" onClickHandler={onSubmitHandler}>
@@ -69,7 +71,7 @@ const CommentForm = () => {
 };
 
 const NicknameContainer = tw.div`
-flex text-m text-mYellow bg-mGray w-fit h-full p-2 rounded-xl
+flex text-m text-mBlack  w-fit h-full p-2 rounded-xl 
 `;
 
 export default CommentForm;

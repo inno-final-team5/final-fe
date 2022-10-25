@@ -2,13 +2,13 @@ import tw from "tailwind-styled-components";
 import { BsArrowReturnRight } from "react-icons/bs";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import BadgeEmoji from "components/common/BadgeEmoji";
-import SubcommentForm from "./SubcommentForm";
+import SubCommentForm from "./SubCommentForm";
 import { useQueryClient, useMutation } from "react-query";
 import { deleteComment, updateComment } from "apis/postApi";
 import { Toast } from "components/common/Toast";
 import { useState, useRef } from "react";
-import Subcomment from "./SubComment";
+import SubCommentList from "./SubCommentList";
+import CommentItemHeader from "./CommentItemHeader";
 
 const Comment = ({ commentData }) => {
   const queryClient = useQueryClient();
@@ -63,15 +63,11 @@ const Comment = ({ commentData }) => {
       {!updateCommentMode ? (
         <>
           <CommentContainer>
-            <div className="flex-auto">
-              <NicknameContainer>
-                <BadgeEmoji className="mr-2" badgeId={commentData.badgeId} />
-                <p className="mr-2">{commentData.nickname}</p>
-                <p>
-                  {new Date(commentData.createdAt).toLocaleDateString("ko-KR")}
-                </p>
-              </NicknameContainer>
-            </div>
+            <CommentItemHeader
+              badgeId={commentData.badgeId}
+              nickname={commentData.nickname}
+              createdAt={commentData.createdAt}
+            />
             <CommentContextContainer>
               <p>{commentData.commentContent}</p>
             </CommentContextContainer>
@@ -97,21 +93,17 @@ const Comment = ({ commentData }) => {
               </CommentButtonContainer>
             )}
           </CommentContainer>
-          {subComment ? <SubcommentForm commentData={commentData} /> : <></>}
-          <Subcomment commentData={commentData} />
+          {subComment ? <SubCommentForm commentData={commentData} /> : <></>}
+          <SubCommentList commentData={commentData} />
         </>
       ) : (
         <>
           <CommentContainer>
-            <div className="flex-auto">
-              <NicknameContainer>
-                <BadgeEmoji className="mr-2" badgeId={commentData.badgeId} />
-                <p className="mr-2">{commentData.nickname}</p>
-                <p>
-                  {new Date(commentData.createdAt).toLocaleDateString("ko-KR")}
-                </p>
-              </NicknameContainer>
-            </div>
+            <CommentItemHeader
+              badgeId={commentData.badgeId}
+              nickname={commentData.nickname}
+              createdAt={commentData.createdAt}
+            />
             <CommentContextContainer>
               <textarea
                 className="bg-mWhite w-full focus:outline-none p-2 resize-none"
@@ -135,7 +127,7 @@ const Comment = ({ commentData }) => {
               <></>
             )}
           </CommentContainer>
-          <Subcomment commentData={commentData} />
+          <SubCommentList commentData={commentData} />
         </>
       )}
     </>
@@ -144,10 +136,6 @@ const Comment = ({ commentData }) => {
 
 const CommentContainer = tw.div`
 w-full h-full bg-mWhite rounded-xl p-4
-`;
-
-const NicknameContainer = tw.div`
-flex text-s text-mBlack w-fit h-full mb-2
 `;
 
 const CommentContextContainer = tw.div`

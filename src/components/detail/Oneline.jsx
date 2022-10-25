@@ -6,11 +6,29 @@ import styled from "styled-components";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import BadgeEmoji from "../common/BadgeEmoji";
 import { Toast } from "components/common/Toast";
-import { addCommentLike, deleteCommentLike, getMyLikeComment } from "apis/oneLineReviewApi";
+import {
+  addCommentLike,
+  deleteCommentLike,
+  getMyLikeComment,
+} from "apis/oneLineReviewApi";
 import { useNavigate } from "react-router-dom";
 import { getUserLineList } from "apis/oneLineReviewApi";
 
-function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, likeNum, badgeId }) {
+import SockJs from "sockjs-client";
+import StompJs from "stompjs";
+// import SockJs from "sockjs-client";
+// import * as StompJs from "stompjs";
+import { useRef } from "react";
+import { useEffect } from "react";
+
+function Oneline({
+  reviewId,
+  oneLineReviewStar,
+  oneLineReviewContent,
+  nickname,
+  likeNum,
+  badgeId,
+}) {
   const queryClient = useQueryClient();
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
@@ -62,6 +80,144 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
     return getUserLineList(user);
   };
 
+  ////////////////////////////////////////////////웹소켓
+
+  // const webSocket = new WebSocket("wss://yjcoding.shop/");
+  // webSocket.onopen = function () {
+  //   webSocket.send({
+  //     authorization: localStorage.getItem("accessToken"),
+  //     "refresh-token": localStorage.getItem("refreshToken"),
+  //   });
+  //   console.log("서버와 웹 소켓 연결됨");
+  // };
+  // webSocket.onmessage = function (event) {
+  //   console.log(event.data);
+  //   webSocket.send("클라이언트에서 서버로 답장을 보냅니다.");
+  // };
+  /////////////////////////////////쿼리 ,웹소켓
+  // const useReactQuerySubscription = () => {
+  //   // const queryClient = useQueryClient();
+  //   React.useEffect(() => {
+  //     const websocket = new WebSocket("wss://yjcoding.shop/ws");
+  //     websocket.onopen = () => {
+  //       console.log("connected");
+  //     };
+  //     websocket.onmessage = (event) => {
+  //       console.log(event.data);
+  //       websocket.send("클라이언트에서 서버로 답장을 보냅니다.");
+  //       // const data = JSON.parse(event.data);
+  //       // const queryKey = [...data.entity, data.id].filter(Boolean);
+  //       // queryClient.invalidateQueries(queryKey);
+  //     };
+
+  //     return () => {
+  //       websocket.close();
+  //     };
+  //   }, []);
+  // };
+  ////////////////
+  // React.useEffect(() => {
+  //   const websocket = new WebSocket("wss://yjcoding.shop/ws");
+  //   websocket.onopen = () => {
+  //     console.log("connected");
+  //   };
+
+  //   return () => {
+  //     websocket.close();
+  //   };
+  // }, []);
+  ////////////////////////////////스톰프1
+  // const sock = new SockJs("http://13.124.170.188/auth/notification");
+  // stompClient.current = Stomp.over(socket);
+
+  // const client = new StompJs.Client({
+  //   brokerURL: "wss://yjcoding.shop/ws/websocket",
+  //   connectHeaders: {
+  //     authorization: localStorage.getItem("accessToken"),
+  //     "refresh-token": localStorage.getItem("refreshToken"),
+  //   },
+  //   debug: function () {
+  //     console.log();
+  //   },
+  //   reconnectDelay: 5000,
+  //   heartbeatIncoming: 4000,
+  //   heartbeatOutgoing: 4000,
+  // });
+
+  // client.onConnect = function (frame) {
+  //   console.log("스톰프 / 서버랑 연결됨");
+  //   // Do something, all subscribes must be done is this callback
+  //   // This is needed because this will be executed after a (re)connect
+  // };
+
+  // client.onStompError = function (frame) {
+  //   // Will be invoked in case of error encountered at Broker
+  //   // Bad login/passcode typically will cause an error
+  //   // Complaint brokers will set `message` header with a brief message. Body may contain details.
+  //   // Compliant brokers will terminate the connection after any error
+  //   console.log("Broker reported error: " + frame.headers["message"]);
+  //   console.log("Additional details: " + frame.body);
+  // };
+  // client.activate();
+
+  //////////////////////////////////스톰프2
+  // const client = useRef({});
+
+  // useEffect(() => {
+  //   connect();
+
+  //   return () => disconnect();
+  // }, []);
+
+  // const connect = () => {
+  //   client.current = new StompJs.Client({
+  //     brokerURL: "wss://yjcoding.shop/ws/websocket", // 웹소켓 서버로 직접 접속
+  //     // webSocketFactory: () => new SockJs("https://yjcoding.shop/ws/websocket"),
+
+  //     connectHeaders: {
+  //       authorization: localStorage.getItem("accessToken"),
+  //       "refresh-token": localStorage.getItem("refreshToken"),
+  //     },
+  //     debug: function (str) {
+  //       console.log(str);
+  //     },
+  //     reconnectDelay: 5000,
+  //     heartbeatIncoming: 4000,
+  //     heartbeatOutgoing: 4000,
+  //     onConnect: () => {
+  //       console.log("서버 클라이언트 연결");
+  //       // subscribe();
+  //     },
+  //     onStompError: (frame) => {
+  //       console.error(frame);
+  //     },
+  //   });
+
+  //   client.current.activate();
+  // };
+
+  // const disconnect = () => {
+  //   client.current.deactivate();
+  // };
+
+  // const subscribe = () => {
+  //   console.log("구독");
+  //   // client.current.subscribe(`/sub/chat/${ROOM_SEQ}`, ({ body }) => {
+  //   //   setChatMessages((_chatMessages) => [..._chatMessages, JSON.parse(body)]);
+  //   // });
+  // };
+
+  // const publish = () => {
+  //   console.log("연결됨");
+  //   if (!client.current.connected) {
+  //     return;
+  //   }
+
+  //   client.current.publish({
+  //     // destination: "/pub/chat",
+  //     // body: JSON.stringify({ roomSeq: ROOM_SEQ, message }),
+  //   });
+  // };
   return (
     <div>
       <div className="container 2xl:px-10 mt-2 bg-gray-500 lg:h-8 md:h-24 rounded-2xl px-6 py-0 lg:py-7 sm:py-2 mx-auto flex items-center sm:flex-row flex-col">
@@ -76,7 +232,9 @@ function Oneline({ reviewId, oneLineReviewStar, oneLineReviewContent, nickname, 
               <BadgeEmoji badgeId={badgeId} />
             </div>
             <div className="flex ml-3 lg:w-32 md:w-20 sm:w-20 ">
-              <span className="text-sm text-mCream sm:text-xs font-normal hover:text-yellow-500">{nickname}</span>
+              <span className="text-sm text-mCream sm:text-xs font-normal hover:text-yellow-500">
+                {nickname}
+              </span>
             </div>
           </a>
           <div>

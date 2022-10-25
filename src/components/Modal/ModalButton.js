@@ -15,16 +15,16 @@ function ModalButton({ content }) {
   };
 
   return (
-    <div>
+    <>
       <Button type="button" onClick={openModal}>
-        <BsFillBellFill className="ml-4 text-2xl text-yellow-500 hover:text-mCream" />
+        <BsFillBellFill className="ml-4 mb-3 text-xl text-mGray lg:text-mBlack lg:text-lg lg:mb-0" />
       </Button>
       <ModalWindow
         open={modalOpen}
         close={closeModal}
         content={content}
       ></ModalWindow>
-    </div>
+    </>
   );
 }
 

@@ -2,8 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const NavMainMenu = ({ link, name }) => {
-  const activeLink = `my-5 flex items-center gap-2 text-mYellow font-bold text-md`;
-  const normalLink = `my-5 flex items-center gap-2 text-mCream text-md`;
+  const activeLink = ` flex items-center text-mYellow text-sm xl:text-lg py-4 md:py-0`;
+  const normalLink = ` flex items-center py-4 md:py-0 text-sm text-mCream xl:text-lg`;
 
   return (
     <NavLink

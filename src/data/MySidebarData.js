@@ -8,11 +8,15 @@ export const MySidebarData = [
     path: "./posts",
   },
   {
-    title: "🖋 나의 한줄평",
-    path: "./comments",
+    title: "✍ 나의 한줄평",
+    path: "./onelinereviews",
   },
   {
     title: "🏆 나의 챌린지",
     path: "./badges",
+  },
+  {
+    title: "🔒 나의 정보",
+    path: "./info",
   },
 ];

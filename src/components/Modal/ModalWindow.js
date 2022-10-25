@@ -1,18 +1,14 @@
-import React from 'react';
-import './ModalWindow.css';
-import PropTypes from 'prop-types';
+import React from "react";
+import "./ModalWindow.css";
+import PropTypes from "prop-types";
 
 function ModalWindow({ open, close, content }) {
   return (
-    <div className={open ? 'openModal modal' : 'modal'}>
+    <div className={open ? "openModal modal" : "modal"}>
       {open && (
         <section>
           <header>
-            <button
-              type="button"
-              className="close"
-              onClick={close}
-            >
+            <button type="button" className="close" onClick={close}>
               &times;
             </button>
           </header>
