@@ -5,7 +5,7 @@ import { BsTrash } from "react-icons/bs";
 import { getNotice, deleteAllNotice } from "apis/noticeApi";
 import { useMutation, useQuery } from "react-query";
 import { useEffect } from "react";
-import { stompConnect } from "./NoticeSoket";
+import { stompConnect, socketioConnect } from "./NoticeSoket";
 
 const Notification = () => {
   /**알림 전체목록 가져오기 */
@@ -26,6 +26,7 @@ const Notification = () => {
   // });
 
   useEffect(() => {
+    // socketioConnect();
     stompConnect();
   }, []);
 
