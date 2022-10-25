@@ -11,7 +11,6 @@ const Comments = ({ commentData }) => {
         <></>
       ) : (
         <>
-          {" "}
           <CommentFormContainer>
             <CommentFormContentsContainer>
               <CommentForm />
@@ -40,7 +39,7 @@ bg-mGray p-4 text-mBlack rounded-lg mt-3
 `;
 
 const CommentsContentsContainer = tw.div`
-px-4 py-2 flex gap-4 flex-col h-full 
+px-4 py-2 flex gap-2 flex-col h-full 
 `;
 
 const CommentFormContainer = tw.div`

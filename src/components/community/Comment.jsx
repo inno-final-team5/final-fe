@@ -3,15 +3,19 @@ import { BsArrowReturnRight } from "react-icons/bs";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import BadgeEmoji from "components/common/BadgeEmoji";
+import SubcommentForm from "./SubcommentForm";
 import { useQueryClient, useMutation } from "react-query";
 import { deleteComment, updateComment } from "apis/postApi";
 import { Toast } from "components/common/Toast";
 import { useState, useRef } from "react";
+import Subcomment from "./SubComment";
 
 const Comment = ({ commentData }) => {
   const queryClient = useQueryClient();
   const nickname = localStorage.getItem("nickname");
   const [updateCommentMode, setUpdateCommentMode] = useState(false);
+
+  const [subComment, setSubComment] = useState(false);
   const updateCommentBody = useRef("");
 
   const onDeleteHandler = () => {
@@ -42,7 +46,6 @@ const Comment = ({ commentData }) => {
       commentContent: updateCommentBody.current.value,
     });
   };
-  console.log(commentData.commentId);
 
   const updateCommentMutation = useMutation(updateComment, {
     onSuccess: () => {
@@ -84,12 +87,18 @@ const Comment = ({ commentData }) => {
               </CommentButtonContainer>
             ) : (
               <CommentButtonContainer>
-                {/* <button>
+                <button
+                  onClick={() => {
+                    setSubComment(!subComment);
+                  }}
+                >
                   <BsArrowReturnRight className="mr-1" />
-                </button> */}
+                </button>
               </CommentButtonContainer>
             )}
           </CommentContainer>
+          {subComment ? <SubcommentForm commentData={commentData} /> : <></>}
+          <Subcomment commentData={commentData} />
         </>
       ) : (
         <>
@@ -123,13 +132,10 @@ const Comment = ({ commentData }) => {
                 </button>
               </CommentButtonContainer>
             ) : (
-              <CommentButtonContainer>
-                <button>
-                  <BsArrowReturnRight className="mr-1" />
-                </button>
-              </CommentButtonContainer>
+              <></>
             )}
           </CommentContainer>
+          <Subcomment commentData={commentData} />
         </>
       )}
     </>

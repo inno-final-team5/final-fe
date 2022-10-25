@@ -89,7 +89,6 @@ const CommunityDetail = () => {
   }
 
   let postData = post.data;
-
   let commentData = post.data.commentResponseDtoList;
 
   return (

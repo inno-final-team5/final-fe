@@ -21,7 +21,6 @@ export const getMoviePosts = async () => {
 /** 커뮤니티- 게시글 상세 조회 */
 export const getPostDetail = async (id) => {
   const response = await api.get(`/post/${id}`);
-  console.log(response.data);
   return response.data;
 };
 
@@ -75,5 +74,30 @@ export const deleteComment = async ({ commentId }) => {
 export const updateComment = async ({ commentId, commentContent }) => {
   return await authApi.put(`/auth/post/comment/${commentId}`, {
     commentContent,
+  });
+};
+
+/** 커뮤니티 - 새 대댓글 작성 */
+export const addSubComment = async ({
+  postId,
+  commentId,
+  subCommentContent,
+}) => {
+  return await authApi.post(`/auth/post/subComment`, {
+    subCommentContent,
+    postId,
+    commentId,
+  });
+};
+
+/** 커뮤니티 - 작성한 대댓글 삭제 */
+export const deleteSubComment = async ({ subCommentId }) => {
+  return await authApi.delete(`/auth/post/subComment/${subCommentId}`);
+};
+
+/** 커뮤니티 - 작성한 대댓글 수정 */
+export const updateSubComment = async ({ SubCommentId, subCommentContent }) => {
+  return await authApi.put(`/auth/post/subComment/${SubCommentId}`, {
+    subCommentContent,
   });
 };
