@@ -7,18 +7,20 @@ import { Toast } from "components/common/Toast";
 import { addSubComment } from "apis/postApi";
 import CommunityButton from "components/community/CommunityButton";
 import UserContext from "contexts/UserContext";
+
 const SubCommentForm = ({ commentData }) => {
   const queryClient = useQueryClient();
   const { id } = useParams();
   const { nickname, mainBadge } = useContext(UserContext);
   const [subComment, setSubComment] = useState("");
+  const [activeSubComment, setActiveSubComment] = useState(true);
 
   const addSubCommentMutation = useMutation(addSubComment, {
     onError: (error) => {
       console.log(error);
     },
     onSuccess: () => {
-      console.log("성공");
+      setActiveSubComment(false);
       queryClient.invalidateQueries("post");
       Toast.fire({ icon: "success", title: "등록되었습니다." });
     },
@@ -40,31 +42,37 @@ const SubCommentForm = ({ commentData }) => {
   };
 
   return (
-    <form className="mr-10 bg-gray-400 rounded-lg p-2">
-      <NicknameContainer>
-        <span className="font-serif">{mainBadge}</span>
-        <span>{nickname}</span>
-      </NicknameContainer>
-      <div>
-        <textarea
-          id="subComment"
-          rows="3"
-          value={subComment}
-          onChange={(e) => {
-            setSubComment(e.target.value);
-          }}
-          className=" p-4 mt-2 w-full text-sm text-mBlack bg-mWhite rounded-lg focus:outline-none"
-          placeholder="댓글을 남겨주세요"
-          required
-        ></textarea>
-      </div>
-      <div className="flex justify-end">
-        <CommunityButton type="button" onClickHandler={onSubmitHandler}>
-          <AiOutlineCheck className="mr-1" />
-          등록
-        </CommunityButton>
-      </div>
-    </form>
+    <>
+      {activeSubComment ? (
+        <form className="mr-10 bg-gray-400 rounded-lg p-2">
+          <NicknameContainer>
+            <span className="font-serif">{mainBadge}</span>
+            <span>{nickname}</span>
+          </NicknameContainer>
+          <div>
+            <textarea
+              id="subComment"
+              rows="3"
+              value={subComment}
+              onChange={(e) => {
+                setSubComment(e.target.value);
+              }}
+              className=" p-4 mt-2 w-full text-sm text-mBlack bg-mWhite rounded-lg focus:outline-none resize-none"
+              placeholder="댓글을 남겨주세요"
+              required
+            ></textarea>
+          </div>
+          <div className="flex justify-end">
+            <CommunityButton type="button" onClickHandler={onSubmitHandler}>
+              <AiOutlineCheck className="mr-1" />
+              등록
+            </CommunityButton>
+          </div>
+        </form>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 
