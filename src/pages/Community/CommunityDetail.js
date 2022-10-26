@@ -85,7 +85,6 @@ const CommunityDetail = () => {
   }
 
   let postData = post.data;
-
   let commentData = post.data.commentResponseDtoList;
 
   return (
@@ -153,7 +152,7 @@ const CommunityDetail = () => {
               </DetailTitle>
               <DetailContent>
                 <textarea
-                  className="bg-mWhite w-full focus:outline-none"
+                  className="bg-mWhite w-full focus:outline-none resize-none"
                   rows="10"
                   defaultValue={postData.postContent}
                   autoFocus

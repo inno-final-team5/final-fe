@@ -15,7 +15,7 @@ const Comment = ({ commentData }) => {
   const nickname = localStorage.getItem("nickname");
   const [updateCommentMode, setUpdateCommentMode] = useState(false);
 
-  const [subComment, setSubComment] = useState(false);
+  const [activeSubComment, setActiveSubComment] = useState(false);
   const updateCommentBody = useRef("");
 
   const onDeleteHandler = () => {
@@ -85,7 +85,7 @@ const Comment = ({ commentData }) => {
               <CommentButtonContainer>
                 <button
                   onClick={() => {
-                    setSubComment(!subComment);
+                    setActiveSubComment(!activeSubComment);
                   }}
                 >
                   <BsArrowReturnRight className="mr-1" />
@@ -93,7 +93,11 @@ const Comment = ({ commentData }) => {
               </CommentButtonContainer>
             )}
           </CommentContainer>
-          {subComment ? <SubCommentForm commentData={commentData} /> : <></>}
+          {activeSubComment ? (
+            <SubCommentForm commentData={commentData} />
+          ) : (
+            <></>
+          )}
           <SubCommentList commentData={commentData} />
         </>
       ) : (
@@ -106,7 +110,7 @@ const Comment = ({ commentData }) => {
             />
             <CommentContextContainer>
               <textarea
-                className="bg-mWhite w-full focus:outline-none p-2"
+                className="bg-mWhite w-full focus:outline-none p-2 resize-none"
                 rows="3"
                 autoFocus
                 defaultValue={commentData.commentContent}
