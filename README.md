@@ -40,7 +40,7 @@
 FE &nbsp; - &nbsp; [문지웅](https://github.com/woongsnote) &nbsp; [유민아](https://github.com/maydec2298) &nbsp; [전혜림](https://github.com/hyelim-JEON) &nbsp; [장소정](https://github.com/sydneyyyyyyy)
 
 BE &nbsp; - &nbsp; [전선향](https://github.com/petal416) &nbsp; [유연정](https://github.com/Jei-you) &nbsp; [정수민](https://github.com/jsm6943)
-
+<br>
 ## ⚙️ <b>Tech Stack</b> 🛠
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Java-yellow?style=flat-square&logo=java&logoColor=white"/>
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Spring-green?style=flat-square&logo=Spring&logoColor=white"/> 
@@ -59,7 +59,7 @@ BE &nbsp; - &nbsp; [전선향](https://github.com/petal416) &nbsp; [유연정](h
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/> 
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=React Router&logoColor=white"/> 
 <img style="margin:5px; border: 2px solid white; border-radius: 20px" src="https://img.shields.io/badge/CloudFront-black?style=flat-square&logoColor=white"/> 
-
+<br>
 </div>
 
 ## <b>📚 주요 기능</b>
