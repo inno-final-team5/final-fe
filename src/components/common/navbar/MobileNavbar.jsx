@@ -5,6 +5,7 @@ import { communityLinks } from "./MyLinks";
 import NavMainMenu from "./NavMainMenu";
 import NavSubLinks from "./NavSubLinks";
 import { myLinks } from "./MyLinks";
+
 const MobileNavbar = ({ open, accessToken, logoutHandler }) => {
   return (
     <ul
@@ -21,7 +22,7 @@ const MobileNavbar = ({ open, accessToken, logoutHandler }) => {
             <LogoutButton logoutHandler={logoutHandler} />
           </div>
           <div className="text-mCream">
-            <div className="pl-8 md:hidden">
+            <div className="pl-8 lg:hidden">
               <NavSubLinks links={myLinks} />
             </div>
           </div>

@@ -1,17 +1,11 @@
 import tw from "tailwind-styled-components";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import { AiOutlineCheck } from "react-icons/ai";
 import { Toast } from "components/common/Toast";
-import { addComment, getPostDetail } from "apis/postApi";
+import { addComment } from "apis/postApi";
 import CommunityButton from "components/community/CommunityButton";
-import {
-  sendNoticeData,
-  stompConnect,
-  stompDisConnect,
-} from "../common/notification/NoticeSoket";
-import { useQuery } from "react-query";
 
 const CommentForm = () => {
   const queryClient = useQueryClient();
@@ -21,23 +15,6 @@ const CommentForm = () => {
   const badge = localStorage.getItem("badgeIcon");
 
   const [comment, setComment] = useState("");
-
-  const { data: post } = useQuery(["post", id], () => getPostDetail(id));
-
-  const noticeData = {
-    sender: nickname,
-    receiver: post.data.nickname,
-    post: post.data,
-    type: "postComment",
-  };
-
-  useEffect(() => {
-    stompConnect(post.data.nickname);
-
-    return () => {
-      stompDisConnect();
-    };
-  }, []);
 
   const addCommentMutation = useMutation(addComment, {
     onError: (error) => {
@@ -57,7 +34,6 @@ const CommentForm = () => {
       commentContent: comment,
     });
 
-    sendNoticeData(noticeData);
     setComment("");
   };
 
