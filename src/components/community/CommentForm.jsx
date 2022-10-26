@@ -21,7 +21,7 @@ const CommentForm = () => {
   const badge = localStorage.getItem("badgeIcon");
 
   const [comment, setComment] = useState("");
-
+  //////////////
   const { data: post } = useQuery(["post", id], () => getPostDetail(id));
 
   const noticeData = {
@@ -38,7 +38,7 @@ const CommentForm = () => {
       stompDisConnect();
     };
   }, []);
-
+  /////////////
   const addCommentMutation = useMutation(addComment, {
     onError: (error) => {
       console.log(error);

@@ -16,12 +16,12 @@ import { getUserLineList } from "apis/oneLineReviewApi";
 
 import { useParams } from "react-router-dom";
 import { getMovieSum } from "apis/movieApi";
-import {
-  sendNoticeData,
-  stompConnect,
-  stompDisConnect,
-} from "../common/notification/NoticeSoket";
-import { useEffect } from "react";
+// import {
+//   sendNoticeData,
+//   stompConnect,
+//   stompDisConnect,
+// } from "../common/notification/NoticeSoket";
+// import { useEffect } from "react";
 
 function Oneline({
   reviewId,
@@ -35,18 +35,17 @@ function Oneline({
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
   /////////////////////////
-  const params = useParams();
-  const id = params.id;
+  // const params = useParams();
+  // const id = params.id;
 
-  const { data: movie } = useQuery(["movieList", id], () => getMovieSum(id));
+  // const { data: movie } = useQuery(["movieList", id], () => getMovieSum(id));
 
-  const noticeData = {
-    sender: localStorage.getItem("nickname"),
-    receiver: nickname,
-    movie: movie.data.title,
-    type: "oneLineReviewLike",
-  };
-
+  // const noticeData = {
+  //   sender: localStorage.getItem("nickname"),
+  //   receiver: nickname,
+  //   movie: movie.data,
+  //   type: "oneLineReviewLike",
+  // };
   // useEffect(() => {
   //   stompConnect(nickname);
 

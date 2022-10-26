@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
 import { FaThumbsUp, FaRegThumbsUp } from "react-icons/fa";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
@@ -18,7 +19,7 @@ import {
 const LikeButton = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
-
+  //////////
   const { data: post } = useQuery(["post", id], () => getPostDetail(id));
 
   const noticeData = {
@@ -27,15 +28,17 @@ const LikeButton = () => {
     post: post.data,
     type: "postLike",
   };
+  const [postId, setPostId] = useState();
 
   useEffect(() => {
+    setPostId(id);
     stompConnect(post.data.nickname);
 
     return () => {
       stompDisConnect();
     };
-  }, []);
-
+  }, [postId]);
+  ////////////
   const {
     data: myLike,
     isLoading,
