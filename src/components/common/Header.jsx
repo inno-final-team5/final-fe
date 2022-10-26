@@ -7,8 +7,6 @@ import UserBox from "./navbar/UserBox";
 import LogoBox from "./LogoBox";
 import { MdClose, MdMenu } from "react-icons/md";
 import MobileNavbar from "./navbar/MobileNavbar";
-import ModalButton from "../Modal/ModalButton";
-import Notification from "../common/notification/Notification";
 
 const Header = () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -50,11 +48,7 @@ const Header = () => {
             )}
           </div>
         </div>
-
-        <div className="text-3xl lg:hidden flex items-center z-50 px-4 mt-3 mr-2">
-          <ModalButton content={<Notification />} />
-        </div>
-
+        <div className="p-7"></div>
         <MobileNavbar
           open={open}
           accessToken={accessToken}
