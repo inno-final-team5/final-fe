@@ -64,7 +64,7 @@ const SubComment = ({ data }) => {
   return (
     <div
       key={data.subCommentId}
-      className="mr-10 bg-mCream py-4 px-5 text-mBlack rounded-lg flex flex-col gap-2"
+      className="ml-10 bg-mCream py-4 px-5 text-mBlack rounded-lg flex flex-col gap-2 justify-end"
     >
       <CommentItemHeader
         badgeId={data.badgeId}
@@ -73,7 +73,7 @@ const SubComment = ({ data }) => {
       />
       {!updateSubCommentMode ? (
         <>
-          <p>{data.subCommentContent}</p>
+          <p className="text-sm">{data.subCommentContent}</p>
           {nickname === data.nickname ? (
             <CommentItemFooter>
               <button onClick={updateSub}>

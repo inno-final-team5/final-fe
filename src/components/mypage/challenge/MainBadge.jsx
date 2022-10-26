@@ -1,18 +1,22 @@
-import { deleteMyMainBadge } from "apis/badgeApi";
+import { deleteMyMainBadge, getMyMainBadge } from "apis/badgeApi";
 import UserContext from "contexts/UserContext";
 import { useContext } from "react";
 import { FaCrown } from "react-icons/fa";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient, useQuery } from "react-query";
 import Swal from "sweetalert2";
 import DefaultBadge from "./DefaultBadge";
-import useMyMainBadge from "./useMyMainBadge";
 
 const MainBadge = () => {
   const queryClient = useQueryClient();
   const { setMainBadge } = useContext(UserContext);
 
   //배지 초기화
-  const { isLoading, isError, error, data: mainBadge } = useMyMainBadge();
+  const {
+    isLoading,
+    isError,
+    error,
+    data: mainBadge,
+  } = useQuery("mainBadge", getMyMainBadge);
 
   const resetBadge = () => {
     Swal.fire({

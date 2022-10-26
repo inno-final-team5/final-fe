@@ -2,10 +2,16 @@ import Spinner from "components/common/Spinner";
 import React from "react";
 import BadgeList from "./BadgeList";
 import MainBadge from "./MainBadge";
-import useMyBadgeList from "./useMyBadgeList";
+import { getMyBadges } from "apis/badgeApi";
+import { useQuery } from "react-query";
 
 const MyChallengeSection = () => {
-  const { isLoading, isError, error, data: badges } = useMyBadgeList();
+  const {
+    isLoading,
+    isError,
+    error,
+    data: badges,
+  } = useQuery("badgeList", getMyBadges, { keepPreviousData: true });
 
   let content;
 
