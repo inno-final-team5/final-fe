@@ -1,14 +1,14 @@
 import Spinner from "components/common/Spinner";
-import MyFavoriteCard from "./MyFavoriteCard";
-import React from "react";
-import useMyFavoriteMovie from "./useMyFavoriteMovie";
+import MyFavoriteCard from "../../components/myFavorites/MyFavoriteCard";
 import tw from "tailwind-styled-components";
 import Empty from "components/common/Empty";
-import { deleteMyLike } from "apis/favoriteApi";
-import { useMutation, useQueryClient } from "react-query";
+import { getMyLikes, deleteMyLike } from "apis/favoriteApi";
+import { useMutation, useQueryClient, useQuery } from "react-query";
 
-const MyFavoriteSection = () => {
-  const { data: favorites, isLoading } = useMyFavoriteMovie();
+const MyFavorites = () => {
+  const { data: favorites, isLoading } = useQuery("favorites", getMyLikes, {
+    keepPreviousData: true,
+  });
 
   const queryClient = useQueryClient();
 
@@ -48,4 +48,4 @@ const MyFavoriteSection = () => {
 const FavoriteCardsContainer = tw.div`
 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 bg-mGray p-4 justify-items-center rounded-lg h-full
 `;
-export default MyFavoriteSection;
+export default MyFavorites;

@@ -1,11 +1,10 @@
 import Spinner from "components/common/Spinner";
-import React from "react";
-import BadgeList from "./BadgeList";
-import MainBadge from "./MainBadge";
+import MainBadge from "components/myChallenges/MainBadge";
+import BadgeList from "components/myChallenges/BadgeList";
 import { getMyBadges } from "apis/badgeApi";
 import { useQuery } from "react-query";
 
-const MyChallengeSection = () => {
+const MyChallenge = () => {
   const {
     isLoading,
     isError,
@@ -28,4 +27,4 @@ const MyChallengeSection = () => {
   );
 };
 
-export default MyChallengeSection;
+export default MyChallenge;

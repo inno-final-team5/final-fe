@@ -6,6 +6,7 @@ import CommunityMovies from "pages/Community/CommunityMovies";
 import CommunitySearchResult from "pages/Community/CommunitySearchResult";
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
+
 const BoardContainer = () => {
   return (
     <Fragment>
