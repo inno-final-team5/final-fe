@@ -1,4 +1,4 @@
-import MyPostsList from "components/mypage/posts/MyPostsList";
+import MyPostsList from "components/myPages/posts/MyPostsList";
 
 const MyPosts = () => {
   return <MyPostsList />;

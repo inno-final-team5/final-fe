@@ -7,13 +7,13 @@ import KakaoRedirect from "pages/KakaoRedirect";
 import SignUp from "pages/SignUp";
 import Challenge from "pages/Challenge";
 import NotFound from "pages/NotFound";
-import MyPage from "pages/myPage/MyPage";
+import MyPage from "pages/MyPage";
 import SearchPage from "pages/SearchPage";
-import Community from "pages/community/Community";
+import Community from "pages/Community";
 import SearchList from "pages/SearchList";
 import GenreList from "pages/GenreList";
 import UserOneLine from "pages/UserOneLine";
-import CommunitySearchResult from "pages/community/CommunitySearchResult";
+import CommunitySearchResult from "pages/communityPages/CommunitySearchResult";
 
 const Router = () => {
   return (

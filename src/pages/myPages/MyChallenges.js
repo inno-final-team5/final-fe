@@ -1,4 +1,4 @@
-import MyChallengeSection from "components/mypage/challenge";
+import MyChallengeSection from "components/myPages/challenge";
 
 const MyChallenge = () => {
   return <MyChallengeSection />;
