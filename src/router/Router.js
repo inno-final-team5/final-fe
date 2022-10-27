@@ -13,7 +13,7 @@ import Community from "pages/Community";
 import SearchList from "pages/SearchList";
 import GenreList from "pages/GenreList";
 import UserOneLine from "pages/UserOneLine";
-import CommunitySearchResult from "pages/communitiyPages/CommunitySearchResult";
+import CommunitySearchResult from "pages/communityPages/CommunitySearchResult";
 
 const Router = () => {
   return (
