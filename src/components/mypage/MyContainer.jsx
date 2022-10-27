@@ -1,16 +1,16 @@
-import MyChallenge from "pages/Mypage/MyChallenge";
-import MyOneLineReviews from "pages/Mypage/MyOneLineReviews";
-import MyFavorites from "pages/Mypage/MyFavorites";
-import MyPosts from "pages/Mypage/MyPosts";
-import MyInfo from "pages/Mypage/MyInfo";
-
+import MyChallenge from "pages/myPage/MyChallenge";
+import MyOneLineReviews from "pages/myPage/MyOneLineReviews";
+import MyFavorites from "pages/myPage/MyFavorites";
+import MyPosts from "pages/myPage/MyPosts";
+import MyInfo from "pages/myPage/MyInfo";
+import MyPageContainer from "./MyPageContainer";
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 
 const MyContainer = () => {
   return (
     <Fragment>
-      <section>
+      <MyPageContainer>
         <Routes>
           <Route path="favorites" element={<MyFavorites />} />
           <Route path="posts" element={<MyPosts />} />
@@ -18,7 +18,7 @@ const MyContainer = () => {
           <Route path="badges" element={<MyChallenge />} />
           <Route path="info" element={<MyInfo />} />
         </Routes>
-      </section>
+      </MyPageContainer>
     </Fragment>
   );
 };

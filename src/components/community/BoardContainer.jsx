@@ -1,11 +1,12 @@
-import CommunityAll from "pages/Community/CommunityAll";
-import CommunityCinemas from "pages/Community/CommunityCinemas";
-import CommunityDetail from "pages/Community/CommunityDetail";
-import CommunityEdit from "pages/Community/CommunityEdit";
-import CommunityMovies from "pages/Community/CommunityMovies";
-import CommunitySearchResult from "pages/Community/CommunitySearchResult";
+import CommunityAll from "pages/community/CommunityAll";
+import CommunityCinemas from "pages/community/CommunityCinemas";
+import CommunityDetail from "pages/community/CommunityDetail";
+import CommunityEdit from "pages/community/CommunityEdit";
+import CommunityMovies from "pages/community/CommunityMovies";
+import CommunitySearchResult from "pages/community/CommunitySearchResult";
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
+
 const BoardContainer = () => {
   return (
     <Fragment>
