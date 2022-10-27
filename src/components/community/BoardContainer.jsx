@@ -1,9 +1,9 @@
-import CommunityAll from "pages/community/CommunityAll";
-import CommunityCinemas from "pages/community/CommunityCinemas";
-import CommunityDetail from "pages/community/CommunityDetail";
-import CommunityEdit from "pages/community/CommunityEdit";
-import CommunityMovies from "pages/community/CommunityMovies";
-import CommunitySearchResult from "pages/community/CommunitySearchResult";
+import CommunityAll from "pages/communitiyPages/CommunityAll";
+import CommunityCinemas from "pages/communitiyPages/CommunityCinemas";
+import CommunityDetail from "pages/communitiyPages/CommunityDetail";
+import CommunityEdit from "pages/communitiyPages/CommunityEdit";
+import CommunityMovies from "pages/communitiyPages/CommunityMovies";
+import CommunitySearchResult from "pages/communitiyPages/CommunitySearchResult";
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 

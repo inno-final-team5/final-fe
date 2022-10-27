@@ -1,13 +1,13 @@
-import MyChallenge from "pages/myPage/MyChallenge";
-import MyOneLineReviews from "pages/myPage/MyOneLineReviews";
-import MyFavorites from "pages/myPage/MyFavorites";
-import MyPosts from "pages/myPage/MyPosts";
-import MyInfo from "pages/myPage/MyInfo";
+import MyChallenge from "pages/myPages/MyChallenges";
+import MyOneLineReviews from "pages/myPages/MyOneLineReviews";
+import MyFavorites from "pages/myPages/MyFavorites";
+import MyPosts from "pages/myPages/MyPosts";
+import MyInfo from "pages/myPages/MyInfo";
 import MyPageContainer from "./MyPageContainer";
 import { Fragment } from "react";
 import { Routes, Route } from "react-router-dom";
 
-const MyContainer = () => {
+const MyRouter = () => {
   return (
     <Fragment>
       <MyPageContainer>
@@ -23,4 +23,4 @@ const MyContainer = () => {
   );
 };
 
-export default MyContainer;
+export default MyRouter;
