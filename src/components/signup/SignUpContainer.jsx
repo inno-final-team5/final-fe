@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import tw from "tailwind-styled-components";
+import { Toast } from "components/common/Toast";
 
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -45,12 +46,14 @@ const SignUpContainer = () => {
   const emailCheck = async (email) => {
     //빈칸확인
     if (email.length === 0) {
-      alert("이메일을 입력해주세요");
+      Toast.fire({ icon: "warning", title: "이메일을 입력해주세요" });
       return;
     } else if (!checkEmail(email)) {
-      alert(
-        "영문, 숫자와 특수기호(_),(-)를 사용하여 이메일 형식에 맞게 입력해주세요"
-      );
+      Toast.fire({
+        icon: "warning",
+        title:
+          "영문, 숫자와 특수기호(_),(-)를 사용하여 이메일 형식에 맞게 입력해주세요",
+      });
       return;
     }
 
@@ -58,9 +61,9 @@ const SignUpContainer = () => {
     const response = await emailDuplicateCheck(email);
     if (response.data.success) {
       setEmailOk(true);
-      alert("사용 가능한 이메일입니다.");
+      Toast.fire({ icon: "success", title: "사용 가능한 이메일입니다." });
     } else {
-      alert("이미 사용 중인 이메일입니다.");
+      Toast.fire({ icon: "warning", title: "이미 사용 중인 이메일입니다." });
     }
   };
 
@@ -68,10 +71,13 @@ const SignUpContainer = () => {
   const nicknameCheck = async (nickname) => {
     //빈칸확인
     if (nickname.length === 0) {
-      alert("닉네임을 입력해주세요.");
+      Toast.fire({ icon: "warning", title: "닉네임을 입력해주세요." });
       return;
     } else if (!checkUserName(nickname)) {
-      alert("닉네임은 영문, 숫자, 한글로 10자 이내로 입력해주세요.");
+      Toast.fire({
+        icon: "warning",
+        title: "닉네임은 영문, 숫자, 한글로 10자 이내로 입력해주세요.",
+      });
       return;
     }
 
@@ -79,9 +85,9 @@ const SignUpContainer = () => {
     const response = await nicknameDuplicateCheck({ nickname });
     if (response.data.success) {
       setNicknameOk(true);
-      alert("사용 가능한 닉네임입니다.");
+      Toast.fire({ icon: "success", title: "사용 가능한 닉네임입니다." });
     } else {
-      alert("이미 사용 중인 닉네임입니다.");
+      Toast.fire({ icon: "warning", title: "이미 사용 중인 닉네임입니다." });
     }
   };
 
@@ -94,10 +100,13 @@ const SignUpContainer = () => {
 
     /** 비밀번호 유효성 확인*/
     if (!passwordConfirmCheck) {
-      alert("입력하신 비밀번호가 다릅니다.");
+      Toast.fire({ icon: "warning", title: "입력하신 비밀번호가 다릅니다." });
       return;
     } else if (!checkPassword(password)) {
-      alert("비밀번호는 영어 + 숫자 4 ~ 16자리로 입력해주세요.");
+      Toast.fire({
+        icon: "warning",
+        title: "비밀번호는 영어 + 숫자 4 ~ 16자리로 입력해주세요.",
+      });
       return;
     }
 
@@ -105,10 +114,10 @@ const SignUpContainer = () => {
     try {
       //중복확인 버튼 클릭해야 회원가입 가능
       if (emailOk === false) {
-        alert("이메일 중복확인을 해주세요");
+        Toast.fire({ icon: "warning", title: "이메일 중복확인을 해주세요." });
         return;
       } else if (nicknameOk === false) {
-        alert("닉네임 중복확인을 해주세요");
+        Toast.fire({ icon: "warning", title: "닉네임 중복확인을 해주세요." });
         return;
       }
 
@@ -120,11 +129,14 @@ const SignUpContainer = () => {
 
       //이미 있는 이메일,닉네임 사용시
       if (res.data.error === "DUPLICATE_EMAIL") {
-        alert("이메일 중복확인을 해주세요");
+        return Toast.fire({
+          icon: "warning",
+          title: "이메일 중복확인을 해주세요.",
+        });
       } else if (res.data.error === "DUPLICATE_NICKNAME") {
-        alert("닉네임 중복확인을 해주세요");
+        Toast.fire({ icon: "warning", title: "닉네임 중복확인을 해주세요." });
       } else {
-        alert("회원가입이 완료되었습니다.");
+        Toast.fire({ icon: "success", title: "회원가입이 완료되었습니다." });
         navigate("/signin");
       }
     } catch (error) {
