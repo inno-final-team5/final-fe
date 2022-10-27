@@ -2,7 +2,7 @@ import tw from "tailwind-styled-components";
 import { BsArrowReturnRight } from "react-icons/bs";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import SubCommentForm from "./SubCommentForm";
+import SubCommentForm from "./SubcommentForm";
 import { useQueryClient, useMutation } from "react-query";
 import { deleteComment, updateComment } from "apis/postApi";
 import { Toast } from "components/common/Toast";
