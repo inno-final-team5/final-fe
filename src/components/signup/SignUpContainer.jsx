@@ -52,7 +52,7 @@ const SignUpContainer = () => {
       Toast.fire({
         icon: "warning",
         title:
-          "영문, 숫자와 특수기호(_),(-)를 사용하여 이메일 형식에 맞게 입력해주세요",
+          "이메일 형식에 맞게 입력해주세요 ( 영문, 숫자와 특수기호(_),(-) 사용 ) ",
       });
       return;
     }
