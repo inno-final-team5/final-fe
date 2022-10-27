@@ -92,7 +92,7 @@ const SignUpContainer = () => {
   const onSubmitSignup = async (e) => {
     e.preventDefault();
 
-    /** 회원가입 유효성 확인*/
+    /** 비밀번호 유효성 확인*/
     if (!passwordConfirmCheck) {
       alert("입력하신 비밀번호가 다릅니다.");
       return;
@@ -118,6 +118,7 @@ const SignUpContainer = () => {
         password,
       });
 
+      //이미 있는 이메일,닉네임 사용시
       if (res.data.error === "DUPLICATE_EMAIL") {
         alert("이메일 중복확인을 해주세요");
       } else if (res.data.error === "DUPLICATE_NICKNAME") {
