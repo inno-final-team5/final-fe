@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import ReviewItem from "./ReviewItem";
 import Spinner from "components/common/Spinner";
-import Pagination from "components/common/pagination/Pagination";
+import Pagination from "components/community/pagination/Pagination";
 import CommunityFooter from "./CommunityFooter";
 
 const ReviewList = ({ queryFn }) => {

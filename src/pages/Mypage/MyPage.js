@@ -6,27 +6,27 @@ import SideBar from "components/mypage/Sidebar";
 const MyPage = () => {
   return (
     <Layout>
-      <MyPageContainer>
-        <MyPageSidebarContainer>
+      <Container>
+        <SidebarContainer>
           <SideBar />
-        </MyPageSidebarContainer>
-        <MyPageContentContainer>
+        </SidebarContainer>
+        <ContentContainer>
           <MyContainer />
-        </MyPageContentContainer>
-      </MyPageContainer>
+        </ContentContainer>
+      </Container>
     </Layout>
   );
 };
 
-const MyPageContainer = tw.div`
+const Container = tw.div`
 mt-4 h-full
 `;
-const MyPageSidebarContainer = tw.div`
+const SidebarContainer = tw.div`
 bg-mBlack lg:block hidden lg:fixed
 `;
 
-const MyPageContentContainer = tw.div`
-bg-mBlack rounded-xl lg:pl-56 h-full
+const ContentContainer = tw.div`
+bg-mBlack lg:pl-56 h-full
 `;
 
 export default MyPage;

@@ -1,12 +1,7 @@
 import MyFavoriteSection from "components/mypage/favorite";
-import MyPageContainer from "components/mypage/MyPageContainer";
 
 const MyFavorites = () => {
-  return (
-    <MyPageContainer>
-      <MyFavoriteSection />
-    </MyPageContainer>
-  );
+  return <MyFavoriteSection />;
 };
 
 export default MyFavorites;
