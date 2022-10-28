@@ -13,6 +13,8 @@ import CommentItemHeader from "./CommentItemHeader";
 const Comment = ({ commentData }) => {
   const queryClient = useQueryClient();
   const nickname = localStorage.getItem("nickname");
+  const accessToken = localStorage.getItem("accessToken");
+
   const [updateCommentMode, setUpdateCommentMode] = useState(false);
 
   const [activeSubComment, setActiveSubComment] = useState(false);
@@ -81,6 +83,8 @@ const Comment = ({ commentData }) => {
                   <FaTrash className="mr-1" />
                 </button>
               </CommentButtonContainer>
+            ) : accessToken === null ? (
+              <></>
             ) : (
               <CommentButtonContainer>
                 <button
