@@ -103,7 +103,7 @@ const CommunityDetail = () => {
 
               <DetailTitle>{postData.postTitle}</DetailTitle>
               <DetailContent>
-                <p>{postData.postContent}</p>
+                <p className="text-sm">{postData.postContent}</p>
               </DetailContent>
 
               <DetailLikeContainer>
@@ -200,7 +200,7 @@ flex items-center justify-end p-2 text-xs text-mWhite
 `;
 
 const DetailTitle = tw.h2`
-text-2xl truncate w-full border-b-2 border-solid text-mBlack border-mGray  bg-mWhite rounded-xl p-4
+text-sm lg:text-xl truncate w-full border-b-2 border-solid text-mBlack border-mGray  bg-mWhite rounded-xl p-4
 `;
 
 const DetailContent = tw.div`

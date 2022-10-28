@@ -1,15 +1,15 @@
 import React from "react";
 import { useQuery } from "react-query";
 import Spinner from "components/common/Spinner";
-import { getBoxOfficeWithApi } from "apis/mainApi";
-import BoxOfficeMovie from "./BoxOfficeMovie";
+import { getBestFavoriteWithApi } from "apis/mainApi";
+import BestFavoriteMovie from "./BestFavoriteMovie";
 
 //슬라이더
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const BoxOffice = () => {
+const BestFavorite = () => {
   /**carousel 설정*/
   const settings = {
     dots: false,
@@ -45,13 +45,13 @@ const BoxOffice = () => {
   };
 
   /**테이터가 onSuccess일 때 가져오기 */
-  const BoxOfficeQuery = useQuery("boxoffice", getBoxOfficeWithApi, {
+  const BestFavoriteQuery = useQuery("bestFavorite", getBestFavoriteWithApi, {
     onSuccess: () => {
       window.scrollTo(0, 0);
     },
   });
 
-  if (BoxOfficeQuery.isLoading) {
+  if (BestFavoriteQuery.isLoading) {
     return <Spinner />;
   }
 
@@ -61,12 +61,12 @@ const BoxOffice = () => {
         방구석 평론가들이 사랑한 영화🧡
       </h2>
       <Slider {...settings} className="flex ">
-        {BoxOfficeQuery.data.data.map((movie) => (
-          <BoxOfficeMovie {...movie} key={movie.movieId}></BoxOfficeMovie>
+        {BestFavoriteQuery.data.data.map((movie) => (
+          <BestFavoriteMovie {...movie} key={movie.movieId}></BestFavoriteMovie>
         ))}
       </Slider>
     </div>
   );
 };
 
-export default BoxOffice;
+export default BestFavorite;

@@ -7,6 +7,7 @@ import UserBox from "./navbar/UserBox";
 import LogoBox from "./LogoBox";
 import { MdClose, MdMenu } from "react-icons/md";
 import MobileNavbar from "./navbar/MobileNavbar";
+import { BsBellFill } from "react-icons/bs";
 
 const Header = () => {
   const accessToken = localStorage.getItem("accessToken");
@@ -48,7 +49,9 @@ const Header = () => {
             )}
           </div>
         </div>
-        <div className="p-7"></div>
+        <div className=" text-3xl lg:hidden flex items-center z-50 px-4">
+          <BsBellFill className="text-mBlack" />
+        </div>
         <MobileNavbar
           open={open}
           accessToken={accessToken}

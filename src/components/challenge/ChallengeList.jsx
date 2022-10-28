@@ -1,10 +1,16 @@
 import tw from "tailwind-styled-components";
 import ChallengeItem from "./ChallengeItem";
 import Spinner from "components/common/Spinner";
-import useChallengeList from "./useChallengeList";
+import { getAllBadges } from "apis/badgeApi";
+import { useQuery } from "react-query";
 
 const ChallengeList = () => {
-  const { isLoading, isError, error, data: challenges } = useChallengeList();
+  const {
+    isLoading,
+    isError,
+    error,
+    data: challenges,
+  } = useQuery("challengeList", getAllBadges, { keepPreviousData: true });
 
   let content;
 

@@ -1,8 +1,8 @@
 import { getMyOneLineReviews } from "apis/oneLineReviewApi";
 import Empty from "components/common/Empty";
-import Pagination from "components/common/pagination/Pagination";
+import Pagination from "components/community/pagination/Pagination";
 import Spinner from "components/common/Spinner";
-import OneLineReviewItem from "components/mypage/oneLineReview/OneLineReviewItem";
+import OneLineReviewItem from "./OneLineReviewItem";
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import tw from "tailwind-styled-components/";
@@ -56,26 +56,20 @@ const MyOneLineReviewList = () => {
     .map((_, index) => index + 1);
 
   return (
-    <MyReviewContainer>
-      <OneLineReviewList>
-        {content}
-        <Pagination
-          page={pageNum}
-          setPage={setPageNum}
-          totalPages={totalPages}
-          pagesArray={pagesArray}
-        />
-      </OneLineReviewList>
-    </MyReviewContainer>
+    <OneLineReviewList>
+      {content}
+      <Pagination
+        page={pageNum}
+        setPage={setPageNum}
+        totalPages={totalPages}
+        pagesArray={pagesArray}
+      />
+    </OneLineReviewList>
   );
 };
 
-const MyReviewContainer = tw.div`
-  bg-mBlack
-`;
-
 const OneLineReviewList = tw.div`
- h-full md:min-h-[28rem]
+  bg-mBlack min-h-[26rem] 
 `;
 
 export default MyOneLineReviewList;

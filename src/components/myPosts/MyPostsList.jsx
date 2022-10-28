@@ -3,7 +3,7 @@ import Spinner from "components/common/Spinner";
 import Empty from "components/common/Empty";
 import tw from "tailwind-styled-components";
 import PostItem from "./PostItem";
-import Pagination from "components/common/pagination/Pagination";
+import Pagination from "components/community/pagination/Pagination";
 import { getMyPosts } from "apis/postApi";
 import { useQuery } from "react-query";
 
@@ -49,26 +49,20 @@ const MyPostsList = () => {
     .map((_, index) => index + 1);
 
   return (
-    <MyPostContainer>
-      <PostsList>
-        {content}
-        <Pagination
-          page={pageNum}
-          setPage={setPageNum}
-          totalPages={totalPages}
-          pagesArray={pagesArray}
-        />
-      </PostsList>
-    </MyPostContainer>
+    <PostsList>
+      {content}
+      <Pagination
+        page={pageNum}
+        setPage={setPageNum}
+        totalPages={totalPages}
+        pagesArray={pagesArray}
+      />
+    </PostsList>
   );
 };
 
-const MyPostContainer = tw.div`
-  bg-mBlack
-`;
-
 const PostsList = tw.div`
-h-full md:min-h-[28rem] 
+ bg-mBlack min-h-[26rem]
 `;
 
 export default MyPostsList;
