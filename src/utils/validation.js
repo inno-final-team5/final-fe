@@ -1,7 +1,5 @@
 export const checkEmail = (email) => {
   const emailRegex =
-    // /(^[-_.]?[0-9a-zA-Z])([-_.]?[0-9a-zA-Z][-_.]?)*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    // /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
     /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
   return emailRegex.test(email);
 };
