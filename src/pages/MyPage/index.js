@@ -1,7 +1,7 @@
 import tw from "tailwind-styled-components";
 import Layout from "components/common/Layout";
-import MySideBar from "components/mypage/MySidebar";
-import MyRouter from "components/mypage/MyRouter";
+import MySideBar from "components/myPage/MySidebar";
+import MyRouter from "components/myPage/MyRouter";
 
 const MyPage = () => {
   return (
