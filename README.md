@@ -39,10 +39,11 @@
 FE &nbsp; - &nbsp; [문지웅](https://github.com/woongsnote) &nbsp; [유민아](https://github.com/maydec2298) &nbsp; [전혜림](https://github.com/hyelim-JEON) &nbsp; [장소정](https://github.com/sydneyyyyyyy)
 
 BE &nbsp; - &nbsp; [전선향](https://github.com/petal416) &nbsp; [유연정](https://github.com/Jei-you) &nbsp; [정수민](https://github.com/jsm6943)
+   
 <br />
 
 ## ⚙️ **Tech Stack** 🛠
-<br />
+
 ### 🛠 **FrontEnd** 🛠
 
 <br />
@@ -72,9 +73,12 @@ BE &nbsp; - &nbsp; [전선향](https://github.com/petal416) &nbsp; [유연정](h
 
 </div>
 
+<div align="left">
+   
+<br />
+   
 ## **📚 주요 기능**
 
-<div align="left">
 <br />
 
 1. **메인페이지**
