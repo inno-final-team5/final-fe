@@ -157,7 +157,7 @@ BE &nbsp; - &nbsp; [전선향](https://github.com/petal416) &nbsp; [유연정](h
    
 <br />
    
-- **피드백 기반 개선할 사항 [Notion](https://www.notion.so/woongsnote/e55f501796ed44c58d6fb21230d6c815)**
+- **유저 피드백 정리 [Notion](https://www.notion.so/woongsnote/e55f501796ed44c58d6fb21230d6c815)**
 - 유저 피드백 기간 : 22년 10월 17일 ~ 22년 10월 23일
    
 <br />
