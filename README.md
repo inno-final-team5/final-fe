@@ -12,7 +12,7 @@
 
 [팀 노션 주소](https://www.notion.so/woongsnote/aacf5be13a1242b29f4e3d215f0f516f)
 
-[ERD](https://www.notion.so/woongsnote/ERD-3ccf85a44ac0457cb70fe08e34261f19))
+[ERD](https://www.notion.so/woongsnote/ERD-3ccf85a44ac0457cb70fe08e34261f19)
 
 [발표 영상](https://www.youtube.com/watch?v=sHVIiqPfBVU)
 
