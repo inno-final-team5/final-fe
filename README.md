@@ -152,12 +152,18 @@ BE &nbsp; - &nbsp; [전선향](https://github.com/petal416) &nbsp; [유연정](h
 
 <br />
 
-<br />
 
+## 🧐 <b>유저 피드백 및 개선사항</b>
+<br />
+**피드백 정리 [Notion](https://www.notion.so/woongsnote/e55f501796ed44c58d6fb21230d6c815)**
+<br />
+![image](https://user-images.githubusercontent.com/110373500/198998130-64f7472e-4ed6-4074-870e-3edea6b06042.png)
+![image](https://user-images.githubusercontent.com/110373500/198998251-12344ca8-534d-456d-9ac6-f372cbe24d20.png)
+
+<br />
 ## 🔎 <b>사이트 미리보기</b>
 
 ![image](https://user-images.githubusercontent.com/109592005/197546591-4c4d3d21-f046-455f-b3a4-80810d9ca811.png)
 
-## 📁 Directory Structure 📂
 
 </div>
