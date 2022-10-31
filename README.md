@@ -12,9 +12,9 @@
 
 [팀 노션 주소](https://www.notion.so/woongsnote/aacf5be13a1242b29f4e3d215f0f516f)
 
-[API 설계](https://www.notion.so/woongsnote/API-9b2ab4a006184615bcd961851fdfdb99)
+[ERD](https://www.notion.so/woongsnote/ERD-3ccf85a44ac0457cb70fe08e34261f19))
 
-[ERD](https://www.notion.so/woongsnote/ERD-3ccf85a44ac0457cb70fe08e34261f19)
+[발표 영상](https://www.youtube.com/watch?v=sHVIiqPfBVU)
 
 <br />
 
