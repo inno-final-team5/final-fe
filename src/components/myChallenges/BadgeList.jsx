@@ -6,6 +6,7 @@ const BadgeList = ({ data }) => {
   const userData = data[0];
   const badgeData = userData.badgeResponseDtoList;
   const badgeList = BadgeListData;
+
   let activeBadges = [];
 
   if (data.length > 0) {
@@ -13,12 +14,13 @@ const BadgeList = ({ data }) => {
   }
 
   let activeIds = [];
+
   for (let i = 0; i < activeBadges.length; i++) {
     activeIds.push(badgeData[i].badgeId);
   }
 
   const isBadgeActive = (i) => {
-    return activeIds.includes(i - 2) ? true : false;
+    return activeIds.includes(i + 2) ? true : false;
   };
 
   return (
