@@ -18,7 +18,7 @@ const BadgeList = ({ data }) => {
   }
 
   const isBadgeActive = (i) => {
-    return activeIds.includes(i + 1) ? true : false;
+    return activeIds.includes(i) ? true : false;
   };
 
   return (
