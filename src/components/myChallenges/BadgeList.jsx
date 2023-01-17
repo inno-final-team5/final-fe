@@ -1,4 +1,3 @@
-import React from "react";
 import { BadgeListData } from "data/BadgeListData";
 import BadgeItem from "./BadgeItem";
 import tw from "tailwind-styled-components";
@@ -18,7 +17,7 @@ const BadgeList = ({ data }) => {
     activeIds.push(badgeData[i].badgeId);
   }
 
-  const checkIsActive = (i) => {
+  const isBadgeActive = (i) => {
     return activeIds.includes(i + 1) ? true : false;
   };
 
@@ -29,7 +28,7 @@ const BadgeList = ({ data }) => {
         icon={badgeList[0].badgeIcon}
         name={badgeList[0].badgeName}
         description={badgeList[0].badgeInfo}
-        isActive={checkIsActive(0)}
+        isActive={isBadgeActive(0)}
         currentCount={userData.postTotal}
         maxCount={userData.badgeNum}
       />
@@ -40,7 +39,7 @@ const BadgeList = ({ data }) => {
         description={badgeList[1].badgeInfo}
         currentCount={userData.oneReviewTotal}
         maxCount={userData.badgeNum}
-        isActive={checkIsActive(checkIsActive(1))}
+        isActive={isBadgeActive(1)}
       />
       <BadgeItem
         id={badgeList[2].badgeId}
@@ -49,7 +48,7 @@ const BadgeList = ({ data }) => {
         description={badgeList[2].badgeInfo}
         currentCount={userData.oneReviewLikeNumTotal}
         maxCount={userData.badgeNum}
-        isActive={checkIsActive(2)}
+        isActive={isBadgeActive(2)}
       />
       <BadgeItem
         id={badgeList[3].badgeId}
@@ -58,7 +57,7 @@ const BadgeList = ({ data }) => {
         description={badgeList[3].badgeInfo}
         currentCount={userData.postLikeNumTotal}
         maxCount={userData.badgeNum}
-        isActive={checkIsActive(3)}
+        isActive={isBadgeActive(3)}
       />
       <BadgeItem
         id={badgeList[4].badgeId}
@@ -67,7 +66,7 @@ const BadgeList = ({ data }) => {
         description={badgeList[4].badgeInfo}
         currentCount={userData.favoriteTotal}
         maxCount={userData.badgeNum}
-        isActive={checkIsActive(4)}
+        isActive={isBadgeActive(4)}
       />
       <BadgeItem
         id={badgeList[5].badgeId}
@@ -76,7 +75,7 @@ const BadgeList = ({ data }) => {
         description={badgeList[5].badgeInfo}
         currentCount={userData.reviewStarFiveTotal}
         maxCount={userData.badgeNum}
-        isActive={checkIsActive(5)}
+        isActive={isBadgeActive(5)}
       />
       <BadgeItem
         id={badgeList[6].badgeId}
@@ -85,7 +84,7 @@ const BadgeList = ({ data }) => {
         description={badgeList[6].badgeInfo}
         currentCount={userData.reviewStarOneTotal}
         maxCount={userData.badgeNum}
-        isActive={checkIsActive(6)}
+        isActive={isBadgeActive(6)}
       />
       <BadgeItem
         id={badgeList[7].badgeId}
@@ -94,7 +93,7 @@ const BadgeList = ({ data }) => {
         description={badgeList[7].badgeInfo}
         currentCount={userData.getBadgeTotal}
         maxCount={7}
-        isActive={checkIsActive(7)}
+        isActive={isBadgeActive(7)}
       />
     </BadgeListContainer>
   );
