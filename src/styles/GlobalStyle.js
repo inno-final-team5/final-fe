@@ -26,6 +26,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
+    width:100vw;
+    height:100vh;
+    background-color:#222831;
+    font-family:"Cafe24SsurroundAir";
   }
   ;
 
