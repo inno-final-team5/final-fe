@@ -1,4 +1,3 @@
-import React from "react";
 import { createContext, useState } from "react";
 
 const UserContext = createContext();
@@ -10,8 +9,7 @@ export const UserProvider = ({ children }) => {
   const [nickname, setNickname] = useState(initialNickname);
   return (
     <UserContext.Provider
-      value={{ mainBadge, setMainBadge, nickname, setNickname }}
-    >
+      value={{ mainBadge, setMainBadge, nickname, setNickname }}>
       {children}
     </UserContext.Provider>
   );
