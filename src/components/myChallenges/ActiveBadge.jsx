@@ -1,4 +1,3 @@
-import React from "react";
 import Swal from "sweetalert2";
 import { useMutation, useQueryClient } from "react-query";
 import UserContext from "contexts/UserContext";

@@ -1,4 +1,3 @@
-import React from "react";
 import Swal from "sweetalert2";
 
 const InActiveBadge = ({ icon, name, description, currentCount, maxCount }) => {
