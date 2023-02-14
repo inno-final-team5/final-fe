@@ -16,7 +16,7 @@ const BadgeList = ({ data }) => {
   let activeIds = [];
 
   for (let i = 0; i < activeBadges.length; i++) {
-    activeIds.push(badgeData[i].badgeId);
+    activeIds.push(badgeData[i].badgeId - 2);
   }
 
   const isBadgeActive = (i) => {
