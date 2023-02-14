@@ -57,7 +57,7 @@ const LoginForm = () => {
         });
       } else if (data.data.success === true) {
         function findBadge(element) {
-          if (element.badgeId === data.data.data.badgeId) {
+          if (element.badgeId === data.data.data.badgeId - 2) {
             return element.badge;
           }
         }
@@ -100,7 +100,13 @@ const LoginForm = () => {
           </InputDiv>
           <InputDiv>
             <InputLabel>비밀번호</InputLabel>
-            <LoginInput type="password" ref={password_ref} autoComplete="on" onKeyPress={onKeyPress} required />
+            <LoginInput
+              type="password"
+              ref={password_ref}
+              autoComplete="on"
+              onKeyPress={onKeyPress}
+              required
+            />
           </InputDiv>
           <ButtonSpace>
             <LoginButton id="login" onClick={loginButtonHandler}>

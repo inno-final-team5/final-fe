@@ -30,7 +30,7 @@ const ActiveBadge = ({ id, icon, name, description }) => {
       cancelButtonText: "취소",
     }).then((result) => {
       if (result.isConfirmed) {
-        updateMainBadgeMutation.mutate({ badgeId: id });
+        updateMainBadgeMutation.mutate({ badgeId: id + 2 });
       }
     });
   };
@@ -44,8 +44,7 @@ const ActiveBadge = ({ id, icon, name, description }) => {
   return (
     <div
       className="w-20 h-20 bg-mWhite rounded-xl py-4 flex justify-center items-center m-2 cursor-pointer"
-      onClick={onClickActiveBadgeHandler}
-    >
+      onClick={onClickActiveBadgeHandler}>
       <span className="text-4xl font-serif">{icon}</span>
     </div>
   );

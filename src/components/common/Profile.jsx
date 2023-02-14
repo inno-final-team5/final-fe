@@ -1,5 +1,4 @@
 import UserContext from "contexts/UserContext";
-import React from "react";
 import { useContext } from "react";
 
 const Profile = () => {
