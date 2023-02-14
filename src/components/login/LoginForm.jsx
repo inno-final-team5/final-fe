@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import logo from "images/Logo.png";
 import kakao_login from "images/kakao_login.png";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import { signIn } from "apis/userApi";
 import { useMutation } from "react-query";
 import { Toast } from "components/common/Toast";
 import tw from "tailwind-styled-components/";
+import UserContext from "contexts/UserContext";
 
 const LoginForm = () => {
   const REDIRECT_URI = "https://www.moviecritic.site/kakaoLogin";
@@ -15,12 +16,14 @@ const LoginForm = () => {
   const memberId_ref = useRef(null);
   const password_ref = useRef(null);
 
+  const { setMainBadge } = useContext(UserContext);
+
   const badgeIcon = [
     { badgeId: 0, badge: "👤" },
     { badgeId: 1, badge: "💃" },
     { badgeId: 2, badge: "😎" },
-    { badgeId: 3, badge: "🧑‍🤝‍🧑 " },
-    { badgeId: 4, badge: "🙌 " },
+    { badgeId: 3, badge: "🧑‍🤝‍🧑" },
+    { badgeId: 4, badge: "🙌" },
     { badgeId: 5, badge: "🎬" },
     { badgeId: 6, badge: "👼" },
     { badgeId: 7, badge: "😈" },
@@ -57,8 +60,13 @@ const LoginForm = () => {
         });
       } else if (data.data.success === true) {
         function findBadge(element) {
-          if (element.badgeId === data.data.data.badgeId - 2) {
+          if (
+            data.data.data.badgeId > 0 &&
+            element.badgeId === data.data.data.badgeId - 2
+          ) {
             return element.badge;
+          } else {
+            return { badgeId: 0, badge: "👤" };
           }
         }
         const { badge } = badgeIcon.filter(findBadge)[0];
@@ -67,6 +75,7 @@ const LoginForm = () => {
           localStorage.setItem("refreshToken", data.headers["refresh-token"]),
           localStorage.setItem("accessToken", data.headers.authorization),
           localStorage.setItem("badgeIcon", badge),
+          setMainBadge(badge),
           (document.location.href = "/")
         );
       }
